@@ -1,4 +1,14 @@
 import Place from './../models/Place';
+import Category from './../models/Category';
+
+export const CATEGORIES = [
+  new Category('c1', 'Art', 'paint-brush'),
+  new Category('c2', 'Libraries', 'book'),
+  new Category('c3', 'Museums', 'archway'),
+  new Category('c4', 'Cinemas', 'film'),
+  new Category('c5', 'Restaurants', 'utensils'),
+  new Category('c6', 'Cafè', 'mug-hot'),
+];
 
 export const PLACES = [
   new Place(
