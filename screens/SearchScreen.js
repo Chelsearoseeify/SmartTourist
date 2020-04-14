@@ -6,6 +6,7 @@ import SearchBar from '../components/SearchBar';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {CATEGORIES} from './../data/dummy-data';
 import CategoryCard from './../components/CategoryCard';
+import MapButton from '../components/MapButton';
 
 const MapIcon = style => (
   <Icon style={styles.iconStyle} {...style} name="map-signs" />
@@ -31,17 +32,11 @@ const SearchScreen = () => {
           marginHorizontal: 12,
           marginVertical: 10,
         }}>
-        <Button
-          style={styles.button}
-          appearance="ghost"
-          status="danger"
-          icon={MapIcon}
-          onPress={() => navigation.navigate('Map')}
-        />
+        <MapButton />
         <Text
           category="h1"
           style={{color: Colors.blueTitleColor, fontWeight: 'bold'}}>
-          Edinburgh
+          Search
         </Text>
       </View>
       <View>
@@ -51,7 +46,8 @@ const SearchScreen = () => {
         <FlatList
           data={CATEGORIES}
           numColumns={2}
-          renderItem={renderGridItem}></FlatList>
+          renderItem={renderGridItem}
+        />
       </View>
     </View>
   );

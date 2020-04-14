@@ -1,15 +1,12 @@
 import React, {Component} from 'react';
 import Colors from '../constants/Colors';
-import {View, StyleSheet, FlatList} from 'react-native';
+import {View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import {Text, Button} from '@ui-kitten/components';
 import PlaceCard from '../components/PlaceCard';
 import {PLACES} from './../data/dummy-data';
 import SearchBar from '../components/SearchBar';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-
-const MapIcon = style => (
-  <Icon style={styles.iconStyle} {...style} name="map-signs" />
-);
+import MapButton from '../components/MapButton';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const MainPageScreen = ({navigation}) => {
   const renderGridItem = itemData => {
@@ -35,13 +32,7 @@ const MainPageScreen = ({navigation}) => {
           marginHorizontal: 12,
           marginVertical: 10,
         }}>
-        <Button
-          style={styles.button}
-          appearance="ghost"
-          status="danger"
-          icon={MapIcon}
-          onPress={() => navigation.navigate('Map')}
-        />
+        <MapButton />
         <Text
           category="h1"
           style={{color: Colors.blueTitleColor, fontWeight: 'bold'}}>
@@ -55,10 +46,7 @@ const MainPageScreen = ({navigation}) => {
         <Text style={styles.textStyle}>Things to do</Text>
       </View>
       <View>
-        <FlatList
-          data={PLACES}
-          numColumns={2}
-          renderItem={renderGridItem}></FlatList>
+        <FlatList data={PLACES} numColumns={2} renderItem={renderGridItem} />
       </View>
     </View>
   );
@@ -83,6 +71,7 @@ let styles = StyleSheet.create({
   },
   button: {
     margin: 0,
+    borderWidth: 1,
   },
 });
 

@@ -22,7 +22,7 @@ const PlaceCard = ({name, imageUrl, onSelect}) => {
         <ImageBackground
           source={imageUrl}
           style={styles.imageBackgroundStyle}
-          imageStyle={{borderRadius: 10, opacity: 10}}
+          imageStyle={{borderRadius: 15, opacity: 10}}
           resizeMode="cover">
           <View style={styles.filterStyle}>
             <View style={styles.iconStyle}>
@@ -58,9 +58,9 @@ const styles = StyleSheet.create({
   cardStyle: {
     margin: 20,
     elevation: 6,
-    borderRadius: 10,
+    borderRadius: 15,
     flex: 1,
-    height: 240,
+    height: 220,
   },
   dataStyle: {
     flex: 1,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   filterStyle: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    borderRadius: 10,
+    borderRadius: 15,
   },
   imageBackgroundStyle: {
     width: '100%',
