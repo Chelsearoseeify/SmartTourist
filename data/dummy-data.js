@@ -1,6 +1,7 @@
 import Place from './../models/Place';
 import Category from './../models/Category';
 import City from './../models/City';
+import Trip from '../models/Trip';
 
 export const CATEGORIES = [
   new Category('c1', 'Art', 'paint-brush'),
@@ -45,7 +46,7 @@ export const PLACES = [
     'Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblò per preparare un testo campione. È sopravvissuto non solo a più di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni ’60, con la diffusione dei fogli di caratteri trasferibili “Letraset”, che contenevano passaggi del Lorem Ipsum, e più recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.',
   ),
   new Place(
-    'p1',
+    'p6',
     "Arthur's Seat",
     'History',
     require('./../assets/images/arthurs_seat.jpg'),
@@ -68,3 +69,7 @@ export const CITIES = [
   new City('c4', 'Los Angeles', require('./../assets/images/los_angeles.jpg')),
   new City('c5', 'New York', require('./../assets/images/new_york.jpg')),
 ];
+
+export const TRIPS = [
+  new Trip('t0', 'Trip 1', 'c1', new Date(), new Date() + 1, ['p1', 'p4'])
+]

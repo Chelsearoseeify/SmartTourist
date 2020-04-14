@@ -1,9 +1,16 @@
-import React, {Component} from 'react';
+import React,{ useEffect } from 'react';
 import {StyleSheet, ImageBackground, View} from 'react-native';
 import {Text} from '@ui-kitten/components';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
-const NextTripCard = () => {
+import { useSelector } from 'react-redux';
+
+const NextTripCard = props => {
+  const trips = useSelector(state => state.trips.userTrips);
+
+  useEffect(() => {
+    console.log(trips);
+  }, [trips]);
+
   return (
     <View style={styles.cardStyle}>
       <ImageBackground
@@ -13,7 +20,7 @@ const NextTripCard = () => {
         resizeMode="cover">
         <View style={styles.filterStyle}>
           <View style={styles.dataStyle}>
-            <Text style={styles.nameStyle}>Edinburgh</Text>
+          <Text style={styles.nameStyle}>{trips ? trips[0].name : 'Edinburgh'}</Text>
             <View style={styles.ratingStyle}>
               <Text style={{fontSize: 18, marginRight: 5, color: 'white'}}>
                 Fri 13 - Mon 16 March

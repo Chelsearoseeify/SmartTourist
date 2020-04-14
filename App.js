@@ -7,19 +7,32 @@
  */
 
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import TabNavigator from './navigation/AppNavigator';
-import {ApplicationProvider, Layout} from '@ui-kitten/components';
-import {mapping, light as lightTheme} from '@eva-design/eva';
+import { ApplicationProvider, Layout } from '@ui-kitten/components';
+import { mapping, light as lightTheme } from '@eva-design/eva';
+
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+
+import tripsReducer from './store/reducers/trips';
+
+const rootReducer = combineReducers({
+  trips: tripsReducer
+})
+
+const store = createStore(rootReducer);
 
 const App = () => {
   return (
-    <ApplicationProvider mapping={mapping} theme={lightTheme}>
-      <NavigationContainer style={{transparentCard: true}}>
-        <TabNavigator />
-      </NavigationContainer>
-    </ApplicationProvider>
+    <Provider store={store}>
+      <ApplicationProvider mapping={mapping} theme={lightTheme}>
+        <NavigationContainer style={{ transparentCard: true }}>
+          <TabNavigator />
+        </NavigationContainer>
+      </ApplicationProvider>
+    </Provider>
   );
 };
 
