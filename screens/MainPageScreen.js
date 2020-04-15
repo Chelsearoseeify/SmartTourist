@@ -1,14 +1,20 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Colors from '../constants/Colors';
-import {View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
-import {Text, Button} from '@ui-kitten/components';
+import { View, StyleSheet, FlatList, SafeAreaView } from 'react-native';
+import { Text, Button } from '@ui-kitten/components';
+import { PLACES } from './../data/dummy-data';
+
 import PlaceCard from '../components/PlaceCard';
-import {PLACES} from './../data/dummy-data';
 import SearchBar from '../components/SearchBar';
 import MapButton from '../components/MapButton';
-import {ScrollView} from 'react-native-gesture-handler';
+import CustomButton from './../components/CustomButton';
 
-const MainPageScreen = ({navigation}) => {
+const MainPageScreen = ({ navigation }) => {
+
+  const addTripHandler = () => {
+    navigation.navigate('AddTrip')
+  }
+
   const renderGridItem = itemData => {
     return (
       <PlaceCard
@@ -23,31 +29,46 @@ const MainPageScreen = ({navigation}) => {
     );
   };
 
+  const headerComponent = () => {
+    return (
+      <View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginHorizontal: 12,
+            marginVertical: 10,
+          }}>
+          <MapButton />
+          <Text
+            category="h1"
+            style={{ color: Colors.blueTitleColor, fontWeight: 'bold' }}>
+            Edinburgh
+        </Text>
+        </View>
+        <View>
+          <SearchBar />
+        </View>
+        <View>
+          <CustomButton onPress={addTripHandler}/>
+        </View>
+        <View>
+          <Text style={styles.textStyle}>Things to do</Text>
+        </View>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          marginHorizontal: 12,
-          marginVertical: 10,
-        }}>
-        <MapButton />
-        <Text
-          category="h1"
-          style={{color: Colors.blueTitleColor, fontWeight: 'bold'}}>
-          Edinburgh
-        </Text>
-      </View>
-      <View>
-        <SearchBar />
-      </View>
-      <View>
-        <Text style={styles.textStyle}>Things to do</Text>
-      </View>
-      <View>
-        <FlatList data={PLACES} numColumns={2} renderItem={renderGridItem} />
-      </View>
+      <FlatList
+        contentContainerStyle={styles.placesContainer}
+        data={PLACES}
+        numColumns={2}
+        renderItem={renderGridItem}
+        horizontal={false} 
+        ListHeaderComponent={headerComponent}
+        />
     </View>
   );
 };
@@ -73,6 +94,9 @@ let styles = StyleSheet.create({
     margin: 0,
     borderWidth: 1,
   },
+  placesContainer: {
+    marginHorizontal: 20
+  }
 });
 
 export default MainPageScreen;

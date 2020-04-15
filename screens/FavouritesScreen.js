@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {Layout, Text, Button} from '@ui-kitten/components';
 import Colors from '../constants/Colors';
 import GridView from './../components/GridView';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, SafeAreaView} from 'react-native';
 import HorizontalScrolliew from '../components/HorizontalScrollView';
 import {CITIES} from '../data/dummy-data';
 
 const FavouriteScreen = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View
         style={{
           flexDirection: 'row',
@@ -27,7 +27,7 @@ const FavouriteScreen = () => {
         <HorizontalScrolliew name={'London'} cities={CITIES} />
         <HorizontalScrolliew name={'New York'} cities={CITIES} />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

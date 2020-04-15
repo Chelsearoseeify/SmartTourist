@@ -7,13 +7,13 @@ const ButtonClickCheckFunction = () => {
   Alert.alert('Button Clicked');
 };
 
-const CustomButton = () => {
+const CustomButton = props => {
   return (
     <View style={{flexDirection: 'row', justifyContent: 'center'}}>
       <TouchableOpacity
         style={styles.buttonStyle}
         activeOpacity={0.5}
-        onPress={ButtonClickCheckFunction}>
+        onPress={props.onPress}>
         <Text style={styles.TextStyle}> Add a new trip </Text>
       </TouchableOpacity>
     </View>

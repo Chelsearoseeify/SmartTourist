@@ -1,8 +1,7 @@
 import React from 'react';
 
 import ListCard from '../components/ListCard';
-import {View, StyleSheet, Text} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import {View, StyleSheet, Text, ScrollView} from 'react-native';
 import Colors from '../constants/Colors';
 
 const HorizontalScrolliew = ({name, cities}) => {

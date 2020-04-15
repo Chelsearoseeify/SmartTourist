@@ -1,18 +1,17 @@
 import React from 'react';
-import {Layout, Text} from '@ui-kitten/components';
+import {Text} from '@ui-kitten/components';
 import Colors from '../constants/Colors';
-import {View, StyleSheet, ImageBackground, Button, Alert} from 'react-native';
+import {View, StyleSheet, ImageBackground, Button, Alert, ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import NextTripCard from '../components/NextTripCard';
 import CustomButton from './../components/CustomButton';
-import {ScrollView} from 'react-native-gesture-handler';
 import PlaceCard from '../components/PlaceCard';
-import HorizontalScrolliew from '../components/HorizontalScrollView';
+import HorizontalScrollView from '../components/HorizontalScrollView';
 import {CITIES} from './../data/dummy-data';
 
 const ProfileScreen = () => {
   return (
-    <Layout
+    <View
       style={{
         backgroundColor: Colors.backgroudColor,
         flex: 1,
@@ -72,13 +71,13 @@ const ProfileScreen = () => {
             </View>
           </View>
           <ScrollView>
-            <HorizontalScrolliew name={'Your favourites'} cities={CITIES} />
-            <HorizontalScrolliew name={'Suggested trips'} cities={CITIES} />
-            <HorizontalScrolliew name={'Common destinations'} cities={CITIES} />
+            <HorizontalScrollView name={'Your favourites'} cities={CITIES} />
+            <HorizontalScrollView name={'Suggested trips'} cities={CITIES} />
+            <HorizontalScrollView name={'Common destinations'} cities={CITIES} />
           </ScrollView>
         </View>
       </View>
-    </Layout>
+    </View>
   );
 };
 
