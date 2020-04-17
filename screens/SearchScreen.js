@@ -1,10 +1,10 @@
 import React from 'react';
-import { Layout, Text, Button } from '@ui-kitten/components';
+import {Layout, Text, Button} from '@ui-kitten/components';
 import Colors from '../constants/Colors';
-import { StyleSheet, View, FlatList, SafeAreaView } from 'react-native';
+import {StyleSheet, View, FlatList, SafeAreaView} from 'react-native';
 import SearchBar from '../components/SearchBar';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { CATEGORIES } from './../data/dummy-data';
+import {CATEGORIES} from './../data/dummy-data';
 import CategoryCard from './../components/CategoryCard';
 import MapButton from '../components/MapButton';
 
@@ -18,7 +18,7 @@ const SearchScreen = () => {
       <CategoryCard
         name={itemData.item.name}
         iconId={itemData.item.iconId}
-        onSelect={() => { }}
+        onSelect={() => {}}
       />
     );
   };
@@ -30,21 +30,22 @@ const SearchScreen = () => {
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            marginHorizontal: 15,
+            marginHorizontal: 12,
+            marginVertical: 10,
           }}>
           <MapButton />
           <Text
             category="h1"
-            style={{ color: Colors.blueTitleColor, fontWeight: 'bold' }}>
+            style={{color: Colors.blueTitleColor, fontWeight: 'bold'}}>
             Search
-        </Text>
+          </Text>
         </View>
         <View>
           <SearchBar />
         </View>
       </View>
     );
-  }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -53,6 +54,8 @@ const SearchScreen = () => {
         numColumns={2}
         renderItem={renderGridItem}
         ListHeaderComponent={headerComponent}
+        style={{marginHorizontal: 20}}
+        showsVerticalScrollIndicator={false}
       />
     </SafeAreaView>
   );
@@ -60,7 +63,7 @@ const SearchScreen = () => {
 
 let styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.backgroudColor,
+    backgroundColor: Colors.backgroundColor,
     flex: 1,
     flexDirection: 'column',
   },

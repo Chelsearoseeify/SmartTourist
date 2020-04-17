@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Colors from '../constants/Colors';
-import { View, StyleSheet, FlatList, SafeAreaView } from 'react-native';
-import { Text, Button } from '@ui-kitten/components';
-import { PLACES } from './../data/dummy-data';
+import {View, StyleSheet, FlatList, SafeAreaView} from 'react-native';
+import {Text, Button} from '@ui-kitten/components';
+import {PLACES} from './../data/dummy-data';
 
 import PlaceCard from '../components/PlaceCard';
 import SearchBar from '../components/SearchBar';
 import MapButton from '../components/MapButton';
 import CustomButton from './../components/CustomButton';
 
-const MainPageScreen = ({ navigation }) => {
-
+const MainPageScreen = ({navigation}) => {
   const addTripHandler = () => {
-    navigation.navigate('AddTrip')
-  }
+    navigation.navigate('AddTrip');
+  };
 
   const renderGridItem = itemData => {
     return (
@@ -42,22 +41,22 @@ const MainPageScreen = ({ navigation }) => {
           <MapButton />
           <Text
             category="h1"
-            style={{ color: Colors.blueTitleColor, fontWeight: 'bold' }}>
+            style={{color: Colors.blueTitleColor, fontWeight: 'bold'}}>
             Edinburgh
-        </Text>
+          </Text>
         </View>
         <View>
           <SearchBar />
         </View>
         <View>
-          <CustomButton onPress={addTripHandler}/>
+          <CustomButton onPress={addTripHandler} />
         </View>
         <View>
           <Text style={styles.textStyle}>Things to do</Text>
         </View>
       </View>
     );
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -66,16 +65,16 @@ const MainPageScreen = ({ navigation }) => {
         data={PLACES}
         numColumns={2}
         renderItem={renderGridItem}
-        horizontal={false} 
+        horizontal={false}
         ListHeaderComponent={headerComponent}
-        />
+      />
     </View>
   );
 };
 
 let styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.backgroudColor,
+    backgroundColor: Colors.backgroundColor,
     flex: 1,
     flexDirection: 'column',
   },
@@ -95,8 +94,8 @@ let styles = StyleSheet.create({
     borderWidth: 1,
   },
   placesContainer: {
-    marginHorizontal: 20
-  }
+    marginHorizontal: 20,
+  },
 });
 
 export default MainPageScreen;

@@ -4,7 +4,6 @@ import {View, Text, ImageBackground, StyleSheet} from 'react-native';
 import Colors from '../constants/Colors';
 
 const ListCard = ({name, imageId}) => {
-  console.log(imageId);
   return (
     <TouchableOpacity style={{padding: 8}}>
       <View

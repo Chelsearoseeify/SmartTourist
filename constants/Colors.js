@@ -1,5 +1,5 @@
 export default {
-  backgroudColor: '#F8FAFC',
+  backgroundColor: '#F8FAFC',
   blueTitleColor: '#205072',
   greenTitleColor: '#329D9C',
   greenButtonColor: '#56C596',

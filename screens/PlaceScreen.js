@@ -4,94 +4,124 @@ import Colors from '../constants/Colors';
 import {View, ImageBackground, StyleSheet} from 'react-native';
 import BackButton from '../components/BackButton';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const PlaceScreen = props => {
   let stars = [1, 2, 3, 4, 5];
   return (
-    <View style={{flex: 1, backgroundColor: Colors.backgroudColor}}>
-      <View style={{height: '35%'}}>
+    <View style={{flex: 1}}>
+      <View style={{height: 200, width: '100%', flex: 1, position: 'absolute'}}>
         <ImageBackground
           source={require('./../assets/images/edinburgh_castle.jpg')}
           style={styles.imageBackgroundStyle}
-          resizeMode="cover">
-          <View>
-            <BackButton {...props} />
-          </View>
-        </ImageBackground>
+          resizeMode="cover"
+        />
       </View>
+      <View
+        style={{
+          position: 'absolute',
+          zIndex: 2,
+        }}>
+        <BackButton {...props} />
+      </View>
+      <View
+        style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          zIndex: 1,
+        }}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.cardStyle}>
+            <View style={styles.cardContentStyle}>
+              <Text category="h1">Edinburgh's Castle</Text>
 
-      <View style={styles.cardStyle}>
-        <View style={styles.cardContentStyle}>
-          <Text category="h1">Edinburgh's Castle</Text>
+              <View
+                style={{marginLeft: 10, marginTop: 5, flexDirection: 'row'}}>
+                {stars.map(star => (
+                  <Icon name="star" style={styles.reviewIconStyle} />
+                ))}
+                <Text style={styles.reviewStyle}>24 Reviews</Text>
+              </View>
 
-          <View style={{marginLeft: 10, marginTop: 5, flexDirection: 'row'}}>
-            {stars.map(star => (
-              <Icon name="star" style={styles.reviewIconStyle} />
-            ))}
-            <Text style={styles.reviewStyle}>24 Reviews</Text>
-          </View>
+              <View
+                style={{
+                  width: '100%',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginTop: 5,
+                }}>
+                <View style={styles.buttonStyle}>
+                  <Icon name="directions" style={styles.buttonIconStyle} />
+                  <Text style={styles.textIconStyle}>Navigate</Text>
+                </View>
+                <View style={styles.buttonStyle}>
+                  <Icon name="heart" style={styles.buttonIconStyle} />
+                  <Text style={styles.textIconStyle}>Favourite</Text>
+                </View>
+                <View style={styles.buttonStyle}>
+                  <Icon name="calendar-alt" style={styles.buttonIconStyle} />
+                  <Text style={styles.textIconStyle}>Add to trip</Text>
+                </View>
+              </View>
 
-          <View
-            style={{
-              width: '100%',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: 5,
-            }}>
-            <View style={styles.buttonStyle}>
-              <Icon name="directions" style={styles.buttonIconStyle}></Icon>
-              <Text style={styles.textIconStyle}>Navigate</Text>
-            </View>
-            <View style={styles.buttonStyle}>
-              <Icon name="heart" style={styles.buttonIconStyle}></Icon>
-              <Text style={styles.textIconStyle}>Favourite</Text>
-            </View>
-            <View style={styles.buttonStyle}>
-              <Icon name="calendar-alt" style={styles.buttonIconStyle}></Icon>
-              <Text style={styles.textIconStyle}>Add to trip</Text>
-            </View>
-          </View>
+              <View style={{marginLeft: 10, marginTop: 15}}>
+                <Text
+                  style={{
+                    fontWeight: 'bold',
+                    fontSize: 19,
+                    color: Colors.blueTitleColor,
+                    marginTop: 10,
+                  }}>
+                  Details
+                </Text>
+                <View style={styles.detailsStyle}>
+                  <Icon name="map-marker-alt" style={styles.detailsIconStyle} />
+                  <Text style={styles.detailsTextStyle}>
+                    3601 S Gaffey St, San Pedro
+                  </Text>
+                </View>
+                <View style={styles.detailsStyle}>
+                  <Icon name="phone" style={styles.detailsIconStyle} />
+                  <Text style={styles.detailsTextStyle}>+1 223-548-7785</Text>
+                </View>
+                <View style={styles.detailsStyle}>
+                  <Icon name="link" style={styles.detailsIconStyle} />
+                  <Text style={styles.detailsTextStyle}>
+                    www.dinocoffee.com
+                  </Text>
+                </View>
+              </View>
 
-          <View style={{marginLeft: 10, marginTop: 15}}>
-            <Text
-              style={{
-                fontWeight: 'bold',
-                fontSize: 19,
-                color: Colors.blueTitleColor,
-                marginTop: 10,
-              }}>
-              Details
-            </Text>
-            <View style={styles.detailsStyle}>
-              <Icon
-                name="map-marker-alt"
-                style={styles.detailsIconStyle}></Icon>
-              <Text style={styles.detailsTextStyle}>
-                3601 S Gaffey St, San Pedro
+              <Text
+                style={{
+                  margin: 10,
+                  marginTop: 20,
+                  fontSize: 17,
+                  color: Colors.blueTitleColor,
+                }}>
+                Edinburgh Castle is a historic fortress which dominates the
+                skyline of Edinburgh, the capital city of Scotland, from its
+                position on the Castle Rock. Edinburgh Castle is a historic
+                fortress which dominates the skyline of Edinburgh, the capital
+                city of Scotland, from its position on the Castle Rock.
+                Edinburgh Castle is a historic fortress which dominates the
+                skyline of Edinburgh, the capital city of Scotland, from its
+                position on the Castle Rock. Edinburgh Castle is a historic
+                fortress which dominates the skyline of Edinburgh, the capital
+                city of Scotland, from its position on the Castle Rock.
+                Edinburgh Castle is a historic fortress which dominates the
+                skyline of Edinburgh, the capital city of Scotland, from its
+                position on the Castle Rock. Edinburgh Castle is a historic
+                fortress which dominates the skyline of Edinburgh, the capital
+                city of Scotland, from its position on the Castle Rock.
+                Edinburgh Castle is a historic fortress which dominates the
+                skyline of Edinburgh, the capital city of Scotland, from its
+                position on the Castle Rock.
               </Text>
             </View>
-            <View style={styles.detailsStyle}>
-              <Icon name="phone" style={styles.detailsIconStyle}></Icon>
-              <Text style={styles.detailsTextStyle}>+1 223-548-7785</Text>
-            </View>
-            <View style={styles.detailsStyle}>
-              <Icon name="link" style={styles.detailsIconStyle}></Icon>
-              <Text style={styles.detailsTextStyle}>www.dinocoffee.com</Text>
-            </View>
           </View>
-
-          <Text
-            style={{
-              margin: 10,
-              marginTop: 20,
-              fontSize: 17,
-              color: Colors.blueTitleColor,
-            }}>
-            Edinburgh Castle is a historic fortress which dominates the skyline
-            of Edinburgh, the capital city of Scotland, from its position on the
-            Castle Rock.
-          </Text>
-        </View>
+        </ScrollView>
       </View>
     </View>
   );
@@ -103,13 +133,13 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   cardStyle: {
-    marginTop: -60,
+    marginTop: 180,
     elevation: 10,
     borderTopLeftRadius: 35,
     borderTopRightRadius: 35,
     flex: 1,
-    height: 240,
-    backgroundColor: Colors.backgroudColor,
+    height: '100%',
+    backgroundColor: Colors.backgroundColor,
   },
   cardContentStyle: {
     margin: 20,

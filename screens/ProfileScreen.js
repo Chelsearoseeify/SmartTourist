@@ -1,7 +1,14 @@
 import React from 'react';
 import {Text} from '@ui-kitten/components';
 import Colors from '../constants/Colors';
-import {View, StyleSheet, ImageBackground, Button, Alert, ScrollView} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  ImageBackground,
+  Button,
+  Alert,
+  ScrollView,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import NextTripCard from '../components/NextTripCard';
 import CustomButton from './../components/CustomButton';
@@ -13,69 +20,61 @@ const ProfileScreen = () => {
   return (
     <View
       style={{
-        backgroundColor: Colors.backgroudColor,
+        backgroundColor: Colors.backgroundColor,
         flex: 1,
+        paddingTop: 10,
       }}>
-      <View
-        style={{
-          alignItems: 'flex-end',
-          justifyContent: 'flex-end',
-          marginRight: 25,
-          height: 100,
-        }}>
-        <Text
-          category="h2"
-          style={{
-            color: Colors.blueTitleColor,
-            fontWeight: 'bold',
-          }}>
+      <View style={styles.usernameViewStyle}>
+        <Text category="h2" style={styles.usernameStyle}>
           Chelsearoseeify
         </Text>
       </View>
-      <View style={styles.cardStyle}>
-        <View style={styles.avatarView}>
-          <ImageBackground
-            source={require('../assets/images/harry.jpeg')}
-            style={styles.avatar}
-            imageStyle={{borderRadius: 50}}
-            resizeMode="cover"
-          />
-        </View>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'column',
-            marginHorizontal: 30,
-            marginVertical: -25,
-          }}>
-          <View
-            style={{
-              width: '100%',
-              flexDirection: 'row',
-              justifyContent: 'flex-end',
-            }}>
-            <Icon style={styles.icon} name="cog" />
-            <Icon style={styles.icon} name="ellipsis-v" />
-          </View>
-          <View style={{marginTop: 5}}>
-            <Text style={styles.subtitleStyle}>Your next trip</Text>
-            <View
-              style={{
-                flexDirection: 'column',
-                justifyContent: 'center',
-                width: '100%',
-                height: 230,
-              }}>
-              <NextTripCard />
-              <CustomButton />
+      <View
+        style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+        }}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.cardStyle}>
+            <View style={styles.avatarView}>
+              <ImageBackground
+                source={require('../assets/images/harry.jpeg')}
+                style={styles.avatar}
+                imageStyle={{borderRadius: 50}}
+                resizeMode="cover"
+              />
+            </View>
+
+            <View style={styles.contentViewStyle}>
+              <View style={styles.iconViewStyle}>
+                <Icon style={styles.icon} name="cog" />
+                <Icon style={styles.icon} name="ellipsis-v" />
+              </View>
+              <View style={{marginTop: 5}}>
+                <Text style={styles.subtitleStyle}>Your next trip</Text>
+                <View style={styles.nextTripViewStyle}>
+                  <NextTripCard />
+                  <CustomButton />
+                </View>
+              </View>
+              <View style={{marginEnd: -30}}>
+                <HorizontalScrollView
+                  name={'Your favourites'}
+                  cities={CITIES}
+                />
+                <HorizontalScrollView
+                  name={'Suggested trips'}
+                  cities={CITIES}
+                />
+                <HorizontalScrollView
+                  name={'Common destinations'}
+                  cities={CITIES}
+                />
+              </View>
             </View>
           </View>
-          <ScrollView>
-            <HorizontalScrollView name={'Your favourites'} cities={CITIES} />
-            <HorizontalScrollView name={'Suggested trips'} cities={CITIES} />
-            <HorizontalScrollView name={'Common destinations'} cities={CITIES} />
-          </ScrollView>
-        </View>
+        </ScrollView>
       </View>
     </View>
   );
@@ -83,7 +82,8 @@ const ProfileScreen = () => {
 
 const styles = StyleSheet.create({
   cardStyle: {
-    marginTop: 10,
+    marginTop: 100,
+    marginBottom: 30,
     elevation: 10,
     borderTopLeftRadius: 35,
     borderTopRightRadius: 35,
@@ -106,8 +106,9 @@ const styles = StyleSheet.create({
     borderRadius: 45,
     height: 100,
     width: 100,
-    marginTop: -50,
-    marginLeft: 45,
+    top: -50,
+    left: 45,
+    position: 'absolute',
   },
   icon: {
     fontSize: 25,
@@ -117,6 +118,37 @@ const styles = StyleSheet.create({
   imageBackgroundStyle: {
     width: '100%',
     height: '100%',
+  },
+  usernameViewStyle: {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    width: '100%',
+    paddingRight: 25,
+    paddingBottom: 10,
+    height: 100,
+    flex: 1,
+    position: 'absolute',
+  },
+  usernameStyle: {
+    color: Colors.blueTitleColor,
+    fontWeight: 'bold',
+  },
+  contentViewStyle: {
+    flex: 1,
+    flexDirection: 'column',
+    marginHorizontal: 30,
+    marginVertical: 25,
+  },
+  iconViewStyle: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  nextTripViewStyle: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width: '100%',
+    height: 230,
   },
 });
 

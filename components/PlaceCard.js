@@ -17,8 +17,8 @@ const PlaceCard = ({name, imageUrl, onSelect}) => {
     TouchableCmp = TouchableNativeFeedback;
 
   return (
-    <TouchableCmp onPress={onSelect} style={styles.cardStyle}>
-      <View>
+    <TouchableCmp onPress={onSelect}>
+      <View style={styles.cardStyle}>
         <ImageBackground
           source={imageUrl}
           style={styles.imageBackgroundStyle}
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     width: '80%',
     shadowColor: 'black',
     shadowOpacity: 0.26,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowRadius: 8,
     elevation: 6,
     borderRadius: 15,

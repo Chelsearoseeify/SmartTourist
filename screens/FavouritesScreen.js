@@ -23,9 +23,7 @@ const FavouriteScreen = () => {
         </Text>
       </View>
       <View style={{margin: 10}}>
-        <HorizontalScrolliew name={'Edinburgh'} cities={CITIES} />
-        <HorizontalScrolliew name={'London'} cities={CITIES} />
-        <HorizontalScrolliew name={'New York'} cities={CITIES} />
+        <GridView />
       </View>
     </SafeAreaView>
   );
@@ -33,7 +31,7 @@ const FavouriteScreen = () => {
 
 let styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.backgroudColor,
+    backgroundColor: Colors.backgroundColor,
     flex: 1,
     flexDirection: 'column',
   },
