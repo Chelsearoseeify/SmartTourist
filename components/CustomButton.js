@@ -2,33 +2,40 @@ import React, {Component} from 'react';
 
 import {StyleSheet, Text, View, TouchableOpacity, Alert} from 'react-native';
 import Colors from '../constants/Colors';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const ButtonClickCheckFunction = () => {
   Alert.alert('Button Clicked');
 };
 
-const CustomButton = props => {
+const CustomButton = ({onPress}) => {
   return (
-    <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-      <TouchableOpacity
-        style={styles.buttonStyle}
-        activeOpacity={0.5}
-        onPress={props.onPress}>
-        <Text style={styles.TextStyle}> Add a new trip </Text>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity
+      onPress={onPress}
+      style={{
+        backgroundColor: Colors.greenButtonColor,
+        borderRadius: 35,
+        height: 60,
+        width: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+      <Icon name="plus" size={25} color={'white'} />
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   buttonStyle: {
     marginTop: 5,
+    marginBottom: 10,
     paddingTop: 10,
     paddingBottom: 10,
     backgroundColor: Colors.greenButtonColor,
     borderRadius: 20,
     elevation: 6,
-    width: '50%',
+    height: 30,
+    width: 30,
   },
 
   TextStyle: {

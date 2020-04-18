@@ -8,6 +8,7 @@ import PlaceCard from '../components/PlaceCard';
 import SearchBar from '../components/SearchBar';
 import MapButton from '../components/MapButton';
 import CustomButton from './../components/CustomButton';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const MainPageScreen = ({navigation}) => {
   const addTripHandler = () => {
@@ -29,45 +30,56 @@ const MainPageScreen = ({navigation}) => {
   };
 
   const headerComponent = () => {
-    return (
-      <View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginHorizontal: 12,
-            marginVertical: 10,
-          }}>
-          <MapButton />
-          <Text
-            category="h1"
-            style={{color: Colors.blueTitleColor, fontWeight: 'bold'}}>
-            Edinburgh
-          </Text>
-        </View>
-        <View>
-          <SearchBar />
-        </View>
-        <View>
-          <CustomButton onPress={addTripHandler} />
-        </View>
-        <View>
-          <Text style={styles.textStyle}>Things to do</Text>
-        </View>
-      </View>
-    );
+    return <Text style={styles.textStyle}>Things to do</Text>;
   };
 
   return (
     <View style={styles.container}>
-      <FlatList
-        contentContainerStyle={styles.placesContainer}
-        data={PLACES}
-        numColumns={2}
-        renderItem={renderGridItem}
-        horizontal={false}
-        ListHeaderComponent={headerComponent}
-      />
+      <View
+        style={{
+          position: 'absolute',
+          alignItems: 'center',
+          justifyContent: 'center',
+          right: 30,
+          bottom: 30,
+          zIndex: 1,
+          elevation: 6,
+        }}>
+        <CustomButton onPress={addTripHandler} />
+      </View>
+      <ScrollView>
+        <View>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginHorizontal: 12,
+              marginVertical: 10,
+            }}>
+            <MapButton />
+            <Text
+              category="h1"
+              style={{color: Colors.blueTitleColor, fontWeight: 'bold'}}>
+              Edinburgh
+            </Text>
+          </View>
+
+          <View>
+            <SearchBar />
+          </View>
+          <View style={styles.cardStyle}>
+            <FlatList
+              contentContainerStyle={styles.placesContainer}
+              data={PLACES}
+              numColumns={2}
+              renderItem={renderGridItem}
+              horizontal={false}
+              ListHeaderComponent={headerComponent}
+              scrollEnabled={false}
+            />
+          </View>
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -83,7 +95,7 @@ let styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginHorizontal: 20,
-    marginTop: 10,
+    marginVertical: 10,
   },
   iconStyle: {
     fontSize: 20,
@@ -95,6 +107,17 @@ let styles = StyleSheet.create({
   },
   placesContainer: {
     marginHorizontal: 20,
+  },
+  cardStyle: {
+    marginTop: 10,
+    paddingTop: 20,
+    marginBottom: 30,
+    elevation: 10,
+    borderTopLeftRadius: 35,
+    borderTopRightRadius: 35,
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'white',
   },
 });
 

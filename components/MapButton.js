@@ -8,7 +8,7 @@ const MapButton = ({onPress}) => {
   return (
     <TouchableOpacity onPress={onPress} style={{margin: 10}}>
       <View>
-        <Icon size={28} name="map-marker-alt" color={Colors.greenTitleColor} />
+        <Icon size={30} name="map-marker-alt" color={Colors.greenTitleColor} />
       </View>
     </TouchableOpacity>
   );

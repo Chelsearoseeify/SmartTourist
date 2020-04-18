@@ -23,7 +23,7 @@ const SearchBar = () => {
 let styles = StyleSheet.create({
   inputStyle: {
     backgroundColor: 'white',
-    marginHorizontal: 10,
+    marginHorizontal: 15,
     marginVertical: 10,
     borderWidth: 0,
     elevation: 6,
