@@ -1,0 +1,5 @@
+export default {
+  PLACE_CARD: 'PLACE_CARD',
+  LIST_CARD_SMALL: 'LIST_CARD_SMALL',
+  LIST_CARD_BIG: 'LIST_CARD_BIG',
+};

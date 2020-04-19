@@ -7,7 +7,7 @@ import {PLACES} from './../data/dummy-data';
 import PlaceCard from '../components/PlaceCard';
 import SearchBar from '../components/SearchBar';
 import MapButton from '../components/MapButton';
-import CustomButton from './../components/CustomButton';
+import CustomFloatingButton from './../components/CustomFloatingButton';
 import {ScrollView} from 'react-native-gesture-handler';
 
 const MainPageScreen = ({navigation}) => {
@@ -45,9 +45,9 @@ const MainPageScreen = ({navigation}) => {
           zIndex: 1,
           elevation: 6,
         }}>
-        <CustomButton onPress={addTripHandler} />
+        <CustomFloatingButton onPress={addTripHandler} />
       </View>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View>
           <View
             style={{

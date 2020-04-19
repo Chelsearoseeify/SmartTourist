@@ -1,0 +1,26 @@
+{
+  "navigation": {
+    "addListener": [],
+    "canGoBack": [],
+    "dangerouslyGetParent": [],
+    "dangerouslyGetState": [],
+    "dispatch": [],
+    "goBack": [],
+    "isFocused": [],
+    "jumpTo": [],
+    "navigate": [],
+    "pop": [],
+    "popToTop": [],
+    "push": [],
+    "removeListener": [],
+    "replace": [],
+    "reset": [],
+    "setOptions": [],
+    "setParams": []
+  },
+  "route": {
+    "key": "GroupedPlaces-PprEGtISy",
+    "name": "GroupedPlaces",
+    "params": {"title": "London"}
+  }
+}

@@ -1,0 +1,25 @@
+add trip
+which city
+from to dates
+name of trip
+starting point (location/ gps coordinates) or first chosen place
+places_ids: {
+}
+
+favourites
+
+city_id :{
+places_ids
+}
+trips:{
+user_id
+trip_preferences
+}
+
+profile: {
+username
+email
+pictures
+preferences
+
+}

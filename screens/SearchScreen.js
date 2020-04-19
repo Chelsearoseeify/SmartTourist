@@ -54,7 +54,6 @@ const SearchScreen = () => {
         numColumns={2}
         renderItem={renderGridItem}
         ListHeaderComponent={headerComponent}
-        style={{marginHorizontal: 20}}
         showsVerticalScrollIndicator={false}
       />
     </SafeAreaView>

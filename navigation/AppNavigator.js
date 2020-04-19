@@ -12,6 +12,7 @@ import FavouriteScreen from '../screens/FavouritesScreen';
 import AddTripScreen from '../screens/AddTripScreen';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import GroupedPlacesScreen from './../screens/GroupedPlacesScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -24,6 +25,34 @@ function HomeStackNavigator() {
         <Stack.Screen name="Place" component={PlaceScreen} />
         <Stack.Screen name="Map" component={MapScreen} />
         <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen name="AddTrip" component={AddTripScreen} />
+        <Stack.Screen name="GroupedPlaces" component={GroupedPlacesScreen} />
+      </Stack.Navigator>
+    </SafeAreaView>
+  );
+}
+
+function ProfileStackNavigator() {
+  return (
+    <SafeAreaView style={{flex: 1}}>
+      <Stack.Navigator headerMode="none">
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="GroupedPlaces" component={GroupedPlacesScreen} />
+        <Stack.Screen name="Place" component={PlaceScreen} />
+        <Stack.Screen name="Favourites" component={FavouriteScreen} />
+        <Stack.Screen name="AddTrip" component={AddTripScreen} />
+      </Stack.Navigator>
+    </SafeAreaView>
+  );
+}
+
+function FavouriteStackNavigator() {
+  return (
+    <SafeAreaView style={{flex: 1}}>
+      <Stack.Navigator headerMode="none">
+        <Stack.Screen name="Favourites" component={FavouriteScreen} />
+        <Stack.Screen name="GroupedPlaces" component={GroupedPlacesScreen} />
+        <Stack.Screen name="Place" component={PlaceScreen} />
         <Stack.Screen name="AddTrip" component={AddTripScreen} />
       </Stack.Navigator>
     </SafeAreaView>
@@ -55,7 +84,7 @@ function TabNavigator() {
       />
       <Tab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={ProfileStackNavigator}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({color, size}) => (
@@ -65,7 +94,7 @@ function TabNavigator() {
       />
       <Tab.Screen
         name="Favourites"
-        component={FavouriteScreen}
+        component={FavouriteStackNavigator}
         options={{
           tabBarLabel: 'Favourites',
           tabBarIcon: ({color, size}) => (

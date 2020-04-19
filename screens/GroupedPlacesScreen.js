@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Layout, Text, Button} from '@ui-kitten/components';
 import Colors from '../constants/Colors';
-import GridView from './../components/GridView';
+import GridView from '../components/GridView';
 import {
   View,
   StyleSheet,
@@ -11,48 +11,47 @@ import {
 } from 'react-native';
 import HorizontalScrolliew from '../components/HorizontalScrollView';
 import {ScrollView} from 'react-native-gesture-handler';
-import ThreePicturesBoard from './../components/CustomBoard/ThreePicturesBoard';
-import {FAVOURITES} from './../data/dummy-data';
+import ThreePicturesBoard from '../components/CustomBoard/ThreePicturesBoard';
+import {PLACES} from '../data/dummy-data';
+import BackButton from '../components/BackButton';
+import PlaceCard from '../components/PlaceCard';
 
-const FavouriteScreen = ({navigation}) => {
+const renderGridItem = itemData => {
+  return (
+    <PlaceCard
+      name={itemData.item.name}
+      imageUrl={itemData.item.imageUrl}
+      onSelect={() => {
+        navigation.navigate('Place', {
+          placeId: itemData.item.id,
+        });
+      }}
+    />
+  );
+};
+
+const GroupedPlacesScreen = props => {
+  const {title} = props.route.params;
+  const places = PLACES;
   return (
     <SafeAreaView style={styles.container}>
+      <BackButton {...props} />
       <View style={styles.titleViewStyle}>
         <Text category="h2" style={styles.titleStyle}>
-          Favourites
+          {title}
         </Text>
       </View>
-      <View
-        style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-        }}>
+      <View style={styles.cardViewStyle}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.cardStyle}>
-            <View
-              style={{
-                marginHorizontal: 10,
-                marginVertical: 10,
-                height: 900,
-                alignItems: 'center',
-              }}>
+            <View style={styles.contentStyle}>
               <FlatList
-                data={FAVOURITES}
+                contentContainerStyle={styles.placesContainer}
+                data={places}
                 numColumns={2}
-                renderItem={({item}) => (
-                  <TouchableOpacity
-                    style={styles.size}
-                    onPress={() => {
-                      navigation.navigate('GroupedPlaces', {});
-                    }}>
-                    <ThreePicturesBoard
-                      name={item.city.name}
-                      places={item.places}
-                    />
-                  </TouchableOpacity>
-                )}
-                keyExtractor={item => item.city.id}
+                renderItem={renderGridItem}
+                horizontal={false}
+                scrollEnabled={false}
               />
             </View>
           </View>
@@ -65,6 +64,14 @@ const FavouriteScreen = ({navigation}) => {
 const topSpace = 80;
 
 let styles = StyleSheet.create({
+  cardViewStyle: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
+  contentStyle: {
+    marginVertical: 20,
+  },
   size: {height: 210, width: 200},
   container: {
     backgroundColor: Colors.backgroundColor,
@@ -93,6 +100,9 @@ let styles = StyleSheet.create({
     color: Colors.blueTitleColor,
     fontWeight: 'bold',
   },
+  placesContainer: {
+    marginHorizontal: 20,
+  },
 });
 
-export default FavouriteScreen;
+export default GroupedPlacesScreen;

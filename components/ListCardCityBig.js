@@ -3,20 +3,23 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {View, Text, ImageBackground, StyleSheet} from 'react-native';
 import Colors from '../constants/Colors';
 
-const ListCard = ({name, imageId}) => {
+const ListCardCityBig = ({name, imageId, style = {height: 220}}) => {
   return (
-    <TouchableOpacity style={{padding: 8}}>
+    <TouchableOpacity style={[style, {padding: 8}]}>
       <View
-        style={{
-          height: '100%',
-          width: 160,
-          elevation: 6,
-          borderRadius: 18,
-        }}>
+        style={[
+          styles.filterStyle,
+          {
+            height: '100%',
+            width: 160,
+            elevation: 6,
+            borderRadius: 18,
+          },
+        ]}>
         <ImageBackground
           source={imageId}
           style={styles.imageBackgroundStyle}
-          imageStyle={{borderRadius: 10, opacity: 10}}
+          imageStyle={{borderRadius: 10}}
           resizeMode="cover">
           <View style={styles.filterStyle}>
             <Text style={{fontSize: 25, fontWeight: 'bold', color: 'white'}}>
@@ -40,10 +43,9 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
     borderRadius: 10,
-
     alignItems: 'center',
     justifyContent: 'center',
   },
 });
 
-export default ListCard;
+export default ListCardCityBig;

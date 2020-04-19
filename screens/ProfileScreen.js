@@ -11,23 +11,39 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import NextTripCard from '../components/NextTripCard';
-import CustomButton from './../components/CustomButton';
-import PlaceCard from '../components/PlaceCard';
+import CustomFloatingButton from './../components/CustomFloatingButton';
 import HorizontalScrollView from '../components/HorizontalScrollView';
 import {CITIES} from './../data/dummy-data';
+import ListHeader from '../components/ListHeader';
+import CardTypes from '../constants/CardTypes';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({navigation}) => {
+  const addTripHandler = () => {
+    navigation.navigate('AddTrip');
+  };
+
   return (
     <View
       style={{
         backgroundColor: Colors.backgroundColor,
         flex: 1,
-        paddingTop: 10,
       }}>
       <View style={styles.usernameViewStyle}>
         <Text category="h2" style={styles.usernameStyle}>
           Chelsearoseeify
         </Text>
+      </View>
+      <View
+        style={{
+          position: 'absolute',
+          alignItems: 'center',
+          justifyContent: 'center',
+          right: 30,
+          bottom: 30,
+          zIndex: 1,
+          elevation: 6,
+        }}>
+        <CustomFloatingButton onPress={addTripHandler} />
       </View>
       <View
         style={{
@@ -51,25 +67,16 @@ const ProfileScreen = () => {
                 <Icon style={styles.icon} name="cog" />
                 <Icon style={styles.icon} name="ellipsis-v" />
               </View>
-              <View style={{marginTop: 5}}>
-                <Text style={styles.subtitleStyle}>Your next trip</Text>
+              <View style={{paddingLeft: 20}}>
+                <ListHeader name={'Your next trip'} />
                 <View style={styles.nextTripViewStyle}>
                   <NextTripCard />
-                  <CustomButton />
                 </View>
-              </View>
-              <View style={{marginEnd: -30}}>
                 <HorizontalScrollView
                   name={'Your favourites'}
                   cities={CITIES}
-                />
-                <HorizontalScrollView
-                  name={'Suggested trips'}
-                  cities={CITIES}
-                />
-                <HorizontalScrollView
-                  name={'Common destinations'}
-                  cities={CITIES}
+                  elemType={CardTypes.LIST_CARD_BIG}
+                  navigation={navigation}
                 />
               </View>
             </View>
@@ -136,7 +143,6 @@ const styles = StyleSheet.create({
   contentViewStyle: {
     flex: 1,
     flexDirection: 'column',
-    marginHorizontal: 30,
     marginVertical: 25,
   },
   iconViewStyle: {
@@ -148,7 +154,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     width: '100%',
-    height: 230,
+    height: 200,
+    paddingEnd: 20,
   },
 });
 

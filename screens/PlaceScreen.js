@@ -17,13 +17,7 @@ const PlaceScreen = props => {
           resizeMode="cover"
         />
       </View>
-      <View
-        style={{
-          position: 'absolute',
-          zIndex: 2,
-        }}>
-        <BackButton {...props} />
-      </View>
+      <BackButton {...props} />
       <View
         style={{
           position: 'absolute',

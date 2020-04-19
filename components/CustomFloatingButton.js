@@ -9,23 +9,19 @@ const ButtonClickCheckFunction = () => {
   Alert.alert('Button Clicked');
 };
 
-const CustomButton = ({text, onPress}) => {
+const CustomFloatingButton = ({onPress}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
       style={{
         backgroundColor: Colors.greenButtonColor,
         borderRadius: 35,
+        height: 60,
+        width: 60,
         justifyContent: 'center',
         alignItems: 'center',
-        marginHorizontal: 15,
-        borderColor: Colors.greenButtonColor,
-        borderWidth: 0,
-        height: 45,
       }}>
-      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>
-        {text}
-      </Text>
+      <Icon name="plus" size={25} color={'white'} />
     </TouchableOpacity>
   );
 };
@@ -50,4 +46,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomButton;
+export default CustomFloatingButton;
