@@ -15,6 +15,7 @@ import ThreePicturesBoard from '../components/CustomBoard/ThreePicturesBoard';
 import {PLACES} from '../data/dummy-data';
 import BackButton from '../components/BackButton';
 import PlaceCard from '../components/PlaceCard';
+import {useSelector} from 'react-redux';
 
 const renderGridItem = itemData => {
   return (
@@ -31,8 +32,10 @@ const renderGridItem = itemData => {
 };
 
 const GroupedPlacesScreen = props => {
-  const {title} = props.route.params;
-  const places = PLACES;
+  const {title, cityId} = props.route.params;
+  const places = useSelector(state => state.places.places);
+  const filteredPlaces = places.filter(place => place.cityId === cityId);
+
   return (
     <SafeAreaView style={styles.container}>
       <BackButton {...props} />
@@ -47,7 +50,7 @@ const GroupedPlacesScreen = props => {
             <View style={styles.contentStyle}>
               <FlatList
                 contentContainerStyle={styles.placesContainer}
-                data={places}
+                data={filteredPlaces}
                 numColumns={2}
                 renderItem={renderGridItem}
                 horizontal={false}

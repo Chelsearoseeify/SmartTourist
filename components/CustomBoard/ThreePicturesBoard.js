@@ -31,20 +31,23 @@ const Board = ({places}) => {
   );
 };
 
-const ThreePicturesBoard = ({name, places}) => {
+const ThreePicturesBoard = ({name, places, onPress}) => {
   return (
-    <View style={{marginHorizontal: 5, marginVertical: 15}}>
-      <View style={{height: '80%'}}>
-        <Board places={places} />
+    <TouchableOpacity style={styles.size} onPress={onPress}>
+      <View style={{marginHorizontal: 5, marginVertical: 15}}>
+        <View style={{height: '80%'}}>
+          <Board places={places} />
+        </View>
+        <View style={{height: '20%'}}>
+          <Description name={name} />
+        </View>
       </View>
-      <View style={{height: '20%'}}>
-        <Description name={name} />
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
+  size: {height: 210, width: 200},
   Row60: {height: '100%', width: '60%'},
   Row40: {height: '100%', width: '40%'},
   halfColumn: {height: '50%', width: '100%'},

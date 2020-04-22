@@ -7,8 +7,9 @@ import HorizontalScrollView from '../components/HorizontalScrollView';
 import {CustomDatePicker} from './../components/DatePicker';
 import CustomButton from '../components/CustomButton';
 import CardTypes from '../constants/CardTypes';
-import {CITIES, CITIES_ICON} from '../data/dummy-data';
+import {CITIES} from '../data/dummy-data';
 import BackButton from './../components/BackButton';
+import {useSelector} from 'react-redux';
 
 const NewTripView = () => {
   const [value, setValue] = React.useState('');
@@ -81,13 +82,15 @@ const AddTripScreen = props => {
                 <View style={{paddingLeft: 25, height: '100%'}}>
                   <HorizontalScrollView
                     name={'Top destinations'}
-                    cities={CITIES}
+                    cities={useSelector(state => state.cities.top_destinations)}
                     elemType={CardTypes.LIST_CARD_BIG}
+                    navigation={props.navigation}
                   />
                   <HorizontalScrollView
                     name={'Beautiful cities'}
-                    cities={CITIES_ICON}
+                    cities={useSelector(state => state.cities.beautiful_cities)}
                     elemType={CardTypes.LIST_CARD_SMALL}
+                    navigation={props.navigation}
                   />
                 </View>
               </View>

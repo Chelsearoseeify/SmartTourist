@@ -2,15 +2,18 @@ import React, {Component} from 'react';
 import Colors from '../constants/Colors';
 import {View, StyleSheet, FlatList, SafeAreaView} from 'react-native';
 import {Text, Button} from '@ui-kitten/components';
-import {PLACES} from './../data/dummy-data';
 
 import PlaceCard from '../components/PlaceCard';
 import SearchBar from '../components/SearchBar';
 import MapButton from '../components/MapButton';
 import CustomFloatingButton from './../components/CustomFloatingButton';
 import {ScrollView} from 'react-native-gesture-handler';
+import {useSelector} from 'react-redux';
 
 const MainPageScreen = ({navigation}) => {
+  const currentCity = useSelector(state => state.user.selectedCity);
+  const filteredPlaces = useSelector(state => state.user.selectedPlaces);
+
   const addTripHandler = () => {
     navigation.navigate('AddTrip');
   };
@@ -60,7 +63,7 @@ const MainPageScreen = ({navigation}) => {
             <Text
               category="h1"
               style={{color: Colors.blueTitleColor, fontWeight: 'bold'}}>
-              Edinburgh
+              {currentCity.name}
             </Text>
           </View>
 
@@ -70,7 +73,7 @@ const MainPageScreen = ({navigation}) => {
           <View style={styles.cardStyle}>
             <FlatList
               contentContainerStyle={styles.placesContainer}
-              data={PLACES}
+              data={filteredPlaces}
               numColumns={2}
               renderItem={renderGridItem}
               horizontal={false}

@@ -14,7 +14,7 @@ const NextTripCard = props => {
   return (
     <View style={styles.cardStyle}>
       <ImageBackground
-        source={require('./../assets/images/edinburgh_1.jpg')}
+        source={require('./../assets/images/edinburgh.jpg')}
         style={styles.imageBackgroundStyle}
         imageStyle={{borderRadius: 20, opacity: 10}}
         resizeMode="cover">

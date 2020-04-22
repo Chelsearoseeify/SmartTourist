@@ -11,7 +11,13 @@ import {
   ImageBackground,
 } from 'react-native';
 //import all the components we will need
-import {LONDON} from './../data/dummy-data';
+
+const LONDON = [
+  require('./../assets/images/1.jpg'),
+  require('./../assets/images/2.jpg'),
+  require('./../assets/images/3.jpg'),
+  require('./../assets/images/4.jpg'),
+];
 
 const GridView = () => {
   const renderGridItem = ({item}) => (

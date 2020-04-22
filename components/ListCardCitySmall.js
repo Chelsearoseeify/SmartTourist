@@ -3,9 +3,9 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {View, Text, ImageBackground, StyleSheet, Image} from 'react-native';
 import Colors from '../constants/Colors';
 
-const ListCardCitySmall = ({name, imageId, style = {height: 160}}) => {
+const ListCardCitySmall = ({name, imageId, onPress, style = {height: 160}}) => {
   return (
-    <TouchableOpacity style={[style, {padding: 8}]}>
+    <TouchableOpacity style={[style, {padding: 8}]} onPress={onPress}>
       <View
         style={{
           width: 150,

@@ -13,9 +13,9 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import NextTripCard from '../components/NextTripCard';
 import CustomFloatingButton from './../components/CustomFloatingButton';
 import HorizontalScrollView from '../components/HorizontalScrollView';
-import {CITIES} from './../data/dummy-data';
 import ListHeader from '../components/ListHeader';
 import CardTypes from '../constants/CardTypes';
+import {useSelector} from 'react-redux';
 
 const ProfileScreen = ({navigation}) => {
   const addTripHandler = () => {
@@ -74,7 +74,7 @@ const ProfileScreen = ({navigation}) => {
                 </View>
                 <HorizontalScrollView
                   name={'Your favourites'}
-                  cities={CITIES}
+                  cities={useSelector(state => state.cities.beautiful_cities)}
                   elemType={CardTypes.LIST_CARD_BIG}
                   navigation={navigation}
                 />

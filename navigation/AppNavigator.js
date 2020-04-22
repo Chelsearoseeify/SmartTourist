@@ -37,9 +37,7 @@ function ProfileStackNavigator() {
     <SafeAreaView style={{flex: 1}}>
       <Stack.Navigator headerMode="none">
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="GroupedPlaces" component={GroupedPlacesScreen} />
         <Stack.Screen name="Place" component={PlaceScreen} />
-        <Stack.Screen name="Favourites" component={FavouriteScreen} />
         <Stack.Screen name="AddTrip" component={AddTripScreen} />
       </Stack.Navigator>
     </SafeAreaView>

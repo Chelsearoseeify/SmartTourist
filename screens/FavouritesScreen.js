@@ -2,19 +2,28 @@ import React, {Component} from 'react';
 import {Layout, Text, Button} from '@ui-kitten/components';
 import Colors from '../constants/Colors';
 import GridView from './../components/GridView';
-import {
-  View,
-  StyleSheet,
-  SafeAreaView,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
-import HorizontalScrolliew from '../components/HorizontalScrollView';
+import {View, StyleSheet, SafeAreaView, FlatList} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import ThreePicturesBoard from './../components/CustomBoard/ThreePicturesBoard';
 import {FAVOURITES} from './../data/dummy-data';
+import {useSelector} from 'react-redux';
 
 const FavouriteScreen = ({navigation}) => {
+  const favourites = useSelector(state => state.user.favourites);
+  console.log(favourites);
+
+  const renderGridItem = itemData => {
+    return (
+      <ThreePicturesBoard
+        name={itemData.item.city.name}
+        places={itemData.item.places}
+        onPress={() => {
+          navigation.navigate('GroupedPlaces', {});
+        }}
+      />
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleViewStyle}>
@@ -22,12 +31,7 @@ const FavouriteScreen = ({navigation}) => {
           Favourites
         </Text>
       </View>
-      <View
-        style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-        }}>
+      <View style={styles.cardViewStyle}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.cardStyle}>
             <View
@@ -40,18 +44,7 @@ const FavouriteScreen = ({navigation}) => {
               <FlatList
                 data={FAVOURITES}
                 numColumns={2}
-                renderItem={({item}) => (
-                  <TouchableOpacity
-                    style={styles.size}
-                    onPress={() => {
-                      navigation.navigate('GroupedPlaces', {});
-                    }}>
-                    <ThreePicturesBoard
-                      name={item.city.name}
-                      places={item.places}
-                    />
-                  </TouchableOpacity>
-                )}
+                renderItem={renderGridItem}
                 keyExtractor={item => item.city.id}
               />
             </View>
@@ -65,7 +58,11 @@ const FavouriteScreen = ({navigation}) => {
 const topSpace = 80;
 
 let styles = StyleSheet.create({
-  size: {height: 210, width: 200},
+  cardViewStyle: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
   container: {
     backgroundColor: Colors.backgroundColor,
     flex: 1,
