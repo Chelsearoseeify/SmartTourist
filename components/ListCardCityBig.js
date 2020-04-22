@@ -17,7 +17,9 @@ const ListCardCityBig = ({name, imageId, onPress, style = {height: 220}}) => {
           },
         ]}>
         <ImageBackground
-          source={imageId}
+          source={{
+            uri: imageId,
+          }}
           style={styles.imageBackgroundStyle}
           imageStyle={{borderRadius: 10}}
           resizeMode="cover">

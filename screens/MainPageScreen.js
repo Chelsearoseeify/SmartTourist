@@ -8,9 +8,12 @@ import SearchBar from '../components/SearchBar';
 import MapButton from '../components/MapButton';
 import CustomFloatingButton from './../components/CustomFloatingButton';
 import {ScrollView} from 'react-native-gesture-handler';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {addToFavourites} from '../store/actions/user';
+import {PLACES_URL} from './../data/dummy-data';
 
 const MainPageScreen = ({navigation}) => {
+  const dispatch = useDispatch();
   const currentCity = useSelector(state => state.user.selectedCity);
   const filteredPlaces = useSelector(state => state.user.selectedPlaces);
 
@@ -24,6 +27,15 @@ const MainPageScreen = ({navigation}) => {
         name={itemData.item.name}
         imageUrl={itemData.item.imageUrl}
         onSelect={() => {
+          console.log(itemData.item.cityId);
+          dispatch(
+            addToFavourites(
+              itemData.item.id,
+              itemData.item.cityId,
+              currentCity.name,
+              itemData.item.imageUrl,
+            ),
+          );
           navigation.navigate('Place', {
             placeId: itemData.item.id,
           });

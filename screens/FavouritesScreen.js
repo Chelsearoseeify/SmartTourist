@@ -6,17 +6,22 @@ import {View, StyleSheet, SafeAreaView, FlatList} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import ThreePicturesBoard from './../components/CustomBoard/ThreePicturesBoard';
 import {FAVOURITES} from './../data/dummy-data';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {setFavourites} from '../store/actions/user';
 
 const FavouriteScreen = ({navigation}) => {
-  const favourites = useSelector(state => state.user.favourites);
-  console.log(favourites);
+  const dispatch = useDispatch();
+  const favouriteFolders = useSelector(state => state.user.favouriteFolders);
 
   const renderGridItem = itemData => {
+    console.log(itemData.item.cityName);
+    console.log(itemData.item.counter);
+    console.log(itemData.item.imageQueue);
     return (
       <ThreePicturesBoard
-        name={itemData.item.city.name}
-        places={itemData.item.places}
+        name={itemData.item.cityName}
+        places={itemData.item.imageQueue}
+        counter={itemData.item.counter}
         onPress={() => {
           navigation.navigate('GroupedPlaces', {});
         }}
@@ -42,10 +47,10 @@ const FavouriteScreen = ({navigation}) => {
                 alignItems: 'center',
               }}>
               <FlatList
-                data={FAVOURITES}
+                data={favouriteFolders}
                 numColumns={2}
                 renderItem={renderGridItem}
-                keyExtractor={item => item.city.id}
+                keyExtractor={item => item.cityId}
               />
             </View>
           </View>

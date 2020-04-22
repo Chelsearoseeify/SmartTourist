@@ -20,7 +20,9 @@ const PlaceCard = ({name, imageUrl, onSelect}) => {
     <TouchableCmp onPress={onSelect}>
       <View style={styles.cardStyle}>
         <ImageBackground
-          source={imageUrl}
+          source={{
+            uri: imageUrl,
+          }}
           style={styles.imageBackgroundStyle}
           imageStyle={{borderRadius: 20, opacity: 10}}
           resizeMode="cover">

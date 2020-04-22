@@ -1,8 +1,6 @@
 class FavouriteCity {
-  constructor(id, name, image, placesIds) {
+  constructor(id, placesIds) {
     this.id = id;
-    this.name = name;
-    this.image = image;
     this.placesIds = placesIds;
   }
 }

@@ -1,6 +1,6 @@
 import {PLACES, FAVOURITES_ID} from './../../data/dummy-data';
 import {TOGGLE_FAVORITE} from '../actions/cities';
-import Fav from './../../models/Fav';
+import FavFolder from '../../models/FavFolder';
 
 const initialState = {
   places: PLACES,

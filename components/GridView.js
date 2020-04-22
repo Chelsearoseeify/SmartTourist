@@ -24,7 +24,9 @@ const GridView = () => {
     <View style={{flex: 1, flexDirection: 'column'}}>
       <View style={{margin: 2}}>
         <ImageBackground
-          source={item}
+          source={{
+            uri: item,
+          }}
           style={styles.imageThumbnail}
           resizeMode="cover"
         />

@@ -8,7 +8,11 @@ const Board = ({places}) => {
   return (
     <View style={{flexDirection: 'row'}}>
       <Picture
-        src={places[0].imageUrl}
+        src={{
+          uri: places
+            ? places[0]
+            : 'https://i.etsystatic.com/15374903/r/il/003f77/1722369502/il_570xN.1722369502_ka03.jpg',
+        }}
         imageStyle={{
           borderTopLeftRadius: 20,
           borderBottomLeftRadius: 20,
@@ -17,12 +21,20 @@ const Board = ({places}) => {
       />
       <View style={styles.Row40}>
         <Picture
-          src={places[1].imageUrl}
+          src={{
+            uri: places
+              ? places[1]
+              : 'https://i.etsystatic.com/15374903/r/il/003f77/1722369502/il_570xN.1722369502_ka03.jpg',
+          }}
           imageStyle={{borderTopRightRadius: 20}}
           viewStyle={[styles.halfColumn, {paddingLeft: 2, paddingBottom: 2}]}
         />
         <Picture
-          src={places[2].imageUrl}
+          src={{
+            uri: places
+              ? places[2]
+              : 'https://i.etsystatic.com/15374903/r/il/003f77/1722369502/il_570xN.1722369502_ka03.jpg',
+          }}
           imageStyle={{borderBottomRightRadius: 20}}
           viewStyle={[styles.halfColumn, {paddingLeft: 2, paddingTop: 2}]}
         />
@@ -31,7 +43,7 @@ const Board = ({places}) => {
   );
 };
 
-const ThreePicturesBoard = ({name, places, onPress}) => {
+const ThreePicturesBoard = ({name, places, counter, onPress}) => {
   return (
     <TouchableOpacity style={styles.size} onPress={onPress}>
       <View style={{marginHorizontal: 5, marginVertical: 15}}>
@@ -39,7 +51,7 @@ const ThreePicturesBoard = ({name, places, onPress}) => {
           <Board places={places} />
         </View>
         <View style={{height: '20%'}}>
-          <Description name={name} />
+          <Description name={name} counter={counter} />
         </View>
       </View>
     </TouchableOpacity>
