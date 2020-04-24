@@ -1,6 +1,10 @@
 import City from './../../models/City';
 import {FAVOURITES_ID, PLACES, FAV_FOLDERS} from './../../data/dummy-data';
-import {SET_SELECTED_CITY, ADD_TO_FAVOURITE} from './../actions/user';
+import {
+  SET_SELECTED_CITY,
+  TOGGLE_FAVOURITE,
+  SELECT_FAV_PLACES,
+} from './../actions/user';
 import FavouriteCity from './../../models/FavouriteCity';
 import FavFolder from './../../models/FavFolder';
 
@@ -11,16 +15,26 @@ const fetchNearestPlaces = cityId => {
   return filteredPlaces;
 };
 
+const getPlaceFromId = placeId => {
+  return PLACES.find(place => place.id === placeId);
+};
+
 const initialState = {
-  selectedCity: new City(
+  data: {
+    username: 'Chelsearoseeify',
+    icon:
+      'https://i.pinimg.com/originals/7b/08/f7/7b08f7217d51c631ed430e1743f11565.jpg',
+  },
+  selected_city: new City(
     'ci9',
     'Edinburgh',
     require('./../../assets/images/rome.jpg'),
     null,
   ),
-  selectedPlaces: fetchNearestPlaces('ci9'), //fetch near places of the city the user is in
+  selected_places: fetchNearestPlaces('ci9'), //fetch near places of the city the user is in
   favourites_id: FAVOURITES_ID, //local
-  favouriteFolders: FAV_FOLDERS,
+  favourite_folders: FAV_FOLDERS,
+  selected_favourite_places: [],
 };
 
 const userReducer = (state = initialState, action) => {
@@ -29,16 +43,16 @@ const userReducer = (state = initialState, action) => {
       const filteredPlaces = fetchNearestPlaces(action.city.id);
       return {
         ...state,
-        selectedCity: action.city,
-        selectedPlaces: filteredPlaces,
+        selected_city: action.city,
+        selected_places: filteredPlaces,
       };
     }
-    case ADD_TO_FAVOURITE: {
+    case TOGGLE_FAVOURITE: {
       //console.log(action.placeId, action.cityId, action.placeImage);
       const existingCity = state.favourites_id.find(
         city => city.id === action.cityId,
       );
-      const existingFolder = state.favouriteFolders.find(
+      const existingFolder = state.favourite_folders.find(
         city => city.cityId === action.cityId,
       );
       if (existingCity) {
@@ -46,37 +60,49 @@ const userReducer = (state = initialState, action) => {
         const placeIndex = existingCity.placesIds.findIndex(
           place => place === action.placeId,
         );
+        console.log(existingCity);
+        console.log(existingFolder);
         if (placeIndex >= 0) {
-          //selected place is already in fav
-          console.log('Already liked');
+          existingCity.placesIds.splice(placeIndex, 1);
+          existingFolder.imageQueue.splice(placeIndex, 1);
+          existingFolder.counter--;
+          console.log('removd');
         } else {
           existingCity.placesIds.unshift(action.placeId);
           existingFolder.imageQueue.unshift(action.placeImage);
           existingFolder.counter++;
+          console.log('added');
         }
+        console.log(existingCity);
+        console.log(existingFolder);
       } else {
         const newCity = new FavouriteCity(action.cityId, [action.placeId]);
         const newFolder = new FavFolder(
           action.cityId,
           action.cityName,
-          [
-            action.placeImage,
-            'https://i.etsystatic.com/15374903/r/il/003f77/1722369502/il_570xN.1722369502_ka03.jpg',
-            'https://i.etsystatic.com/15374903/r/il/003f77/1722369502/il_570xN.1722369502_ka03.jpg',
-          ],
+          [action.placeImage],
           1,
         );
         console.log('NEW FOLDER');
         const newState = {
           ...state,
           favourites_id: [...state.favourites_id, newCity],
-          favouriteFolders: [...state.favouriteFolders, newFolder],
+          favourite_folders: [...state.favourite_folders, newFolder],
         };
-        console.log(newState.favouriteFolders);
+        console.log(newState.favourite_folders);
         return newState;
       }
 
       break;
+    }
+    case SELECT_FAV_PLACES: {
+      let selectFavouritePlaces = [];
+      const placesIds = state.favourites_id.find(
+        city => city.id === action.cityId,
+      ).placesIds;
+      placesIds.map(id => selectFavouritePlaces.push(getPlaceFromId(id)));
+      console.log(selectFavouritePlaces);
+      return {...state, selected_favourite_places: selectFavouritePlaces};
     }
     default:
       break;

@@ -1,23 +1,20 @@
 import React from 'react';
 import {Text} from '@ui-kitten/components';
 import Colors from '../constants/Colors';
-import {
-  View,
-  StyleSheet,
-  ImageBackground,
-  Button,
-  Alert,
-  ScrollView,
-} from 'react-native';
+import {View, StyleSheet, ImageBackground, ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import NextTripCard from '../components/NextTripCard';
-import CustomFloatingButton from './../components/CustomFloatingButton';
+import CustomFloatingButton from '../components/Buttons/CustomFloatingButton';
 import HorizontalScrollView from '../components/HorizontalScrollView';
 import ListHeader from '../components/ListHeader';
 import CardTypes from '../constants/CardTypes';
 import {useSelector} from 'react-redux';
+import Header from './../components/Header';
+import Style from '../constants/Style';
 
 const ProfileScreen = ({navigation}) => {
+  const userData = useSelector(state => state.user.data);
+  console.log(userData);
   const addTripHandler = () => {
     navigation.navigate('AddTrip');
   };
@@ -29,9 +26,7 @@ const ProfileScreen = ({navigation}) => {
         flex: 1,
       }}>
       <View style={styles.usernameViewStyle}>
-        <Text category="h2" style={styles.usernameStyle}>
-          Chelsearoseeify
-        </Text>
+        <Header title={'Chelsearoseeify'} mapIcon={false} />
       </View>
       <View
         style={{
@@ -41,7 +36,7 @@ const ProfileScreen = ({navigation}) => {
           right: 30,
           bottom: 30,
           zIndex: 1,
-          elevation: 6,
+          elevation: Style.elevation,
         }}>
         <CustomFloatingButton onPress={addTripHandler} />
       </View>
@@ -55,7 +50,7 @@ const ProfileScreen = ({navigation}) => {
           <View style={styles.cardStyle}>
             <View style={styles.avatarView}>
               <ImageBackground
-                source={require('../assets/images/harry.jpeg')}
+                source={{uri: userData.icon}}
                 style={styles.avatar}
                 imageStyle={{borderRadius: 50}}
                 resizeMode="cover"
@@ -67,7 +62,8 @@ const ProfileScreen = ({navigation}) => {
                 <Icon style={styles.icon} name="cog" />
                 <Icon style={styles.icon} name="ellipsis-v" />
               </View>
-              <View style={{paddingLeft: 20}}>
+
+              <View style={{paddingLeft: 10, marginTop: 10}}>
                 <ListHeader name={'Your next trip'} />
                 <View style={styles.nextTripViewStyle}>
                   <NextTripCard />
@@ -89,37 +85,38 @@ const ProfileScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
   cardStyle: {
-    marginTop: 100,
-    marginBottom: 30,
-    elevation: 10,
-    borderTopLeftRadius: 35,
-    borderTopRightRadius: 35,
+    marginTop: 80,
+    padding: Style.paddingCardContainer,
+    elevation: Style.elevation,
+    borderTopLeftRadius: Style.borderRadiusCardContainer,
+    borderTopRightRadius: Style.borderRadiusCardContainer,
     height: '100%',
+    width: '100%',
     backgroundColor: 'white',
   },
   subtitleStyle: {
     color: Colors.greenTitleColor,
     fontWeight: 'bold',
-    fontSize: 23,
+    fontSize: Style.fontSize.h4,
     paddingTop: 10,
     paddingStart: 5,
   },
   avatar: {
-    height: 100,
-    width: 100,
+    height: 85,
+    width: 85,
   },
   avatarView: {
-    elevation: 10,
+    elevation: Style.elevation,
     borderRadius: 45,
-    height: 100,
-    width: 100,
-    top: -50,
-    left: 45,
+    height: 85,
+    width: 85,
+    top: -40,
+    left: 40,
     position: 'absolute',
   },
   icon: {
-    fontSize: 25,
-    marginHorizontal: 20,
+    fontSize: Style.iconSize,
+    paddingHorizontal: 24,
     color: Colors.blueTitleColor,
   },
   imageBackgroundStyle: {
@@ -130,9 +127,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
     width: '100%',
-    paddingRight: 25,
-    paddingBottom: 10,
-    height: 100,
+    height: 80,
     flex: 1,
     position: 'absolute',
   },
@@ -143,19 +138,20 @@ const styles = StyleSheet.create({
   contentViewStyle: {
     flex: 1,
     flexDirection: 'column',
-    marginVertical: 25,
+    marginVertical: 20,
   },
   iconViewStyle: {
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    paddingHorizontal: 10,
   },
   nextTripViewStyle: {
     flexDirection: 'column',
     justifyContent: 'center',
     width: '100%',
     height: 200,
-    paddingEnd: 20,
+    paddingEnd: 10,
   },
 });
 

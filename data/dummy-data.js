@@ -274,6 +274,7 @@ export const FAV_FOLDERS = [
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/Holyroodhouse%2C_front_view.jpg',
       'https://www.wanderlustitalia.it/wp-content/uploads/2014/09/Copertina-Cattedrale-1280x720.jpg',
       'https://q-xx.bstatic.com/images/hotel/max1024x768/201/201131672.jpg',
+      'http://viaggiadipiu.it/wp-content/uploads/2019/02/jorg-angeli-797072-unsplash-e1550006350552.jpg',
     ],
     3,
   ),
@@ -290,7 +291,7 @@ export const FAV_FOLDERS = [
 ];
 
 export const FAVOURITES_ID = [
-  new FavouriteCity('ci9', ['p2', 'p4', 'p3']),
+  new FavouriteCity('ci9', ['p2', 'p4', 'p3', 'p1']),
   new FavouriteCity('ci5', ['p10', 'p11', 'p12']),
 ];
 

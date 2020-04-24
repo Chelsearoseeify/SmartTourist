@@ -1,18 +1,36 @@
 import React, {Component} from 'react';
-import {Layout, Text, Button} from '@ui-kitten/components';
 import Colors from '../constants/Colors';
-import {View, ImageBackground, StyleSheet} from 'react-native';
+import {View, ImageBackground, StyleSheet, Text} from 'react-native';
 import BackButton from '../components/BackButton';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {ScrollView} from 'react-native-gesture-handler';
+import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+import {PLACES} from './../data/dummy-data';
+import {useSelector, useDispatch} from 'react-redux';
+import {toggleFavourite} from '../store/actions/user';
+import Style from '../constants/Style';
+import Detail from '../components/Detail';
+import CustomButton from '../components/Buttons/CustomButton';
+import PlaceScreenButton from '../components/Buttons/PlaceScreenButton';
 
 const PlaceScreen = props => {
+  const dispatch = useDispatch();
+  const {placeId, cityName} = props.route.params;
   let stars = [1, 2, 3, 4, 5];
+  const place = PLACES.find(place => place.id === placeId);
+
+  const addToFavoriteHandler = () => {
+    dispatch(toggleFavourite(place.id, place.cityId, cityName, place.imageUrl));
+  };
+
+  const pressHandlers = () => {
+    console.log('PRESSED');
+  };
+
   return (
     <View style={{flex: 1}}>
       <View style={{height: 200, width: '100%', flex: 1, position: 'absolute'}}>
         <ImageBackground
-          source={require('./../assets/images/edinburgh_castle.jpg')}
+          source={{uri: place.imageUrl}}
           style={styles.imageBackgroundStyle}
           resizeMode="cover"
         />
@@ -28,90 +46,54 @@ const PlaceScreen = props => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.cardStyle}>
             <View style={styles.cardContentStyle}>
-              <Text category="h1">Edinburgh's Castle</Text>
-
-              <View
-                style={{marginLeft: 10, marginTop: 5, flexDirection: 'row'}}>
-                {stars.map(star => (
-                  <Icon name="star" style={styles.reviewIconStyle} />
-                ))}
-                <Text style={styles.reviewStyle}>24 Reviews</Text>
+              <View style={styles.titleViewStyle}>
+                <Text style={styles.placeNameStyle}>{place.name}</Text>
+                <View style={{flexDirection: 'row'}}>
+                  {stars.map(star => (
+                    <Icon name="star" style={styles.reviewIconStyle} />
+                  ))}
+                  <Text style={styles.reviewStyle}>24 Reviews</Text>
+                </View>
               </View>
-
               <View
                 style={{
                   width: '100%',
                   flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  marginTop: 5,
+                  justifyContent: 'space-around',
                 }}>
-                <View style={styles.buttonStyle}>
-                  <Icon name="directions" style={styles.buttonIconStyle} />
-                  <Text style={styles.textIconStyle}>Navigate</Text>
-                </View>
-                <View style={styles.buttonStyle}>
-                  <Icon name="heart" style={styles.buttonIconStyle} />
-                  <Text style={styles.textIconStyle}>Favourite</Text>
-                </View>
-                <View style={styles.buttonStyle}>
-                  <Icon name="calendar-alt" style={styles.buttonIconStyle} />
-                  <Text style={styles.textIconStyle}>Add to trip</Text>
-                </View>
+                <PlaceScreenButton
+                  name={'Navigate'}
+                  iconName={'directions'}
+                  onPress={pressHandlers}
+                />
+                <PlaceScreenButton
+                  name={'Favourite'}
+                  iconName={'heart'}
+                  onPress={addToFavoriteHandler}
+                />
+                <PlaceScreenButton
+                  name={'Add to trip'}
+                  iconName={'calendar-alt'}
+                  onPress={pressHandlers}
+                />
               </View>
 
-              <View style={{marginLeft: 10, marginTop: 15}}>
-                <Text
-                  style={{
-                    fontWeight: 'bold',
-                    fontSize: 19,
-                    color: Colors.blueTitleColor,
-                    marginTop: 10,
-                  }}>
-                  Details
-                </Text>
-                <View style={styles.detailsStyle}>
-                  <Icon name="map-marker-alt" style={styles.detailsIconStyle} />
-                  <Text style={styles.detailsTextStyle}>
-                    3601 S Gaffey St, San Pedro
-                  </Text>
-                </View>
-                <View style={styles.detailsStyle}>
-                  <Icon name="phone" style={styles.detailsIconStyle} />
-                  <Text style={styles.detailsTextStyle}>+1 223-548-7785</Text>
-                </View>
-                <View style={styles.detailsStyle}>
-                  <Icon name="link" style={styles.detailsIconStyle} />
-                  <Text style={styles.detailsTextStyle}>
-                    www.dinocoffee.com
-                  </Text>
-                </View>
+              <View style={styles.detailViewStyle}>
+                <Text style={styles.detailStyle}>Details</Text>
+                <Detail
+                  text={'3601 S Gaffey St, San Pedro'}
+                  iconName="map-marker-alt"
+                />
+                <Detail text={'+1 223-548-7785'} iconName="phone" />
+                <Detail text={'www.dinocoffee.com'} iconName="link" />
               </View>
 
               <Text
                 style={{
-                  margin: 10,
-                  marginTop: 20,
-                  fontSize: 17,
+                  fontSize: Style.fontSize.h6,
                   color: Colors.blueTitleColor,
                 }}>
-                Edinburgh Castle is a historic fortress which dominates the
-                skyline of Edinburgh, the capital city of Scotland, from its
-                position on the Castle Rock. Edinburgh Castle is a historic
-                fortress which dominates the skyline of Edinburgh, the capital
-                city of Scotland, from its position on the Castle Rock.
-                Edinburgh Castle is a historic fortress which dominates the
-                skyline of Edinburgh, the capital city of Scotland, from its
-                position on the Castle Rock. Edinburgh Castle is a historic
-                fortress which dominates the skyline of Edinburgh, the capital
-                city of Scotland, from its position on the Castle Rock.
-                Edinburgh Castle is a historic fortress which dominates the
-                skyline of Edinburgh, the capital city of Scotland, from its
-                position on the Castle Rock. Edinburgh Castle is a historic
-                fortress which dominates the skyline of Edinburgh, the capital
-                city of Scotland, from its position on the Castle Rock.
-                Edinburgh Castle is a historic fortress which dominates the
-                skyline of Edinburgh, the capital city of Scotland, from its
-                position on the Castle Rock.
+                {place.description}
               </Text>
             </View>
           </View>
@@ -127,48 +109,41 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   cardStyle: {
-    marginTop: 180,
-    elevation: 10,
-    borderTopLeftRadius: 35,
-    borderTopRightRadius: 35,
-    flex: 1,
+    marginTop: 150,
+    padding: Style.paddingCardContainer,
+    elevation: Style.elevation,
+    borderTopLeftRadius: Style.borderRadiusCardContainer,
+    borderTopRightRadius: Style.borderRadiusCardContainer,
     height: '100%',
+    width: '100%',
     backgroundColor: Colors.backgroundColor,
   },
+  placeNameStyle: {
+    fontSize: Style.fontSize.h1,
+  },
   cardContentStyle: {
-    margin: 20,
+    padding: Style.paddingCardContainer,
   },
   reviewIconStyle: {
     color: Colors.greenButtonColor,
-    fontSize: 18,
+    fontSize: Style.inputIconSize,
   },
   reviewStyle: {
     color: Colors.blueTitleColor,
-    marginLeft: 10,
+    paddingLeft: 10,
+    fontSize: Style.fontSize.h7,
   },
-  buttonStyle: {
-    borderRadius: 18,
-    backgroundColor: 'white',
-    elevation: 6,
-    alignItems: 'center',
-    marginTop: 15,
-    padding: 10,
-    paddingHorizontal: 28,
-  },
-  buttonIconStyle: {
+  detailStyle: {
+    fontWeight: 'bold',
+    fontSize: Style.fontSize.h5,
     color: Colors.blueTitleColor,
-    fontSize: 40,
-    paddingVertical: 4,
   },
-  textIconStyle: {color: Colors.blueTitleColor, fontSize: 15},
-  detailsIconStyle: {
-    color: Colors.greenTitleColor,
-    marginTop: 2,
-    marginRight: 10,
-    fontSize: 15,
+  detailViewStyle: {
+    margin: 10,
   },
-  detailsTextStyle: {color: Colors.blueTitleColor, fontSize: 17},
-  detailsStyle: {flexDirection: 'row', marginVertical: 8},
+  titleViewStyle: {
+    margin: 10,
+  },
 });
 
 export default PlaceScreen;

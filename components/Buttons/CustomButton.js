@@ -2,26 +2,26 @@ import React, {Component} from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import {StyleSheet, Text, View, Alert} from 'react-native';
-import Colors from '../constants/Colors';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Colors from '../../constants/Colors';
+import Style from '../../constants/Style';
 
-const ButtonClickCheckFunction = () => {
-  Alert.alert('Button Clicked');
-};
-
-const CustomFloatingButton = ({onPress}) => {
+const CustomButton = ({text, onPress}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
       style={{
         backgroundColor: Colors.greenButtonColor,
-        borderRadius: 35,
-        height: 60,
-        width: 60,
+        borderRadius: Style.borderRadiusCard,
         justifyContent: 'center',
         alignItems: 'center',
+        marginHorizontal: 15,
+        borderColor: Colors.greenButtonColor,
+        borderWidth: 0,
+        height: 45,
       }}>
-      <Icon name="plus" size={25} color={'white'} />
+      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>
+        {text}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -33,8 +33,8 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     backgroundColor: Colors.greenButtonColor,
-    borderRadius: 20,
-    elevation: 10,
+    borderRadius: Style.borderRadiusCard,
+    elevation: Style.elevation,
     height: 30,
     width: 30,
   },
@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
   TextStyle: {
     color: '#fff',
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: Style.fontSize.h6,
   },
 });
 
-export default CustomFloatingButton;
+export default CustomButton;

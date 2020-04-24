@@ -17,7 +17,7 @@ const HorizontalScrolliew = ({name, cities, elemType, navigation}) => {
   };
 
   return (
-    <View style={{marginVertical: 5}}>
+    <View>
       <ListHeader name={name} />
       <View>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -37,7 +37,6 @@ const HorizontalScrolliew = ({name, cities, elemType, navigation}) => {
                     name={city.name}
                     imageId={city.imageId}
                     onPress={() => onPressHandler(city)}
-                    style={{height: 220}}
                   />
                 );
               default:

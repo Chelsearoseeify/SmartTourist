@@ -6,16 +6,15 @@ import {Text, Button} from '@ui-kitten/components';
 import PlaceCard from '../components/PlaceCard';
 import SearchBar from '../components/SearchBar';
 import MapButton from '../components/MapButton';
-import CustomFloatingButton from './../components/CustomFloatingButton';
+import CustomFloatingButton from '../components/Buttons/CustomFloatingButton';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
-import {addToFavourites} from '../store/actions/user';
-import {PLACES_URL} from './../data/dummy-data';
+import Header from './../components/Header';
+import Style from '../constants/Style';
 
 const MainPageScreen = ({navigation}) => {
-  const dispatch = useDispatch();
-  const currentCity = useSelector(state => state.user.selectedCity);
-  const filteredPlaces = useSelector(state => state.user.selectedPlaces);
+  const currentCity = useSelector(state => state.user.selected_city);
+  const filteredPlaces = useSelector(state => state.user.selected_places);
 
   const addTripHandler = () => {
     navigation.navigate('AddTrip');
@@ -27,17 +26,9 @@ const MainPageScreen = ({navigation}) => {
         name={itemData.item.name}
         imageUrl={itemData.item.imageUrl}
         onSelect={() => {
-          console.log(itemData.item.cityId);
-          dispatch(
-            addToFavourites(
-              itemData.item.id,
-              itemData.item.cityId,
-              currentCity.name,
-              itemData.item.imageUrl,
-            ),
-          );
           navigation.navigate('Place', {
             placeId: itemData.item.id,
+            cityName: currentCity.name,
           });
         }}
       />
@@ -58,30 +49,14 @@ const MainPageScreen = ({navigation}) => {
           right: 30,
           bottom: 30,
           zIndex: 1,
-          elevation: 6,
+          elevation: Style.elevation,
         }}>
         <CustomFloatingButton onPress={addTripHandler} />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginHorizontal: 12,
-              marginVertical: 10,
-            }}>
-            <MapButton />
-            <Text
-              category="h1"
-              style={{color: Colors.blueTitleColor, fontWeight: 'bold'}}>
-              {currentCity.name}
-            </Text>
-          </View>
-
-          <View>
-            <SearchBar />
-          </View>
+          <Header title={currentCity.name} />
+          <SearchBar />
           <View style={styles.cardStyle}>
             <FlatList
               contentContainerStyle={styles.placesContainer}
@@ -103,17 +78,17 @@ let styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.backgroundColor,
     flex: 1,
-    flexDirection: 'column',
   },
   textStyle: {
     color: Colors.blueTitleColor,
-    fontSize: 20,
+    fontSize: Style.fontSize.h4,
     fontWeight: 'bold',
+    padding: Style.paddingCardContainer,
     marginHorizontal: 20,
-    marginVertical: 10,
+    marginTop: 20,
   },
   iconStyle: {
-    fontSize: 20,
+    fontSize: Style.iconSize,
     color: Colors.greenTitleColor,
   },
   button: {
@@ -121,15 +96,14 @@ let styles = StyleSheet.create({
     borderWidth: 1,
   },
   placesContainer: {
-    marginHorizontal: 20,
+    marginHorizontal: 5,
   },
   cardStyle: {
-    marginTop: 10,
-    paddingTop: 20,
-    marginBottom: 30,
-    elevation: 10,
-    borderTopLeftRadius: 35,
-    borderTopRightRadius: 35,
+    marginTop: Style.marginTopCardContainer,
+    padding: Style.paddingCardContainer,
+    elevation: Style.elevation,
+    borderTopLeftRadius: Style.borderRadiusCardContainer,
+    borderTopRightRadius: Style.borderRadiusCardContainer,
     height: '100%',
     width: '100%',
     backgroundColor: 'white',

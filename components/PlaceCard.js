@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {Text} from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import Style from '../constants/Style';
 
 const PlaceCard = ({name, imageUrl, onSelect}) => {
   let TouchableCmp = TouchableOpacity;
@@ -24,16 +25,21 @@ const PlaceCard = ({name, imageUrl, onSelect}) => {
             uri: imageUrl,
           }}
           style={styles.imageBackgroundStyle}
-          imageStyle={{borderRadius: 20, opacity: 10}}
+          imageStyle={{borderRadius: Style.borderRadiusCard, opacity: 10}}
           resizeMode="cover">
           <View style={styles.filterStyle}>
             <View style={styles.iconStyle}>
-              <Icon name="heart" size={20} color={'white'} />
+              <Icon name="heart" size={Style.iconSize} color={'white'} />
             </View>
             <View style={styles.dataStyle}>
               <Text style={styles.nameStyle}>{name}</Text>
               <View style={styles.ratingStyle}>
-                <Text style={{fontSize: 18, marginRight: 5, color: 'white'}}>
+                <Text
+                  style={{
+                    fontSize: Style.fontSize.h6,
+                    marginRight: 5,
+                    color: 'white',
+                  }}>
                   4.6
                 </Text>
                 <Icon name="star" style={{marginTop: 3, color: 'white'}} />
@@ -48,43 +54,40 @@ const PlaceCard = ({name, imageUrl, onSelect}) => {
 
 const styles = StyleSheet.create({
   nameStyle: {
-    fontSize: 21,
+    fontSize: Style.fontSize.h4,
     fontWeight: 'bold',
-    margin: 8,
+    padding: 5,
     color: 'white',
   },
   ratingStyle: {
-    margin: 10,
+    padding: 5,
     flexDirection: 'row',
   },
   cardStyle: {
-    margin: 12,
-    width: '80%',
-    shadowColor: 'black',
-    shadowOpacity: 0.26,
-    shadowOffset: {width: 0, height: 2},
-    shadowRadius: 8,
-    borderRadius: 20,
+    margin: Style.marginCard,
+    borderRadius: Style.borderRadiusCard,
     flex: 1,
     height: 220,
+    elevation: Style.elevation,
   },
   dataStyle: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
+    padding: Style.paddingCard,
   },
   filterStyle: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    borderRadius: 20,
+    borderRadius: Style.borderRadiusCard,
   },
   imageBackgroundStyle: {
     width: '100%',
     height: '100%',
-    borderRadius: 10,
+    borderRadius: Style.borderRadiusCard,
   },
-  iconStyle: {alignItems: 'flex-end', margin: 10},
+  iconStyle: {alignItems: 'flex-end', padding: 10},
 });
 
 export default PlaceCard;

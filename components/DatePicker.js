@@ -3,11 +3,12 @@ import {StyleSheet} from 'react-native';
 import {Input, Icon, Layout} from '@ui-kitten/components';
 import Colors from '../constants/Colors';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import Style from '../constants/Style';
 
 const CalendarIcon = () => (
   <FontAwesome5Icon
     style={{
-      fontSize: 20,
+      fontSize: Style.inputIconSize,
       color: Colors.greyIconColor,
     }}
     name="calendar-alt"
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderColor: Colors.inputBackgroundColor,
     borderWidth: 0,
-    borderRadius: 20,
+    borderRadius: Style.borderRadiusCard,
     width: '50%',
   },
 });

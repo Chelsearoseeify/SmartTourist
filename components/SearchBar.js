@@ -3,11 +3,12 @@ import {Input} from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {StyleSheet, View} from 'react-native';
 import Colors from '../constants/Colors';
+import Style from '../constants/Style';
 
 const SearchBar = () => {
   const [value, setValue] = React.useState('');
 
-  const renderIcon = () => <Icon style={styles.textStyle} name="search" />;
+  const renderIcon = () => <Icon style={styles.iconStyle} name="search" />;
 
   return (
     <Input
@@ -26,12 +27,12 @@ let styles = StyleSheet.create({
     marginHorizontal: 15,
     marginVertical: 10,
     borderWidth: 0,
-    elevation: 6,
-    borderRadius: 20,
+    elevation: Style.elevation,
+    borderRadius: Style.borderRadiusCardContainer,
   },
-  textStyle: {
+  iconStyle: {
     color: Colors.blueTitleColor,
-    fontSize: 20,
+    fontSize: Style.inputIconSize,
     fontWeight: 'bold',
     marginTop: 5,
   },

@@ -2,16 +2,17 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {View, Text, ImageBackground, StyleSheet, Image} from 'react-native';
 import Colors from '../constants/Colors';
+import Style from '../constants/Style';
 
 const ListCardCitySmall = ({name, imageId, onPress, style = {height: 160}}) => {
   return (
     <TouchableOpacity style={[style, {padding: 8}]} onPress={onPress}>
       <View
         style={{
-          width: 150,
+          width: 130,
           height: '100%',
-          elevation: 6,
-          borderRadius: 18,
+          elevation: Style.elevation,
+          borderRadius: Style.borderRadiusCard,
           backgroundColor: 'white',
         }}>
         <View
@@ -30,7 +31,7 @@ const ListCardCitySmall = ({name, imageId, onPress, style = {height: 160}}) => {
           />
           <Text
             style={{
-              fontSize: 20,
+              fontSize: Style.fontSize.h5,
               fontWeight: 'bold',
               color: Colors.blueTitleColor,
               alignSelf: 'center',

@@ -20,12 +20,14 @@ import tripsReducer from './store/reducers/trips';
 import placesReducer from './store/reducers/places';
 import cityReducer from './store/reducers/cities';
 import userReducer from './store/reducers/user';
+import favouritesReducer from './store/reducers/favourite';
 
 const rootReducer = combineReducers({
   trips: tripsReducer,
   places: placesReducer,
   cities: cityReducer,
   user: userReducer,
+  favourites: favouritesReducer,
 });
 
 const store = createStore(rootReducer);

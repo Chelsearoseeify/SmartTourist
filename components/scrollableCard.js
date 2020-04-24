@@ -1,12 +1,15 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import Style from '../constants/Style';
 
 const AddTripScreen = props => {
   return (
     <View style={styles.container}>
       <View style={[styles.redView, {backgroundColor: 'crimson'}]}>
-        <Text style={{color: 'white', fontSize: 30}}>Chelsearoseeify</Text>
+        <Text style={{color: 'white', fontSize: Style.fontSize.h2}}>
+          Chelsearoseeify
+        </Text>
       </View>
       <View
         style={{
@@ -36,7 +39,7 @@ const AddTripScreen = props => {
               marginTop: 100,
             }}>
             <View style={{margin: 20}}>
-              <Text style={{color: 'white', fontSize: 20}}>
+              <Text style={{color: 'white', fontSize: Style.fontSize.h5}}>
                 Lorem Ipsum è un testo segnaposto utilizzato nel settore della
                 tipografia e della stampa. Lorem Ipsum è considerato il testo
                 segnaposto standard sin dal sedicesimo secolo, quando un anonimo

@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import Colors from '../constants/Colors';
+import Style from '../constants/Style';
 
 const ListHeader = ({name}) => {
   return (
@@ -15,22 +16,20 @@ const styles = StyleSheet.create({
   subTitleViewStyle: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     width: '100%',
-    marginTop: 5,
     paddingEnd: 20,
+    paddingTop: 8,
+    paddingStart: 5,
   },
   subtitleStyle: {
     color: Colors.greenTitleColor,
     fontWeight: 'bold',
-    fontSize: 23,
-    paddingTop: 10,
-    paddingStart: 5,
+    fontSize: Style.fontSize.h5,
   },
   subSubtitleStyle: {
     color: Colors.greenButtonColor,
-    fontSize: 20,
-    paddingTop: 10,
-    paddingStart: 5,
+    fontSize: Style.fontSize.h6,
   },
 });
 

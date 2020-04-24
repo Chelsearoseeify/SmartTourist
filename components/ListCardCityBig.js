@@ -2,8 +2,9 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {View, Text, ImageBackground, StyleSheet} from 'react-native';
 import Colors from '../constants/Colors';
+import Style from '../constants/Style';
 
-const ListCardCityBig = ({name, imageId, onPress, style = {height: 220}}) => {
+const ListCardCityBig = ({name, imageId, onPress, style = {height: 200}}) => {
   return (
     <TouchableOpacity style={[style, {padding: 8}]} onPress={onPress}>
       <View
@@ -11,9 +12,9 @@ const ListCardCityBig = ({name, imageId, onPress, style = {height: 220}}) => {
           styles.filterStyle,
           {
             height: '100%',
-            width: 160,
-            elevation: 6,
-            borderRadius: 18,
+            width: 130,
+            elevation: Style.elevation,
+            borderRadius: Style.borderRadiusCard,
           },
         ]}>
         <ImageBackground
@@ -21,10 +22,15 @@ const ListCardCityBig = ({name, imageId, onPress, style = {height: 220}}) => {
             uri: imageId,
           }}
           style={styles.imageBackgroundStyle}
-          imageStyle={{borderRadius: 10}}
+          imageStyle={{borderRadius: Style.borderRadiusCard}}
           resizeMode="cover">
           <View style={styles.filterStyle}>
-            <Text style={{fontSize: 25, fontWeight: 'bold', color: 'white'}}>
+            <Text
+              style={{
+                fontSize: Style.fontSize.h4,
+                fontWeight: 'bold',
+                color: 'white',
+              }}>
               {name}
             </Text>
           </View>
@@ -38,13 +44,13 @@ const styles = StyleSheet.create({
   imageBackgroundStyle: {
     width: '100%',
     height: '100%',
-    borderRadius: 10,
+    borderRadius: Style.borderRadiusCard,
   },
   filterStyle: {
     height: '100%',
     width: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    borderRadius: 10,
+    borderRadius: Style.borderRadiusCard,
     alignItems: 'center',
     justifyContent: 'center',
   },

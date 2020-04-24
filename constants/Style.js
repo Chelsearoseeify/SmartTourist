@@ -1,0 +1,22 @@
+export default {
+  borderRadiusCardContainer: 35,
+  borderRadiusCard: 20,
+  borderRadiusRoundButton: 40,
+  fontSizeScreenTitle: 33,
+  iconSize: 24,
+  inputIconSize: 18,
+  fontSize: {
+    h1: 32,
+    h2: 30,
+    h3: 28,
+    h4: 24,
+    h5: 20,
+    h6: 18,
+    h7: 16,
+  },
+  elevation: 6,
+  marginTopCardContainer: 10,
+  paddingCardContainer: 5,
+  marginCard: 10,
+  paddingCard: 10,
+};

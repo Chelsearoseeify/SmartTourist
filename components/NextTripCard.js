@@ -3,6 +3,7 @@ import {StyleSheet, ImageBackground, View} from 'react-native';
 import {Text} from '@ui-kitten/components';
 
 import {useSelector} from 'react-redux';
+import Style from '../constants/Style';
 
 const NextTripCard = props => {
   const trips = useSelector(state => state.trips.userTrips);
@@ -14,9 +15,12 @@ const NextTripCard = props => {
   return (
     <View style={styles.cardStyle}>
       <ImageBackground
-        source={require('./../assets/images/edinburgh.jpg')}
+        source={{
+          uri:
+            'https://static.brusselsairlines.com/_img/destinationPage2/UK/Edinburgh/Edinburgh-view.jpg',
+        }}
         style={styles.imageBackgroundStyle}
-        imageStyle={{borderRadius: 20, opacity: 10}}
+        imageStyle={{borderRadius: Style.borderRadiusCard, opacity: 10}}
         resizeMode="cover">
         <View style={styles.filterStyle}>
           <View style={styles.dataStyle}>
@@ -24,7 +28,12 @@ const NextTripCard = props => {
               {trips ? trips[0].name : 'Edinburgh'}
             </Text>
             <View style={styles.ratingStyle}>
-              <Text style={{fontSize: 18, marginRight: 5, color: 'white'}}>
+              <Text
+                style={{
+                  fontSize: Style.fontSize.h6,
+                  padding: 5,
+                  color: 'white',
+                }}>
                 Fri 13 - Mon 16 March
               </Text>
             </View>
@@ -37,41 +46,35 @@ const NextTripCard = props => {
 
 const styles = StyleSheet.create({
   nameStyle: {
-    fontSize: 28,
+    fontSize: Style.fontSize.h4,
     fontWeight: 'bold',
-    margin: 4,
-    paddingTop: 10,
+    padding: 5,
     color: 'white',
   },
-  ratingStyle: {
-    margin: 5,
-    flexDirection: 'row',
-  },
   cardStyle: {
-    margin: 15,
-    elevation: 6,
-    borderRadius: 20,
+    margin: Style.marginCard,
+    elevation: Style.elevation,
+    borderRadius: Style.borderRadiusCard,
     flex: 1,
-    height: 240,
+    height: 220,
   },
   dataStyle: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginBottom: 5,
+    padding: Style.paddingCard,
   },
   filterStyle: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    borderRadius: 20,
+    borderRadius: Style.borderRadiusCard,
   },
   imageBackgroundStyle: {
     width: '100%',
     height: '100%',
-    borderRadius: 10,
+    borderRadius: Style.borderRadiusCard,
   },
-  iconStyle: {alignItems: 'flex-end', margin: 10},
 });
 
 export default NextTripCard;

@@ -5,11 +5,13 @@ import {View, StyleSheet, SafeAreaView} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import HorizontalScrollView from '../components/HorizontalScrollView';
 import {CustomDatePicker} from './../components/DatePicker';
-import CustomButton from '../components/CustomButton';
+import CustomButton from '../components/Buttons/CustomButton';
 import CardTypes from '../constants/CardTypes';
 import {CITIES} from '../data/dummy-data';
 import BackButton from './../components/BackButton';
 import {useSelector} from 'react-redux';
+import Header from '../components/Header';
+import Style from '../constants/Style';
 
 const NewTripView = () => {
   const [value, setValue] = React.useState('');
@@ -21,8 +23,7 @@ const NewTripView = () => {
 
       <View
         style={{
-          paddingHorizontal: 20,
-          marginVertical: 10,
+          paddingHorizontal: 5,
           width: '100%',
           alignContent: 'center',
         }}>
@@ -43,7 +44,7 @@ const NewTripView = () => {
       <View
         style={{
           width: '100%',
-          paddingHorizontal: 20,
+          paddingHorizontal: 5,
           alignItems: 'flex-end',
         }}>
         <View style={{width: 150}}>
@@ -59,9 +60,7 @@ const AddTripScreen = props => {
     <SafeAreaView style={styles.container}>
       <BackButton {...props} />
       <View style={styles.titleViewStyle}>
-        <Text category="h2" style={styles.titleStyle}>
-          Your next trip
-        </Text>
+        <Header title={'Your next trip'} mapIcon={false} />
       </View>
       <View
         style={{
@@ -102,7 +101,7 @@ const AddTripScreen = props => {
   );
 };
 
-const topSpace = 80;
+const topSpace = 70;
 
 let styles = StyleSheet.create({
   size: {height: 210, width: 200},
@@ -115,8 +114,8 @@ let styles = StyleSheet.create({
     marginBottom: 30,
   },
   cardStyle: {
-    elevation: 10,
-    borderRadius: 35,
+    elevation: Style.elevation,
+    borderRadius: Style.borderRadiusCardContainer,
     backgroundColor: 'white',
     marginVertical: 5,
   },
@@ -124,8 +123,6 @@ let styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
     width: '100%',
-    paddingRight: 25,
-    paddingBottom: 10,
     height: topSpace,
     flex: 1,
     position: 'absolute',
@@ -137,13 +134,13 @@ let styles = StyleSheet.create({
   listViewStyle: {
     flex: 1,
     flexDirection: 'column',
-    marginTop: 20,
-    marginBottom: 40,
+    marginTop: 10,
+    marginBottom: 20,
   },
   inputStyle: {
     backgroundColor: Colors.inputBackgroundColor,
     marginHorizontal: 15,
-    marginVertical: 10,
+    marginVertical: 5,
     borderColor: Colors.inputBackgroundColor,
     borderWidth: 0,
     borderRadius: 20,
@@ -151,8 +148,9 @@ let styles = StyleSheet.create({
   subtitleStyle: {
     color: Colors.blueTitleColor,
     fontWeight: 'bold',
-    fontSize: 28,
-    paddingTop: 25,
+    fontSize: 25,
+    paddingTop: 20,
+    marginBottom: 5,
     paddingStart: 5,
     marginHorizontal: 25,
     paddingBottom: 5,
