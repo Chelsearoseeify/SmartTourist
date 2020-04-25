@@ -1,7 +1,13 @@
 import React from 'react';
 import {Text} from '@ui-kitten/components';
 import Colors from '../constants/Colors';
-import {View, StyleSheet, ImageBackground, ScrollView} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  ImageBackground,
+  ScrollView,
+  SafeAreaView,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import NextTripCard from '../components/NextTripCard';
 import CustomFloatingButton from '../components/Buttons/CustomFloatingButton';

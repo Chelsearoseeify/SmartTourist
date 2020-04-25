@@ -16,42 +16,44 @@ import Style from '../constants/Style';
 const NewTripView = () => {
   const [value, setValue] = React.useState('');
   return (
-    <View style={styles.listViewStyle}>
-      <View>
-        <Text style={styles.subtitleStyle}>Create your trip</Text>
-      </View>
+    <SafeAreaView>
+      <View style={styles.listViewStyle}>
+        <View>
+          <Text style={styles.subtitleStyle}>Create your trip</Text>
+        </View>
 
-      <View
-        style={{
-          paddingHorizontal: 5,
-          width: '100%',
-          alignContent: 'center',
-        }}>
-        <Input
-          value={value}
-          placeholder="Choose your trip name"
-          onChangeText={nextValue => setValue(nextValue)}
-          style={styles.inputStyle}
-        />
-        <Input
-          value={value}
-          placeholder="Choose your city"
-          onChangeText={nextValue => setValue(nextValue)}
-          style={styles.inputStyle}
-        />
-        <CustomDatePicker />
-      </View>
-      <View
-        style={{
-          width: '100%',
-          paddingHorizontal: 5,
-          alignItems: 'flex-end',
-        }}>
-        <View style={{width: 150}}>
-          <CustomButton text={'ADD'} />
+        <View
+          style={{
+            paddingHorizontal: 5,
+            width: '100%',
+            alignContent: 'center',
+          }}>
+          <Input
+            value={value}
+            placeholder="Choose your trip name"
+            onChangeText={nextValue => setValue(nextValue)}
+            style={styles.inputStyle}
+          />
+          <Input
+            value={value}
+            placeholder="Choose your city"
+            onChangeText={nextValue => setValue(nextValue)}
+            style={styles.inputStyle}
+          />
+          <CustomDatePicker />
+        </View>
+        <View
+          style={{
+            width: '100%',
+            paddingHorizontal: 5,
+            alignItems: 'flex-end',
+          }}>
+          <View style={{width: 150}}>
+            <CustomButton text={'ADD'} />
+          </View>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

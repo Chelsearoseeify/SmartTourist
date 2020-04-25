@@ -40,37 +40,39 @@ const MainPageScreen = ({navigation}) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View
-        style={{
-          position: 'absolute',
-          alignItems: 'center',
-          justifyContent: 'center',
-          right: 30,
-          bottom: 30,
-          zIndex: 1,
-          elevation: Style.elevation,
-        }}>
-        <CustomFloatingButton onPress={addTripHandler} />
-      </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View>
-          <Header title={currentCity.name} />
-          <SearchBar />
-          <View style={styles.cardStyle}>
-            <FlatList
-              contentContainerStyle={styles.placesContainer}
-              data={filteredPlaces}
-              numColumns={2}
-              renderItem={renderGridItem}
-              horizontal={false}
-              ListHeaderComponent={headerComponent}
-              scrollEnabled={false}
-            />
-          </View>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <View
+          style={{
+            position: 'absolute',
+            alignItems: 'center',
+            justifyContent: 'center',
+            right: 30,
+            bottom: 30,
+            zIndex: 1,
+            elevation: Style.elevation,
+          }}>
+          <CustomFloatingButton onPress={addTripHandler} />
         </View>
-      </ScrollView>
-    </View>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View>
+            <Header title={currentCity.name} navigation={navigation} />
+            <SearchBar />
+            <View style={styles.cardStyle}>
+              <FlatList
+                contentContainerStyle={styles.placesContainer}
+                data={filteredPlaces}
+                numColumns={2}
+                renderItem={renderGridItem}
+                horizontal={false}
+                ListHeaderComponent={headerComponent}
+                scrollEnabled={false}
+              />
+            </View>
+          </View>
+        </ScrollView>
+      </View>
+    </SafeAreaView>
   );
 };
 

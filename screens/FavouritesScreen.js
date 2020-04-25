@@ -51,7 +51,7 @@ const FavouriteScreen = ({navigation}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View
         style={{
           position: 'absolute',
@@ -61,65 +61,68 @@ const FavouriteScreen = ({navigation}) => {
           bottom: 30,
           zIndex: 1,
           elevation: Style.elevation,
+          borderRadius: Style.borderRadiusRoundButton,
         }}>
         <CustomFloatingButton onPress={addTripHandler} />
       </View>
-      <View style={styles.titleViewStyle}>
-        <Header title={'Favourites'} mapIcon={false} />
-      </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.cardStyle}>
-          <View style={styles.iconViewStyle}>
-            <Icon
-              style={styles.icon}
-              name="th-large"
-              onPress={() => {
-                setCardStyleHandler(CardTypes.FOUR_PICTURES);
-                oneColumn = false;
-              }}
-            />
-            <Icon
-              style={styles.icon}
-              name="th-list"
-              onPress={() => {
-                setCardStyleHandler(CardTypes.THREE_PICTURES);
-                oneColumn = true;
-              }}
-            />
-            <Icon
-              style={styles.icon}
-              name="list"
-              onPress={() => {
-                setCardStyleHandler(CardTypes.TWO_PICTURES);
-                oneColumn = false;
-              }}
-            />
-          </View>
-          {oneColumn && (
-            <FlatList
-              contentContainerStyle={styles.placesContainer}
-              data={favouriteFolders}
-              numColumns={1}
-              horizontal={false}
-              renderItem={renderGridItem}
-              scrollEnabled={false}
-              keyExtractor={item => item.cityId}
-            />
-          )}
-          {!oneColumn && (
-            <FlatList
-              contentContainerStyle={styles.placesContainer}
-              data={favouriteFolders}
-              numColumns={2}
-              horizontal={false}
-              renderItem={renderGridItem}
-              scrollEnabled={false}
-              keyExtractor={item => item.cityId}
-            />
-          )}
+      <View>
+        <View style={styles.titleViewStyle}>
+          <Header title={'Favourites'} mapIcon={false} />
         </View>
-      </ScrollView>
-    </View>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.cardStyle}>
+            <View style={styles.iconViewStyle}>
+              <Icon
+                style={styles.icon}
+                name="th-large"
+                onPress={() => {
+                  setCardStyleHandler(CardTypes.FOUR_PICTURES);
+                  oneColumn = false;
+                }}
+              />
+              <Icon
+                style={styles.icon}
+                name="th-list"
+                onPress={() => {
+                  setCardStyleHandler(CardTypes.THREE_PICTURES);
+                  oneColumn = true;
+                }}
+              />
+              <Icon
+                style={styles.icon}
+                name="list"
+                onPress={() => {
+                  setCardStyleHandler(CardTypes.TWO_PICTURES);
+                  oneColumn = false;
+                }}
+              />
+            </View>
+            {oneColumn && (
+              <FlatList
+                contentContainerStyle={styles.placesContainer}
+                data={favouriteFolders}
+                numColumns={1}
+                horizontal={false}
+                renderItem={renderGridItem}
+                scrollEnabled={false}
+                keyExtractor={item => item.cityId}
+              />
+            )}
+            {!oneColumn && (
+              <FlatList
+                contentContainerStyle={styles.placesContainer}
+                data={favouriteFolders}
+                numColumns={2}
+                horizontal={false}
+                renderItem={renderGridItem}
+                scrollEnabled={false}
+                keyExtractor={item => item.cityId}
+              />
+            )}
+          </View>
+        </ScrollView>
+      </View>
+    </SafeAreaView>
   );
 };
 
