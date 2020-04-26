@@ -1,32 +1,38 @@
-[
-  {
-    "cityId": "ci9",
-    "cityName": "Edinburgh",
-    "counter": 3,
-    "imageQueue": [
-      "https://upload.wikimedia.org/wikipedia/commons/c/ce/Holyroodhouse%2C_front_view.jpg",
-      "https://www.wanderlustitalia.it/wp-content/uploads/2014/09/Copertina-Cattedrale-1280x720.jpg",
-      "https://q-xx.bstatic.com/images/hotel/max1024x768/201/201131672.jpg"
-    ]
+{
+  "_bodyBlob": {
+    "_data": {
+      "__collector": [],
+      "blobId": "dfbe5a65-aff4-4ed7-bbc3-cd24036c18f7",
+      "offset": 0,
+      "size": 4038
+    }
   },
-  {
-    "cityId": "ci5",
-    "cityName": "New York",
-    "counter": 3,
-    "imageQueue": [
-      "https://www.innocentiemangonipiante.it/templates/yootheme/cache/central-park-pov-1cab2d8e.jpeg",
-      "https://cdn.getyourguide.com/img/tour_img-1739965-148.jpg",
-      "https://www.history.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTY1MTc1MTk3ODI0MDAxNjA5/topic-statue-of-liberty-gettyimages-960610006-promo.jpg"
-    ]
+  "_bodyInit": {
+    "_data": {
+      "__collector": [],
+      "blobId": "dfbe5a65-aff4-4ed7-bbc3-cd24036c18f7",
+      "offset": 0,
+      "size": 4038
+    }
   },
-  {
-    "cityId": "ci6",
-    "cityName": "Paris",
-    "counter": 0,
-    "imageQueue": [
-      "https://images.france.fr/zeaejvyq9bhj/1q80wA2dmc4S2QicA6m0Gg/f3fe6953aefcc20d8a8e08fb9965f44d/louvre-piramide-paris.jpg?w=1120&h=490&q=70&fl=progressive&fit=fill",
-      "https://i.etsystatic.com/15374903/r/il/003f77/1722369502/il_570xN.1722369502_ka03.jpg",
-      "https://i.etsystatic.com/15374903/r/il/003f77/1722369502/il_570xN.1722369502_ka03.jpg"
-    ]
-  }
-]
+  "headers": {
+    "map": {
+      "alt-svc": "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000",
+      "cache-control": "no-cache, must-revalidate",
+      "content-length": "4038",
+      "content-type": "image/png",
+      "date": "Sun, 26 Apr 2020 15:49:29 GMT",
+      "expires": "Fri, 01 Jan 1990 00:00:00 GMT",
+      "pragma": "no-cache",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=4",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    }
+  },
+  "ok": false,
+  "status": 403,
+  "statusText": "undefined",
+  "type": "default",
+  "url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU&key=[object%20Object]"
+}

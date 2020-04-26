@@ -13,6 +13,7 @@ export default {
     h5: 20,
     h6: 18,
     h7: 16,
+    h8: 14,
   },
   elevation: 6,
   marginTopCardContainer: 10,

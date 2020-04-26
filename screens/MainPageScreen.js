@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Colors from '../constants/Colors';
-import {View, StyleSheet, FlatList, SafeAreaView} from 'react-native';
+import {View, StyleSheet, FlatList, SafeAreaView, Image} from 'react-native';
 import {Text, Button} from '@ui-kitten/components';
 
 import PlaceCard from '../components/PlaceCard';
@@ -11,10 +11,27 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
 import Header from './../components/Header';
 import Style from '../constants/Style';
+import API_KEY from '../constants/API_KEY';
+
+const fetchPicture = photo_reference => {
+  const url = `https://maps.googleapis.com/maps/api/place/photo?photoreference=${photo_reference}&key=${
+    API_KEY.API_KEY_PLACES
+  }`;
+  /*
+  fetch(url)
+    .then(response => {
+      return response;
+    })
+    .then(data => {
+      console.log(data.url);
+    });*/
+};
 
 const MainPageScreen = ({navigation}) => {
   const currentCity = useSelector(state => state.user.selected_city);
   const filteredPlaces = useSelector(state => state.user.selected_places);
+  const photo_reference =
+    'CmRZAAAAET28k8TZACo4HknlX0LgAFLScwOVhNd8ZisBGJHqwpsIdywfwIfNJGFSYHd26ndo4P1bcRzFYxZvYGB0lJqnu4ZF7iUhkRjYIOCiG7o864ooxS-FocKiVl_iG5wwPtlAEhC9qqzOsMOw34W_MCFrJMwBGhQIM-2XZ2IoyBPuoZ_3PlvdVtRLwA';
 
   const addTripHandler = () => {
     navigation.navigate('AddTrip');
@@ -59,6 +76,12 @@ const MainPageScreen = ({navigation}) => {
             <Header title={currentCity.name} navigation={navigation} />
             <SearchBar />
             <View style={styles.cardStyle}>
+              {/*<Image
+                style={{height: 100}}
+                source={{
+                  uri: fetchPicture(photo_reference),
+                }}
+              />*/}
               <FlatList
                 contentContainerStyle={styles.placesContainer}
                 data={filteredPlaces}

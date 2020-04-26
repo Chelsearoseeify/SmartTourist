@@ -54,7 +54,7 @@ const PlaceCard = ({name, imageUrl, onSelect}) => {
 
 const styles = StyleSheet.create({
   nameStyle: {
-    fontSize: Style.fontSize.h4,
+    fontSize: Style.fontSize.h5,
     fontWeight: 'bold',
     padding: 5,
     color: 'white',
