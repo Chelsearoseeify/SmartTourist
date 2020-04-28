@@ -13,9 +13,9 @@ import TabNavigator from './navigation/AppNavigator';
 import {ApplicationProvider, Layout} from '@ui-kitten/components';
 import {mapping, light as lightTheme} from '@eva-design/eva';
 
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
-
+import ReduxThunk from 'redux-thunk';
 import tripsReducer from './store/reducers/trips';
 import placesReducer from './store/reducers/places';
 import cityReducer from './store/reducers/cities';
@@ -30,7 +30,7 @@ const rootReducer = combineReducers({
   favourites: favouritesReducer,
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 const App = () => {
   return (

@@ -4,6 +4,8 @@ import {
   SET_SELECTED_CITY,
   TOGGLE_FAVOURITE,
   SELECT_FAV_PLACES,
+  SET_PLACES,
+  CREATE_PLACE,
 } from './../actions/user';
 import FavouriteCity from './../../models/FavouriteCity';
 import FavFolder from './../../models/FavFolder';
@@ -26,15 +28,16 @@ const initialState = {
       'https://i.pinimg.com/originals/7b/08/f7/7b08f7217d51c631ed430e1743f11565.jpg',
   },
   selected_city: new City(
-    'ci9',
-    'Edinburgh',
-    require('./../../assets/images/rome.jpg'),
-    null,
+    'ci7',
+    'Prague',
+    'https://lp-cms-production.imgix.net/features/2019/07/shutterstockRF_300856853-f8561259593d.jpg',
+    require('./../../assets/images/icons/Prague.png'),
   ),
   selected_places: fetchNearestPlaces('ci9'), //fetch near places of the city the user is in
   favourites_id: FAVOURITES_ID, //local
   favourite_folders: FAV_FOLDERS,
   selected_favourite_places: [],
+  set_places: [],
 };
 
 const userReducer = (state = initialState, action) => {
@@ -103,6 +106,12 @@ const userReducer = (state = initialState, action) => {
       placesIds.map(id => selectFavouritePlaces.push(getPlaceFromId(id)));
       console.log(selectFavouritePlaces);
       return {...state, selected_favourite_places: selectFavouritePlaces};
+    }
+    case SET_PLACES: {
+      return {...state, set_places: action.places};
+    }
+    case CREATE_PLACE: {
+      console.log('Done');
     }
     default:
       break;

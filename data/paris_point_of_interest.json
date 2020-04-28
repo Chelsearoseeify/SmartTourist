@@ -1,0 +1,941 @@
+{
+  "html_attributions": [],
+  "next_page_token": "CpQCAQEAAFOVojYOyDBLoR9NjsaeshtVnhjyW1dIKPurfXctpWfQ1pUt8K-LgJs-yWOTraR70B_005kg9NBgFQKqKq3wC00r9RfOyvfWzvDnYex-TwTa1QG57YNmQSSYwG55oCRXAGeiWMwvbBZFK1ABKH5n1Eu2_Q5bUnmcxH4daO2IUCFxl-jc9aIAhx25tW5DObnE0-HfJHjWNwqhmWYGRbFnwRJZWtfiTfgEoGMELoTkedTlw0L4zMNcH9WARBXt5mWRLnInKCvgfsU8IWSpOJMux7Tt8kKa2oYxXYzrGVEIg4cORO49k2MY1uqPc1L0BimAumUZQ8hMVrFDIgIK6FLpNSK18zzeWi5xB80EJIJmx8hXEhCEtCSMX_50mGuUCG8ieluVGhTpx9Ma8Ex8iq_mCO8ZSpugKEdZrQ",
+  "results": [
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Place Charles de Gaulle, 75008 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.8737917,
+          "lng": 2.2950275
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.87541717989273,
+            "lng": 2.296284879892722
+          },
+          "southwest": {
+            "lat": 48.87271752010729,
+            "lng": 2.293585220107277
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "b4be70a61707e7ea54e7a55c2046b87e48459a01",
+      "name": "Arc de Triomphe",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3237,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/104889860001215768263\">Michael Camilleri</a>"
+          ],
+          "photo_reference": "CmRaAAAAcojkydC9eqS4tK3iJPu1DH0YDtB3j6YDvAmz-TWEEmOe27ItO3Mo7LnPDc9b5CW7gtlSy850bSzVbcyUpSV-V5RhqYdgTxDUXf77Jr-2M-4hBK0EAWx2w0GopDA03ux-EhCGDmpY0vIuzNlF8kdVG6xJGhRx_zchjd_uiBc_ZWnjdWOeSra1-w",
+          "width": 4942
+        }
+      ],
+      "place_id": "ChIJjx37cOxv5kcRPWQuEW5ntdk",
+      "plus_code": {
+        "compound_code": "V7FW+G2 Paris, France",
+        "global_code": "8FW4V7FW+G2"
+      },
+      "rating": 4.7,
+      "reference": "ChIJjx37cOxv5kcRPWQuEW5ntdk",
+      "types": [
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 140296
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "75008 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.8656331,
+          "lng": 2.3212357
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.86765525,
+            "lng": 2.32344265
+          },
+          "southwest": {
+            "lat": 48.86334185000001,
+            "lng": 2.319150449999999
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "b441299cac6fe3b825f46381853e85a0c9d6377b",
+      "name": "Place de la Concorde",
+      "opening_hours": {},
+      "photos": [
+        {
+          "height": 3265,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/107633475375043905497\">Joyjeet Bhowmik</a>"
+          ],
+          "photo_reference": "CmRaAAAAjg6W6mCoAHEEEskcYC4fWHyisTwPiMi1XzHET1c9WZZVJPo1o3ssK2kk2Qmpy7IxidVaVk9173I-9ScGh-HpBxdgESVwNmMcFo9qHJMcqheAwpxuSLMA9GQL8A7vsx4sEhA2r2o_i71ZbTsJHP23vrq9GhSw73vtaD4NTtD-PfrJvKsJtNIGeQ",
+          "width": 4898
+        }
+      ],
+      "place_id": "ChIJAQquYc1v5kcRLKslDuENAxg",
+      "plus_code": {
+        "compound_code": "V88C+7F Paris, France",
+        "global_code": "8FW4V88C+7F"
+      },
+      "rating": 4.5,
+      "reference": "ChIJAQquYc1v5kcRLKslDuENAxg",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 44082
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "6 Parvis Notre-Dame - Pl. Jean-Paul II, 75004 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.85296820000001,
+          "lng": 2.3499021
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.85490157989273,
+            "lng": 2.35114505
+          },
+          "southwest": {
+            "lat": 48.85220192010728,
+            "lng": 2.34617325
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/worship_general-71.png",
+      "id": "ffee6a85bf6eed6d578dfa3c7ea475f6072bff4e",
+      "name": "Cathédrale Notre-Dame de Paris",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3585,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/115531967269437830751\">Vladimir Chalyshev</a>"
+          ],
+          "photo_reference": "CmRaAAAAL9Cvh3f5ipqy8P6H1HX1q7Q359dA7OlOWfReNJOWOq40HDdxpgMQQ7Kz8XrxzH_zpbOFOzIaGOH-35-4AsYxu2AlXbgjNDWXobtMb1Gobf8peuvPxCDSvgQeVwgW1zUREhDSn_DG7Uu9Qq1Q8PRU_cXMGhRy01-oSoQ7ODFMmzGg2wfmS4UUPQ",
+          "width": 5378
+        }
+      ],
+      "place_id": "ChIJATr1n-Fx5kcRjQb6q6cdQDY",
+      "plus_code": {
+        "compound_code": "V83X+5X Paris, France",
+        "global_code": "8FW4V83X+5X"
+      },
+      "rating": 4.7,
+      "reference": "ChIJATr1n-Fx5kcRjQb6q6cdQDY",
+      "types": [
+        "tourist_attraction",
+        "church",
+        "place_of_worship",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 41993
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "129 Rue de Grenelle, 75007 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.8558494,
+          "lng": 2.3125685
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.85735952989273,
+            "lng": 2.313259579892722
+          },
+          "southwest": {
+            "lat": 48.85465987010728,
+            "lng": 2.310559920107277
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "201e2bb863301f4d60ddcd0012b0646019214ced",
+      "name": "Esplanade des Invalides",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3000,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/107967230875328067115\">João Ruivo</a>"
+          ],
+          "photo_reference": "CmRaAAAAViIrajJYjAL_pUoqxC-PYsxVmKprVewWo_X_1SMAxi_GkDv-LLtzI0ZmdYOil29XNJ-y8Q8Uk7KR_L3XahMpi_MB8MGjO0Irvyx6ewKzkKDj8mw-mt14oCJbo_YsbI34EhD2BVyBHtTB3M6xaoDNHd2KGhSEvo_ojaqHjaOmd-yneRIpMf-p9g",
+          "width": 4000
+        }
+      ],
+      "place_id": "ChIJv-rX7Ndv5kcR8HH74UZfYtQ",
+      "plus_code": {
+        "compound_code": "V847+82 Paris, France",
+        "global_code": "8FW4V847+82"
+      },
+      "rating": 4.5,
+      "reference": "ChIJv-rX7Ndv5kcR8HH74UZfYtQ",
+      "types": [
+        "museum",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 4131
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Place de la Concorde, 75001 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.8634916,
+          "lng": 2.3274943
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.86775674999998,
+            "lng": 2.3394201
+          },
+          "southwest": {
+            "lat": 48.85775935000001,
+            "lng": 2.3163689
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "a5669f20d1bd71a4465926937ea5760daa344c51",
+      "name": "Tuileries Garden",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/113901246659617511548\">Javier Ortega Martín</a>"
+          ],
+          "photo_reference": "CmRaAAAAL1xaumJ_Ah8gfNfyaz-NU2hhhkQGiko3PcnnoVU3ODvvBU5Di-44kgslzXkh_oiNDNcMzFMgyMDWx_XMB_ubypTiMF4eI7wVIQ_Gvmgsr2ybkt7mTMYbGr9X2oSbCxcnEhAxMvW6b5EroNHrqFfyLSwJGhQEQPOchpNiNgRc7Q7H5nUEgB7-3Q",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJAQAAMCxu5kcRx--_4QnbGcI",
+      "plus_code": {
+        "compound_code": "V87G+9X Paris, France",
+        "global_code": "8FW4V87G+9X"
+      },
+      "rating": 4.6,
+      "reference": "ChIJAQAAMCxu5kcRx--_4QnbGcI",
+      "types": [
+        "tourist_attraction",
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 67121
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Place du Trocadéro et du 11 Novembre, 75016 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.8615963,
+          "lng": 2.2892823
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.86493295,
+            "lng": 2.294195749999999
+          },
+          "southwest": {
+            "lat": 48.85799514999999,
+            "lng": 2.28408435
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "7da4eae9a54012ee168318852829a8263e29fe52",
+      "name": "Trocadéro Gardens",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 960,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/100924691213443384547\">ОлЕнЬкА ПаВлОвНа</a>"
+          ],
+          "photo_reference": "CmRaAAAARdG1ToaPMm-DjpCe-9nyvv4BpMyj3pE8cmcfLA3Dqfk0T8BgDNgjpoOAYmQUuN5IL4KWqV8orywqEWfOSux1IktAPDXWnFk3MpJFNAUY6fK5irlz5at2Yq0SJ5AndBVaEhDzueVOu4GcbvqBcS09WlHPGhTnpoJKsWU6uuH0LcBVzNgdPpFFtA",
+          "width": 1280
+        }
+      ],
+      "place_id": "ChIJoxY3R-Nv5kcRWsRDGBoNIOk",
+      "plus_code": {
+        "compound_code": "V76Q+JP Paris, France",
+        "global_code": "8FW4V76Q+JP"
+      },
+      "rating": 4.6,
+      "reference": "ChIJoxY3R-Nv5kcRWsRDGBoNIOk",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 91559
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "33 Avenue du Maine, 75015 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.8421379,
+          "lng": 2.3219514
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.84346237989272,
+            "lng": 2.32347145
+          },
+          "southwest": {
+            "lat": 48.84076272010727,
+            "lng": 2.32028085
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "c4bb7941970b3b5013f4bb4453be6c58050dd3e7",
+      "name": "Montparnasse Tower",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 875,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/111595740879026984450\">János Gehring</a>"
+          ],
+          "photo_reference": "CmRaAAAAe7eXM8O9SPEL_DScEQGyRKPTpM8bJ8tfDCmb226OpQXiQPvMZ0OyAREHYnKsDptwI5Z_M6URssR-Ny7CP2B0S0XgmrHP3p-dTU4JLPSiqHRkB5O8d7EZuhJeQoLLCrLqEhCm8K0zWTG9fNWJc60u-ZOAGhSZpwHi8kgxrdI7bwKJf95YeHwWhg",
+          "width": 1280
+        }
+      ],
+      "place_id": "ChIJUSQArsxx5kcRPFkcG5z_BPw",
+      "plus_code": {
+        "compound_code": "R8RC+VQ Paris, France",
+        "global_code": "8FW4R8RC+VQ"
+      },
+      "rating": 4.5,
+      "reference": "ChIJUSQArsxx5kcRPFkcG5z_BPw",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 22273
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "129 Rue de Grenelle, 75007 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.85652899999999,
+          "lng": 2.3127059
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.85792007989272,
+            "lng": 2.3134109
+          },
+          "southwest": {
+            "lat": 48.85522042010728,
+            "lng": 2.310590899999999
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "6b56b64d62c77a3b80d9d009718fb9d2182efe26",
+      "name": "Les Invalides",
+      "opening_hours": {
+        "open_now": false
+      },
+      "photos": [
+        {
+          "height": 3000,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/100030814353360632948\">alex v</a>"
+          ],
+          "photo_reference": "CmRaAAAAAmxuqs8gzJJdhaT_EYkRiPBKEjI6N1jv42HixhkaHsQMi3XgKyO7fRbPv7fZ9Vk2QLX_t5U9EsbMM880j0qBpY6uxpH9814mYeLebcxOaAJjYk6HyenUlGdZ5MUUrgRnEhCBoyZcSnqxvmLTt9P_xB-wGhQaw9xd3tmaPKhKr4N1egvo8m1HOA",
+          "width": 4000
+        }
+      ],
+      "place_id": "ChIJUzCPuddv5kcRasGAnEUUWkU",
+      "plus_code": {
+        "compound_code": "V847+J3 Paris, France",
+        "global_code": "8FW4V847+J3"
+      },
+      "rating": 4.6,
+      "reference": "ChIJUzCPuddv5kcRasGAnEUUWkU",
+      "types": [
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 21893
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Place de l'Opéra, 75009 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.8719697,
+          "lng": 2.3316014
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.87354222989272,
+            "lng": 2.33340815
+          },
+          "southwest": {
+            "lat": 48.87084257010728,
+            "lng": 2.32978075
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "f08a5b8c915e8e38418697beaa0d6bab9d307114",
+      "name": "Palais Garnier",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 1365,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/100328682289076502731\">성감</a>"
+          ],
+          "photo_reference": "CmRaAAAAH_OaIJqayZUqmazVP8ul7XrpH_J4pJdqmFelVmlXbJ6KilFeotsdgLriA87ECpjDCbpF1DXyG0oOF5s1aPhecKUKTILhD2iCnWtHrV1YEwzsEXbu2EY1jU7bN6wQbVqhEhCN_XM7wr1YiFqgzxgfscZiGhTtkrN-YpC_59qzQzD6BBF1ZnQbyQ",
+          "width": 2048
+        }
+      ],
+      "place_id": "ChIJOYNm1DBu5kcRZwdtKBzyq6k",
+      "plus_code": {
+        "compound_code": "V8CJ+QJ Paris, France",
+        "global_code": "8FW4V8CJ+QJ"
+      },
+      "rating": 4.7,
+      "reference": "ChIJOYNm1DBu5kcRZwdtKBzyq6k",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 22723
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Place du Panthéon, 75005 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.8462218,
+          "lng": 2.3464138
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.84753142989272,
+            "lng": 2.3481467
+          },
+          "southwest": {
+            "lat": 48.84483177010728,
+            "lng": 2.3438571
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "f779c21934431fe151ed4f59cc5c50ae1c95e387",
+      "name": "Panthéon",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/117588552233950426654\">Anthony RAHAYEL</a>"
+          ],
+          "photo_reference": "CmRaAAAAfFNyYKoIMAiqRyNeQCu1aI6H1wwt_2IaKii5wN0jv9ijIyfKJJT-MqOtkYktYuWJkykkdIl1zry5Cx0m468dTGWzkNG922B8R1VlgqfjuQXYMnFb3MQa9-QPAkp4BKemEhDYg-KSLrCYFycY9LIQCBMVGhT-CrTdTBrlYt7rWHf07zphkyB9jQ",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJc8mX0udx5kcRWKcjTwDr5QA",
+      "plus_code": {
+        "compound_code": "R8WW+FH Paris, France",
+        "global_code": "8FW4R8WW+FH"
+      },
+      "rating": 4.6,
+      "reference": "ChIJc8mX0udx5kcRWKcjTwDr5QA",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 29530
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Place des Vosges, 75004 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.85561140000001,
+          "lng": 2.3655266
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.85697502989273,
+            "lng": 2.3672502
+          },
+          "southwest": {
+            "lat": 48.85427537010729,
+            "lng": 2.363858200000001
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "a336d0e05f852e42c2a969b87263b47c8e18c00d",
+      "name": "Place des Vosges",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 2322,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/116371027836098664247\">Maria Pia Pafundi</a>"
+          ],
+          "photo_reference": "CmRaAAAAJFtUcVSg-XI-74F09c6re4LGBNntEnvl-CJZcBUy6jhPm9HkB4TbgmPhTLbMdN7S--jVPEQPEw5Wn4QaCIXwICf7goSCKqZRGICzvB5zQqI0Ymy8Jxuo7Q_ko9kj85QaEhCtw3yGFA7IX8jODr_yLdWPGhQcbkpqghhvH2DMiIWlCF2JTQecPA",
+          "width": 4128
+        }
+      ],
+      "place_id": "ChIJUeiI4P9x5kcRqEwHl6V32GQ",
+      "plus_code": {
+        "compound_code": "V948+66 Paris, France",
+        "global_code": "8FW4V948+66"
+      },
+      "rating": 4.6,
+      "reference": "ChIJUeiI4P9x5kcRqEwHl6V32GQ",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 16524
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "35 Rue du Chevalier de la Barre, 75018 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.88670459999999,
+          "lng": 2.3431043
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.88778777989272,
+            "lng": 2.344196979892722
+          },
+          "southwest": {
+            "lat": 48.88508812010727,
+            "lng": 2.341497320107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/worship_general-71.png",
+      "id": "161c19d38e8d0e9529ada27078e8014b253df723",
+      "name": "Sacré-Cœur",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 1274,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/105741394482757614665\">supriya pal</a>"
+          ],
+          "photo_reference": "CmRaAAAA18IAR0trirtEcwlDP-0jakUhhFIITje-l_KNoVgH11rh9YpGB_nBLLdenGwRrfSAXctY494XQLd6kEc44SNLQlJB8WWweCUiLZU7QT8M-WMq5RZe1-reWSpsDukvAOrNEhCwRgvl6NObfvfbibYnZsDaGhTGgGnCUbGf-FtTpsqKyMT9sIiaLw",
+          "width": 1080
+        }
+      ],
+      "place_id": "ChIJ442GNENu5kcRGYUrvgqHw88",
+      "plus_code": {
+        "compound_code": "V8PV+M6 Paris, France",
+        "global_code": "8FW4V8PV+M6"
+      },
+      "rating": 4.7,
+      "reference": "ChIJ442GNENu5kcRGYUrvgqHw88",
+      "types": [
+        "tourist_attraction",
+        "church",
+        "place_of_worship",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 83427
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "75006 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.8462217,
+          "lng": 2.3371605
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.8518126,
+            "lng": 2.344266499999999
+          },
+          "southwest": {
+            "lat": 48.8417814,
+            "lng": 2.328854500000001
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "50eee7a48f3079e356a6dc01405ae4bf8d6c7409",
+      "name": "Luxembourg Gardens",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3000,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/114988182365883823932\">Stefano Fassina</a>"
+          ],
+          "photo_reference": "CmRaAAAALfi8ZtHodwG_aU50vmYXnrdzpn7Xa5WTBd5Hx0ASU0qoACe1kfxd-rEvYP14UX3ULGNYWHpNTGpXp7yQ9kEomcoW3Ogugpfr6ShFYj-lCo7wN-15LtinuvW5PNKktMBDEhA4JXezSvSVKC5Zcb2-MkhDGhSUQzVk4z-uSW1QvZ5e6_5PsW5kkw",
+          "width": 5333
+        }
+      ],
+      "place_id": "ChIJe2jeNttx5kcRi_mJsGHdkQc",
+      "plus_code": {
+        "compound_code": "R8WP+FV Paris, France",
+        "global_code": "8FW4R8WP+FV"
+      },
+      "rating": 4.7,
+      "reference": "ChIJe2jeNttx5kcRi_mJsGHdkQc",
+      "types": [
+        "tourist_attraction",
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 71899
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Rue de Rivoli, 75001 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.8606111,
+          "lng": 2.337644
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.86355484999999,
+            "lng": 2.342908599999999
+          },
+          "southwest": {
+            "lat": 48.85824504999999,
+            "lng": 2.330669800000001
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "9a007d81ca8f47ed30ddaf39c4174ef773b351e0",
+      "name": "Louvre Museum",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 1371,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/118325091591544682356\">Daniel</a>"
+          ],
+          "photo_reference": "CmRaAAAAp7I_HUIf2Bk2pdQgQekNTqNUeA1xb-mFl21xL357BSYdCdJl4zYO3AEMrwG25mVCgCdNQFf74rRJ4Ldyagx_ZSnpzoDgwZEEYlD_Raf_0yIvuC7Xamvt3WG1a16db5vbEhDZfFdIx72pf0dcxEfRYYcPGhSpKTbTbyyR68hwfSOOvf1FJEf_rw",
+          "width": 2048
+        }
+      ],
+      "place_id": "ChIJD3uTd9hx5kcR1IQvGfr8dbk",
+      "plus_code": {
+        "compound_code": "V86Q+63 Paris, France",
+        "global_code": "8FW4V86Q+63"
+      },
+      "rating": 4.7,
+      "reference": "ChIJD3uTd9hx5kcR1IQvGfr8dbk",
+      "types": [
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 203111
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.85837009999999,
+          "lng": 2.2944813
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.85974697989273,
+            "lng": 2.29610765
+          },
+          "southwest": {
+            "lat": 48.85704732010728,
+            "lng": 2.29251745
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "fd0cfb424bbd79bf28a832e1764f1c2aa5927714",
+      "name": "Eiffel Tower",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 408,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/114353711925990330409\">Rezwan Ahmed</a>"
+          ],
+          "photo_reference": "CmRaAAAAbzBjkBK4rHi0ZRTU6ZD8mBjhM3ktxbLomqMg5s5LhCIgS_sMkgcw_qIWCDq7Jg1HoqHjvJLF5F0M8oVTbrtF69Mw-ppvd6JMndG62p3DknGVFvmX_c15ZSiebJkEXOPLEhBbnpGWpWvNQgkdVxYr_GO4GhSvQuO5NoinHvel5S-L3F-8FtKlaw",
+          "width": 612
+        }
+      ],
+      "place_id": "ChIJLU7jZClu5kcR4PcOOO6p3I0",
+      "plus_code": {
+        "compound_code": "V75V+8Q Paris, France",
+        "global_code": "8FW4V75V+8Q"
+      },
+      "rating": 4.6,
+      "reference": "ChIJLU7jZClu5kcR4PcOOO6p3I0",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 237197
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Place Georges-Pompidou, 75004 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.860642,
+          "lng": 2.352245
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.86199594999999,
+            "lng": 2.353983179892722
+          },
+          "southwest": {
+            "lat": 48.85889895,
+            "lng": 2.351283520107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "8546df4461a8d783d8452ed7272edbee05a591b0",
+      "name": "The Centre Pompidou",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 2592,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/105513591836116180687\">Miguel Batista</a>"
+          ],
+          "photo_reference": "CmRaAAAARaPtWT4V4YP_f7dxyTz7jLRUAiwMFdUmdZCMAEN7kmiPW97FdNOGsmPFbOE-X6kzJDzqyOCb2_begCNWSrArBWKPDdT9v04k08-8f5IRZirD440Y1mUFfEeAeTHAwbvVEhCXRuMYDSfcSzBD5LLTuIVNGhSekZUU4HNv_bFlSZarE59nXtSLuw",
+          "width": 3872
+        }
+      ],
+      "place_id": "ChIJoyC4CRxu5kcRRTPcWX5srLc",
+      "plus_code": {
+        "compound_code": "V962+7V Paris, France",
+        "global_code": "8FW4V962+7V"
+      },
+      "rating": 4.4,
+      "reference": "ChIJoyC4CRxu5kcRRTPcWX5srLc",
+      "types": [
+        "museum",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 44675
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "2 Allée Adrienne Lecouvreur, 75007 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.8556475,
+          "lng": 2.2986304
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.8620769,
+            "lng": 2.307909400000001
+          },
+          "southwest": {
+            "lat": 48.84953009999999,
+            "lng": 2.288516999999999
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "fcfd2b82f45cc6f744bf172844332ab9b0b05cf6",
+      "name": "Champ de Mars",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 2304,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/101974122091027130108\">Miguel Azevedo</a>"
+          ],
+          "photo_reference": "CmRaAAAA1lcfDjAm8LRc2r2JJv0n-s88E5bchNxPTZirK4bMleIRTSuLxlvSewb7Cd3uJ2RnqI8w56jf0bTIffKaB56CVJps1yfdxUCNRtnMw5lB3C3eu0FNCGswy01PKYQ6yJkSEhATMFKdenActXDGlGhQTB1LGhTJ9K3FrJrOTgsrVJYL6-CZ1B4GRQ",
+          "width": 4096
+        }
+      ],
+      "place_id": "ChIJB0gcnCBw5kcRHoIAPcTEApc",
+      "plus_code": {
+        "compound_code": "V74X+7F Paris, France",
+        "global_code": "8FW4V74X+7F"
+      },
+      "rating": 4.6,
+      "reference": "ChIJB0gcnCBw5kcRHoIAPcTEApc",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 129106
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "8 Boulevard du Palais, 75001 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.85542,
+          "lng": 2.344987
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.85679592989272,
+            "lng": 2.346839529892722
+          },
+          "southwest": {
+            "lat": 48.85409627010727,
+            "lng": 2.344139870107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/worship_general-71.png",
+      "id": "e9db5bb7329ec6c24bf28442dbc0655fa144dfd3",
+      "name": "Sainte-Chapelle",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 532,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/118111396359898113394\">philippe avez</a>"
+          ],
+          "photo_reference": "CmRaAAAAe45W-Il8OzhSIsSoTTtP6i1tg-CMxwlLWvPbT4odDsbQ_Ukl4r0508I6arsNfF__TrVFC1x2UnZxcKmopVbNy3--yAvHD99xB8SsCwDnrxXyeUcGb5oQwG2zQ27dnE4gEhAIYwXkqlAnwQkjYBwXQsWIGhQfT1uk79ql6_Tkr8bLyksL3leeMA",
+          "width": 800
+        }
+      ],
+      "place_id": "ChIJR3122B9u5kcRaCck3PlB9DM",
+      "plus_code": {
+        "compound_code": "V84V+5X Paris, France",
+        "global_code": "8FW4V84V+5X"
+      },
+      "rating": 4.7,
+      "reference": "ChIJR3122B9u5kcRaCck3PlB9DM",
+      "types": [
+        "tourist_attraction",
+        "church",
+        "place_of_worship",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 24912
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Pont Alexandre III, 75008 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.8638995,
+          "lng": 2.313559
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.86502857989273,
+            "lng": 2.314890279892722
+          },
+          "southwest": {
+            "lat": 48.86232892010728,
+            "lng": 2.312190620107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "8505d1b3dd31d4ad91cdb15f94c49a9c792e3ff0",
+      "name": "Pont Alexandre III",
+      "photos": [
+        {
+          "height": 796,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/117372309136404045915\">nima farhadi</a>"
+          ],
+          "photo_reference": "CmRaAAAAnmV2xympDuLeybgTXbKKIZAG-twTHxybxDj2jp5vB0Uc8cyFE1G7bDmKIGMVLCngf3uTcNm2BjZchjwx5uIbSvSykEPcfk0FlMM1XfjyorgAca4FluPynLa4uk2zS55aEhAuSlB-uyfJUb1b50azKoLeGhTciC85xN_b47Vsyd-kqLTVgKGRNA",
+          "width": 1073
+        }
+      ],
+      "place_id": "ChIJufChV9Bv5kcRT02XBr8yAOs",
+      "plus_code": {
+        "compound_code": "V877+HC Paris, France",
+        "global_code": "8FW4V877+HC"
+      },
+      "rating": 4.7,
+      "reference": "ChIJufChV9Bv5kcRT02XBr8yAOs",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 20281
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "75001 Paris, France",
+      "geometry": {
+        "location": {
+          "lat": 48.8610135,
+          "lng": 2.3358583
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.86267057989271,
+            "lng": 2.336913249999999
+          },
+          "southwest": {
+            "lat": 48.85997092010727,
+            "lng": 2.332693449999999
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
+      "id": "63d2977e99e5696ee492f46143316a2dc6d1949c",
+      "name": "Louvre Pyramid",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3456,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/105303505373661530610\">Hauser Quaid Zzyzx</a>"
+          ],
+          "photo_reference": "CmRaAAAANjl6iCPl07qx9dwCkTYMHIK4M4ZrqdNu9myjAi0RT_4C-6sZdMD5iVevR3_UyYkwaLncwqWIpb09NwpQuCI_g4PqRUxEy2HxhJ64x03OLp3oFDHpw52a6tFkiwtnfPI9EhAlVVIBDAB9m5NT1jmQEUzlGhQc_ys-cGZNrxfGyTGxYqp6nUyKNw",
+          "width": 4608
+        }
+      ],
+      "place_id": "ChIJQdQyeiZu5kcRUfQHfB-OCLA",
+      "plus_code": {
+        "compound_code": "V86P+C8 Paris, France",
+        "global_code": "8FW4V86P+C8"
+      },
+      "rating": 4.7,
+      "reference": "ChIJQdQyeiZu5kcRUfQHfB-OCLA",
+      "types": [
+        "tourist_attraction",
+        "premise",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 44776
+    }
+  ],
+  "status": "OK"
+}

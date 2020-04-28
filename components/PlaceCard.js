@@ -11,7 +11,7 @@ import {Text} from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Style from '../constants/Style';
 
-const PlaceCard = ({name, imageUrl, onSelect}) => {
+const PlaceCard = ({name, imageUrl, rating, onSelect}) => {
   let TouchableCmp = TouchableOpacity;
 
   if (Platform.OS === 'android' && Platform.Version > 21)
@@ -40,7 +40,7 @@ const PlaceCard = ({name, imageUrl, onSelect}) => {
                     marginRight: 5,
                     color: 'white',
                   }}>
-                  4.6
+                  {rating}
                 </Text>
                 <Icon name="star" style={{marginTop: 3, color: 'white'}} />
               </View>

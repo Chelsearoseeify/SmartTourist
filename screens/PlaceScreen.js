@@ -4,7 +4,7 @@ import {View, ImageBackground, StyleSheet, Text} from 'react-native';
 import BackButton from '../components/BackButton';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
-import {PLACES} from './../data/dummy-data';
+import {PLACES, description} from './../data/dummy-data';
 import {useSelector, useDispatch} from 'react-redux';
 import {toggleFavourite} from '../store/actions/user';
 import Style from '../constants/Style';
@@ -14,12 +14,11 @@ import PlaceScreenButton from '../components/Buttons/PlaceScreenButton';
 
 const PlaceScreen = props => {
   const dispatch = useDispatch();
-  const {placeId, cityName} = props.route.params;
+  const {place, cityName} = props.route.params;
   let stars = [1, 2, 3, 4, 5];
-  const place = PLACES.find(place => place.id === placeId);
 
   const addToFavoriteHandler = () => {
-    dispatch(toggleFavourite(place.id, place.cityId, cityName, place.imageUrl));
+    dispatch(toggleFavourite(place.id, place.cityId, cityName, place.url));
   };
 
   const pressHandlers = () => {
@@ -30,7 +29,7 @@ const PlaceScreen = props => {
     <View style={{flex: 1}}>
       <View style={{height: 200, width: '100%', flex: 1, position: 'absolute'}}>
         <ImageBackground
-          source={{uri: place.imageUrl}}
+          source={{uri: place.url}}
           style={styles.imageBackgroundStyle}
           resizeMode="cover"
         />
@@ -52,7 +51,9 @@ const PlaceScreen = props => {
                   {stars.map(star => (
                     <Icon name="star" style={styles.reviewIconStyle} />
                   ))}
-                  <Text style={styles.reviewStyle}>24 Reviews</Text>
+                  <Text style={styles.reviewStyle}>
+                    {place.user_ratings_total} Reviews
+                  </Text>
                 </View>
               </View>
               <View
@@ -93,7 +94,7 @@ const PlaceScreen = props => {
                   fontSize: Style.fontSize.h6,
                   color: Colors.blueTitleColor,
                 }}>
-                {place.description}
+                {description}
               </Text>
             </View>
           </View>

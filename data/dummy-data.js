@@ -211,16 +211,16 @@ export const PLACES = [
 
 export const CITIES = [
   new City(
-    'ci6',
-    'Paris',
-    'https://lp-cms-production.imgix.net/image_browser/Effiel%20Tower%20-%20Paris%20Highlights.jpg?format=auto',
-    require('./../assets/images/icons/Paris.png'),
+    'ci1',
+    'London',
+    'https://xceed.me/blog/wp-content/uploads/2018/11/london-londres-best-nightclubs-clubs-mejores-discotecas-xceed-top10-ranking-blog.png',
+    null,
   ),
   new City(
-    'ci5',
-    'New York',
-    'https://www.ef-italia.it/sitecore/__/~/media/universal/pg/8x5/destination/US_US-NY_NYC_1.jpg',
-    require('./../assets/images/icons/NewYork.png'),
+    'ci2',
+    'Barcelona',
+    'https://www.cdt.ch/binrepository/1139x640/90c0/960d640/none/798450/GSRI/barcellona-lvxeo04cxwq_1109306_20191202172734.jpg',
+    require('./../assets/images/icons/Barcelona.png'),
   ),
   new City(
     'ci3',
@@ -229,10 +229,22 @@ export const CITIES = [
     require('./../assets/images/icons/Tokyo.png'),
   ),
   new City(
-    'ci1',
-    'London',
-    'https://xceed.me/blog/wp-content/uploads/2018/11/london-londres-best-nightclubs-clubs-mejores-discotecas-xceed-top10-ranking-blog.png',
+    'ci4',
+    'Los Angeles',
+    'https://cdn.shortpixel.ai/client/to_webp,q_lossy,ret_img,w_1320/https://www.viaggi-usa.it/wp-content/uploads/2014/06/Dove-dormire-a-Los-Angeles.jpg',
     null,
+  ),
+  new City(
+    'ci5',
+    'New York',
+    'https://www.ef-italia.it/sitecore/__/~/media/universal/pg/8x5/destination/US_US-NY_NYC_1.jpg',
+    require('./../assets/images/icons/NewYork.png'),
+  ),
+  new City(
+    'ci6',
+    'Paris',
+    'https://lp-cms-production.imgix.net/image_browser/Effiel%20Tower%20-%20Paris%20Highlights.jpg?format=auto',
+    require('./../assets/images/icons/Paris.png'),
   ),
   new City(
     'ci7',
@@ -250,18 +262,6 @@ export const CITIES = [
     'ci9',
     'Edinburgh',
     'https://static.brusselsairlines.com/_img/destinationPage2/UK/Edinburgh/Edinburgh-view.jpg',
-    null,
-  ),
-  new City(
-    'ci2',
-    'Barcelona',
-    'https://www.cdt.ch/binrepository/1139x640/90c0/960d640/none/798450/GSRI/barcellona-lvxeo04cxwq_1109306_20191202172734.jpg',
-    require('./../assets/images/icons/Barcelona.png'),
-  ),
-  new City(
-    'ci4',
-    'Los Angeles',
-    'https://cdn.shortpixel.ai/client/to_webp,q_lossy,ret_img,w_1320/https://www.viaggi-usa.it/wp-content/uploads/2014/06/Dove-dormire-a-Los-Angeles.jpg',
     null,
   ),
 ];

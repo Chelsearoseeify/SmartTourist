@@ -1,0 +1,951 @@
+{
+  "html_attributions": [],
+  "next_page_token": "CpQCAgEAAJsTo3OBukjp-2vy4MrnA0vpOiRsESw5cAcNEbdgPlynS09KFAU17iYsLrOWGIAM0OieRaeY16A2QcyVNs_P6QzN7v8R22yIrq1AXovNIEaeYmn_gz93eAmciLLJCLeEQy09wBHXxdTmInzgzmTj1LYKi1uy_SOBBl8KoUWUnhJ3pmVjVpG9kDcjUj2kBzk9kWj9ZQwzHFQhomsrqMajosbe2Cdz-yjKFApqGeP7Qs3KV6JSALhxXHpiq_wyEbx01Gxsd6qRVLvesze6T1P_0IprYlvQP27qtnW7v15ZCPrTjDSeoUNRSrSUuj3i0wcACOI7rsw_-IEQr6zafLRoA80kjx4qjbVEgtEvEKzBgueHEhBv8iJeKILS3NOUTVRBcvhQGhRABhONF_rPoupp1RGIIwNqvtOQ7Q",
+  "results": [
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "St Katharine's & Wapping, London EC3N 4AB, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.50811239999999,
+          "lng": -0.0759493
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.5102925,
+            "lng": -0.07485100000000001
+          },
+          "southwest": {
+            "lat": 51.50698369999999,
+            "lng": -0.07924419999999999
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "98ea5c574181b6ce786e4d5b80b267d7eb1b3f08",
+      "name": "Tower of London",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/114436705420464578599\">Brantley Highers</a>"
+          ],
+          "photo_reference": "CmRaAAAALiwsVIKbFqax2TS4_dcfDI2ac8lT_Ub-CLDauqXFwwF0fdZz6r2z70j8GRGtd42gcyW9L_rmmjQlWU92Pha7hKHyOAnybOScvn3hMTMqUfM2DXgKElx1B8PwlTPNYgVpEhDcvVLrJLt-9YWDuS6NC7e9GhTaGxZnMT4fj8Ph8SDaRzr4UrM8mg",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJ3TgfM0kDdkgRZ2TV4d1Jv6g",
+      "plus_code": {
+        "compound_code": "GW5F+6J London, United Kingdom",
+        "global_code": "9C3XGW5F+6J"
+      },
+      "rating": 4.6,
+      "reference": "ChIJ3TgfM0kDdkgRZ2TV4d1Jv6g",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 72596
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Court Yard, London SE9 5QE, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.4470096,
+          "lng": 0.0485118
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.44850447989272,
+            "lng": 0.04962317989272222
+          },
+          "southwest": {
+            "lat": 51.44580482010728,
+            "lng": 0.04692352010727779
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "f60d727786c3210802e832682f6e556f58a13a12",
+      "name": "Eltham Palace",
+      "photos": [
+        {
+          "height": 1655,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/100787804077272135389\">Eltham Palace and Gardens</a>"
+          ],
+          "photo_reference": "CmRaAAAAi_18TaOE2qYPw15FzcHyO0rYDWTOgcPiJ9mmMKBdKhESh1unJ8e09RNkME5Wfj2zCIrX45q8kw96qwjp5qUP0cJRt909sHSBVdesbS0Jb7IKAMWcR1r2uLW6Y_QF0iZVEhBQwH71VZsR67S6BBlZedP6GhQ_dOMM9kTvj7g8etF8rKQ11UbBww",
+          "width": 2048
+        }
+      ],
+      "place_id": "ChIJD9kI53Wp2EcRTeofxa7UGjE",
+      "plus_code": {
+        "compound_code": "C2WX+RC London, United Kingdom",
+        "global_code": "9F32C2WX+RC"
+      },
+      "rating": 4.6,
+      "reference": "ChIJD9kI53Wp2EcRTeofxa7UGjE",
+      "types": [
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 2058
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Trafalgar Square, Charing Cross, London WC2N 5DN, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.508039,
+          "lng": -0.128069
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.50949427989272,
+            "lng": -0.1262565
+          },
+          "southwest": {
+            "lat": 51.50679462010728,
+            "lng": -0.1302581
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "6dba6d6ac1c3e90d2aa3c436c937ab4804e5ded4",
+      "name": "Trafalgar Square",
+      "opening_hours": {},
+      "photos": [
+        {
+          "height": 666,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/116747162162765344879\">A Google User</a>"
+          ],
+          "photo_reference": "CmRaAAAAEnH_HBx6JTTvixLwR_g22REyEip8YgLXW5wZ9nOZk5DlPp0nfmI7MYqQdxKr5kNtI4iZ3zId8MppwlqZrQ6zedmZSsQtXEaYJ2o_n4omShr21J0KTtdanAYpmoKMBRO6EhBteC4l5zZz3H40aPcJp5XOGhTpgb4pwLvlrSt0jqqUnpNKIp-Z2A",
+          "width": 1000
+        }
+      ],
+      "place_id": "ChIJH-tBOc4EdkgRJ8aJ8P1CUxo",
+      "plus_code": {
+        "compound_code": "GV5C+6Q London, United Kingdom",
+        "global_code": "9C3XGV5C+6Q"
+      },
+      "rating": 4.6,
+      "reference": "ChIJH-tBOc4EdkgRJ8aJ8P1CUxo",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 89670
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "​St, Dunstan's Hill, London EC3R 5DD, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.5096594,
+          "lng": -0.08254159999999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.51100922989271,
+            "lng": -0.08119177010727778
+          },
+          "southwest": {
+            "lat": 51.50830957010727,
+            "lng": -0.08389142989272222
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "12c0a6d3222b14311cdb86b72e9cafd2b9603299",
+      "name": "Saint Dunstan in the East Church Garden",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 1365,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/106540966276386855990\">Saint Dunstan in the East Church Garden</a>"
+          ],
+          "photo_reference": "CmRaAAAAY6Icqm4oT3i4CBaA5wBXMpzZep-wY8bn_zScezdVgWyzlovIdPoLdoV_V7ZIW4QfJKV8_V5nBRIRYm6DjfHh2BX8-GmSoEyyOsZttVUMWRn4NrB5P3HsZNRGoLewTilVEhAhrPuPV_xvwrBOtGBAbZmgGhQyDX6BgdrzDjCEsnaS_k3gJg5RQg",
+          "width": 2048
+        }
+      ],
+      "place_id": "ChIJbxkx_1EDdkgRLfU_tC9tPb0",
+      "plus_code": {
+        "compound_code": "GW58+VX London, United Kingdom",
+        "global_code": "9C3XGW58+VX"
+      },
+      "rating": 4.7,
+      "reference": "ChIJbxkx_1EDdkgRLfU_tC9tPb0",
+      "types": [
+        "tourist_attraction",
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 2722
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Crossrail Pl, Canary Wharf, London E14 5AB, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.506121,
+          "lng": -0.0174685
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.50735877989272,
+            "lng": -0.01568532010727778
+          },
+          "southwest": {
+            "lat": 51.50465912010728,
+            "lng": -0.01838497989272221
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "5360f13682f5ceb2b7dcc8d7d76cf58f2facc48d",
+      "name": "Crossrail Place Roof Garden",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3456,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/109378830052365013943\">John Ahlgren</a>"
+          ],
+          "photo_reference": "CmRaAAAArJAjHnHYzACRlOioGVJjmDSDiMQMI4AVPo81Cv_C5yurmuYh6BgJYrc4vd2K84ZO2atBiOpDHJnj98s391hsc2SNllxpXub1kKWHmPfFTnggXnp-c2IehrONnE2EXSM1EhCUAgN3ZECyV7SqEPcxGoaRGhRyHI4hwM74Ffsay1bfeOnnScGRmQ",
+          "width": 5184
+        }
+      ],
+      "place_id": "ChIJEzFv5rACdkgRLA2fgj3u0ZY",
+      "plus_code": {
+        "compound_code": "GX4M+C2 London, United Kingdom",
+        "global_code": "9C3XGX4M+C2"
+      },
+      "rating": 4.6,
+      "reference": "ChIJEzFv5rACdkgRLA2fgj3u0ZY",
+      "types": [
+        "tourist_attraction",
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 1540
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Camden Lock Pl, Camden Town, London NW1 8AF, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.5416857,
+          "lng": -0.1460515
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.54408295,
+            "lng": -0.1428972000000001
+          },
+          "southwest": {
+            "lat": 51.53970755,
+            "lng": -0.1523248
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+      "id": "4070fe4afff09850b9838a39d2590d2f33264a93",
+      "name": "Camden Market",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3227,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/117410561029945226723\">Camden Market</a>"
+          ],
+          "photo_reference": "CmRaAAAAXq-hUO30NHwT7jQaCCQjqvA1cKjnRn4z7U9NNXPI8k36dNb-Cns8FYuopakB1vSumfic06mXXmbBNYRlc-jqG_QjUlDXgZuPWNZCZ-FjbsHOMCuBNN4Z12_YW5uuqu98EhCw_WP4vcyjYpvOnXO4EA_eGhSAVmAvT2CBkjCwpzYLqq4plaOcEQ",
+          "width": 4840
+        }
+      ],
+      "place_id": "ChIJSfFEEuQadkgRCO-FF_-eZUc",
+      "plus_code": {
+        "compound_code": "GVR3+MH London, United Kingdom",
+        "global_code": "9C3XGVR3+MH"
+      },
+      "rating": 4.6,
+      "reference": "ChIJSfFEEuQadkgRCO-FF_-eZUc",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 70325
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "London, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.5072682,
+          "lng": -0.1657303
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.51820779999999,
+            "lng": -0.1411738
+          },
+          "southwest": {
+            "lat": 51.49695380000001,
+            "lng": -0.1852502
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "3c3e3c627314ff64e57c996a085a4939b52b9cb4",
+      "name": "Hyde Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/113215543852183042162\">Simon Waldock</a>"
+          ],
+          "photo_reference": "CmRaAAAA2E4gJAn5kclx_9o6__mmx_j41QbTvdcmK1yWIwkhK_GeBHL8fsEcP_Lkjl2uGxDB0wm0nas97y265yN4ut8Fhu86vwmjK2GDo0TOMDSGwzM6rZ_l0xPWiOAdtdKk7uuSEhCsnHz4Pg3O3i5AzUWWurOlGhTclC6D3OR24zW5MnimSsGshernXg",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJhRoYKUkFdkgRDL20SU9sr9E",
+      "plus_code": {
+        "compound_code": "GR4M+WP London, United Kingdom",
+        "global_code": "9C3XGR4M+WP"
+      },
+      "rating": 4.7,
+      "reference": "ChIJhRoYKUkFdkgRDL20SU9sr9E",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 93695
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Buckingham Palace Rd, Westminster, London SW1W 0QH, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.4987317,
+          "lng": -0.143629
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.50006567989273,
+            "lng": -0.1421995201072778
+          },
+          "southwest": {
+            "lat": 51.49736602010729,
+            "lng": -0.1448991798927222
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "c7be597f6d771f95cb45b1ccbed359b0c08c8f5f",
+      "name": "The Royal Mews, Buckingham Palace",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 4000,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/117915993258734506507\">Andrew Lickley</a>"
+          ],
+          "photo_reference": "CmRaAAAAa4u85e6hub8PulJh66lMN-WNsIE5pngd9JYSn10AACIU9LHxecDhsPsSAPB44LP3DMfzkoAo-qVxHlZ9oDauUvTYwU2ca_UVxC4mxYfcfe1YynhGUlTvDm4n5NDOiuhIEhCnandG0rOuuErUfFediAOBGhTMkeOZ85EsozVWy0ZAPIAI4pwwVQ",
+          "width": 6000
+        }
+      ],
+      "place_id": "ChIJU88VcScFdkgR3nJPHAxWuIM",
+      "plus_code": {
+        "compound_code": "FVX4+FG London, United Kingdom",
+        "global_code": "9C3XFVX4+FG"
+      },
+      "rating": 4.4,
+      "reference": "ChIJU88VcScFdkgR3nJPHAxWuIM",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 2773
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Tower Bridge Rd, London SE1 2UP, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.5054564,
+          "lng": -0.07535649999999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.5079366,
+            "lng": -0.0736087
+          },
+          "southwest": {
+            "lat": 51.50303100000001,
+            "lng": -0.07711670000000002
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "aaa59cab6a840e0c5431430ff703281d54a43ea3",
+      "name": "Tower Bridge",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 683,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/105303505373661530610\">Hauser Quaid Zzyzx</a>"
+          ],
+          "photo_reference": "CmRaAAAAfgrM7xVHWa4bIMzZ-g0p8_LJXCBnSqTsNDgw03h2Fmb5cYdpp3FmzaOd5bf2e53vlJSk7A560hiZXxjoH40bIb8eN2mqROP_oczhl1yxxGwrikWuqjrjE4UhV-JjI6HwEhCkCK4kg4xy309MhlW3bu_nGhR501nWlEzwagTvxel9WqyV-szJ4A",
+          "width": 1024
+        }
+      ],
+      "place_id": "ChIJSdtli0MDdkgRLW9aCBpCeJ4",
+      "plus_code": {
+        "compound_code": "GW4F+5V London, United Kingdom",
+        "global_code": "9C3XGW4F+5V"
+      },
+      "rating": 4.7,
+      "reference": "ChIJSdtli0MDdkgRLW9aCBpCeJ4",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 105290
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "20 Deans Yd, Westminster, London SW1P 3PA, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.4992921,
+          "lng": -0.1273097
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.50087132989272,
+            "lng": -0.1263372
+          },
+          "southwest": {
+            "lat": 51.49817167010728,
+            "lng": -0.1299704
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/worship_general-71.png",
+      "id": "63c5117fc8990e6cb0f12a0adbcb84e705d2c369",
+      "name": "Westminster Abbey",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3840,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/112101367305577415354\">Hugues GUIDOUX</a>"
+          ],
+          "photo_reference": "CmRaAAAAtoTvBMwkEK09IlhIsb0VlvGLSjIRf4NGRdBAfPd5Lts43jS_8FTHQsLG-O1Mn9wVPsIpjfD2Zdmogk-u9Dzv1d8yz6718KEWFWigR9Ryj13u1g-a4kK9b1A06TiqQcw7EhDSbfizgOruCc4c9xw8G9luGhT4v9kMy9rSnor4NQxUmw7j6PSIMQ",
+          "width": 5760
+        }
+      ],
+      "place_id": "ChIJLzVDusQEdkgRelObBaL_jto",
+      "plus_code": {
+        "compound_code": "FVXF+P3 London, United Kingdom",
+        "global_code": "9C3XFVXF+P3"
+      },
+      "rating": 4.6,
+      "reference": "ChIJLzVDusQEdkgRelObBaL_jto",
+      "types": [
+        "church",
+        "tourist_attraction",
+        "place_of_worship",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 32832
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Great Russell St, Bloomsbury, London WC1B 3DG, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.5194133,
+          "lng": -0.1269566
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.52145429999999,
+            "lng": -0.12477735
+          },
+          "southwest": {
+            "lat": 51.51732029999999,
+            "lng": -0.12914235
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "ad6aaec7b7b0fa2c97a127c24845d76135e760ae",
+      "name": "The British Museum",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/108670555984735799240\">Denis Carpentier</a>"
+          ],
+          "photo_reference": "CmRaAAAA4P7ZvQu-U0JBKTDufa6vScNqSEBIGSDjDD6zzrDNpj8bA1wHbvsEqW1d-qFyMtrp6MxsWwQUN7qBg6KL8n_fpX3tflvK8lhNGaeBov2KsZgXZwD14ecpH9fP_HObE4L3EhByFs_veDGNetvc-4EvTi0yGhRgLp2SVLaAGRoGxSblze4RtIumGQ",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJB9OTMDIbdkgRp0JWbQGZsS8",
+      "plus_code": {
+        "compound_code": "GV9F+Q6 London, United Kingdom",
+        "global_code": "9C3XGV9F+Q6"
+      },
+      "rating": 4.7,
+      "reference": "ChIJB9OTMDIbdkgRp0JWbQGZsS8",
+      "types": [
+        "museum",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 109742
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "The Queen's Walk, Bishop's, London SE1 7PB, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.503324,
+          "lng": -0.119543
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.50464877989272,
+            "lng": -0.11644895
+          },
+          "southwest": {
+            "lat": 51.50194912010727,
+            "lng": -0.12057435
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "6d925b4f3e0d975eb6955a915a0689f8f4f0abd2",
+      "name": "lastminute.com London Eye",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3888,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/107446702982018182981\">Beatriz Contador</a>"
+          ],
+          "photo_reference": "CmRaAAAAr6poPf74CbgmhHsyQn4A8FTrsxg_MVUcQwmM4VgHbbH3a6H-jOusTB8pLLuWXUQbyuxYzvyLFaCclHf8TxACIVYOxzb67K-1WihS38rFOUDLe2w_EDwjaPtuGDoFJKtjEhAWuick0u2TDtoxaNUFeHixGhTfT9QlGMUC-ejxPSPnHGNYotTrLQ",
+          "width": 5184
+        }
+      ],
+      "place_id": "ChIJc2nSALkEdkgRkuoJJBfzkUI",
+      "plus_code": {
+        "compound_code": "GV3J+85 London, United Kingdom",
+        "global_code": "9C3XGV3J+85"
+      },
+      "rating": 4.5,
+      "reference": "ChIJc2nSALkEdkgRkuoJJBfzkUI",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 123443
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Unit 12, Ravenswood Industrial Estate, Shernhall St, Walthamstow, London E17 9HQ, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.5840695,
+          "lng": -0.008341699999999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.58545207989272,
+            "lng": -0.006555970107277783
+          },
+          "southwest": {
+            "lat": 51.58275242010728,
+            "lng": -0.009255629892722215
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "1deec7d41648666c97c1981cc6543fc599750009",
+      "name": "God's Own Junkyard",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 333,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/115805562202851154879\">God&#39;s Own Junkyard</a>"
+          ],
+          "photo_reference": "CmRaAAAA3Uv5pu5Yy9p3fLpGAEf3F04nh6KNOz4Lk1XL8EIqIvtBjsRCtfdN06XV4B1-YpmBHnxQWmmT1EBHdz9oVjIfV8cOPH87WwOKjSy2O8xlO4TXHdpxIHXLr1AN67Cwg9a8EhAOaFxcHiqF9zFsUl9rMR3hGhRrzln1IraaegKkTRtk7Z0H0axs-w",
+          "width": 500
+        }
+      ],
+      "place_id": "ChIJBcwFevEddkgRPHw2SXc8a3M",
+      "plus_code": {
+        "compound_code": "HXMR+JM London, United Kingdom",
+        "global_code": "9C3XHXMR+JM"
+      },
+      "rating": 4.7,
+      "reference": "ChIJBcwFevEddkgRPHw2SXc8a3M",
+      "types": [
+        "art_gallery",
+        "tourist_attraction",
+        "cafe",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "user_ratings_total": 1758
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "London SW1A 2BJ, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.5024597,
+          "lng": -0.1348109
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.50905125,
+            "lng": -0.1242798
+          },
+          "southwest": {
+            "lat": 51.49755424999999,
+            "lng": -0.1445742
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "974dd12db785f739a22645de3c4af5823202a5b4",
+      "name": "St James's Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3261,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/113921803847942395662\">Kim Lundorff Madsen</a>"
+          ],
+          "photo_reference": "CmRaAAAAJXGvRsYGY3cvlUyrR4dT2XcayXmkXwfYdy4TMujG8F59ilJtknbJYbzlPszkDTmkGp0FOOFj1GgWMPYSpjf1k_DZ8B8x2k47wV6Pt_lmhySW1Rf5VWPjWnra1SmYIAYsEhAgnYNN6YTg9OF1bEMRLCdCGhQjig2HV8T7-LkN1ILhUep5y7LXLg",
+          "width": 4905
+        }
+      ],
+      "place_id": "ChIJG-CxwNoEdkgRXx26gHZwVf8",
+      "plus_code": {
+        "compound_code": "GV28+X3 London, United Kingdom",
+        "global_code": "9C3XGV28+X3"
+      },
+      "rating": 4.7,
+      "reference": "ChIJG-CxwNoEdkgRXx26gHZwVf8",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 40235
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Westminster, London SW1A 1AA, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.501364,
+          "lng": -0.14189
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.50302137989272,
+            "lng": -0.13910645
+          },
+          "southwest": {
+            "lat": 51.50032172010728,
+            "lng": -0.14281785
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
+      "id": "6a2997f5840e8cb6a28334f8e3bad9535e450e3c",
+      "name": "Buckingham Palace",
+      "photos": [
+        {
+          "height": 1581,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/107958457742880061279\">Buckingham Palace</a>"
+          ],
+          "photo_reference": "CmRaAAAAP-ow-0kRdQE5bpFOqHR0qiQSUxg4FRfGHfNZCpALFnl4i2XIcOMw2JvLP1_QnLtXrFxgi0h-18BVH7_jw_oQk5srW5ecmgQjRn8BlgGr6eGsA_KkqG8qVMYQG_XgBHZMEhBNz8XjtpxHnGHH7iVInpN2GhTYik0JWLg6hulvqVPnuVUgHExrBQ",
+          "width": 2000
+        }
+      ],
+      "place_id": "ChIJtV5bzSAFdkgRpwLZFPWrJgo",
+      "plus_code": {
+        "compound_code": "GV25+G6 London, United Kingdom",
+        "global_code": "9C3XGV25+G6"
+      },
+      "rating": 4.5,
+      "reference": "ChIJtV5bzSAFdkgRpwLZFPWrJgo",
+      "types": [
+        "tourist_attraction",
+        "premise",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 135467
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Trafalgar Square, Charing Cross, London WC2N 5DN, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.50892899999999,
+          "lng": -0.128299
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.51035402989272,
+            "lng": -0.1274214
+          },
+          "southwest": {
+            "lat": 51.50765437010728,
+            "lng": -0.1306586
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "28fbb9d350306df75899c4902bb6746ba6c3134d",
+      "name": "The National Gallery",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3120,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/107797002094424890312\">Simon Brown</a>"
+          ],
+          "photo_reference": "CmRaAAAArHbPg4SdhbklQvW96pnd1eos9os9e4upBBs9Abej1l-ECw73uRlGn1c1V8KQkm4WdScldISWnErftSJL4gSFhsiJzeAYmEvT7b2smOv9oongu0Uq97X4NNA5BEh9fMY1EhBzhy5sZxaOrzshpsYTILrsGhTVtE4mQxslCjtf4vpkWPYcKoqnww",
+          "width": 4160
+        }
+      ],
+      "place_id": "ChIJeclqF84EdkgRtKAjTmWFr0I",
+      "plus_code": {
+        "compound_code": "GV5C+HM London, United Kingdom",
+        "global_code": "9C3XGV5C+HM"
+      },
+      "rating": 4.7,
+      "reference": "ChIJeclqF84EdkgRtKAjTmWFr0I",
+      "types": [
+        "art_gallery",
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 36531
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Cromwell Rd, Knightsbridge, London SW7 2RL, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.4966392,
+          "lng": -0.17218
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.49763437989272,
+            "lng": -0.1707255499999999
+          },
+          "southwest": {
+            "lat": 51.49493472010727,
+            "lng": -0.17478575
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "7cdcf1cda789eaded0635013c70175127e405774",
+      "name": "Victoria and Albert Museum",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 2976,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/105224044665509883325\">Ricardo Ferreira</a>"
+          ],
+          "photo_reference": "CmRaAAAA4luHTEHmkTvvcwcSqY93XjQvOWZdaNfHHp5bFCRM72JbS9M-PlD05NaSz81qSTs-7uZYJJEb25QKNkfq7h2drNJpkEwxOcU8wHZm5oxrURz2FHciC0c1mWUSFLyLeqOlEhAlWDqCniV_FKuPrRxIHUZrGhS33bCV112xMBX2dMPhAydNItTlwA",
+          "width": 3968
+        }
+      ],
+      "place_id": "ChIJw1d-sUMFdkgRH2XN_U0Jt54",
+      "plus_code": {
+        "compound_code": "FRWH+M4 London, United Kingdom",
+        "global_code": "9C3XFRWH+M4"
+      },
+      "rating": 4.7,
+      "reference": "ChIJw1d-sUMFdkgRH2XN_U0Jt54",
+      "types": [
+        "museum",
+        "art_gallery",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 39878
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Westminster, London SW1A 0AA, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.50072919999999,
+          "lng": -0.1246254
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.50211367989272,
+            "lng": -0.12381365
+          },
+          "southwest": {
+            "lat": 51.49941402010727,
+            "lng": -0.12695545
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
+      "id": "5373d9309fe9e4b25bd6746c7c2021df35ec279c",
+      "name": "Big Ben",
+      "photos": [
+        {
+          "height": 372,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/109592698159771946659\">A Google User</a>"
+          ],
+          "photo_reference": "CmRaAAAAUDTEv-b15zLQaDgFEK-9HDz56TPcXA3l07Yj1A55Qx1Hjr18LaDh3yU0Aq0XoyTl9FFDW1Qke91OHY59gR85Q-D8Sr8e0fDVwlamZoI9RgpdrdRL1UWCkC7cENEZK9_ZEhDa3DDUXtoxIzSeilSEcr89GhT6RpGmafeDsgm4JvkPJwi5i8rV0A",
+          "width": 612
+        }
+      ],
+      "place_id": "ChIJ2dGMjMMEdkgRqVqkuXQkj7c",
+      "plus_code": {
+        "compound_code": "GV2G+74 London, United Kingdom",
+        "global_code": "9C3XGV2G+74"
+      },
+      "rating": 4.4,
+      "reference": "ChIJ2dGMjMMEdkgRqVqkuXQkj7c",
+      "types": [
+        "tourist_attraction",
+        "premise",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 43344
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Exhibition Rd, South Kensington, London SW7 2DD, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.4978095,
+          "lng": -0.1745235
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.49909052989272,
+            "lng": -0.1731524701072778
+          },
+          "southwest": {
+            "lat": 51.49639087010728,
+            "lng": -0.1758521298927222
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "f1da16197cfbc924d03cff86bd79215878cc801b",
+      "name": "Science Museum",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 1836,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/118068111536284651802\">Enrico tuccillo</a>"
+          ],
+          "photo_reference": "CmRZAAAAqXckjnCzYW34ALpsd1KdUlK042Ri4JheHF7tJDG44dyWCrz4QlgjP0gd6sFkGs1G1POp2_A2j7Ua9Tb2mQELyItKj1fflzfhoNzNehC8S4bidjOVjUl8ZrZDgbVu5pY7EhDqFJe5w56xbBWkCo6ZDDg_GhSZxru5KPOG89mkp5FV9Xo5VCsA2Q",
+          "width": 3264
+        }
+      ],
+      "place_id": "ChIJP9oAE0MFdkgR3iKGFKZO1SE",
+      "plus_code": {
+        "compound_code": "FRXG+45 London, United Kingdom",
+        "global_code": "9C3XFRXG+45"
+      },
+      "rating": 4.5,
+      "reference": "ChIJP9oAE0MFdkgR3iKGFKZO1SE",
+      "types": [
+        "museum",
+        "tourist_attraction",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "user_ratings_total": 48606
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "London W2 2UH, United Kingdom",
+      "geometry": {
+        "location": {
+          "lat": 51.506987,
+          "lng": -0.179165
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 51.5170243,
+            "lng": -0.1623793499999999
+          },
+          "southwest": {
+            "lat": 51.4965219,
+            "lng": -0.19892675
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "767b10aad8a24a4e2dd850957b31974d72b01a1a",
+      "name": "Kensington Gardens",
+      "opening_hours": {},
+      "photos": [
+        {
+          "height": 3096,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/117497471680374243089\">Nadia</a>"
+          ],
+          "photo_reference": "CmRaAAAAwE6aGb-kQy7cuYd_X8HShbUSgvzloMgzqBHrjFNfEUd-UZ8IOBL7mds2JogFQpSDFTe8St1iQ65VqRY_oZIlkID7rjQyjQujE0cCQA3MGFAixTNwqvOBJfhAOJvhFawxEhCLcti4jLIWwMEnbVwho99cGhR00hwmd0iTEUsJvQFdFlX913J0sA",
+          "width": 4128
+        }
+      ],
+      "place_id": "ChIJPaOn4FAFdkgRfLe2KIKp7mI",
+      "plus_code": {
+        "compound_code": "GR4C+Q8 London, United Kingdom",
+        "global_code": "9C3XGR4C+Q8"
+      },
+      "rating": 4.7,
+      "reference": "ChIJPaOn4FAFdkgRfLe2KIKp7mI",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 19541
+    }
+  ],
+  "status": "OK"
+}

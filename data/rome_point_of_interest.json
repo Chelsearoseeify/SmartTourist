@@ -1,0 +1,922 @@
+{
+  "html_attributions": [],
+  "next_page_token": "CoQCAAEAAI71ikjrvKdQ874UaUUHD81x3CoMhxoKePaVrKWLnfZKGRdCGV7zIE-zmZfweW-YIMNBVlTt30CD6H9q88KZ_CMx-nzX1TpiMvQ6YFk-iNNj4Cui8NmtSIZ-SsjbLm8OZaNPFMAE39JstRWV4BCcXrdPDVaq0qWTFSDEzGAZ8ZExRxvGZna4RHFUSbGpifRccZyD0FX-rgxp-J7_c-FJvtLdwN2wh9s_Yjlj8N2Ynb4XHWeYATYRmyxtWfVg65jT9Q_6IF-eiZpaSoI64YjDWlaIc-Gj5UQ9jWji4_PRkbsmeK6b35F69q55Xz-IuN9jDkpQdgXu1eW80IbqG1ya7yESEI82RU3H4m9D3d4kQuI9XBoaFJcKpeRHAgx4FDuZKzbhPX_GOC-d",
+  "results": [
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Via della Salara Vecchia, 5/6, 00186 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.8924623,
+          "lng": 12.485325
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.89653735,
+            "lng": 12.4945579
+          },
+          "southwest": {
+            "lat": 41.88770114999999,
+            "lng": 12.4801987
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "444254efd7e08f4e38b782a43089877b6fc8cd0c",
+      "name": "Roman Forum",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3265,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/102145906944663634133\">cristian dutulescu</a>"
+          ],
+          "photo_reference": "CmRaAAAAOUEmD1GJE3tYFkFJC7xBZksE_E74zA9PBphpG8MduN6G5O56oUbmq8fXxlmSX9xsSBBEtErE97Mu8MFpc2-7LzVG6ptqn2ZCYyY4e18EIesgo-a6-S9FV9QQrfzSO6-_EhCt7hEEHOJniKGurbtIEO98GhQtN-revY--YvNhIRPlNFjxufi46g",
+          "width": 4898
+        }
+      ],
+      "place_id": "ChIJ782pg7NhLxMR5n3swAdAkfo",
+      "plus_code": {
+        "compound_code": "VFRP+X4 Rome, Metropolitan City of Rome",
+        "global_code": "8FHJVFRP+X4"
+      },
+      "rating": 4.7,
+      "reference": "ChIJ782pg7NhLxMR5n3swAdAkfo",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 103321
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Piazza della Rotonda, 00186 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.8986108,
+          "lng": 12.4768729
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.90011307989273,
+            "lng": 12.47817452989272
+          },
+          "southwest": {
+            "lat": 41.89741342010728,
+            "lng": 12.47547487010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "61d786e5932897f0f3e263f7ad26df6efafc270c",
+      "name": "Pantheon",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/112402975346421028384\">Gabino Trejo</a>"
+          ],
+          "photo_reference": "CmRaAAAARxIni9eWBfaQ-AaMqAKwMccU92fMHH7TAtcWijwhbovKnla26xzA9isx36AqKbDAz-ZPRUTmTxHsGR9L1aluFRYnYL2hXiGbUZQH4P3gBKWd_pxOlvV3tNjPmvOmoI8vEhBUo6wmEnsVAoTUQw6DL-LiGhQG5KkgQuXIEDIzY2-GX-68r6dkwA",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJqUCGZ09gLxMRLM42IPpl0co",
+      "plus_code": {
+        "compound_code": "VFXG+CP Rome, Metropolitan City of Rome",
+        "global_code": "8FHJVFXG+CP"
+      },
+      "rating": 4.8,
+      "reference": "ChIJqUCGZ09gLxMRLM42IPpl0co",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 142704
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Piazza Navona, 00186 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.8991633,
+          "lng": 12.4730742
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.90178655,
+            "lng": 12.4746868
+          },
+          "southwest": {
+            "lat": 41.89645714999998,
+            "lng": 12.47142799999999
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "033a8ac4ff5f54983c878f766c8091467cd065a2",
+      "name": "Piazza Navona",
+      "photos": [
+        {
+          "height": 4128,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/101028864887470955729\">Miriam Mihalache</a>"
+          ],
+          "photo_reference": "CmRaAAAA0Nq3QZaoVEVcor3ohyEL1A2g4h339qr6NoBndE9OLpNM31W5Jp2oOBk-q6SbNEtu88dj8Zl6LpKpUZafOh4O4w5JnwuNUaEpqxB8MPw8GNOaL2LqtQveT8U0fkL2uIzkEhDRkne0yJuyIbVEKUkOwCtqGhQHO8wFCyJs0UGhP76gvkha-dn7nQ",
+          "width": 3096
+        }
+      ],
+      "place_id": "ChIJPRydwYNgLxMRSjOCLlYkV6M",
+      "plus_code": {
+        "compound_code": "VFXF+M6 Rome, Metropolitan City of Rome",
+        "global_code": "8FHJVFXF+M6"
+      },
+      "rating": 4.7,
+      "reference": "ChIJPRydwYNgLxMRSjOCLlYkV6M",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 112449
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Piazza del Colosseo, 1, 00184 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.8902102,
+          "lng": 12.4922309
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.89147139999999,
+            "lng": 12.49511675
+          },
+          "southwest": {
+            "lat": 41.8875602,
+            "lng": 12.48862095
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "5ddc4dc1f73c354fcb055ab40358155b9cc378ea",
+      "name": "Colosseum",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 720,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/105303505373661530610\">Hauser Quaid Zzyzx</a>"
+          ],
+          "photo_reference": "CmRaAAAAJOmYyj_dl3EY0xTkTQglwgXJtdIVMFddE1xf0dKTv56Cb2sZLDtYxWEpk0mEv7ubK-vEwGEgOij1WWs-TgtA9fucVckBx1fADdFDaBuQCVeHO0The0Hz4O-khlq6LDK7EhBy-hXVLep6uhTj_UAkVU7DGhS4o2eTJTo4uVwvJdm1kjbWndcO5g",
+          "width": 1080
+        }
+      ],
+      "place_id": "ChIJrRMgU7ZhLxMRxAOFkC7I8Sg",
+      "plus_code": {
+        "compound_code": "VFRR+3V Rome, Metropolitan City of Rome",
+        "global_code": "8FHJVFRR+3V"
+      },
+      "rating": 4.7,
+      "reference": "ChIJrRMgU7ZhLxMRxAOFkC7I8Sg",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 243493
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Piazza di Trevi, 00187 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.9009325,
+          "lng": 12.483313
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.90227882989272,
+            "lng": 12.48448907989272
+          },
+          "southwest": {
+            "lat": 41.89957917010727,
+            "lng": 12.48178942010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "ec120f1e427fe055b35225ef1a5f34660a585c01",
+      "name": "Trevi Fountain",
+      "opening_hours": {},
+      "photos": [
+        {
+          "height": 3904,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/112086581401657525994\">Olivier JACQUET</a>"
+          ],
+          "photo_reference": "CmRaAAAA6cqaHbdFb90wcHkTxRNbbiH5jiNXKLxawVY3I3B1ZbZDFkFgDbKwNkSbiXzd6Ias4fCDgi4kA09KAyI2n_7wxEIgS6ermL6Fv_FVi4zkMksXxEV7qFAU0eexQTE1uT_OEhDVMVLjDPs6te23qrz4QHXDGhSqwkpnQquONGfVttMpFD8c8amwWg",
+          "width": 6272
+        }
+      ],
+      "place_id": "ChIJ1UCDJ1NgLxMRtrsCzOHxdvY",
+      "plus_code": {
+        "compound_code": "WF2M+98 Rome, Metropolitan City of Rome",
+        "global_code": "8FHJWF2M+98"
+      },
+      "rating": 4.7,
+      "reference": "ChIJ1UCDJ1NgLxMRtrsCzOHxdvY",
+      "types": [
+        "tourist_attraction",
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 256330
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Piazza del Popolo, 00187 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.9107038,
+          "lng": 12.4763579
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.91201807989272,
+            "lng": 12.47788957989272
+          },
+          "southwest": {
+            "lat": 41.90931842010728,
+            "lng": 12.47518992010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "1d9397c8b589dd283a03c4b53c39da6665ac5518",
+      "name": "Piazza del Popolo",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 4032,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/100860713210604872158\">panzariu andrei</a>"
+          ],
+          "photo_reference": "CmRaAAAAVHflPtnBLdpVM2V6jkVZmkN_HUuryXeHdgVLZKgbVsK0MmoT4OgZbk_FsdYLuN87vKNyVq6IS4jH_kRApMoAsNkYDwJbw6_p1MJ6_gNvxEUQL1kvYynMRUwLwFyFcBgOEhC6ZeNxQn60R7e3PhbfOykTGhS79OvC6ziuNYwcBtktg_P8mmqU0g",
+          "width": 3024
+        }
+      ],
+      "place_id": "ChIJhxbo5fhgLxMRUEPO_f-f7kM",
+      "plus_code": {
+        "compound_code": "WF6G+7G Rome, Metropolitan City of Rome",
+        "global_code": "8FHJWF6G+7G"
+      },
+      "rating": 4.6,
+      "reference": "ChIJhxbo5fhgLxMRUEPO_f-f7kM",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 63470
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Lungotevere Castello, 50, 00193 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.9030632,
+          "lng": 12.466276
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.90415182989272,
+            "lng": 12.4701566
+          },
+          "southwest": {
+            "lat": 41.90145217010727,
+            "lng": 12.4624166
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "56b57d0fb174d7997ab9c270f6f6854a941b7962",
+      "name": "Castel Sant'Angelo",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 2203,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/104040239187516776806\">Anders Falk</a>"
+          ],
+          "photo_reference": "CmRaAAAAw75iKFP8WQfQEWk1BHmY4dFTXovlc8PgOF2zM1frRNZP9L2h3GoK68Xc0woIsYru0P2jFrdBm-vadLbE6THDmxdpq310sKKRSVAWsLPgqX0M14uT317jqaBYCEiBHdazEhDOmPh7SeFCWL8-R6oh70ESGhSFW7usnHqjhw4U5ho4ChZKMQP4Bg",
+          "width": 2941
+        }
+      ],
+      "place_id": "ChIJ0aTnEYeKJRMRiUF95xwRbDY",
+      "plus_code": {
+        "compound_code": "WF38+6G Rome, Metropolitan City of Rome",
+        "global_code": "8FHJWF38+6G"
+      },
+      "rating": 4.7,
+      "reference": "ChIJ0aTnEYeKJRMRiUF95xwRbDY",
+      "types": [
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 51303
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Piazzale Napoleone I, 00197 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.9128873,
+          "lng": 12.4852085
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.9200584,
+            "lng": 12.50134455
+          },
+          "southwest": {
+            "lat": 41.906272,
+            "lng": 12.46863755
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "108a00a56fd32624c90a94d6d3e35a1da5db0cf5",
+      "name": "Villa Borghese",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/105472403112021162594\">Ari Kellman</a>"
+          ],
+          "photo_reference": "CmRaAAAAIPs4ragfkUWLEl8aOMgAcu2QEkSyluzJxH0pbRAWVeN8L6VBYwsc5_aXlTdp8BcQsZw_H0jIvSOVADMueeJ7Ps1vMYSNRHy3-3pDsxDODriuF2yJPcIl4ayoxUq87Ke8EhBHpzhxCu5spZ6OcsVj62LGGhT-2DVyqpwL_CltaMTfUBekGhEc3Q",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJj1M8HQJhLxMRRI6D_z18Pes",
+      "plus_code": {
+        "compound_code": "WF7P+53 Rome, Metropolitan City of Rome",
+        "global_code": "8FHJWF7P+53"
+      },
+      "rating": 4.6,
+      "reference": "ChIJj1M8HQJhLxMRRI6D_z18Pes",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 48631
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Piazza Venezia, 00186 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.8945976,
+          "lng": 12.4831269
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.89648309999999,
+            "lng": 12.485187
+          },
+          "southwest": {
+            "lat": 41.89305350000001,
+            "lng": 12.4816242
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "42720963a821235573423ebe18a66bf8c4845470",
+      "name": "Altar of the Fatherland",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 954,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/113161718601708990408\">神通广大</a>"
+          ],
+          "photo_reference": "CmRaAAAA4g4enWVizMvzjQtV89elgb_88Z9qMdNIO5Kx2R-LvWPVdd-rSduoVyEpqLNUax0rMRVAadlYn6uykZwV8L2p_bkHC0m09HWEI0CCGuUf4NwIGQFXqfpHXRZaQ4zSIZlvEhBw1CJDLzsN_9xa1o5WkuQkGhSrcILcKBTZbQoPymk7ZhQstNQOuw",
+          "width": 1500
+        }
+      ],
+      "place_id": "ChIJ412AG01gLxMR4T-4pwdIFSE",
+      "plus_code": {
+        "compound_code": "VFVM+R7 Rome, Metropolitan City of Rome",
+        "global_code": "8FHJVFVM+R7"
+      },
+      "rating": 4.7,
+      "reference": "ChIJ412AG01gLxMR4T-4pwdIFSE",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 29322
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Piazza San Pietro, 00120 Città del Vaticano, Vatican City",
+      "geometry": {
+        "location": {
+          "lat": 41.9021667,
+          "lng": 12.4539367
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.90349287989272,
+            "lng": 12.46745005
+          },
+          "southwest": {
+            "lat": 41.90079322010727,
+            "lng": 12.44943225
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/worship_general-71.png",
+      "id": "85c7cf29b5692b6fd6e3394fe30e35aa48a28a8f",
+      "name": "St. Peter's Basilica",
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/111298096605497241449\">M. Ak</a>"
+          ],
+          "photo_reference": "CmRaAAAAfw3UvYyMycUc4qWFib1VFPkiLkQXg_bcP3xQNKSlVvaDY7EE3edFet0ITprFK_npj8SkejoPRFHgUI19ik0P9pQ8x5_SAGW4R5XUJGTZzSUgtv32rpaoOyGDy6qTUoc2EhDi47FYT7SCW83qFuWj1IkVGhTISTTHsmxQVw3WxZL2qWDwvEKM-w",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJWZsUt2FgLxMRg1KHzXfwS3I",
+      "plus_code": {
+        "compound_code": "WF23+VH Vatican City",
+        "global_code": "8FHJWF23+VH"
+      },
+      "rating": 4.8,
+      "reference": "ChIJWZsUt2FgLxMRg1KHzXfwS3I",
+      "types": [
+        "tourist_attraction",
+        "church",
+        "place_of_worship",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 115296
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Piazza di Spagna, 00187 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.9056978,
+          "lng": 12.482327
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.907484,
+            "lng": 12.48368872989272
+          },
+          "southwest": {
+            "lat": 41.90404519999998,
+            "lng": 12.48098907010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "0811da0d0c4c5cea75b6da04cd18a663b94345a0",
+      "name": "Piazza di Spagna",
+      "photos": [
+        {
+          "height": 2992,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/102751442441760037959\">melody li</a>"
+          ],
+          "photo_reference": "CmRaAAAA20LfQJMvNYm1qUOUR1H-Es6fan8hOZqYJn9hGFeTZhP4qrcHqabwCatefeSNk1-XvNRCqM0ml3XriVqvykmm3uZaZn3b6bfRmni_8U9ko7c-Y_e757z4doVdCP0ITQi3EhCqQi7OPtFOtCZYPWUEWPSDGhQTwyGoEZgrKSng5B291FzgCOdUkQ",
+          "width": 5312
+        }
+      ],
+      "place_id": "ChIJ4_TEG1VgLxMROFkd29jWdug",
+      "plus_code": {
+        "compound_code": "WF4J+7W Rome, Metropolitan City of Rome",
+        "global_code": "8FHJWF4J+7W"
+      },
+      "rating": 4.7,
+      "reference": "ChIJ4_TEG1VgLxMROFkd29jWdug",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 75479
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Via del Circo Massimo, 00186 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.88613340000001,
+          "lng": 12.4851335
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.888934,
+            "lng": 12.48741475
+          },
+          "southwest": {
+            "lat": 41.8841756,
+            "lng": 12.48121735
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "bade46966676a0e480eb712b858dd6a7ade2a9b5",
+      "name": "Circus Maximus",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 1080,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/102550943573145104234\">Cesar</a>"
+          ],
+          "photo_reference": "CmRaAAAAL6fh7vEGzPCRuWiThBnMBQy2ST1ftkPnvzsGH8u1c488m6eQjhys9RIBHSDHX1GrVZipmgLWRhowdgZC5NmEP4i-lB6a9mEr_Q5pH8zRK2xXkNh57EwaQTCD-CdQ4rITEhCSkX1hMmG9Qo2tmP8SlnqXGhS_5NxEZk-VqdzZuWOUc81J9ZYSEQ",
+          "width": 1620
+        }
+      ],
+      "place_id": "ChIJxcVH3MphLxMRbNmoLfoNEWg",
+      "plus_code": {
+        "compound_code": "VFPP+F3 Rome, Metropolitan City of Rome",
+        "global_code": "8FHJVFPP+F3"
+      },
+      "rating": 4.4,
+      "reference": "ChIJxcVH3MphLxMRbNmoLfoNEWg",
+      "types": [
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 32041
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Piazza del Campidoglio, 00186 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.8933592,
+          "lng": 12.4828018
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.89460562989272,
+            "lng": 12.48421872989272
+          },
+          "southwest": {
+            "lat": 41.89190597010728,
+            "lng": 12.48151907010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "5027185f4fef0425fbbdd916698a26ec1ee33a1e",
+      "name": "Campidoglio",
+      "opening_hours": {},
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/116078654802903233805\">Olga</a>"
+          ],
+          "photo_reference": "CmRaAAAA-cjZwvr-3hhXhA2QWPMnxG0vsv2uruFeH9bepeWNAziHRUw5Gwg0EzJYn3KCf059wt8qUV8ar2k-eaca7BoBJyv5DRZQuki_SlXcocTSsR7L9Fts5WyG-dVmQz4Y4mbpEhBLimT3yiumuZh-avPs1_e8GhQgL4qiu5qZBiiJR7O2y8RDZEoaBg",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJOclom0xgLxMRURy9OLL7Hg4",
+      "plus_code": {
+        "compound_code": "VFVM+84 Rome, Metropolitan City of Rome",
+        "global_code": "8FHJVFVM+84"
+      },
+      "rating": 4.7,
+      "reference": "ChIJOclom0xgLxMRURy9OLL7Hg4",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 14363
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Piazza di S. Giovanni in Laterano, 4, 00184 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.8858811,
+          "lng": 12.505673
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.88756042989272,
+            "lng": 12.5103442
+          },
+          "southwest": {
+            "lat": 41.88486077010727,
+            "lng": 12.5018038
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/worship_general-71.png",
+      "id": "1b0d4af816c3640e12388196e7f6247bb7d37c72",
+      "name": "Basilica di San Giovanni in Laterano",
+      "photos": [
+        {
+          "height": 4032,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/102846204599563490116\">Paul Huy Phuong</a>"
+          ],
+          "photo_reference": "CmRaAAAA3mDHparUit6gV0NRNELsyxKFvhR2mMcqrTzaaU0ghouBoURnGkcAeQCwkTXRSkJSHkZLD-3Hbj4gYjoAkaVnhq7T9hgwyEd4WYtL8sxU_AtA_8QIqtJKQpk5sotnrKKTEhAm0Sh63V2AFtAq_6y_Bu9oGhTcs0FcaVvhnLfPDcroHjz9VJ8IHA",
+          "width": 3024
+        }
+      ],
+      "place_id": "ChIJc6vKf79hLxMR-JBUkZ--MAE",
+      "plus_code": {
+        "compound_code": "VGP4+97 Rome, Metropolitan City of Rome",
+        "global_code": "8FHJVGP4+97"
+      },
+      "rating": 4.8,
+      "reference": "ChIJc6vKf79hLxMR-JBUkZ--MAE",
+      "types": [
+        "tourist_attraction",
+        "church",
+        "place_of_worship",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 16666
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Largo di Torre Argentina, 00186 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.8954071,
+          "lng": 12.4768597
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.89701372989273,
+            "lng": 12.47818442989272
+          },
+          "southwest": {
+            "lat": 41.89431407010728,
+            "lng": 12.47548477010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "34573b8d3c705ce5a570ef42527128b3633eec94",
+      "name": "Largo di Torre Argentina",
+      "opening_hours": {},
+      "photos": [
+        {
+          "height": 2268,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/102602640226881769527\">sergey boguckiy</a>"
+          ],
+          "photo_reference": "CmRaAAAAMwI1bnn4sMEwBjJMgo5pGYohHAX1hUxXwkjBxbGQBfhQp1Eyh8TWDR1o9fxb8NBtpHX6In2Vp2nxAXGx6V2tCT7XaRkZsxWeSe9eQvykrHW-l5Nz5xj6Sw9-dV41WMLlEhCjEN7867a3wbOCtYG2b-oAGhQf7cmcdcUpdAtpVr0Sn9astylDKg",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJQ_PWjE5gLxMRzwPbBqolerU",
+      "plus_code": {
+        "compound_code": "VFWG+5P Rome, Metropolitan City of Rome",
+        "global_code": "8FHJVFWG+5P"
+      },
+      "rating": 4.5,
+      "reference": "ChIJQ_PWjE5gLxMRzwPbBqolerU",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 21780
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Piazza di Spagna, 00187 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.90599,
+          "lng": 12.482775
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.90743154999998,
+            "lng": 12.48418739999999
+          },
+          "southwest": {
+            "lat": 41.90406175000001,
+            "lng": 12.480609
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "c859ad5f34537efcafafd5c556fe4be908072a20",
+      "name": "Spanish Steps",
+      "opening_hours": {},
+      "photos": [
+        {
+          "height": 3648,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/102044472869067118057\">Ruslan Kroshka</a>"
+          ],
+          "photo_reference": "CmRaAAAAw2iyVVOwjJ_wyUoZs4mikfzpXdSQ7Xmxpn3ZmZGTzRNdFcd0CuozNxc-EH-9oW-F8Kf_auA223ou0ShiEuyXhg61ZmAahgiozwamtKyN4yCo8fK4rACrrovfCjom1ecrEhDrF31usWiV9SWDreGX0Vx7GhRAPE_wb4pcA2pCA5TfIbNFqNQQ4Q",
+          "width": 5472
+        }
+      ],
+      "place_id": "ChIJda54FlRgLxMRD2muipfUwH8",
+      "plus_code": {
+        "compound_code": "WF4M+94 Rome, Metropolitan City of Rome",
+        "global_code": "8FHJWF4M+94"
+      },
+      "rating": 4.5,
+      "reference": "ChIJda54FlRgLxMRD2muipfUwH8",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 43709
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "00120 Vatican City",
+      "geometry": {
+        "location": {
+          "lat": 41.9064878,
+          "lng": 12.4536413
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.90807867989272,
+            "lng": 12.45485487989272
+          },
+          "southwest": {
+            "lat": 41.90537902010728,
+            "lng": 12.45215522010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "d5a48820b003375288f70a892af36b5afe3b27e2",
+      "name": "Vatican Museums",
+      "opening_hours": {
+        "open_now": false
+      },
+      "photos": [
+        {
+          "height": 1944,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/109960447700864831007\">A Google User</a>"
+          ],
+          "photo_reference": "CmRaAAAAPUiJz4Br8j22PYV9ncQJwazT9SC3-WMizXOIIZMoSI7u-R_xv6o6IKP8VWXz02CZuoZyLVjxpFBLYtw3l00gNRPub02OGEwqjrbEpnQOz0DrRL0RxtyLyMdOsHuJr_USEhDtWBfZdi99viohvusKeO2bGhRoM7bvtfR7mSV_BZwRniZ49s26MQ",
+          "width": 2592
+        }
+      ],
+      "place_id": "ChIJKcGbg2NgLxMRthZkUqDs4M8",
+      "plus_code": {
+        "compound_code": "WF43+HF Vatican City",
+        "global_code": "8FHJWF43+HF"
+      },
+      "rating": 4.6,
+      "reference": "ChIJKcGbg2NgLxMRthZkUqDs4M8",
+      "types": [
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 104447
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Piazzale San Paolo, 1, 00146 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.8586767,
+          "lng": 12.4767338
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.86027005,
+            "lng": 12.4798099
+          },
+          "southwest": {
+            "lat": 41.85593304999999,
+            "lng": 12.4726335
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/worship_general-71.png",
+      "id": "eb54b0124106099d4b3425b990970f7eb9a2ce65",
+      "name": "Basilica Papale San Paolo fuori le Mura",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3456,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/111225827337974046719\">Danielson Specialach</a>"
+          ],
+          "photo_reference": "CmRaAAAADuBgNDQlI3TosRaXyfVbDBw_yxSLfQ7XlHDJ88DOJwtc0NgYdUyDpv6yAla_YqBW06qQ19Rw325VKnZYfzZwQowgTqsh6ex8yWMh5-oc0_zBV2APlW3ZYAp-Gpb6e_doEhCdiErnmOoOxkV8oy2ZUcp2GhS3al4aSXQedQ10vCJLgQM_p-l2QQ",
+          "width": 4608
+        }
+      ],
+      "place_id": "ChIJ2ReSKI-KJRMRTk07SoiIUXI",
+      "plus_code": {
+        "compound_code": "VF5G+FM Rome, Metropolitan City of Rome",
+        "global_code": "8FHJVF5G+FM"
+      },
+      "rating": 4.8,
+      "reference": "ChIJ2ReSKI-KJRMRTk07SoiIUXI",
+      "types": [
+        "church",
+        "tourist_attraction",
+        "place_of_worship",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 10353
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Piazza di S. Maria Maggiore, 00100 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.89759859999999,
+          "lng": 12.4984084
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.89872112989271,
+            "lng": 12.50032837989272
+          },
+          "southwest": {
+            "lat": 41.89602147010727,
+            "lng": 12.49762872010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/worship_general-71.png",
+      "id": "e6402378419cdb3afb91efec7a72987d215b87af",
+      "name": "Basilica Papale di Santa Maria Maggiore",
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/111679139331747212705\">Людмила Грищенко</a>"
+          ],
+          "photo_reference": "CmRaAAAApSCU5aO4j63lSiFnsPJAdzk3PEod3yXU9GTBX2LX3OdJVSQ6CAdGwLxCt2mu99WmzQrd0zOKQrSv6apKlb61zwf1nlW3VxIgNQyN5YcqtqKC3TtUaL03XyDFpWEf1ihQEhCncevMG8y0qugB_zYaKBbvGhQidSyUZ6d-cnQMiD7vN3UOjSwCcw",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJ1zB926RhLxMRejWMj_tUs_c",
+      "plus_code": {
+        "compound_code": "VFXX+29 Rome, Metropolitan City of Rome",
+        "global_code": "8FHJVFXX+29"
+      },
+      "rating": 4.7,
+      "reference": "ChIJ1zB926RhLxMRejWMj_tUs_c",
+      "types": [
+        "tourist_attraction",
+        "church",
+        "place_of_worship",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 20148
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Piazza del Campidoglio, 1, 00186 Roma RM, Italy",
+      "geometry": {
+        "location": {
+          "lat": 41.8929428,
+          "lng": 12.4825577
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 41.89470697989272,
+            "lng": 12.48373667989272
+          },
+          "southwest": {
+            "lat": 41.89200732010728,
+            "lng": 12.48103702010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "d9553a0a8b01046e16a4b0c12e846a747cb61406",
+      "name": "Capitoline Museums",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/106652488254770587912\">Matt Borr</a>"
+          ],
+          "photo_reference": "CmRaAAAAR7XJt-ewdRXjoSDJu5JbSoJk0DMYPzvZsAcIBBcAaqx6HOHdb2_KAbLoWmggqY-U6I7wQDd1iOXieGXDnALd6fb_2WZNDblZslK8J3rdsRsNWEbXwZo8mLCn3pd-CS7MEhBrmRepLuYHE79F-EOPGdgUGhRju3GGwgbQ3A-PdEPCB4i_ACVhhw",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJ8-wGeU9gLxMR--zJtnpGod4",
+      "plus_code": {
+        "compound_code": "VFVM+52 Rome, Metropolitan City of Rome",
+        "global_code": "8FHJVFVM+52"
+      },
+      "rating": 4.6,
+      "reference": "ChIJ8-wGeU9gLxMR--zJtnpGod4",
+      "types": [
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 9542
+    }
+  ],
+  "status": "OK"
+}

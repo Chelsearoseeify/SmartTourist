@@ -1,0 +1,965 @@
+{
+  "html_attributions": [],
+  "next_page_token": "CpQCAQEAADPDaHQgsfhXnQPfrzZ4Bzo8vgKjrPACj2QEukKneRLqDrHTb6fU69PRcwhKViebfI3ngxQD2W_rRFyi2etHHohmBQxyrJAZvP2SifQ6dgkseYAeQ0ad_KFKoEl-8omQTfv9nbUd2nTe0L8vSpSSSafs96r8wIHE260padqASyq9PFQZTLTV5GBk1Ma-TFik_H6N6Ud0L9AtcjAHKL7NuI9yr-jL-rULwzgs5xHjgtYwS4mlj8rp3pHxSoFzuNufRIzNnAoTFZclq8wbfYygMN6WQjgfUtefMCO6F-MYYr9fg9WXk5WIe0N0xrkBxMy88o8r8GP_XlyhGbzIRxYAwwXeuBxqo79-cZfKrpCFAebdEhC4pRniK88wbsoU9nIDijeTGhSTzIXHNRPyKCOuVo1--hY_9ARQPw",
+  "results": [
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "2-chōme-3 Asakusa, Taito City, Tōkyō-to 111-0032, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.7139333,
+          "lng": 139.7966333
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.71528312989273,
+            "lng": 139.7979831298927
+          },
+          "southwest": {
+            "lat": 35.71258347010728,
+            "lng": 139.7952834701073
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/worship_general-71.png",
+      "id": "03d44dd42aa4b7fb305c3b4255827f8e7d0d57cb",
+      "name": "Hōzōmon Gate",
+      "opening_hours": {
+        "open_now": false
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/103942922264073326440\">鍾承訓</a>"
+          ],
+          "photo_reference": "CmRaAAAAxxKx11OMaXeuq3D8BUp_-QHf0Fnviwerk4pgiAMI6H241MqldHIjuCA1IEBwQ3rUoITdj2soVbm7vLkvC-kDfQpj-dRrYWAOgeibsDCNwsJ7cUMmrcvF29FbOLlQ8ugoEhDHCucRrnIyB6ZWCBCRT0BVGhTm6MBdenLRkiNHTdnhtkVvlDgatg",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJA8RvD8GOGGARdoKfX1LNAcQ",
+      "plus_code": {
+        "compound_code": "PQ7W+HM Taito City, Tokyo, Japan",
+        "global_code": "8Q7XPQ7W+HM"
+      },
+      "rating": 4.5,
+      "reference": "ChIJA8RvD8GOGGARdoKfX1LNAcQ",
+      "types": [
+        "tourist_attraction",
+        "place_of_worship",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 1686
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "4 Chome-2-8 Shibakoen, Minato City, Tokyo 105-0011, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.6585805,
+          "lng": 139.7454329
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.66027947989272,
+            "lng": 139.7469715298927
+          },
+          "southwest": {
+            "lat": 35.65757982010728,
+            "lng": 139.7442718701072
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
+      "id": "0f193d8a0df922a2bcb369673944240a8cb182c3",
+      "name": "Tokyo Tower",
+      "opening_hours": {
+        "open_now": false
+      },
+      "photos": [
+        {
+          "height": 3265,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/107957051173910448327\">David Sun</a>"
+          ],
+          "photo_reference": "CmRaAAAAGrSgj9yQjaiGDAJn_m82jFWkik3oAM4UqObfeA99PiBgtJ55k7M6xvJ1vMK0Nvjkez4IZZcViJU1v4b_kmiGt40H8DpNM9vSs2CZyDFSpLbQPkICZtwGRJ2qcpVTW6kWEhBINal8Xerx2SCjyC5fSy8AGhRT07QEAJ4TxwGuNkulaPp48PhHfA",
+          "width": 4898
+        }
+      ],
+      "place_id": "ChIJCewJkL2LGGAR3Qmk0vCTGkg",
+      "plus_code": {
+        "compound_code": "MP5W+C5 Minato City, Tokyo, Japan",
+        "global_code": "8Q7XMP5W+C5"
+      },
+      "rating": 4.4,
+      "reference": "ChIJCewJkL2LGGAR3Qmk0vCTGkg",
+      "types": [
+        "tourist_attraction",
+        "premise",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 48286
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "11 Naitomachi, Shinjuku City, Tokyo 160-0014, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.68517629999999,
+          "lng": 139.7100517
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.69203835000002,
+            "lng": 139.71735265
+          },
+          "southwest": {
+            "lat": 35.67902454999999,
+            "lng": 139.70374925
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "0f1cbb4783f1894bb39c20297e2a3c7e05d7b5cd",
+      "name": "Shinjuku Gyoen National Garden",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3265,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/102418106411438978005\">周耀宗</a>"
+          ],
+          "photo_reference": "CmRaAAAAkT-QRgzBgi46Zu4ZJ_zobYMMQ7xM7yZJkK8Uga5NKXK5nNbitX0mUovSSrGPp5jPnGiXIxEZ5mGXNCpCAyTNKHY1kC88Q5GllCkngJaqk0S9e9pHiB3JbPEgQd7XzxndEhB-Qb2X64QbVhfczkS3JfJBGhSzMti87080pBOCdxv0h38izDB5XQ",
+          "width": 4898
+        }
+      ],
+      "place_id": "ChIJPyOTG8KMGGARh_IXobWxHmo",
+      "plus_code": {
+        "compound_code": "MPP6+32 Shinjuku City, Tokyo, Japan",
+        "global_code": "8Q7XMPP6+32"
+      },
+      "rating": 4.5,
+      "reference": "ChIJPyOTG8KMGGARh_IXobWxHmo",
+      "types": [
+        "tourist_attraction",
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 29587
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "1 Chome-1-2 Oshiage, Sumida City, Tokyo 131-8634, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.7100627,
+          "lng": 139.8107004
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.71162127989272,
+            "lng": 139.81570675
+          },
+          "southwest": {
+            "lat": 35.70892162010728,
+            "lng": 139.80606815
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "cc2df8af2ac2be3fdd7d1e14d537565a53c720c9",
+      "name": "Tokyo Skytree",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 5982,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/100484351469945782420\">nguyen huy duc</a>"
+          ],
+          "photo_reference": "CmRaAAAAE9OoDEQwsbBLQ1941VRI4mMH6RSmMAwh4Cvp_BN7Brx7F8lSQ9gkDTEfo7LW8pqGhx9tGBODYFuy4VVWifq0FLHocnWtGUXodcjC5FebY0uKJN3ggtlZsyTGsyaKn_EQEhAbFfe1_F398Wri5_6nCYgFGhS7OkEQgkDxHXiqdVc0NvjMANZOtQ",
+          "width": 3910
+        }
+      ],
+      "place_id": "ChIJ35ov0dCOGGARKvdDH7NPHX0",
+      "plus_code": {
+        "compound_code": "PR66+27 Sumida City, Tokyo, Japan",
+        "global_code": "8Q7XPR66+27"
+      },
+      "rating": 4.4,
+      "reference": "ChIJ35ov0dCOGGARKvdDH7NPHX0",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 54592
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "1-1 Maihama, Urayasu, Chiba 279-0031, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.6328964,
+          "lng": 139.8803943
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.63925069999999,
+            "lng": 139.8879021
+          },
+          "southwest": {
+            "lat": 35.6307783,
+            "lng": 139.8717933
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "4bebc93aa7127b5abfb8986671ce445a0bd27075",
+      "name": "Tokyo Disneyland",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3456,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/117892740651546326793\">박민호</a>"
+          ],
+          "photo_reference": "CmRaAAAAutVN-8lP0QaBVszoSotW5X7PIZM4soIDzkxgnDWEjfKhm7jGOQqA3ySwgEjp5C6Zc4ETIqk_AHa7nPgAJQ9c4Et7-6EJ3klpPKLDa8kDuIZpVXtNCxGvcAD-y_d1awLjEhBWA-9ByaCCP6DzLqZ8iJwdGhQJ0Opk-jrMYf5k2EBx-L5awxl7RA",
+          "width": 4608
+        }
+      ],
+      "place_id": "ChIJszdHEQN9GGARy9MJ1TY22eQ",
+      "plus_code": {
+        "compound_code": "JVMJ+55 Urayasu, Chiba, Japan",
+        "global_code": "8Q7XJVMJ+55"
+      },
+      "rating": 4.6,
+      "reference": "ChIJszdHEQN9GGARy9MJ1TY22eQ",
+      "types": [
+        "tourist_attraction",
+        "amusement_park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 71668
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "１−１３ Maihama, Urayasu, Chiba 279-0031, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.6267108,
+          "lng": 139.8850779
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.63152445,
+            "lng": 139.8920667
+          },
+          "southwest": {
+            "lat": 35.62163864999999,
+            "lng": 139.8827483
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "5a01a43af189f37ec8802144733fe02ad2a8ee0d",
+      "name": "Tokyo DisneySea",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/117228487523125909724\">Karl Chong</a>"
+          ],
+          "photo_reference": "CmRaAAAAltXoI2VGpcNfQyYl5r5mdB1y0FK-pTj_dSvv1UL5-OQdi_pR_B35_osOyqUuMl1Q4Le5O0mAR9LO6WLBSC9u49Oh2qxf6H3EL1tguH3zEB4mMHM2F696_XxNn-qZHUbaEhAxMQ7PYQILp17mA6EWBaA9GhReOvs1l7PX6yL5EEVficmVGGVrWQ",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJszdHEQN9GGARJS23SnAdR0E",
+      "plus_code": {
+        "compound_code": "JVGP+M2 Urayasu, Chiba, Japan",
+        "global_code": "8Q7XJVGP+M2"
+      },
+      "rating": 4.6,
+      "reference": "ChIJszdHEQN9GGARJS23SnAdR0E",
+      "types": [
+        "tourist_attraction",
+        "amusement_park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 62995
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "1 Chome-4-1 Yokoami, Sumida City, Tokyo 130-0015, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.6965972,
+          "lng": 139.7957336
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.69808437989271,
+            "lng": 139.798205
+          },
+          "southwest": {
+            "lat": 35.69538472010727,
+            "lng": 139.7949098
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "a95440df4370d981090b61572137cdf210830ae3",
+      "name": "Edo-Tokyo Museum",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3648,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/104546847413188376563\">塚田脩斗</a>"
+          ],
+          "photo_reference": "CmRaAAAAeVJpWVZq-uv4zu0wfB2h9dNCui3wZepy1KuiftHG1DEc-ZLeXKuvhmiAHK4ZjRx2qLtYK2RG-lnY_Ch2f7JfCg_9MNGSw2Yadi-f48USQTeTzomViTmtBkoBkQMYLnKlEhCVHpL-ETQbwCrIsj21VOJrGhSb7mr7jYVQavfwUwt6smH9SxQjZg",
+          "width": 5472
+        }
+      ],
+      "place_id": "ChIJOWXu4TSJGGAR07vEEi8fZAw",
+      "plus_code": {
+        "compound_code": "MQWW+J7 Sumida City, Tokyo, Japan",
+        "global_code": "8Q7XMQWW+J7"
+      },
+      "rating": 4.4,
+      "reference": "ChIJOWXu4TSJGGAR07vEEi8fZAw",
+      "types": [
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 10797
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "2 Chome-3-1 Asakusa, Taito City, Tokyo 111-0032, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.7147651,
+          "lng": 139.7966553
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.71851565,
+            "lng": 139.7990288
+          },
+          "southwest": {
+            "lat": 35.70843704999999,
+            "lng": 139.7936672
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/worship_general-71.png",
+      "id": "13f89e965ca645a87d6fe919fc1af8b0239ad36f",
+      "name": "Sensō-ji",
+      "photos": [
+        {
+          "height": 2000,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/113094236364385106129\">A Google User</a>"
+          ],
+          "photo_reference": "CmRaAAAAJS0fu0ZpzjdJozv3cbpmGTNxvcjscw2lDwnT0HLQVo99bd-vJ6opCgl1b-uTgcT125d2faomh6qr-RqAhN1DM7EFHAnp5nsLqJNQxyCVaUMdffF_M-TlKy1PAobLNK_QEhBPb3YrGE0v2wePCtVf6gmvGhSlSBJhdEjte_A9CFNl6IWzeIBBRw",
+          "width": 3000
+        }
+      ],
+      "place_id": "ChIJ8T1GpMGOGGARDYGSgpooDWw",
+      "plus_code": {
+        "compound_code": "PQ7W+WM Taito City, Tokyo, Japan",
+        "global_code": "8Q7XPQ7W+WM"
+      },
+      "rating": 4.5,
+      "reference": "ChIJ8T1GpMGOGGARDYGSgpooDWw",
+      "types": [
+        "tourist_attraction",
+        "place_of_worship",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 49706
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Japan, 〒150-6018 Tokyo, Shibuya City, Ebisu, 4 Chome−20, ガーデンプレイス",
+      "geometry": {
+        "location": {
+          "lat": 35.6421171,
+          "lng": 139.7132096
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.64319887989272,
+            "lng": 139.7150324798927
+          },
+          "southwest": {
+            "lat": 35.64049922010727,
+            "lng": 139.7123328201072
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "b6d81046a98c64e5dbfb903b559599a35364e1b5",
+      "name": "Yebisu Garden Place",
+      "opening_hours": {
+        "open_now": false
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/113581194133175899857\">A Google User</a>"
+          ],
+          "photo_reference": "CmRaAAAAEzR6dCivVblWINETrR-OlP3mghYttAlKcxnY4FLawa4vZrt2lYEcWM_C7K1dZWLY1X3X-BZpU_rQDwTZzePmUsfXu9-VN6Ho6pspJ-sbPFwkFcse3EgPFOa5XVupr6zoEhDwpAlvuplfCRI1xNry-QjEGhS9EY2uLUTaTlcT-BO1eAg6D-VFXQ",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJJRd91xWLGGARDktpB9XZvLU",
+      "plus_code": {
+        "compound_code": "JPR7+R7 Shibuya City, Tokyo, Japan",
+        "global_code": "8Q7XJPR7+R7"
+      },
+      "rating": 4,
+      "reference": "ChIJJRd91xWLGGARDktpB9XZvLU",
+      "types": [
+        "tourist_attraction",
+        "shopping_mall",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 5912
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "1-1 Maihama, Urayasu, Chiba 279-0031, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.6306579,
+          "lng": 139.8828695
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.64033649999998,
+            "lng": 139.8863835
+          },
+          "southwest": {
+            "lat": 35.6274317,
+            "lng": 139.8723275
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "6bf639383c7a100596943607766f26845804a7bb",
+      "name": "Tokyo Disney Resort",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3265,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/109984057082558737691\">Omkar Marathe</a>"
+          ],
+          "photo_reference": "CmRaAAAALjw6vVTWT6zCHrEuRwEqNldDNppO0UDrY_lOKtIjtNHh0ouQ0SDT0plJ7ghPt3egWLq3pQmnsqUy82oRgFnY43Jn8cq6YDSK2iFmnyVtgf2iReF2Qdrai4ACjxGP_klKEhBJ9GxN819eFjig9tYNRAiKGhRQn7f6y7HS_xBo9Cv-LM0nX--Snw",
+          "width": 4898
+        }
+      ],
+      "place_id": "ChIJzaLT0Bl9GGARX3OJ1IrbKdo",
+      "plus_code": {
+        "compound_code": "JVJM+74 Urayasu, Chiba, Japan",
+        "global_code": "8Q7XJVJM+74"
+      },
+      "rating": 4.6,
+      "reference": "ChIJzaLT0Bl9GGARX3OJ1IrbKdo",
+      "types": [
+        "tourist_attraction",
+        "amusement_park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 75091
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "13-9 Uenokoen, Taito City, Tokyo 110-8712, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.7188351,
+          "lng": 139.7765215
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.71954617989272,
+            "lng": 139.7774068798927
+          },
+          "southwest": {
+            "lat": 35.71684652010727,
+            "lng": 139.7747072201072
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "051204c621a4c96b254431dd5cd20499d13673a0",
+      "name": "Tokyo National Museum",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 9024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/108266286783524018812\">Suwatchara Mahapetch</a>"
+          ],
+          "photo_reference": "CmRaAAAAzWAo09y43LbMqhSPK-FVFqTuuiL-ZtxQySwA2LADI1qMvt-szBZ6eb3m_nuUQaWm8hf1drZtt4jVS77RYPoC9x9zEz6zxargqGhMJIzf8QkQ97R4mtyDtoltt_7SGNRgEhDeH1xmQCO-YN7oJvve6yodGhRuGHVKjZcrAZYRiDkQ51tFDpQFxQ",
+          "width": 12032
+        }
+      ],
+      "place_id": "ChIJEX3XFIOOGGAR3XdJvRjWLyM",
+      "plus_code": {
+        "compound_code": "PQ9G+GJ Taito City, Tokyo, Japan",
+        "global_code": "8Q7XPQ9G+GJ"
+      },
+      "rating": 4.4,
+      "reference": "ChIJEX3XFIOOGGAR3XdJvRjWLyM",
+      "types": [
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 16756
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "2-1 Yoyogikamizonocho, Shibuya City, Tokyo 151-0052, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.6715869,
+          "lng": 139.6967028
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.6796586,
+            "lng": 139.70739905
+          },
+          "southwest": {
+            "lat": 35.6599178,
+            "lng": 139.68557085
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "4d64855510cd02f24efad211fbeb37ef8c4cb497",
+      "name": "Yoyogi Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3456,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/112076589434080483973\">Mariusz Kowalewski</a>"
+          ],
+          "photo_reference": "CmRaAAAA0GP2SiVu5tgnqZh_N8Ds3xlS70lWfcIyiGmdxH_Vm8SIc8eQfDi1_dDNx8etaAr1R5bgLC-FYszEfANK1rR93E9P_umkNQ0DsmsGKuYOYVtzA01GqKeKw-j0mnehwCijEhDwvmLZgkwZtGfG9MztA6MSGhSdzxqvy5Bzicm4U1qFIun3kvNTtQ",
+          "width": 4608
+        }
+      ],
+      "place_id": "ChIJMwpiebSMGGARPr_454zHvDQ",
+      "plus_code": {
+        "compound_code": "MMCW+JM Shibuya City, Tokyo, Japan",
+        "global_code": "8Q7XMMCW+JM"
+      },
+      "rating": 4.3,
+      "reference": "ChIJMwpiebSMGGARPr_454zHvDQ",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 16464
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "4 Chome-9-14 Ueno, Taito City, Tokyo 110-0005, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.7103327,
+          "lng": 139.7744828
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.71167662989272,
+            "lng": 139.7758977798927
+          },
+          "southwest": {
+            "lat": 35.70897697010728,
+            "lng": 139.7731981201073
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "26640a4eb176e931a8a36fdb8f1dbe7ac862794b",
+      "name": "Ameya Yokocho Market",
+      "opening_hours": {
+        "open_now": false
+      },
+      "photos": [
+        {
+          "height": 1535,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/107848231817109002087\">A Google User</a>"
+          ],
+          "photo_reference": "CmRaAAAApLcGLm0oqLphve5NZgQFAe66K_xKGRx5nG72qjedzmChiB25CfuLRcqOU3s6wkdla67bN42fwPCi88KndHxBxSc0R4YpWSXsl5dJfskXATYBhIuUe2ZFcorx2fhd6AImEhDkjISM15Q4eaABpF7e5BReGhTzczWhcG2E22J87YwUTSRLqSaeFw",
+          "width": 2291
+        }
+      ],
+      "place_id": "ChIJW3SUTJ6OGGAR6HLq7NeMj3c",
+      "plus_code": {
+        "compound_code": "PQ6F+4Q Taito City, Tokyo, Japan",
+        "global_code": "8Q7XPQ6F+4Q"
+      },
+      "rating": 4.1,
+      "reference": "ChIJW3SUTJ6OGGAR6HLq7NeMj3c",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 23228
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "7 Chome-22-2 Roppongi, Minato City, Tokyo 106-8558, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.665289,
+          "lng": 139.726374
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.66634172989273,
+            "lng": 139.7289186
+          },
+          "southwest": {
+            "lat": 35.66364207010728,
+            "lng": 139.7241074
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "4b3d70d4d2cb8ad416d0bbabf0c17d03bb456cfe",
+      "name": "The National Art Center, Tokyo",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 4000,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/117056576679085641745\">Shannon Lin</a>"
+          ],
+          "photo_reference": "CmRaAAAAszpotf9j578t8Ao6cpXN1mYEwXua9lzgpS_O1s3KMJ_Da9ABCCf0e_zcNX4-M6_rBGfonYpBg5BAfMiMrt-HRkl3U_L4B7D0w3-RiBOE4QhqrEkyVp2NILwOezdNQl3MEhBkGjF0WN5xK8J3IwXtl0ERGhQRIYzy0Gv_uvM4instEvtaSSkraA",
+          "width": 6000
+        }
+      ],
+      "place_id": "ChIJP-vO9nuLGGARGJ2q8uryJUA",
+      "plus_code": {
+        "compound_code": "MP8G+4G Minato City, Tokyo, Japan",
+        "global_code": "8Q7XMP8G+4G"
+      },
+      "rating": 4.3,
+      "reference": "ChIJP-vO9nuLGGARGJ2q8uryJUA",
+      "types": [
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 12303
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "7-20 Uenokoen, Taito City, Tokyo 110-8718, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.7163059,
+          "lng": 139.7765252
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.71795712989272,
+            "lng": 139.7775824798927
+          },
+          "southwest": {
+            "lat": 35.71525747010728,
+            "lng": 139.7748828201073
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+      "id": "862ae68488a0da8a128fac4ca38bbd7a806f06dc",
+      "name": "National Museum of Nature and Science",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 5312,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/114229436505135291779\">龍友銘</a>"
+          ],
+          "photo_reference": "CmRaAAAAKk93I6UevFQmtuimMIn1ywlEz0AzyNy-cGmiqpHmuo1BcRruucjP56l2jz3xTjZSSRxHBWN8HjoYPwSK4nseCnno1IlhYjCRdf4Whz0aeYfNxk8fdbVw6MqgDFwmtGFJEhBMCeUrKDd3P_YFVFZlXVeiGhTvNa9ktXMvRS3kz84diUAUlKj7ig",
+          "width": 2988
+        }
+      ],
+      "place_id": "ChIJ8Vuh65yOGGARyj4L5IBFiIk",
+      "plus_code": {
+        "compound_code": "PQ8G+GJ Taito City, Tokyo, Japan",
+        "global_code": "8Q7XPQ8G+GJ"
+      },
+      "rating": 4.4,
+      "reference": "ChIJ8Vuh65yOGGARyj4L5IBFiIk",
+      "types": [
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 16690
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "2 Chome-8-1 Nishishinjuku, Shinjuku City, Tokyo 163-8001, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.6896342,
+          "lng": 139.6921007
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.69078314999999,
+            "lng": 139.6937427798927
+          },
+          "southwest": {
+            "lat": 35.68698455000001,
+            "lng": 139.6910431201073
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/civic_building-71.png",
+      "id": "0e79fd860598525cd0273f90b0a27612dc26e86f",
+      "name": "Tokyo Metropolitan Government Building",
+      "opening_hours": {
+        "open_now": false
+      },
+      "photos": [
+        {
+          "height": 1024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/101370906509832229558\">伊庭雄三</a>"
+          ],
+          "photo_reference": "CmRaAAAA4uvJ5t-9iW3592LTZEC1pELGHEWqs9WUgY08TjfByD4xnIeejNqSPm4Bj2mIiEm_5dxiiDVFmwIq7ribAcXqzMVskhpyOjXDAGtUkLQnKSzbyRnDFe_dLQN9GhX6y-K2EhBGwLgJslYyujdHaDxmp0-OGhQBB1C6bjWZzAXOVJlZ0SgRRL_Uhw",
+          "width": 768
+        }
+      ],
+      "place_id": "ChIJoTcat9SMGGAR6GGG8zdcZvE",
+      "plus_code": {
+        "compound_code": "MMQR+VR Shinjuku City, Tokyo, Japan",
+        "global_code": "8Q7XMMQR+VR"
+      },
+      "rating": 4.4,
+      "reference": "ChIJoTcat9SMGGAR6GGG8zdcZvE",
+      "types": [
+        "city_hall",
+        "tourist_attraction",
+        "local_government_office",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 2705
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "1-1 Hamarikyuteien, Chuo City, Tokyo 104-0046, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.6597374,
+          "lng": 139.7634925
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.66539809999999,
+            "lng": 139.76483505
+          },
+          "southwest": {
+            "lat": 35.6578505,
+            "lng": 139.76054925
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "bbc8415229acb25169b78a84aabd0377190bb7a0",
+      "name": "Hamarikyu Gardens",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 4000,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/110994172017988271172\">Markus Eckardt</a>"
+          ],
+          "photo_reference": "CmRaAAAACSphcLfem5fqy_kXrqKpqdcbUFJSi90AGq3hfFADLmQIzAeK3JFjyUz-lj9_XFiGktEEHctgCGOPeYgiqK1n_vzEt8iL_PMhUk7dqekH3wiMt_fqVnpHxUj4qrGXDafPEhDXoAmu4YyRTRezspq7Tw07GhSymmuhoh5EtSoOtYeJAu6ng9Jb7w",
+          "width": 6000
+        }
+      ],
+      "place_id": "ChIJwfegutyLGGARGjiY-L2eSps",
+      "plus_code": {
+        "compound_code": "MQ57+V9 Chuo City, Tokyo, Japan",
+        "global_code": "8Q7XMQ57+V9"
+      },
+      "rating": 4.4,
+      "reference": "ChIJwfegutyLGGARGjiY-L2eSps",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 7919
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "6 Chome-2 Rinkaicho, 江戸川区 Tokyo 134-0086, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.6411072,
+          "lng": 139.8600021
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.64825054999999,
+            "lng": 139.8817049
+          },
+          "southwest": {
+            "lat": 35.63818715000001,
+            "lng": 139.8421137
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "8a36932b1868714c1e3fff3fb1425663b9e6fe2a",
+      "name": "Kasairinkai Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 2160,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/118381398077716099590\">飯田智也</a>"
+          ],
+          "photo_reference": "CmRaAAAAxrolxILrlrbs9D9GuTNV9KtjwidpthSCnID2_C79JqKBi6ymdr2tPiTtip4mPmJWZ6l6IdMahoZmyWQSGWuI8K9--TSFDVzX96T6UCdCjuQADqjLsb5EwG8HAYil-ip1EhAPH_nG2voy2JUmX-nPvhZmGhTYWc9OGPFc77wxSGAEq_H6xcEHjg",
+          "width": 3840
+        }
+      ],
+      "place_id": "ChIJB3qyjVF9GGARE1Gz1IicoBY",
+      "plus_code": {
+        "compound_code": "JVR6+C2 Tokyo, Japan",
+        "global_code": "8Q7XJVR6+C2"
+      },
+      "rating": 4.2,
+      "reference": "ChIJB3qyjVF9GGARE1Gz1IicoBY",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 11127
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "9-８３ Uenokoen, Taito City, Tokyo 110-8711, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.7164535,
+          "lng": 139.7713177
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.71834025,
+            "lng": 139.7803045
+          },
+          "southwest": {
+            "lat": 35.71079324999999,
+            "lng": 139.7641653
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "23e27b3bfe58268c172e215a93b3081d95f0846e",
+      "name": "Ueno Zoo",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/109258077905556862769\">O.Setoro</a>"
+          ],
+          "photo_reference": "CmRaAAAAHbOkIOiqDOG1ARbstbihy350UvOpwVX_SagNYGp1rRDetC9kwUM96OqvzSOP9KtM1srnbb9CiweHkQAioL0ng_s-QWI3COf7pvT5SwUVupAp7Dyn1aMTFOw1THPIlLTUEhCfogKXgZdYE5dFWbm7Z7tgGhTwYJcXwsN0wN2PG1t7CucI2AFqLQ",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJf2129yiMGGAR9I6Yoe-1uHY",
+      "plus_code": {
+        "compound_code": "PQ8C+HG Taito City, Tokyo, Japan",
+        "global_code": "8Q7XPQ8C+HG"
+      },
+      "rating": 4.3,
+      "reference": "ChIJf2129yiMGGAR9I6Yoe-1uHY",
+      "types": [
+        "zoo",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 26528
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "1 Chome-3-61 Koraku, Bunkyo City, Tokyo 112-0004, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.7056396,
+          "lng": 139.7518913
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 35.70714795,
+            "lng": 139.75486025
+          },
+          "southwest": {
+            "lat": 35.70199535,
+            "lng": 139.74975205
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "391b8287594fb79edc8411898592ba17dd6ed1ae",
+      "name": "Tokyo Dome",
+      "photos": [
+        {
+          "height": 3912,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/105984186243609461000\">Hyunwook Kim</a>"
+          ],
+          "photo_reference": "CmRaAAAAcoOGCrZ2-9nLE_1HvrESsC_Cqw7uB7koYgwjuaUzMjDYK2ScmGsuDuG0FEbZWLrYZADyig5DfdJMYO1jgYWUA09qGZ7DZEakzB4XrnGsbICp6Modp8pBWsa9fYa279T2EhBjq_B84icXJrJ5d9R0k078GhQk_yX9fpw2qacQi1KXGzvlyUqWZg",
+          "width": 7938
+        }
+      ],
+      "place_id": "ChIJ89TugkeMGGARDmSeJIiyWFA",
+      "plus_code": {
+        "compound_code": "PQ42+7Q Bunkyo City, Tokyo, Japan",
+        "global_code": "8Q7XPQ42+7Q"
+      },
+      "rating": 4.2,
+      "reference": "ChIJ89TugkeMGGARDmSeJIiyWFA",
+      "types": ["tourist_attraction", "point_of_interest", "establishment"],
+      "user_ratings_total": 26942
+    }
+  ],
+  "status": "OK"
+}
