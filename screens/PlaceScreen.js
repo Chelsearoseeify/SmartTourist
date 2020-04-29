@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Colors from '../constants/Colors';
 import {View, ImageBackground, StyleSheet, Text} from 'react-native';
-import BackButton from '../components/BackButton';
+import BackButton from '../components/Buttons/BackButton';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import {PLACES, description} from './../data/dummy-data';

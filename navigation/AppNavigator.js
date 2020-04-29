@@ -13,6 +13,7 @@ import AddTripScreen from '../screens/AddTripScreen';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import GroupedPlacesScreen from './../screens/GroupedPlacesScreen';
+import MapScreenf from './../screens/MapScreenf';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -24,6 +25,7 @@ function HomeStackNavigator() {
         <Stack.Screen name="MainPage" component={MainPageScreen} />
         <Stack.Screen name="Place" component={PlaceScreen} />
         <Stack.Screen name="Map" component={MapScreen} />
+        <Stack.Screen name="Mapf" component={MapScreenf} />
         <Stack.Screen name="Search" component={SearchScreen} />
         <Stack.Screen name="AddTrip" component={AddTripScreen} />
         <Stack.Screen name="GroupedPlaces" component={GroupedPlacesScreen} />

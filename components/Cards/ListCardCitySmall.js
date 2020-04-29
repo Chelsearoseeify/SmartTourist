@@ -1,8 +1,8 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {View, Text, ImageBackground, StyleSheet, Image} from 'react-native';
-import Colors from '../constants/Colors';
-import Style from '../constants/Style';
+import Colors from '../../constants/Colors';
+import Style from '../../constants/Style';
 
 const ListCardCitySmall = ({name, imageId, onPress, style = {height: 160}}) => {
   return (

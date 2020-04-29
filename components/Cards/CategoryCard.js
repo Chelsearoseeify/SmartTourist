@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import {Text} from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import Colors from '../constants/Colors';
-import Style from '../constants/Style';
+import Colors from '../../constants/Colors';
+import Style from '../../constants/Style';
 
 const CategoryCard = ({name, iconId, onSelect}) => {
   let TouchableCmp = TouchableOpacity;

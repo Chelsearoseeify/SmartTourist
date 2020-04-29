@@ -3,7 +3,7 @@ import {StyleSheet, ImageBackground, View} from 'react-native';
 import {Text} from '@ui-kitten/components';
 
 import {useSelector} from 'react-redux';
-import Style from '../constants/Style';
+import Style from '../../constants/Style';
 
 const NextTripCard = props => {
   const trips = useSelector(state => state.trips.userTrips);

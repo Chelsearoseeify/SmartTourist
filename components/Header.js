@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import MapButton from './MapButton';
+import MapButton from './Buttons/MapButton';
 import Colors from '../constants/Colors';
 import Style from '../constants/Style';
 
 const Header = ({title, mapIcon = 'true', navigation}) => {
   const goToMapHandler = () => {
-    navigation.navigate('Map');
+    navigation.navigate('Mapf');
   };
   return (
     <View

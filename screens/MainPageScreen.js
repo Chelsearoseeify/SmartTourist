@@ -3,7 +3,7 @@ import Colors from '../constants/Colors';
 import {View, StyleSheet, FlatList, SafeAreaView, Image} from 'react-native';
 import {Text, Button} from '@ui-kitten/components';
 
-import PlaceCard from '../components/PlaceCard';
+import PlaceCard from '../components/Cards/PlaceCard';
 import SearchBar from '../components/SearchBar';
 import CustomFloatingButton from '../components/Buttons/CustomFloatingButton';
 import {ScrollView} from 'react-native-gesture-handler';

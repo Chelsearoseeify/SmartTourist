@@ -1,7 +1,7 @@
 import React from 'react';
 
-import SmallListCard from './ListCardCitySmall';
-import BigListCard from './ListCardCityBig';
+import SmallListCard from './Cards/ListCardCitySmall';
+import BigListCard from './Cards/ListCardCityBig';
 import {View, StyleSheet, Text, ScrollView} from 'react-native';
 import ListHeader from './ListHeader';
 import CardTypes from '../constants/CardTypes';

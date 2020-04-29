@@ -9,7 +9,7 @@ import {
   StyleSheet,
   Platform,
 } from 'react-native';
-import BackButton from '../components/BackButton';
+import BackButton from '../components/Buttons/BackButton';
 import Carousel from 'react-native-snap-carousel';
 import Geolocation from '@react-native-community/geolocation';
 import {request, PERMISSIONS} from 'react-native-permissions';
@@ -89,7 +89,7 @@ export default class MapScreen extends Component {
   };
 
   locateCurrentPosition = () => {
-    Geolocation.getCurrentPosition(
+    /* Geolocation.getCurrentPosition(
       position => {
         console.log(JSON.stringify(position));
         let initialPosition = {
@@ -101,7 +101,14 @@ export default class MapScreen extends Component {
         this.setState({initialPosition});
       },
       error => Alert.alert(error.message),
-    );
+    ); */
+    let initialPosition = {
+      latitude: 55.9533768,
+      longitude: -3.1881621,
+      latitudeDelta: 0.009,
+      longitudeDelta: 0.009,
+    };
+    this.setState({initialPosition});
   };
 
   onCarouselItemChange = index => {

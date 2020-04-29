@@ -9,7 +9,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import NextTripCard from '../components/NextTripCard';
+import NextTripCard from '../components/Cards/NextTripCard';
 import CustomFloatingButton from '../components/Buttons/CustomFloatingButton';
 import HorizontalScrollView from '../components/HorizontalScrollView';
 import ListHeader from '../components/ListHeader';

@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {View} from 'react-native';
-import Colors from '../constants/Colors';
-import Style from '../constants/Style';
+import Colors from '../../constants/Colors';
+import Style from '../../constants/Style';
 
 const MapButton = ({onPress}) => {
   return (

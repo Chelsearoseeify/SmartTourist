@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {Text} from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import Style from '../constants/Style';
+import Style from '../../constants/Style';
 
 const PlaceCard = ({name, imageUrl, rating, onSelect}) => {
   let TouchableCmp = TouchableOpacity;

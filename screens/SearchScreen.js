@@ -4,8 +4,7 @@ import Colors from '../constants/Colors';
 import {StyleSheet, View, FlatList, SafeAreaView} from 'react-native';
 import SearchBar from '../components/SearchBar';
 import {CATEGORIES} from './../data/dummy-data';
-import CategoryCard from './../components/CategoryCard';
-import MapButton from '../components/MapButton';
+import CategoryCard from './../components/Cards/CategoryCard';
 import Header from '../components/Header';
 
 export default class SearchScreen extends Component {

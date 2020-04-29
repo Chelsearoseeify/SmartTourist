@@ -8,7 +8,7 @@ import {CustomDatePicker} from './../components/DatePicker';
 import CustomButton from '../components/Buttons/CustomButton';
 import CardTypes from '../constants/CardTypes';
 import {CITIES} from '../data/dummy-data';
-import BackButton from './../components/BackButton';
+import BackButton from './../components/Buttons/BackButton';
 import {useSelector} from 'react-redux';
 import Header from '../components/Header';
 import Style from '../constants/Style';

@@ -1,0 +1,637 @@
+{
+  "plus_code": {
+    "compound_code": "3CPC+R9 Prague, Czechia",
+    "global_code": "9F2P3CPC+R9"
+  },
+  "results": [
+    {
+      "address_components": [
+        {
+          "long_name": "21",
+          "short_name": "21",
+          "types": ["street_number"]
+        },
+        {
+          "long_name": "483",
+          "short_name": "483",
+          "types": ["premise"]
+        },
+        {
+          "long_name": "Staroměstské náměstí",
+          "short_name": "Staroměstské nám.",
+          "types": ["route"]
+        },
+        {
+          "long_name": "Staré Město",
+          "short_name": "Staré Město",
+          "types": ["neighborhood", "political"]
+        },
+        {
+          "long_name": "Hlavní město Praha",
+          "short_name": "Hlavní město Praha",
+          "types": ["administrative_area_level_2", "political"]
+        },
+        {
+          "long_name": "Hlavní město Praha",
+          "short_name": "Hlavní město Praha",
+          "types": ["administrative_area_level_1", "political"]
+        },
+        {
+          "long_name": "Czechia",
+          "short_name": "CZ",
+          "types": ["country", "political"]
+        },
+        {
+          "long_name": "110 00",
+          "short_name": "110 00",
+          "types": ["postal_code"]
+        }
+      ],
+      "formatted_address": "Staroměstské nám. 483/21, 110 00 Praha-Staré Město, Czechia",
+      "geometry": {
+        "location": {
+          "lat": 50.0869316,
+          "lng": 14.4212589
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+          "northeast": {
+            "lat": 50.0882805802915,
+            "lng": 14.4226078802915
+          },
+          "southwest": {
+            "lat": 50.0855826197085,
+            "lng": 14.4199099197085
+          }
+        }
+      },
+      "place_id": "ChIJM6ZpRumUC0cRzgwMMyNuYi4",
+      "plus_code": {
+        "compound_code": "3CPC+QG Prague, Czechia",
+        "global_code": "9F2P3CPC+QG"
+      },
+      "types": ["street_address"]
+    },
+    {
+      "address_components": [
+        {
+          "long_name": "3",
+          "short_name": "3",
+          "types": ["street_number"]
+        },
+        {
+          "long_name": "Staroměstské náměstí",
+          "short_name": "Staroměstské nám.",
+          "types": ["route"]
+        },
+        {
+          "long_name": "Staré Město",
+          "short_name": "Staré Město",
+          "types": ["neighborhood", "political"]
+        },
+        {
+          "long_name": "Hlavní město Praha",
+          "short_name": "Hlavní město Praha",
+          "types": ["administrative_area_level_2", "political"]
+        },
+        {
+          "long_name": "Hlavní město Praha",
+          "short_name": "Hlavní město Praha",
+          "types": ["administrative_area_level_1", "political"]
+        },
+        {
+          "long_name": "Czechia",
+          "short_name": "CZ",
+          "types": ["country", "political"]
+        },
+        {
+          "long_name": "110 00",
+          "short_name": "110 00",
+          "types": ["postal_code"]
+        }
+      ],
+      "formatted_address": "Staroměstské nám. 3, 110 00 Staré Město, Czechia",
+      "geometry": {
+        "location": {
+          "lat": 50.0869939,
+          "lng": 14.4210072
+        },
+        "location_type": "RANGE_INTERPOLATED",
+        "viewport": {
+          "northeast": {
+            "lat": 50.08834288029149,
+            "lng": 14.4223561802915
+          },
+          "southwest": {
+            "lat": 50.08564491970849,
+            "lng": 14.4196582197085
+          }
+        }
+      },
+      "place_id": "EjVTdGFyb23Em3N0c2vDqSBuw6FtLiAzLCAxMTAgMDAgU3RhcsOpIE3Em3N0bywgQ3plY2hpYSIaEhgKFAoSCTNO9TfplAtHEcoh4IAH2brJEAM",
+      "types": ["street_address"]
+    },
+    {
+      "address_components": [
+        {
+          "long_name": "Staroměstské náměstí",
+          "short_name": "Staroměstské nám.",
+          "types": ["route"]
+        },
+        {
+          "long_name": "Staré Město",
+          "short_name": "Staré Město",
+          "types": ["neighborhood", "political"]
+        },
+        {
+          "long_name": "Hlavní město Praha",
+          "short_name": "Hlavní město Praha",
+          "types": ["administrative_area_level_2", "political"]
+        },
+        {
+          "long_name": "Hlavní město Praha",
+          "short_name": "Hlavní město Praha",
+          "types": ["administrative_area_level_1", "political"]
+        },
+        {
+          "long_name": "Czechia",
+          "short_name": "CZ",
+          "types": ["country", "political"]
+        },
+        {
+          "long_name": "110 00",
+          "short_name": "110 00",
+          "types": ["postal_code"]
+        }
+      ],
+      "formatted_address": "Staroměstské nám., 110 00 Staré Město, Czechia",
+      "geometry": {
+        "bounds": {
+          "northeast": {
+            "lat": 50.0873363,
+            "lng": 14.421018
+          },
+          "southwest": {
+            "lat": 50.08699550000001,
+            "lng": 14.4208565
+          }
+        },
+        "location": {
+          "lat": 50.0871722,
+          "lng": 14.4209762
+        },
+        "location_type": "GEOMETRIC_CENTER",
+        "viewport": {
+          "northeast": {
+            "lat": 50.08851488029151,
+            "lng": 14.4222862302915
+          },
+          "southwest": {
+            "lat": 50.08581691970851,
+            "lng": 14.4195882697085
+          }
+        }
+      },
+      "place_id": "ChIJI3fOOOmUC0cRDnkWEAvQN5A",
+      "types": ["route"]
+    },
+    {
+      "address_components": [
+        {
+          "long_name": "Josefov",
+          "short_name": "Josefov",
+          "types": ["neighborhood", "political"]
+        },
+        {
+          "long_name": "Prague 1",
+          "short_name": "Prague 1",
+          "types": ["political", "sublocality", "sublocality_level_1"]
+        },
+        {
+          "long_name": "Hlavní město Praha",
+          "short_name": "Hlavní město Praha",
+          "types": ["administrative_area_level_2", "political"]
+        },
+        {
+          "long_name": "Prague",
+          "short_name": "Prague",
+          "types": ["administrative_area_level_1", "political"]
+        },
+        {
+          "long_name": "Czechia",
+          "short_name": "CZ",
+          "types": ["country", "political"]
+        },
+        {
+          "long_name": "110 00",
+          "short_name": "110 00",
+          "types": ["postal_code"]
+        }
+      ],
+      "formatted_address": "Josefov, 110 00 Prague 1, Czechia",
+      "geometry": {
+        "bounds": {
+          "northeast": {
+            "lat": 50.0934938,
+            "lng": 14.4221529
+          },
+          "southwest": {
+            "lat": 50.0860011,
+            "lng": 14.4120799
+          }
+        },
+        "location": {
+          "lat": 50.0879214,
+          "lng": 14.4177505
+        },
+        "location_type": "APPROXIMATE",
+        "viewport": {
+          "northeast": {
+            "lat": 50.0934938,
+            "lng": 14.4221529
+          },
+          "southwest": {
+            "lat": 50.0860011,
+            "lng": 14.4120799
+          }
+        }
+      },
+      "place_id": "ChIJ-_JrKOaUC0cRubbfg-OzQYg",
+      "types": ["neighborhood", "political"]
+    },
+    {
+      "address_components": [
+        {
+          "long_name": "110 00",
+          "short_name": "110 00",
+          "types": ["postal_code"]
+        },
+        {
+          "long_name": "Prague 1",
+          "short_name": "Prague 1",
+          "types": ["political", "sublocality", "sublocality_level_1"]
+        },
+        {
+          "long_name": "Hlavní město Praha",
+          "short_name": "Hlavní město Praha",
+          "types": ["administrative_area_level_2", "political"]
+        },
+        {
+          "long_name": "Prague",
+          "short_name": "Prague",
+          "types": ["administrative_area_level_1", "political"]
+        },
+        {
+          "long_name": "Czechia",
+          "short_name": "CZ",
+          "types": ["country", "political"]
+        }
+      ],
+      "formatted_address": "110 00 Prague-Prague 1, Czechia",
+      "geometry": {
+        "bounds": {
+          "northeast": {
+            "lat": 50.0945043,
+            "lng": 14.4377675
+          },
+          "southwest": {
+            "lat": 50.0755951,
+            "lng": 14.4089854
+          }
+        },
+        "location": {
+          "lat": 50.0860381,
+          "lng": 14.4222689
+        },
+        "location_type": "APPROXIMATE",
+        "viewport": {
+          "northeast": {
+            "lat": 50.0945043,
+            "lng": 14.4377675
+          },
+          "southwest": {
+            "lat": 50.0755951,
+            "lng": 14.4089854
+          }
+        }
+      },
+      "place_id": "ChIJvfepuYGSC0cRiB7ouBRU8oM",
+      "types": ["postal_code"]
+    },
+    {
+      "address_components": [
+        {
+          "long_name": "Praha 1",
+          "short_name": "Praha 1",
+          "types": ["postal_town"]
+        },
+        {
+          "long_name": "Praha 1",
+          "short_name": "Praha 1",
+          "types": ["political", "sublocality", "sublocality_level_1"]
+        },
+        {
+          "long_name": "Hlavní město Praha",
+          "short_name": "Hlavní město Praha",
+          "types": ["administrative_area_level_2", "political"]
+        },
+        {
+          "long_name": "Hlavní město Praha",
+          "short_name": "Hlavní město Praha",
+          "types": ["administrative_area_level_1", "political"]
+        },
+        {
+          "long_name": "Czechia",
+          "short_name": "CZ",
+          "types": ["country", "political"]
+        }
+      ],
+      "formatted_address": "Praha 1, Praha-Praha 1, Czechia",
+      "geometry": {
+        "bounds": {
+          "northeast": {
+            "lat": 50.0945043,
+            "lng": 14.4377675
+          },
+          "southwest": {
+            "lat": 50.0755951,
+            "lng": 14.4089854
+          }
+        },
+        "location": {
+          "lat": 50.0860381,
+          "lng": 14.4222689
+        },
+        "location_type": "APPROXIMATE",
+        "viewport": {
+          "northeast": {
+            "lat": 50.0945043,
+            "lng": 14.4377675
+          },
+          "southwest": {
+            "lat": 50.0755951,
+            "lng": 14.4089854
+          }
+        }
+      },
+      "place_id": "ChIJvfepuYGSC0cRTBStNU3lLu4",
+      "types": ["postal_town"]
+    },
+    {
+      "address_components": [
+        {
+          "long_name": "Prague 1",
+          "short_name": "Prague 1",
+          "types": ["political", "sublocality", "sublocality_level_1"]
+        },
+        {
+          "long_name": "Hlavní město Praha",
+          "short_name": "Hlavní město Praha",
+          "types": ["administrative_area_level_2", "political"]
+        },
+        {
+          "long_name": "Prague",
+          "short_name": "Prague",
+          "types": ["administrative_area_level_1", "political"]
+        },
+        {
+          "long_name": "Czechia",
+          "short_name": "CZ",
+          "types": ["country", "political"]
+        }
+      ],
+      "formatted_address": "Prague 1, Czechia",
+      "geometry": {
+        "bounds": {
+          "northeast": {
+            "lat": 50.0953756,
+            "lng": 14.4377527
+          },
+          "southwest": {
+            "lat": 50.0755934,
+            "lng": 14.3847432
+          }
+        },
+        "location": {
+          "lat": 50.0887101,
+          "lng": 14.4155981
+        },
+        "location_type": "APPROXIMATE",
+        "viewport": {
+          "northeast": {
+            "lat": 50.0953756,
+            "lng": 14.4377527
+          },
+          "southwest": {
+            "lat": 50.0755934,
+            "lng": 14.3847432
+          }
+        }
+      },
+      "place_id": "ChIJP9OBE-mUC0cR8gwkXBCvACY",
+      "types": ["political", "sublocality", "sublocality_level_1"]
+    },
+    {
+      "address_components": [
+        {
+          "long_name": "Prague",
+          "short_name": "Prague",
+          "types": ["administrative_area_level_1", "political"]
+        },
+        {
+          "long_name": "Prague",
+          "short_name": "Prague",
+          "types": ["locality", "political"]
+        },
+        {
+          "long_name": "Hlavní město Praha",
+          "short_name": "Hlavní město Praha",
+          "types": ["administrative_area_level_2", "political"]
+        },
+        {
+          "long_name": "Czechia",
+          "short_name": "CZ",
+          "types": ["country", "political"]
+        }
+      ],
+      "formatted_address": "Prague, Czechia",
+      "geometry": {
+        "bounds": {
+          "northeast": {
+            "lat": 50.177403,
+            "lng": 14.7067945
+          },
+          "southwest": {
+            "lat": 49.94193629999999,
+            "lng": 14.2244533
+          }
+        },
+        "location": {
+          "lat": 50.0599268,
+          "lng": 14.5039935
+        },
+        "location_type": "APPROXIMATE",
+        "viewport": {
+          "northeast": {
+            "lat": 50.177403,
+            "lng": 14.7067945
+          },
+          "southwest": {
+            "lat": 49.94193629999999,
+            "lng": 14.2244533
+          }
+        }
+      },
+      "place_id": "ChIJi3lwCZyTC0cRIKgUZg-vAAE",
+      "types": ["administrative_area_level_1", "political"]
+    },
+    {
+      "address_components": [
+        {
+          "long_name": "Hlavní město Praha",
+          "short_name": "Hlavní město Praha",
+          "types": ["administrative_area_level_2", "political"]
+        },
+        {
+          "long_name": "Praha",
+          "short_name": "Praha",
+          "types": ["locality", "political"]
+        },
+        {
+          "long_name": "Hlavní město Praha",
+          "short_name": "Hlavní město Praha",
+          "types": ["administrative_area_level_1", "political"]
+        },
+        {
+          "long_name": "Czechia",
+          "short_name": "CZ",
+          "types": ["country", "political"]
+        }
+      ],
+      "formatted_address": "Hlavní město Praha, Praha, Czechia",
+      "geometry": {
+        "bounds": {
+          "northeast": {
+            "lat": 50.177403,
+            "lng": 14.7067945
+          },
+          "southwest": {
+            "lat": 49.94193629999999,
+            "lng": 14.2244533
+          }
+        },
+        "location": {
+          "lat": 50.0599268,
+          "lng": 14.5039935
+        },
+        "location_type": "APPROXIMATE",
+        "viewport": {
+          "northeast": {
+            "lat": 50.177403,
+            "lng": 14.7067945
+          },
+          "southwest": {
+            "lat": 49.94193629999999,
+            "lng": 14.2244533
+          }
+        }
+      },
+      "place_id": "ChIJi3lwCZyTC0cRAKkUZg-vAAM",
+      "types": ["administrative_area_level_2", "political"]
+    },
+    {
+      "address_components": [
+        {
+          "long_name": "Prague",
+          "short_name": "Prague",
+          "types": ["locality", "political"]
+        },
+        {
+          "long_name": "Hlavní město Praha",
+          "short_name": "Hlavní město Praha",
+          "types": ["administrative_area_level_2", "political"]
+        },
+        {
+          "long_name": "Prague",
+          "short_name": "Prague",
+          "types": ["administrative_area_level_1", "political"]
+        },
+        {
+          "long_name": "Czechia",
+          "short_name": "CZ",
+          "types": ["country", "political"]
+        }
+      ],
+      "formatted_address": "Prague, Czechia",
+      "geometry": {
+        "bounds": {
+          "northeast": {
+            "lat": 50.177403,
+            "lng": 14.7067945
+          },
+          "southwest": {
+            "lat": 49.94193629999999,
+            "lng": 14.2244533
+          }
+        },
+        "location": {
+          "lat": 50.0755381,
+          "lng": 14.4378005
+        },
+        "location_type": "APPROXIMATE",
+        "viewport": {
+          "northeast": {
+            "lat": 50.177403,
+            "lng": 14.7067945
+          },
+          "southwest": {
+            "lat": 49.94193629999999,
+            "lng": 14.2244533
+          }
+        }
+      },
+      "place_id": "ChIJi3lwCZyTC0cRkEAWZg-vAAQ",
+      "types": ["locality", "political"]
+    },
+    {
+      "address_components": [
+        {
+          "long_name": "Czechia",
+          "short_name": "CZ",
+          "types": ["country", "political"]
+        }
+      ],
+      "formatted_address": "Czechia",
+      "geometry": {
+        "bounds": {
+          "northeast": {
+            "lat": 51.0557185,
+            "lng": 18.8592361
+          },
+          "southwest": {
+            "lat": 48.5518081,
+            "lng": 12.090589
+          }
+        },
+        "location": {
+          "lat": 49.81749199999999,
+          "lng": 15.472962
+        },
+        "location_type": "APPROXIMATE",
+        "viewport": {
+          "northeast": {
+            "lat": 51.0557185,
+            "lng": 18.8592361
+          },
+          "southwest": {
+            "lat": 48.5518081,
+            "lng": 12.090589
+          }
+        }
+      },
+      "place_id": "ChIJQ4Ld14-UC0cRb1jb03UcZvg",
+      "types": ["country", "political"]
+    }
+  ],
+  "status": "OK"
+}
