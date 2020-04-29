@@ -19,7 +19,7 @@ const PositionButton = ({onPress}) => {
         style={{
           margin: 10,
           padding: 10,
-          backgroundColor: 'rgba(123,228,149, 0.2)',
+          backgroundColor: 'rgba(123,228,149, 0.1)',
           borderRadius: Style.borderRadiusRoundButton,
           height: 50,
           width: 50,
@@ -27,7 +27,7 @@ const PositionButton = ({onPress}) => {
           justifyContent: 'center',
         }}>
         <View>
-          <Icon name="crosshairs" size={30} color={Colors.greenTitleColor} />
+          <Icon name="crosshairs" size={30} color={Colors.blueTitleColor} />
         </View>
       </TouchableOpacity>
     </View>

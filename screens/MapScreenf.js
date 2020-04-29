@@ -207,12 +207,12 @@ const styles = StyleSheet.create({
   },
   titleStyle: {
     color: 'white',
-    fontSize: Style.fontSize.h7,
+    fontSize: Style.fontSize.h6,
     alignSelf: 'center',
   },
   subtitleStyle: {
     color: 'white',
-    fontSize: Style.fontSize.h8,
+    fontSize: Style.fontSize.h7,
     alignSelf: 'center',
   },
   imageStyle: {

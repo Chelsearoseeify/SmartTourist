@@ -10,6 +10,7 @@ import {
 import {Text} from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Style from '../../constants/Style';
+import StarsRating from '../StarsRating';
 
 const PlaceCard = ({name, imageUrl, rating, onSelect}) => {
   let TouchableCmp = TouchableOpacity;
@@ -34,15 +35,19 @@ const PlaceCard = ({name, imageUrl, rating, onSelect}) => {
             <View style={styles.dataStyle}>
               <Text style={styles.nameStyle}>{name}</Text>
               <View style={styles.ratingStyle}>
+                <StarsRating
+                  rating={rating}
+                  size={17}
+                  fullStarColor={'white'}
+                  emptyStarColor={'white'}
+                />
                 <Text
                   style={{
                     fontSize: Style.fontSize.h6,
-                    marginRight: 5,
                     color: 'white',
                   }}>
                   {rating}
                 </Text>
-                <Icon name="star" style={{marginTop: 3, color: 'white'}} />
               </View>
             </View>
           </View>
@@ -54,7 +59,7 @@ const PlaceCard = ({name, imageUrl, rating, onSelect}) => {
 
 const styles = StyleSheet.create({
   nameStyle: {
-    fontSize: Style.fontSize.h5,
+    fontSize: Style.fontSize.h6,
     fontWeight: 'bold',
     padding: 5,
     color: 'white',
@@ -62,12 +67,14 @@ const styles = StyleSheet.create({
   ratingStyle: {
     padding: 5,
     flexDirection: 'row',
+    alignContent: 'center',
+    justifyContent: 'center',
   },
   cardStyle: {
     margin: Style.marginCard,
     borderRadius: Style.borderRadiusCard,
     flex: 1,
-    height: 220,
+    height: 210,
     elevation: Style.elevation,
   },
   dataStyle: {
@@ -79,7 +86,7 @@ const styles = StyleSheet.create({
   },
   filterStyle: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    backgroundColor: 'rgba(10,10,20, 0.3)',
     borderRadius: Style.borderRadiusCard,
   },
   imageBackgroundStyle: {

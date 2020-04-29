@@ -11,6 +11,7 @@ import Style from '../constants/Style';
 import Detail from '../components/Detail';
 import CustomButton from '../components/Buttons/CustomButton';
 import PlaceScreenButton from '../components/Buttons/PlaceScreenButton';
+import StarsRating from '../components/StarsRating';
 
 const PlaceScreen = props => {
   const dispatch = useDispatch();
@@ -48,9 +49,12 @@ const PlaceScreen = props => {
               <View style={styles.titleViewStyle}>
                 <Text style={styles.placeNameStyle}>{place.name}</Text>
                 <View style={{flexDirection: 'row'}}>
-                  {stars.map(star => (
-                    <Icon name="star" style={styles.reviewIconStyle} />
-                  ))}
+                  <StarsRating
+                    rating={place.rating}
+                    size={24}
+                    fullStarColor={Colors.greenTitleColor}
+                    emptyStarColor={Colors.greenSubTitleColor}
+                  />
                   <Text style={styles.reviewStyle}>
                     {place.user_ratings_total} Reviews
                   </Text>
@@ -121,6 +125,8 @@ const styles = StyleSheet.create({
   },
   placeNameStyle: {
     fontSize: Style.fontSize.h1,
+    color: Colors.blueTitleColor,
+    paddingBottom: Style.paddingCard,
   },
   cardContentStyle: {
     padding: Style.paddingCardContainer,
