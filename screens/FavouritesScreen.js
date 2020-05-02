@@ -11,7 +11,7 @@ import Header from './../components/Header';
 import {setFavourites} from '../store/actions/user';
 import Style from '../constants/Style';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {selectFavouritePlaces} from './../store/actions/user';
+import {selectFavouritePlaces} from './../store/actions/favourite';
 import CustomFloatingButton from './../components/Buttons/CustomFloatingButton';
 import FourPicturesBoard from '../components/CustomBoard/FourPicturesBoard';
 import TwoPicturesBoard from './../components/CustomBoard/TwoPicturesBoard';
@@ -20,7 +20,9 @@ import CardTypes from '../constants/CardTypes';
 
 const FavouriteScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const favouriteFolders = useSelector(state => state.user.favourite_folders);
+  const favouriteFolders = useSelector(
+    state => state.favourites.favourite_folders,
+  );
   let Board = useSelector(state => state.favourites.style.board);
   let numColumns = useSelector(state => state.favourites.style.numColumns);
   let oneColumn = false;

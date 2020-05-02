@@ -11,7 +11,9 @@ import Header from '../components/Header';
 const GroupedPlacesScreen = props => {
   const {navigation, route} = props;
   const {title, cityId} = route.params;
-  const places = useSelector(state => state.user.selected_favourite_places);
+  const places = useSelector(
+    state => state.favourites.selected_favourite_places,
+  );
 
   const renderGridItem = itemData => {
     return (

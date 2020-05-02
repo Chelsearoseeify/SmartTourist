@@ -53,7 +53,7 @@ locateCurrentPosition = () => {
 };
 
 const MapScreenf = ({navigation}) => {
-  const places = useSelector(state => state.user.set_places);
+  const places = useSelector(state => state.places.places);
 
   const markers = [];
   const [initialPosition, setInitialPosition] = useState({

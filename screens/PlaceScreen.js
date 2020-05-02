@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import {PLACES, description} from './../data/dummy-data';
 import {useSelector, useDispatch} from 'react-redux';
-import {toggleFavourite} from '../store/actions/user';
+import {toggleFavourite, addFavourite} from '../store/actions/favourite';
 import Style from '../constants/Style';
 import Detail from '../components/Detail';
 import CustomButton from '../components/Buttons/CustomButton';
@@ -15,11 +15,14 @@ import StarsRating from '../components/StarsRating';
 
 const PlaceScreen = props => {
   const dispatch = useDispatch();
+  const user = useSelector(state => state.user.data);
   const {place, cityName} = props.route.params;
-  let stars = [1, 2, 3, 4, 5];
 
   const addToFavoriteHandler = () => {
-    dispatch(toggleFavourite(place.id, place.cityId, cityName, place.url));
+    dispatch(
+      addFavourite(user.uid, place.id, place.cityId, cityName, place.url),
+    );
+    //dispatch(toggleFavourite(place.id, place.cityId, cityName, place.url));
   };
 
   const pressHandlers = () => {

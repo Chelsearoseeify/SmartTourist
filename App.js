@@ -32,6 +32,8 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
+console.disableYellowBox = true;
+
 const App = () => {
   return (
     <Provider store={store}>

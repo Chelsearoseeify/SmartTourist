@@ -3,7 +3,7 @@ import Category from './../models/Category';
 import City from './../models/City';
 import Trip from '../models/Trip';
 import FavFolder from '../models/FavFolder';
-import FavouriteCity from './../models/FavouriteCity';
+import FavouriteCity from '../models/FavouriteCity';
 
 export const description =
   'Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblò per preparare un testo campione. È sopravvissuto non solo a più di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni ’60, con la diffusione dei fogli di caratteri trasferibili “Letraset”, che contenevano passaggi del Lorem Ipsum, e più recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.';
@@ -276,6 +276,7 @@ export const FAV_FOLDERS = [
       'https://q-xx.bstatic.com/images/hotel/max1024x768/201/201131672.jpg',
       'http://viaggiadipiu.it/wp-content/uploads/2019/02/jorg-angeli-797072-unsplash-e1550006350552.jpg',
     ],
+    ['p2', 'p4', 'p3', 'p1'],
     3,
   ),
   new FavFolder(
@@ -286,14 +287,15 @@ export const FAV_FOLDERS = [
       'https://cdn.getyourguide.com/img/tour_img-1739965-148.jpg',
       'https://www.history.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTY1MTc1MTk3ODI0MDAxNjA5/topic-statue-of-liberty-gettyimages-960610006-promo.jpg',
     ],
+    ['p10', 'p11', 'p12'],
     3,
   ),
 ];
 
-export const FAVOURITES_ID = [
+/* export const FAVOURITES_ID = [
   new FavouriteCity('ci9', ['p2', 'p4', 'p3', 'p1']),
   new FavouriteCity('ci5', ['p10', 'p11', 'p12']),
-];
+]; */
 
 export const FAVOURITES = [
   {

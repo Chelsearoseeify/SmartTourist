@@ -1,6 +1,13 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import Colors from '../constants/Colors';
-import {View, StyleSheet, FlatList, SafeAreaView, Image} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  SafeAreaView,
+  Image,
+  ActivityIndicator,
+} from 'react-native';
 import {Text, Button} from '@ui-kitten/components';
 
 import PlaceCard from '../components/Cards/PlaceCard';
@@ -10,17 +17,28 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
 import Header from './../components/Header';
 import Style from '../constants/Style';
-import {createPlace, fetchPlaces} from './../store/actions/user';
+import {fetchPlaces} from './../store/actions/places';
 
 const MainPageScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const currentCity = useSelector(state => state.user.selected_city);
-  const filteredPlaces = useSelector(state => state.user.set_places);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
+  const selectedCity = useSelector(state => state.cities.selected_city);
+  const filteredPlaces = useSelector(state => state.places.places);
   //dispatch(createPlace('ciao', 'www.ghgoogog.it'));
 
   //this run whenever the component is loaded
   useEffect(() => {
-    dispatch(fetchPlaces(currentCity.id, currentCity.name));
+    const loadProduct = async () => {
+      setIsLoading(true);
+      try {
+        await dispatch(fetchPlaces(selectedCity.id));
+      } catch (error) {
+        setError(error.message); //error to be handled, it has to be defined
+      }
+      setIsLoading(false);
+    };
+    loadProduct();
   }, [dispatch]);
 
   const addTripHandler = () => {
@@ -36,7 +54,7 @@ const MainPageScreen = ({navigation}) => {
         onSelect={() => {
           navigation.navigate('Place', {
             place: itemData.item,
-            cityName: currentCity.name,
+            cityName: selectedCity.name,
           });
         }}
       />
@@ -64,18 +82,32 @@ const MainPageScreen = ({navigation}) => {
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View>
-            <Header title={currentCity.name} navigation={navigation} />
+            <Header title={selectedCity.name} navigation={navigation} />
             <SearchBar />
             <View style={styles.cardStyle}>
-              <FlatList
-                contentContainerStyle={styles.placesContainer}
-                data={filteredPlaces}
-                numColumns={2}
-                renderItem={renderGridItem}
-                horizontal={false}
-                ListHeaderComponent={headerComponent}
-                scrollEnabled={false}
-              />
+              {isLoading ? (
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 600,
+                  }}>
+                  <ActivityIndicator
+                    size="large"
+                    color={Colors.greenTitleColor}
+                  />
+                </View>
+              ) : (
+                <FlatList
+                  contentContainerStyle={styles.placesContainer}
+                  data={filteredPlaces}
+                  numColumns={2}
+                  renderItem={renderGridItem}
+                  horizontal={false}
+                  ListHeaderComponent={headerComponent}
+                  scrollEnabled={false}
+                />
+              )}
             </View>
           </View>
         </ScrollView>

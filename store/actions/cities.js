@@ -1,5 +1,5 @@
-export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
+export const SET_SELECTED_CITY = 'SET_SELECTED_CITY';
 
-export const toggleFavorite = (placeId, cityId) => {
-  return {type: TOGGLE_FAVORITE, placeId: placeId, cityId: cityId};
+export const setSelectedCity = city => {
+  return {type: SET_SELECTED_CITY, city: city};
 };

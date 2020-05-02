@@ -1,5 +1,6 @@
 class CompletePlace {
   constructor(
+    id,
     name,
     cityId,
     types,
@@ -11,6 +12,7 @@ class CompletePlace {
     user_ratings_total,
     description,
   ) {
+    this.id = id;
     this.name = name;
     this.cityId = cityId;
     this.types = types;

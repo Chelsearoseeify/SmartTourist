@@ -1,16 +1,18 @@
-import {PLACES, FAVOURITES_ID} from './../../data/dummy-data';
-import {TOGGLE_FAVORITE} from '../actions/cities';
-import FavFolder from '../../models/FavFolder';
+import {PLACES} from './../../data/dummy-data';
+import {SET_PLACES, CREATE_PLACE} from './../actions/places';
 
 const initialState = {
-  places: PLACES,
-  filteredPlaces: PLACES,
-  favouritePlaces: FAVOURITES_ID,
+  places: [],
 };
 
 const placesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case TOGGLE_FAVORITE:
+    case SET_PLACES: {
+      return {...state, places: action.places};
+    }
+    case CREATE_PLACE: {
+      console.log('Done');
+    }
 
     default:
       return state;

@@ -6,7 +6,7 @@ import {View, StyleSheet, Text, ScrollView} from 'react-native';
 import ListHeader from './ListHeader';
 import CardTypes from '../constants/CardTypes';
 import {useDispatch} from 'react-redux';
-import {setSelectedCity} from '../store/actions/user';
+import {setSelectedCity} from '../store/actions/cities';
 
 const HorizontalScrolliew = ({name, cities, elemType, navigation}) => {
   const dispatch = useDispatch();
