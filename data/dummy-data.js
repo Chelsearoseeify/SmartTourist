@@ -2,8 +2,8 @@ import Place from './../models/Place';
 import Category from './../models/Category';
 import City from './../models/City';
 import Trip from '../models/Trip';
-import FavFolder from '../models/FavFolder';
 import FavouriteCity from '../models/FavouriteCity';
+import FavouritePlaces from './../models/FavouritePlaces';
 
 export const description =
   'Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblò per preparare un testo campione. È sopravvissuto non solo a più di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni ’60, con la diffusione dei fogli di caratteri trasferibili “Letraset”, che contenevano passaggi del Lorem Ipsum, e più recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.';
@@ -266,29 +266,21 @@ export const CITIES = [
   ),
 ];
 
-export const FAV_FOLDERS = [
-  new FavFolder(
-    'ci9',
-    'Edinburgh',
+export const FAVOURITE_PLACES = new FavouritePlaces([
+  '-M60tZtUJZX_h2YiTDGc',
+  '-M60tZtZMwCS9FokpS02',
+]);
+
+export const FAVOURITE_CITIES = [
+  new FavouriteCity(
+    'ci1',
+    'London',
     [
-      'https://upload.wikimedia.org/wikipedia/commons/c/ce/Holyroodhouse%2C_front_view.jpg',
-      'https://www.wanderlustitalia.it/wp-content/uploads/2014/09/Copertina-Cattedrale-1280x720.jpg',
-      'https://q-xx.bstatic.com/images/hotel/max1024x768/201/201131672.jpg',
-      'http://viaggiadipiu.it/wp-content/uploads/2019/02/jorg-angeli-797072-unsplash-e1550006350552.jpg',
+      'https://lh3.googleusercontent.com/p/AF1QipPxsdEyR2qMZ7jXatbGvP50u3g5FK5exsSI2kLW=s1600-w1000',
+      'https://lh3.googleusercontent.com/p/AF1QipP9wZz6OiWJhsQUwNaPYrtV8f3sWUlakQ0J8t_T=s1600-w1000',
     ],
-    ['p2', 'p4', 'p3', 'p1'],
-    3,
-  ),
-  new FavFolder(
-    'ci5',
-    'New York',
-    [
-      'https://www.innocentiemangonipiante.it/templates/yootheme/cache/central-park-pov-1cab2d8e.jpeg',
-      'https://cdn.getyourguide.com/img/tour_img-1739965-148.jpg',
-      'https://www.history.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTY1MTc1MTk3ODI0MDAxNjA5/topic-statue-of-liberty-gettyimages-960610006-promo.jpg',
-    ],
-    ['p10', 'p11', 'p12'],
-    3,
+    ['-M60tZtUJZX_h2YiTDGc', '-M60tZtZMwCS9FokpS02'],
+    2,
   ),
 ];
 

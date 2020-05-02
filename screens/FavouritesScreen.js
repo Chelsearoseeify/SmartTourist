@@ -1,31 +1,44 @@
-import React, {Component} from 'react';
-import {Layout, Text, Button} from '@ui-kitten/components';
+import React, {useEffect, useState} from 'react';
 import Colors from '../constants/Colors';
-import GridView from './../components/GridView';
 import {View, StyleSheet, SafeAreaView, FlatList} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import ThreePicturesBoard from './../components/CustomBoard/ThreePicturesBoard';
-import {FAVOURITES} from './../data/dummy-data';
 import {useSelector, useDispatch} from 'react-redux';
 import Header from './../components/Header';
-import {setFavourites} from '../store/actions/user';
 import Style from '../constants/Style';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {selectFavouritePlaces} from './../store/actions/favourite';
+import {
+  selectFavouritePlaces,
+  fetchFavourites,
+} from './../store/actions/favourite';
 import CustomFloatingButton from './../components/Buttons/CustomFloatingButton';
-import FourPicturesBoard from '../components/CustomBoard/FourPicturesBoard';
-import TwoPicturesBoard from './../components/CustomBoard/TwoPicturesBoard';
 import {setCardStyle} from '../store/actions/favourite';
 import CardTypes from '../constants/CardTypes';
 
 const FavouriteScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const favouriteFolders = useSelector(
-    state => state.favourites.favourite_folders,
+  const favouriteCities = useSelector(
+    state => state.favourites.favourite_cities,
   );
+
+  const [isLoading, setIsLoading] = useState(false);
+  const user = useSelector(state => state.user.data);
   let Board = useSelector(state => state.favourites.style.board);
   let numColumns = useSelector(state => state.favourites.style.numColumns);
   let oneColumn = false;
+
+  //this run whenever the component is loaded
+  useEffect(() => {
+    const loadProduct = async () => {
+      setIsLoading(true);
+      try {
+        await dispatch(fetchFavourites(user.uid));
+      } catch (error) {
+        setError(error.message); //error to be handled, it has to be defined
+      }
+      setIsLoading(false);
+    };
+    loadProduct();
+  }, [dispatch]);
 
   const setCardStyleHandler = cardType => {
     dispatch(setCardStyle(cardType));
@@ -42,7 +55,6 @@ const FavouriteScreen = ({navigation}) => {
         places={itemData.item.imageQueue}
         counter={itemData.item.counter}
         onPress={() => {
-          dispatch(selectFavouritePlaces(itemData.item.cityId));
           navigation.navigate('GroupedPlaces', {
             cityId: itemData.item.cityId,
             title: itemData.item.cityName,
@@ -102,7 +114,7 @@ const FavouriteScreen = ({navigation}) => {
             {oneColumn && (
               <FlatList
                 contentContainerStyle={styles.placesContainer}
-                data={favouriteFolders}
+                data={favouriteCities}
                 numColumns={1}
                 horizontal={false}
                 renderItem={renderGridItem}
@@ -113,7 +125,7 @@ const FavouriteScreen = ({navigation}) => {
             {!oneColumn && (
               <FlatList
                 contentContainerStyle={styles.placesContainer}
-                data={favouriteFolders}
+                data={favouriteCities}
                 numColumns={2}
                 horizontal={false}
                 renderItem={renderGridItem}

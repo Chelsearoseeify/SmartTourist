@@ -16,11 +16,21 @@ import StarsRating from '../components/StarsRating';
 const PlaceScreen = props => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.data);
+  const favouriteCities = useSelector(
+    state => state.favourites.favourite_cities,
+  );
   const {place, cityName} = props.route.params;
 
   const addToFavoriteHandler = () => {
     dispatch(
-      addFavourite(user.uid, place.id, place.cityId, cityName, place.url),
+      addFavourite(
+        user.uid,
+        place.id,
+        place.cityId,
+        cityName,
+        place.url,
+        favouriteCities,
+      ),
     );
     //dispatch(toggleFavourite(place.id, place.cityId, cityName, place.url));
   };

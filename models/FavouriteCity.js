@@ -1,8 +1,11 @@
-class FavouritePlaces {
-  constructor(id, placesIds) {
-    this.id = id;
+class FavouriteCity {
+  constructor(cityId, cityName, imageQueue, placesIds, counter = 0) {
+    this.cityId = cityId;
+    this.cityName = cityName;
+    this.imageQueue = imageQueue; //queue
     this.placesIds = placesIds;
+    this.counter = counter;
   }
 }
 
-export default FavouritePlaces;
+export default FavouriteCity;

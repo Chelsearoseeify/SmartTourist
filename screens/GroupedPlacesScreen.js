@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import Colors from '../constants/Colors';
 import {View, StyleSheet, SafeAreaView, FlatList} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -7,13 +7,30 @@ import PlaceCard from '../components/Cards/PlaceCard';
 import {useSelector, useDispatch} from 'react-redux';
 import Style from '../constants/Style';
 import Header from '../components/Header';
+import {selectFavouritePlaces} from '../store/actions/favourite';
 
 const GroupedPlacesScreen = props => {
   const {navigation, route} = props;
   const {title, cityId} = route.params;
+
+  const [isLoading, setIsLoading] = useState(false);
   const places = useSelector(
     state => state.favourites.selected_favourite_places,
   );
+
+  //this run whenever the component is loaded
+  useEffect(() => {
+    const loadProduct = async () => {
+      setIsLoading(true);
+      try {
+        await dispatch(selectFavouritePlaces(itemData.item.cityId));
+      } catch (error) {
+        setError(error.message); //error to be handled, it has to be defined
+      }
+      setIsLoading(false);
+    };
+    loadProduct();
+  }, [dispatch]);
 
   const renderGridItem = itemData => {
     return (

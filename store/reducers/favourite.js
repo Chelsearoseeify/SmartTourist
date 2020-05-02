@@ -1,16 +1,24 @@
-import {FAVOURITES, FAV_FOLDERS} from './../../data/dummy-data';
+import {
+  FAVOURITES,
+  FAVOURITE_CITIES,
+  FAVOURITE_PLACES,
+} from './../../data/dummy-data';
 import FourPicturesBoard from '../../components/CustomBoard/FourPicturesBoard';
-import {SET_CARD_STYLE} from '../actions/favourite';
+import {
+  SET_CARD_STYLE,
+  FETCH_FAVOURITES,
+  SELECT_FAV_PLACES,
+  TOGGLE_FAVOURITE,
+} from '../actions/favourite';
 import CardTypes from '../../constants/CardTypes';
 import TwoPicturesBoard from './../../components/CustomBoard/TwoPicturesBoard';
 import ThreePicturesBoard from './../../components/CustomBoard/ThreePicturesBoard';
-import {TOGGLE_FAVOURITE, SELECT_FAV_PLACES} from './../actions/user';
 import FavouriteCity from './../../models/FavouriteCity';
-import FavFolder from './../../models/FavFolder';
 
 const initialState = {
   favourites: FAVOURITES,
-  favourite_folders: FAV_FOLDERS,
+  favourite_cities: FAVOURITE_CITIES,
+  favourite_places: FAVOURITE_PLACES,
   selected_favourite_places: [],
   style: {
     board: FourPicturesBoard,
@@ -45,53 +53,27 @@ const favouritesReducer = (state = initialState, action) => {
           break;
       }
     case TOGGLE_FAVOURITE: {
-      //console.log(action.placeId, action.cityId, action.placeImage);
-      const existingFolder = state.favourite_folders.find(
-        city => city.cityId === action.cityId,
+      const favouriteCities = [...state.favourite_cities];
+      console.log(action.newCity);
+      const index = state.favourite_cities.findIndex(
+        city => city.cityId === action.newCity.cityId,
       );
-      if (existingFolder) {
-        //there is already at least one fav place
-        const placeIndex = existingFolder.placesIds.findIndex(
-          place => place === action.placeId,
-        );
-        console.log(existingFolder);
-        if (placeIndex >= 0) {
-          existingFolder.placesIds.splice(placeIndex, 1);
-          existingFolder.imageQueue.splice(placeIndex, 1);
-          existingFolder.counter--;
-          console.log('removd');
-        } else {
-          existingFolder.placesIds.unshift(action.placeId);
-          existingFolder.imageQueue.unshift(action.placeImage);
-          existingFolder.counter++;
-          console.log('added');
-        }
-        console.log(existingFolder);
-      } else {
-        const newFolder = new FavFolder(
-          action.cityId,
-          action.cityName,
-          [action.placeImage],
-          [action.placeId],
-          1,
-        );
-        console.log('NEW FOLDER');
-        const newState = {
-          ...state,
-          favourite_folders: [...state.favourite_folders, newFolder],
-        };
-        console.log(newState.favourite_folders);
-        return newState;
-      }
+      if (index >= 0) favouriteCities.splice(index, 1);
+      favouriteCities.unshift(action.newCity);
+      console.log(favouriteCities);
+      return {...state, favourite_cities: favouriteCities};
     }
     case SELECT_FAV_PLACES: {
-      let selectFavouritePlaces = [];
-      const placesIds = state.favourite_folders.find(
+      let selectedPlaces = [];
+      const placesIds = state.favourite_cities.find(
         city => city.cityId === action.cityId,
       ).placesIds;
-      placesIds.map(id => selectFavouritePlaces.push(getPlaceFromId(id)));
-      console.log(selectFavouritePlaces);
-      return {...state, selected_favourite_places: selectFavouritePlaces};
+      placesIds.map(id => selectedPlaces.push(getPlaceFromId(id)));
+      console.log(selectedPlaces);
+      return {...state, selected_favourite_places: selectedPlaces};
+    }
+    case FETCH_FAVOURITES: {
+      return {...state, favourite_cities: action.favourites};
     }
 
     default:
