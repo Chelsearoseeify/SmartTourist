@@ -6,12 +6,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import Header from './../components/Header';
 import Style from '../constants/Style';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {
-  selectFavouritePlaces,
-  fetchFavourites,
-} from './../store/actions/favourite';
+import {setCardStyle, fetchFavourites} from '../store/actions/favourites';
 import CustomFloatingButton from './../components/Buttons/CustomFloatingButton';
-import {setCardStyle} from '../store/actions/favourite';
 import CardTypes from '../constants/CardTypes';
 
 const FavouriteScreen = ({navigation}) => {
@@ -19,7 +15,7 @@ const FavouriteScreen = ({navigation}) => {
   const favouriteCities = useSelector(
     state => state.favourites.favourite_cities,
   );
-
+  const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const user = useSelector(state => state.user.data);
   let Board = useSelector(state => state.favourites.style.board);

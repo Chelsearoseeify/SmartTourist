@@ -1,5 +1,7 @@
-import CompletePlace from '../../models/CompletePlace';
+import FavouriteCity from './../../models/FavouriteCity';
 import database from '@react-native-firebase/database';
+import CompletePlace from './../../models/CompletePlace';
+import FavouritePlace from './../../models/FavouritePlace';
 export const CREATE_PLACE = 'CREATE_PLACE';
 export const SET_PLACES = 'SET_PLACES';
 const API_KEY = 'AIzaSyBZnXD0YlNLMtcDswoLpkUTu_cBYP3Ud0w';

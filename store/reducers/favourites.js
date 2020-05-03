@@ -1,24 +1,18 @@
 import {
-  FAVOURITES,
-  FAVOURITE_CITIES,
-  FAVOURITE_PLACES,
-} from './../../data/dummy-data';
-import FourPicturesBoard from '../../components/CustomBoard/FourPicturesBoard';
-import {
   SET_CARD_STYLE,
   FETCH_FAVOURITES,
   SELECT_FAV_PLACES,
-  TOGGLE_FAVOURITE,
-} from '../actions/favourite';
+  TOGGLE_FAVOURITE_CITY,
+  TOGGLE_FAVOURITE_PLACE,
+} from '../actions/favourites';
 import CardTypes from '../../constants/CardTypes';
-import TwoPicturesBoard from './../../components/CustomBoard/TwoPicturesBoard';
-import ThreePicturesBoard from './../../components/CustomBoard/ThreePicturesBoard';
-import FavouriteCity from './../../models/FavouriteCity';
+import TwoPicturesBoard from '../../components/CustomBoard/TwoPicturesBoard';
+import ThreePicturesBoard from '../../components/CustomBoard/ThreePicturesBoard';
+import FourPicturesBoard from '../../components/CustomBoard/FourPicturesBoard';
 
 const initialState = {
-  favourites: FAVOURITES,
-  favourite_cities: FAVOURITE_CITIES,
-  favourite_places: FAVOURITE_PLACES,
+  favourite_cities: [],
+  favourite_places: [],
   selected_favourite_places: [],
   style: {
     board: FourPicturesBoard,
@@ -26,14 +20,10 @@ const initialState = {
   },
 };
 
-const getPlaceFromId = placeId => {
-  return PLACES.find(place => place.id === placeId);
-};
-
 const favouritesReducer = (state = initialState, action) => {
+  console.log(action.type);
   switch (action.type) {
-    case SET_CARD_STYLE:
-      console.log('im in');
+    case SET_CARD_STYLE: {
       let newStyle = {
         board: null,
         numColumns: 2,
@@ -48,34 +38,37 @@ const favouritesReducer = (state = initialState, action) => {
         case CardTypes.FOUR_PICTURES:
           newStyle.board = FourPicturesBoard;
           return {...state, style: newStyle};
-
         default:
           break;
       }
-    case TOGGLE_FAVOURITE: {
+      break;
+    }
+    case TOGGLE_FAVOURITE_CITY: {
       const favouriteCities = [...state.favourite_cities];
-      console.log(action.newCity);
       const index = state.favourite_cities.findIndex(
         city => city.cityId === action.newCity.cityId,
       );
       if (index >= 0) favouriteCities.splice(index, 1);
       favouriteCities.unshift(action.newCity);
-      console.log(favouriteCities);
       return {...state, favourite_cities: favouriteCities};
     }
+    case TOGGLE_FAVOURITE_PLACE: {
+      const favouritePlaces = [...state.favourite_places];
+      const index = state.favourite_places.findIndex(
+        place => place.placeId === action.newPlace.placeId,
+      );
+      if (index >= 0) favouritePlaces.splice(index, 1);
+      else favouritePlaces.unshift(action.newPlace);
+      return {...state, favourite_places: favouritePlaces};
+    }
     case SELECT_FAV_PLACES: {
-      let selectedPlaces = [];
-      const placesIds = state.favourite_cities.find(
-        city => city.cityId === action.cityId,
-      ).placesIds;
-      placesIds.map(id => selectedPlaces.push(getPlaceFromId(id)));
-      console.log(selectedPlaces);
-      return {...state, selected_favourite_places: selectedPlaces};
+      console.log(action.selectedPlaces);
+      return {...state, selected_favourite_places: action.selectedPlaces};
     }
     case FETCH_FAVOURITES: {
+      console.log('AAAAAAAAAAAAA');
       return {...state, favourite_cities: action.favourites};
     }
-
     default:
       return state;
   }

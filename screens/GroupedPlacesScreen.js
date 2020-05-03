@@ -3,27 +3,32 @@ import Colors from '../constants/Colors';
 import {View, StyleSheet, SafeAreaView, FlatList} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import BackButton from '../components/Buttons/BackButton';
-import PlaceCard from '../components/Cards/PlaceCard';
 import {useSelector, useDispatch} from 'react-redux';
 import Style from '../constants/Style';
 import Header from '../components/Header';
-import {selectFavouritePlaces} from '../store/actions/favourite';
+import {selectFavouritePlaces} from '../store/actions/favourites';
+import FavouritePlaceCard from '../components/Cards/FavouritePlaceCard';
 
 const GroupedPlacesScreen = props => {
+  const dispatch = useDispatch();
   const {navigation, route} = props;
   const {title, cityId} = route.params;
-
+  const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const places = useSelector(
     state => state.favourites.selected_favourite_places,
   );
+  //const cities = useSelector(state => state.places.favourite_cities);
+  //const city = cities.find(city => city.cityId === props.route.params.cityId);
+  const user = useSelector(state => state.user.data);
+  //console.log(places);
 
   //this run whenever the component is loaded
   useEffect(() => {
     const loadProduct = async () => {
       setIsLoading(true);
       try {
-        await dispatch(selectFavouritePlaces(itemData.item.cityId));
+        await dispatch(selectFavouritePlaces(user.uid));
       } catch (error) {
         setError(error.message); //error to be handled, it has to be defined
       }
@@ -33,10 +38,11 @@ const GroupedPlacesScreen = props => {
   }, [dispatch]);
 
   const renderGridItem = itemData => {
+    console.log(itemData.item);
     return (
-      <PlaceCard
+      <FavouritePlaceCard
         name={itemData.item.name}
-        imageUrl={itemData.item.imageUrl}
+        imageUrl={itemData.item.url}
         onSelect={() => {
           navigation.navigate('Place', {
             placeId: itemData.item.id,

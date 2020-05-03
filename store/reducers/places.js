@@ -1,4 +1,3 @@
-import {PLACES} from './../../data/dummy-data';
 import {SET_PLACES, CREATE_PLACE} from './../actions/places';
 
 const initialState = {
@@ -12,6 +11,7 @@ const placesReducer = (state = initialState, action) => {
     }
     case CREATE_PLACE: {
       console.log('Done');
+      break;
     }
 
     default:

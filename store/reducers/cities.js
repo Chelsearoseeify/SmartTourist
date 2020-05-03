@@ -7,10 +7,10 @@ const initialState = {
   top_destinations: CITIES,
   beautiful_cities: CITIES,
   selected_city: new City(
-    'ci7',
-    'Prague',
-    'https://lp-cms-production.imgix.net/features/2019/07/shutterstockRF_300856853-f8561259593d.jpg',
-    require('./../../assets/images/icons/Prague.png'),
+    'ci6',
+    'Paris',
+    'https://lp-cms-production.imgix.net/image_browser/Effiel%20Tower%20-%20Paris%20Highlights.jpg?format=auto',
+    require('./../../assets/images/icons/Paris.png'),
   ),
 };
 

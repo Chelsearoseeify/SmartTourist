@@ -2,16 +2,20 @@ import React, {Component} from 'react';
 import Colors from '../constants/Colors';
 import {View, ImageBackground, StyleSheet, Text} from 'react-native';
 import BackButton from '../components/Buttons/BackButton';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import {PLACES, description} from './../data/dummy-data';
 import {useSelector, useDispatch} from 'react-redux';
-import {toggleFavourite, addFavourite} from '../store/actions/favourite';
 import Style from '../constants/Style';
 import Detail from '../components/Detail';
-import CustomButton from '../components/Buttons/CustomButton';
 import PlaceScreenButton from '../components/Buttons/PlaceScreenButton';
 import StarsRating from '../components/StarsRating';
+import FavouriteCity from './../models/FavouriteCity';
+import actionType from '../constants/actionType';
+import {
+  toggleFavouritePlace,
+  toggleFavouriteCity,
+} from '../store/actions/favourites';
+import FavouritePlace from '../models/FavouritePlace';
 
 const PlaceScreen = props => {
   const dispatch = useDispatch();
@@ -20,19 +24,49 @@ const PlaceScreen = props => {
     state => state.favourites.favourite_cities,
   );
   const {place, cityName} = props.route.params;
-
   const addToFavoriteHandler = () => {
+    const existingCity = favouriteCities.find(
+      city => city.cityId === place.cityId,
+    );
+    let newCity = new FavouriteCity(place.cityId, cityName, [], []);
+    let cityActionType = '';
+    let placeActionType = '';
+    if (existingCity) {
+      console.log('THE CITY EXISTS');
+      const placeIndex = existingCity.placesIds.findIndex(
+        id => id === place.id,
+      );
+      let placesIds = [...existingCity.placesIds];
+      let imageQueue = [...existingCity.imageQueue];
+      if (placeIndex >= 0) {
+        console.log('THE PLACE EXISTS');
+        placeActionType = actionType.DELETE;
+        placesIds.splice(placeIndex, 1);
+        imageQueue.splice(placeIndex, 1);
+      } else {
+        console.log("THE PLACE DOESN'T EXIST");
+        placeActionType = actionType.ADD;
+        placesIds.unshift(place.id);
+        imageQueue.unshift(place.url);
+      }
+      cityActionType = actionType.UPDATE;
+      newCity.placesIds = placesIds;
+      newCity.imageQueue = imageQueue;
+    } else {
+      console.log("THE CITY DOESN'T EXIST");
+      newCity.placesIds = [place.id];
+      newCity.imageQueue = [place.url];
+      cityActionType = actionType.SET;
+      placeActionType = actionType.ADD;
+    }
+    dispatch(toggleFavouriteCity(user.uid, newCity, cityActionType));
     dispatch(
-      addFavourite(
+      toggleFavouritePlace(
         user.uid,
-        place.id,
-        place.cityId,
-        cityName,
-        place.url,
-        favouriteCities,
+        new FavouritePlace(place.cityId, place.id, place.name, place.url),
+        placeActionType,
       ),
     );
-    //dispatch(toggleFavourite(place.id, place.cityId, cityName, place.url));
   };
 
   const pressHandlers = () => {

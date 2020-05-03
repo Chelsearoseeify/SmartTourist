@@ -20,7 +20,7 @@ import tripsReducer from './store/reducers/trips';
 import placesReducer from './store/reducers/places';
 import cityReducer from './store/reducers/cities';
 import userReducer from './store/reducers/user';
-import favouritesReducer from './store/reducers/favourite';
+import favouritesReducer from './store/reducers/favourites';
 
 const rootReducer = combineReducers({
   trips: tripsReducer,
