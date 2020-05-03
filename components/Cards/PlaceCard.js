@@ -19,7 +19,7 @@ const PlaceCard = ({name, imageUrl, rating, onSelect}) => {
     TouchableCmp = TouchableNativeFeedback;
 
   return (
-    <TouchableCmp onPress={onSelect}>
+    <TouchableCmp style={{flex: 1}} onPress={onSelect}>
       <View style={styles.cardStyle}>
         <ImageBackground
           source={{

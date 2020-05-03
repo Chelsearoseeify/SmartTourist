@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Colors from '../constants/Colors';
 import {
   View,
@@ -8,18 +8,18 @@ import {
   Image,
   ActivityIndicator,
 } from 'react-native';
-import {Text, Button} from '@ui-kitten/components';
+import { Text, Button } from '@ui-kitten/components';
 
 import PlaceCard from '../components/Cards/PlaceCard';
 import SearchBar from '../components/SearchBar';
 import CustomFloatingButton from '../components/Buttons/CustomFloatingButton';
-import {ScrollView} from 'react-native-gesture-handler';
-import {useSelector, useDispatch} from 'react-redux';
+import { ScrollView } from 'react-native-gesture-handler';
+import { useSelector, useDispatch } from 'react-redux';
 import Header from './../components/Header';
 import Style from '../constants/Style';
-import {fetchPlaces} from './../store/actions/places';
+import { fetchPlaces } from './../store/actions/places';
 
-const MainPageScreen = ({navigation}) => {
+const MainPageScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
@@ -98,16 +98,16 @@ const MainPageScreen = ({navigation}) => {
                   />
                 </View>
               ) : (
-                <FlatList
-                  contentContainerStyle={styles.placesContainer}
-                  data={filteredPlaces}
-                  numColumns={2}
-                  renderItem={renderGridItem}
-                  horizontal={false}
-                  ListHeaderComponent={headerComponent}
-                  scrollEnabled={false}
-                />
-              )}
+                  <FlatList
+                    contentContainerStyle={styles.placesContainer}
+                    data={filteredPlaces}
+                    numColumns={2}
+                    renderItem={renderGridItem}
+                    horizontal={false}
+                    ListHeaderComponent={headerComponent}
+                    scrollEnabled={false}
+                  />
+                )}
             </View>
           </View>
         </ScrollView>
@@ -138,7 +138,7 @@ let styles = StyleSheet.create({
     borderWidth: 1,
   },
   placesContainer: {
-    marginHorizontal: 5,
+    marginHorizontal: 5
   },
   cardStyle: {
     marginTop: Style.marginTopCardContainer,
@@ -154,7 +154,7 @@ let styles = StyleSheet.create({
 
 export default MainPageScreen;
 
-/* 
+/*
   const sendData = () => {
     filteredPlaces.map(place => {
       dispatch(

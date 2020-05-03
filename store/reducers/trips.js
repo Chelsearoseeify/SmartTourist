@@ -11,10 +11,10 @@ export default (state = initialState, action) => {
         case CREATE_TRIP:
             const newTrip = new Trip(
                 Math.random(0,1000),
-                action.tripData.name,
-                action.tripData.city,
-                action.tripData.startDate,
-                action.tripData.endDate,
+                action.trip.name,
+                action.trip.city,
+                action.trip.startDate,
+                action.trip.endDate,
                 []
             );
 

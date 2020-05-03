@@ -1,54 +1,63 @@
-import React from 'react';
-import {StyleSheet} from 'react-native';
-import {Input, Icon, Layout} from '@ui-kitten/components';
+import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
+import { Layout, Icon, Input } from '@ui-kitten/components';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import Colors from '../constants/Colors';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
-import Style from '../constants/Style';
 
-const CalendarIcon = () => (
-  <FontAwesome5Icon
-    style={{
-      fontSize: Style.inputIconSize,
-      color: Colors.greyIconColor,
-    }}
-    name="calendar-alt"
-  />
+const CalendarIcon = (props) => (
+  <Icon {...props} name='calendar' />
 );
 
-export const CustomDatePicker = () => {
-  const [date, setDate] = React.useState(new Date());
-  const [value, setValue] = React.useState('');
+export const CustomDatePicker = (props) => {
+  const [dateText, setDateText] = useState('');
+  const [date, setDate] = useState(new Date());
+  const [show, setShow] = useState(false);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+    setDateText(currentDate.toLocaleDateString("en-US"));
+  };
+
   return (
-    <Layout style={styles.container}>
-      <Input
-        value={value}
-        placeholder={'From'}
-        onChangeText={nextValue => setValue(nextValue)}
+    <Layout>
+      {/* <Datepicker
         style={styles.inputStyle}
-        icon={CalendarIcon}
-      />
+        date={date}
+        onSelect={newDate => setDate(newDate)}
+        accessoryRight={CalendarIcon}
+      /> */}
       <Input
-        value={value}
-        placeholder={'To'}
-        onChangeText={nextValue => setValue(nextValue)}
+        label={'    ' + props.label}
+        value={dateText}
+        placeholder={props.placeholder}
+        onFocus={() => setShow(true)}
+        onBlur={() => setShow(false)}
         style={styles.inputStyle}
-        icon={CalendarIcon}
+        accessoryRight={CalendarIcon}
       />
+      {show && (
+        <DateTimePicker
+        testID="dateTimePicker"
+        timeZoneOffsetInMinutes={0}
+        value={date}
+        is24Hour={true}
+        display="default"
+        onChange={onChange}
+        />
+      )}
     </Layout>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-  },
   inputStyle: {
+    marginVertical: 5,
     backgroundColor: Colors.inputBackgroundColor,
-    paddingHorizontal: 15,
-    marginVertical: 10,
     borderColor: Colors.inputBackgroundColor,
     borderWidth: 0,
-    borderRadius: Style.borderRadiusCard,
-    width: '50%',
+    borderRadius: 20,
+    width: '100%'
   },
 });

@@ -1,20 +1,39 @@
-import React, {Component} from 'react';
-import {Layout, Text, Button, Input} from '@ui-kitten/components';
+import React, { useState } from 'react';
+import { Layout, Text, Button, Input } from '@ui-kitten/components';
 import Colors from '../constants/Colors';
-import {View, StyleSheet, SafeAreaView} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import HorizontalScrollView from '../components/HorizontalScrollView';
-import {CustomDatePicker} from './../components/DatePicker';
+import { CustomDatePicker } from './../components/DatePicker';
 import CustomButton from '../components/Buttons/CustomButton';
 import CardTypes from '../constants/CardTypes';
-import {CITIES} from '../data/dummy-data';
 import BackButton from './../components/Buttons/BackButton';
-import {useSelector} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Header from '../components/Header';
 import Style from '../constants/Style';
 
+import * as tripActions from '../store/actions/trips';
+
+import moment from 'moment';
+
 const NewTripView = () => {
-  const [value, setValue] = React.useState('');
+  const dispatch = useDispatch();
+  const [tripName, setTripName] = useState('');
+  const [cityName, setCityName] = useState('');
+  const [startDate, setStartDate] = useState(moment());
+  const [endDate, setEndDate] = useState(moment().add(1, 'd'));
+
+  const addTripHandler = () => {
+    dispatch(tripActions.createTrip(
+      { 
+        name: tripName,
+        city: cityName,
+        startDate: startDate,
+        endDate, endDate
+      }
+    ))
+  }
+
   return (
     <SafeAreaView>
       <View style={styles.listViewStyle}>
@@ -24,23 +43,24 @@ const NewTripView = () => {
 
         <View
           style={{
-            paddingHorizontal: 5,
+            paddingHorizontal: 20,
             width: '100%',
             alignContent: 'center',
           }}>
           <Input
-            value={value}
+            value={tripName}
             placeholder="Choose your trip name"
-            onChangeText={nextValue => setValue(nextValue)}
+            onChangeText={v => setTripName(v)}
             style={styles.inputStyle}
           />
           <Input
-            value={value}
+            value={cityName}
             placeholder="Choose your city"
-            onChangeText={nextValue => setValue(nextValue)}
+            onChangeText={v => setCityName(v)}
             style={styles.inputStyle}
           />
-          <CustomDatePicker />
+          <CustomDatePicker label='From' placeholder="Choose start date" />
+          <CustomDatePicker label='To' placeholder="Choose end date" />
         </View>
         <View
           style={{
@@ -48,8 +68,8 @@ const NewTripView = () => {
             paddingHorizontal: 5,
             alignItems: 'flex-end',
           }}>
-          <View style={{width: 150}}>
-            <CustomButton text={'ADD'} />
+          <View style={{ width: 150 }}>
+            <CustomButton text={'ADD'} onPress={addTripHandler} />
           </View>
         </View>
       </View>
@@ -75,12 +95,12 @@ const AddTripScreen = props => {
             <View style={styles.cardStyle}>
               <NewTripView />
             </View>
-            <View style={[styles.cardStyle, {height: '100%'}]}>
+            <View style={[styles.cardStyle, { height: '100%' }]}>
               <View style={styles.listViewStyle}>
                 <View>
                   <Text style={styles.subtitleStyle}>Suggestions</Text>
                 </View>
-                <View style={{paddingLeft: 25, height: '100%'}}>
+                <View style={{ paddingLeft: 25, height: '100%' }}>
                   <HorizontalScrollView
                     name={'Top destinations'}
                     cities={useSelector(state => state.cities.top_destinations)}
@@ -106,7 +126,7 @@ const AddTripScreen = props => {
 const topSpace = 70;
 
 let styles = StyleSheet.create({
-  size: {height: 210, width: 200},
+  size: { height: 210, width: 200 },
   container: {
     backgroundColor: Colors.backgroundColor,
     flex: 1,
@@ -141,7 +161,6 @@ let styles = StyleSheet.create({
   },
   inputStyle: {
     backgroundColor: Colors.inputBackgroundColor,
-    marginHorizontal: 15,
     marginVertical: 5,
     borderColor: Colors.inputBackgroundColor,
     borderWidth: 0,
@@ -156,7 +175,7 @@ let styles = StyleSheet.create({
     paddingStart: 5,
     marginHorizontal: 25,
     paddingBottom: 5,
-  },
+  }
 });
 
 export default AddTripScreen;
