@@ -10,10 +10,12 @@ import Header from '../components/Header';
 import {selectFavouritePlaces} from '../store/actions/favourite';
 
 const GroupedPlacesScreen = props => {
+  const dispatch = useDispatch();
   const {navigation, route} = props;
   const {title, cityId} = route.params;
 
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
   const places = useSelector(
     state => state.favourites.selected_favourite_places,
   );
@@ -30,7 +32,7 @@ const GroupedPlacesScreen = props => {
       setIsLoading(false);
     };
     loadProduct();
-  }, [dispatch]);
+  }, [dispatch, selectFavouritePlaces]);
 
   const renderGridItem = itemData => {
     return (
