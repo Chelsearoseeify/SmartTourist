@@ -2,6 +2,7 @@ import CompletePlace from '../../models/CompletePlace';
 import database from '@react-native-firebase/database';
 export const CREATE_PLACE = 'CREATE_PLACE';
 export const SET_PLACES = 'SET_PLACES';
+export const FETCH_PLACE = 'FETCH_PLACE';
 const API_KEY = 'AIzaSyBZnXD0YlNLMtcDswoLpkUTu_cBYP3Ud0w';
 
 const getPictures = async photo_reference => {
@@ -13,6 +14,32 @@ const getPictures = async photo_reference => {
       'https://www.wanderlustitalia.it/wp-content/uploads/2014/09/Copertina-Cattedrale-1280x720.jpg',
   };
   return response.url;
+};
+
+export const fetchPlace = placeId => {
+  return async dispatch => {
+    try {
+      let ref = database().ref(`places/${placeId}`);
+      let res = await ref.once('value');
+      const place = new CompletePlace(
+        res.key,
+        res.val().name,
+        res.val().cityId,
+        res.val().types,
+        res.val().url,
+        res.val().rating,
+        res.val().geometry,
+        res.val().address,
+        res.val().business_status,
+        res.val().user_ratings_total,
+        '',
+      );
+
+      dispatch({type: FETCH_PLACE, place});
+    } catch (error) {
+      throw error;
+    }
+  };
 };
 
 export const fetchPlaces = cityId => {

@@ -1,26 +1,53 @@
 import FavouriteCity from './../../models/FavouriteCity';
 import database from '@react-native-firebase/database';
+import FavouritePlace from './../../models/FavouritePlace';
 export const SET_CARD_STYLE = 'SET_CARD_STYLE';
-export const TOGGLE_FAVOURITE = 'TOGGLE_FAVOURITE';
-export const SELECT_FAV_PLACES = 'SELECT_FAV_PLACES';
+export const TOGGLE_FAVOURITE_CITY = 'TOGGLE_FAVOURITE_CITY';
+export const TOGGLE_FAVOURITE_PLACE = 'TOGGLE_FAVOURITE_PLACE';
 export const FETCH_FAVOURITES = 'FETCH_FAVOURITES';
+export const FETCH_FAVOURITE_PLACES = 'FETCH_FAVOURITE_PLACES';
 
 export const setCardStyle = cardtype => {
   return {type: SET_CARD_STYLE, cardtype};
 };
 
-export const selectFavouritePlaces = cityId => {
-  return {type: SELECT_FAV_PLACES, cityId};
+export const fetchFavouritePlaces = (uid, cityId) => {
+  //console.log(cityId);
+  return async dispatch => {
+    try {
+      let ref = database().ref(`/favourite_places/${uid}`);
+      let res = await ref
+        .orderByChild('cityId')
+        .equalTo(cityId)
+        .once('value');
+      let selectedPlaces = [];
+      res.forEach(child => {
+        selectedPlaces.push(
+          new FavouritePlace(
+            child.val().cityId,
+            child.key,
+            child.val().name,
+            child.val().url,
+          ),
+        );
+      });
+
+      dispatch({type: FETCH_FAVOURITE_PLACES, selectedPlaces});
+    } catch (error) {
+      throw error;
+    }
+  };
 };
 
 export const fetchFavourites = uid => {
+  //console.log(uid);
   return async dispatch => {
     try {
-      let ref = database().ref(`/favourite_cities/${uid}`);
-      let res = await ref.once('value');
-      const favourites = [];
-      res.forEach(child => {
-        favourites.push(
+      let cities_ref = database().ref(`/favourite_cities/${uid}`);
+      let cities_res = await cities_ref.once('value');
+      let favouriteCities = [];
+      cities_res.forEach(child => {
+        favouriteCities.push(
           new FavouriteCity(
             child.val().cityId,
             child.key,
@@ -29,66 +56,89 @@ export const fetchFavourites = uid => {
           ),
         );
       });
-      console.log(favourites);
-      dispatch({type: FETCH_FAVOURITES, favourites});
+      let places_ref = database().ref(`/favourite_places/${uid}`);
+      let places_res = await places_ref.once('value');
+      let favouritePlaces = [];
+      places_res.forEach(child => {
+        favouritePlaces.push(
+          new FavouritePlace(
+            child.val().cityId,
+            child.key,
+            child.val().name,
+            child.val().url,
+          ),
+        );
+      });
+      dispatch({type: FETCH_FAVOURITES, favouriteCities, favouritePlaces});
     } catch (error) {
       throw error;
     }
   };
 };
 
-export const addFavourite = (
-  uid,
-  placeId,
-  cityId,
-  cityName,
-  placeImage,
-  favourites,
-) => {
-  let favouriteCities = favourites;
-  console.log(favouriteCities);
-  console.log(cityId);
+export const toggleFavouritePlace = (uid, newPlace, actionType) => {
+  console.log('place action type: ' + actionType);
+  return async dispatch => {
+    switch (actionType) {
+      case 'ADD':
+        database()
+          .ref(`/favourite_places/${uid}`)
+          .child(newPlace.placeId)
+          .set({
+            cityId: newPlace.cityId,
+            name: newPlace.name,
+            url: newPlace.url,
+          })
+          .then(() => console.log('Place data added.'));
+        break;
+      case 'DELETE':
+        database()
+          .ref(`/favourite_places/${uid}/${newPlace.placeId}`)
+          .remove()
+          .then(() => console.log('Place data removed.'));
+        break;
+      default:
+        break;
+    }
+
+    dispatch({
+      type: TOGGLE_FAVOURITE_PLACE,
+      newPlace,
+    });
+  };
+};
+
+export const toggleFavouriteCity = (uid, newCity, actionType) => {
+  console.log('city action type: ' + actionType);
   return async dispatch => {
     const ref = database().ref(`/favourite_cities/${uid}`);
-    let existingCity = favouriteCities.find(city => city.cityId === cityId);
-    console.log(existingCity);
-    let newCity = new FavouriteCity(cityId, cityName, [], []);
+    switch (actionType) {
+      case 'UPDATE':
+        ref
+          .child(newCity.cityName)
+          .update({
+            imageQueue: newCity.imageQueue,
+            placesIds: newCity.placesIds,
+          })
+          .then(() => console.log('Data updated.'));
+        break;
+      case 'SET':
+        ref
+          .child(newCity.cityName)
+          .set({
+            cityId: newCity.cityId,
+            imageQueue: newCity.imageQueue,
+            placesIds: newCity.placesIds,
+          })
+          .then(() => console.log('City data set.'));
 
-    if (existingCity) {
-      console.log('THE CITY EXISTS');
-      const placeIndex = existingCity.placesIds.findIndex(id => id === placeId);
-      console.log(existingCity.placesIds, placeId, placeIndex);
-      let placesIds = [...existingCity.placesIds];
-      let imageQueue = [...existingCity.imageQueue];
-      if (placeIndex >= 0) {
-        console.log('THE PLACE EXISTS');
-        placesIds.splice(placeIndex, 1);
-        imageQueue.splice(placeIndex, 1);
-      } else {
-        console.log("THE PLACE DOESN'T EXIST");
-        placesIds.unshift(placeId);
-        imageQueue.unshift(placeImage);
-      }
-      ref
-        .child(cityName)
-        .update({
-          placesIds: placesIds,
-          imageQueue: imageQueue,
-        })
-        .then(() => console.log('Data updated.'));
-      newCity.placesIds = placesIds;
-      newCity.imageQueue = imageQueue;
-    } else {
-      console.log("THE CITY DOESN'T EXIST");
-      newCity.placesIds = [placeId];
-      newCity.imageQueue = [placeImage];
-      ref
-        .child(cityName)
-        .set({cityId: cityId, imageQueue: [placeImage], placesIds: [placeId]})
-        .then(() => console.log('Data set.'));
+        break;
+      default:
+        break;
     }
+
     dispatch({
-      type: TOGGLE_FAVOURITE,
+      type: TOGGLE_FAVOURITE_CITY,
       newCity,
     });
   };

@@ -1,8 +1,0 @@
-types
-
-"point_of_interest",
-"establishment"
-"tourist_attraction",
-"natural_feature",
-"park",
-

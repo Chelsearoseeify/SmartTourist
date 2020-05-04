@@ -6,20 +6,18 @@ import {
   TouchableOpacity,
   TouchableNativeFeedback,
   Platform,
+  Text,
 } from 'react-native';
-import {Text} from '@ui-kitten/components';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import Style from '../../constants/Style';
-import StarsRating from '../StarsRating';
 
-const PlaceCard = ({name, imageUrl, rating, icon, onSelect}) => {
+const FavouritePlaceCard = ({name, imageUrl, onSelect}) => {
   let TouchableCmp = TouchableOpacity;
 
   if (Platform.OS === 'android' && Platform.Version > 21)
     TouchableCmp = TouchableNativeFeedback;
 
   return (
-    <TouchableCmp style={{flex: 1}} onPress={onSelect}>
+    <TouchableCmp onPress={onSelect}>
       <View style={styles.cardStyle}>
         <ImageBackground
           source={{
@@ -29,26 +27,8 @@ const PlaceCard = ({name, imageUrl, rating, icon, onSelect}) => {
           imageStyle={{borderRadius: Style.borderRadiusCard, opacity: 10}}
           resizeMode="cover">
           <View style={styles.filterStyle}>
-            <View style={styles.iconStyle}>
-              <Icon name={icon} size={Style.iconSize} color={'white'} />
-            </View>
             <View style={styles.dataStyle}>
               <Text style={styles.nameStyle}>{name}</Text>
-              <View style={styles.ratingStyle}>
-                <StarsRating
-                  rating={rating}
-                  size={17}
-                  fullStarColor={'white'}
-                  emptyStarColor={'white'}
-                />
-                <Text
-                  style={{
-                    fontSize: Style.fontSize.h6,
-                    color: 'white',
-                  }}>
-                  {rating}
-                </Text>
-              </View>
             </View>
           </View>
         </ImageBackground>
@@ -62,6 +42,7 @@ const styles = StyleSheet.create({
     fontSize: Style.fontSize.h6,
     fontWeight: 'bold',
     padding: 5,
+    textAlign: 'center',
     color: 'white',
   },
   ratingStyle: {
@@ -74,14 +55,14 @@ const styles = StyleSheet.create({
     margin: Style.marginCard,
     borderRadius: Style.borderRadiusCard,
     flex: 1,
-    height: 210,
+    height: 180,
     elevation: Style.elevation,
   },
   dataStyle: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-start',
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: Style.paddingCard,
   },
   filterStyle: {
@@ -97,4 +78,4 @@ const styles = StyleSheet.create({
   iconStyle: {alignItems: 'flex-end', padding: 10},
 });
 
-export default PlaceCard;
+export default FavouritePlaceCard;

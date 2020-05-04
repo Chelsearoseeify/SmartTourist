@@ -3,45 +3,45 @@ import Colors from '../constants/Colors';
 import {View, StyleSheet, SafeAreaView, FlatList} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import BackButton from '../components/Buttons/BackButton';
-import PlaceCard from '../components/Cards/PlaceCard';
 import {useSelector, useDispatch} from 'react-redux';
 import Style from '../constants/Style';
 import Header from '../components/Header';
-import {selectFavouritePlaces} from '../store/actions/favourite';
+import FavouritePlaceCard from './../components/Cards/FavouritePlaceCard';
+import {fetchFavouritePlaces} from './../store/actions/favourite';
 
 const GroupedPlacesScreen = props => {
   const dispatch = useDispatch();
   const {navigation, route} = props;
   const {title, cityId} = route.params;
-
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const places = useSelector(
     state => state.favourites.selected_favourite_places,
   );
+  const user = useSelector(state => state.user.data);
 
   //this run whenever the component is loaded
   useEffect(() => {
     const loadProduct = async () => {
       setIsLoading(true);
       try {
-        await dispatch(selectFavouritePlaces(itemData.item.cityId));
+        await dispatch(fetchFavouritePlaces(user.uid, cityId));
       } catch (error) {
         setError(error.message); //error to be handled, it has to be defined
       }
       setIsLoading(false);
     };
     loadProduct();
-  }, [dispatch, selectFavouritePlaces]);
+  }, [dispatch, fetchFavouritePlaces]);
 
   const renderGridItem = itemData => {
     return (
-      <PlaceCard
+      <FavouritePlaceCard
         name={itemData.item.name}
-        imageUrl={itemData.item.imageUrl}
+        imageUrl={itemData.item.url}
         onSelect={() => {
           navigation.navigate('Place', {
-            placeId: itemData.item.id,
+            id: itemData.item.placeId,
             cityName: title,
           });
         }}

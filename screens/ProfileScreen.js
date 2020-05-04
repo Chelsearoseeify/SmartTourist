@@ -20,7 +20,7 @@ import Style from '../constants/Style';
 
 const ProfileScreen = ({navigation}) => {
   const userData = useSelector(state => state.user.data);
-  console.log(userData);
+  //console.log(userData);
   const addTripHandler = () => {
     navigation.navigate('AddTrip');
   };

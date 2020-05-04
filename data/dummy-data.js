@@ -3,7 +3,7 @@ import Category from './../models/Category';
 import City from './../models/City';
 import Trip from '../models/Trip';
 import FavouriteCity from '../models/FavouriteCity';
-import FavouritePlaces from './../models/FavouritePlaces';
+import FavouritePlace from '../models/FavouritePlace';
 
 export const description =
   'Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblò per preparare un testo campione. È sopravvissuto non solo a più di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni ’60, con la diffusione dei fogli di caratteri trasferibili “Letraset”, che contenevano passaggi del Lorem Ipsum, e più recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.';
@@ -266,7 +266,7 @@ export const CITIES = [
   ),
 ];
 
-export const FAVOURITE_PLACES = new FavouritePlaces([
+export const FAVOURITE_PLACES = new FavouritePlace([
   '-M60tZtUJZX_h2YiTDGc',
   '-M60tZtZMwCS9FokpS02',
 ]);
