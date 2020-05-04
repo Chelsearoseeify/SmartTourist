@@ -68,7 +68,7 @@ const MainPageScreen = ({navigation}) => {
         icon={index >= 0 ? 'heartbeat' : 'heart'}
         onSelect={() => {
           navigation.navigate('Place', {
-            id: itemData.item.placeId,
+            id: itemData.item.id,
             cityName: selectedCity.name,
           });
         }}

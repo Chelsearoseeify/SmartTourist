@@ -36,13 +36,14 @@ const PlaceScreen = props => {
   useEffect(() => {
     const loadPlace = async () => {
       try {
+        console.log(id, cityName);
         await dispatch(fetchPlace(id));
       } catch (error) {
         setError(error.message); //error to be handled, it has to be defined
       }
     };
     loadPlace();
-  }, [dispatch, fetchPlaces]);
+  }, [dispatch, fetchPlace]);
 
   const addToFavoriteHandler = () => {
     const existingCity = favouriteCities.find(
