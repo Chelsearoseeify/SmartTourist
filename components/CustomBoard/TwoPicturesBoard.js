@@ -41,7 +41,7 @@ const Board = ({places}) => {
   );
 };
 
-const TwoPicturesBoard = ({name, places, counter, onPress}) => {
+const TwoPicturesBoard = ({name, places, onPress}) => {
   let TouchableCmp = TouchableOpacity;
 
   if (Platform.OS === 'android' && Platform.Version > 21)
@@ -54,7 +54,7 @@ const TwoPicturesBoard = ({name, places, counter, onPress}) => {
           <Board places={places} />
         </View>
         <View style={{height: '20%'}}>
-          <Description name={name} counter={counter} />
+          <Description name={name} counter={places.length} />
         </View>
       </View>
     </TouchableCmp>

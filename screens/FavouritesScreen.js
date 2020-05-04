@@ -53,7 +53,6 @@ const FavouriteScreen = ({navigation}) => {
       <Board
         name={itemData.item.cityName}
         places={itemData.item.imageQueue}
-        counter={itemData.item.counter}
         onPress={() => {
           navigation.navigate('GroupedPlaces', {
             cityId: itemData.item.cityId,

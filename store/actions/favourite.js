@@ -1,6 +1,7 @@
 import FavouriteCity from './../../models/FavouriteCity';
 import database from '@react-native-firebase/database';
 import FavouritePlace from './../../models/FavouritePlace';
+import ActionType from '../../constants/ActionType';
 export const SET_CARD_STYLE = 'SET_CARD_STYLE';
 export const TOGGLE_FAVOURITE_CITY = 'TOGGLE_FAVOURITE_CITY';
 export const TOGGLE_FAVOURITE_PLACE = 'TOGGLE_FAVOURITE_PLACE';
@@ -80,7 +81,7 @@ export const toggleFavouritePlace = (uid, newPlace, actionType) => {
   console.log('place action type: ' + actionType);
   return async dispatch => {
     switch (actionType) {
-      case 'ADD':
+      case ActionType.ADD_PLACE:
         database()
           .ref(`/favourite_places/${uid}`)
           .child(newPlace.placeId)
@@ -91,7 +92,7 @@ export const toggleFavouritePlace = (uid, newPlace, actionType) => {
           })
           .then(() => console.log('Place data added.'));
         break;
-      case 'DELETE':
+      case ActionType.DELETE_PLACE:
         database()
           .ref(`/favourite_places/${uid}/${newPlace.placeId}`)
           .remove()
@@ -111,19 +112,21 @@ export const toggleFavouritePlace = (uid, newPlace, actionType) => {
 export const toggleFavouriteCity = (uid, newCity, actionType) => {
   console.log('city action type: ' + actionType);
   return async dispatch => {
-    const ref = database().ref(`/favourite_cities/${uid}`);
     switch (actionType) {
-      case 'UPDATE':
-        ref
+      case ActionType.UPDATE_CITY:
+        database()
+          .ref(`/favourite_cities/${uid}`)
           .child(newCity.cityName)
           .update({
+            cityId: newCity.cityId,
             imageQueue: newCity.imageQueue,
             placesIds: newCity.placesIds,
           })
           .then(() => console.log('Data updated.'));
         break;
-      case 'SET':
-        ref
+      case ActionType.ADD_CITY:
+        database()
+          .ref(`/favourite_cities/${uid}`)
           .child(newCity.cityName)
           .set({
             cityId: newCity.cityId,
@@ -131,7 +134,12 @@ export const toggleFavouriteCity = (uid, newCity, actionType) => {
             placesIds: newCity.placesIds,
           })
           .then(() => console.log('City data set.'));
-
+        break;
+      case ActionType.DELETE_CITY:
+        database()
+          .ref(`/favourite_cities/${uid}/${newCity.cityName}`)
+          .remove()
+          .then(() => console.log('City data removed.'));
         break;
       default:
         break;
@@ -140,6 +148,7 @@ export const toggleFavouriteCity = (uid, newCity, actionType) => {
     dispatch({
       type: TOGGLE_FAVOURITE_CITY,
       newCity,
+      actionType,
     });
   };
 };

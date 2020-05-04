@@ -61,26 +61,30 @@ const PlaceScreen = props => {
       let imageQueue = [...existingCity.imageQueue];
       if (placeIndex >= 0) {
         console.log('THE PLACE EXISTS');
-        placeActionType = actionType.DELETE;
         placesIds.splice(placeIndex, 1);
         imageQueue.splice(placeIndex, 1);
         setIcon('heart');
+
+        placeActionType = actionType.DELETE_PLACE;
+        if (placesIds.length === 0) cityActionType = actionType.DELETE_CITY;
+        else cityActionType = actionType.UPDATE_CITY;
       } else {
         console.log("THE PLACE DOESN'T EXIST");
-        placeActionType = actionType.ADD;
+        placeActionType = actionType.ADD_PLACE;
+        cityActionType = actionType.UPDATE_CITY;
         placesIds.unshift(place.id);
         imageQueue.unshift(place.url);
         setIcon('heartbeat');
       }
-      cityActionType = actionType.UPDATE;
       newCity.placesIds = placesIds;
       newCity.imageQueue = imageQueue;
     } else {
       console.log("THE CITY DOESN'T EXIST");
       newCity.placesIds = [place.id];
       newCity.imageQueue = [place.url];
-      cityActionType = actionType.SET;
-      placeActionType = actionType.ADD;
+      cityActionType = actionType.ADD_CITY;
+      placeActionType = actionType.ADD_PLACE;
+      setIcon('heartbeat');
     }
     dispatch(toggleFavouriteCity(user.uid, newCity, cityActionType));
     dispatch(

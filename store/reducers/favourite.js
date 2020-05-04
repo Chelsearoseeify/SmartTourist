@@ -9,6 +9,7 @@ import TwoPicturesBoard from './../../components/CustomBoard/TwoPicturesBoard';
 import ThreePicturesBoard from './../../components/CustomBoard/ThreePicturesBoard';
 import FourPicturesBoard from '../../components/CustomBoard/FourPicturesBoard';
 import {FETCH_FAVOURITE_PLACES} from './../actions/favourite';
+import ActionType from '../../constants/ActionType';
 
 const initialState = {
   favourite_cities: [],
@@ -46,7 +47,8 @@ const favouritesReducer = (state = initialState, action) => {
         city => city.cityId === action.newCity.cityId,
       );
       if (index >= 0) favouriteCities.splice(index, 1);
-      favouriteCities.unshift(action.newCity);
+      if (state.actionType !== ActionType.DELETE_CITY)
+        favouriteCities.unshift(action.newCity);
       return {...state, favourite_cities: favouriteCities};
     }
     case TOGGLE_FAVOURITE_PLACE: {

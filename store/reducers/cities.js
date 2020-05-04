@@ -7,10 +7,10 @@ const initialState = {
   top_destinations: CITIES,
   beautiful_cities: CITIES,
   selected_city: new City(
-    'ci7',
-    'Prague',
-    'https://lp-cms-production.imgix.net/features/2019/07/shutterstockRF_300856853-f8561259593d.jpg',
-    require('./../../assets/images/icons/Prague.png'),
+    'ci8',
+    'Rome',
+    'https://www.bblamacaroma.it//wp-content/uploads/2015/05/roma-2.jpg',
+    require('./../../assets/images/icons/Rome.png'),
   ),
 };
 
