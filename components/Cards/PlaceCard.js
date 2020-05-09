@@ -8,7 +8,7 @@ import {
   Platform,
 } from 'react-native';
 import {Text} from '@ui-kitten/components';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Style from '../../constants/Style';
 import StarsRating from '../StarsRating';
 

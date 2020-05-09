@@ -18,6 +18,7 @@ import Style from '../constants/Style';
 import SearchBar from './../components/SearchBar';
 import {useSelector} from 'react-redux';
 import PositionButton from '../components/Buttons/PositionButton';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 //temporarly suspended, I dont care about Novara's points of interest LOL
 requestLocationPermission = async () => {
@@ -111,21 +112,33 @@ const MapScreenf = ({navigation}) => {
     _carousel.snapToItem(index);
   };
 
-  renderCarouselItem = ({item}) => {
+  renderCarouselItem = ({item, index}) => {
     return (
-      <View style={styles.cardContainer}>
-        <View style={styles.contentStyle}>
-          {item.name.lenght <= 23 ? (
-            <Text style={styles.titleStyle}>{item.name}</Text>
-          ) : (
-            <Text style={styles.titleStyle}>{item.name.substr(0, 23)}</Text>
-          )}
-          <Text style={styles.subtitleStyle}>
-            {computeDistance(item.geometry.location)} m, {item.rating} stars
-          </Text>
+      <TouchableOpacity
+        onPress={() => {
+          console.log(_carousel.currentIndex);
+          if (index === _carousel.currentIndex) {
+            navigation.navigate('Place', {id: item.id, cityName: 'Prague'});
+          } else if (index > _carousel.currentIndex) {
+            _carousel.snapToNext();
+          } else if (index < _carousel.currentIndex) {
+            _carousel.snapToPrev();
+          }
+        }}>
+        <View style={styles.cardContainer}>
+          <View style={styles.contentStyle}>
+            {item.name.lenght <= 23 ? (
+              <Text style={styles.titleStyle}>{item.name}</Text>
+            ) : (
+              <Text style={styles.titleStyle}>{item.name.substr(0, 23)}</Text>
+            )}
+            <Text style={styles.subtitleStyle}>
+              {computeDistance(item.geometry.location)} m, {item.rating} stars
+            </Text>
+          </View>
+          <Image source={{uri: item.url}} style={styles.imageStyle} />
         </View>
-        <Image source={{uri: item.url}} style={styles.imageStyle} />
-      </View>
+      </TouchableOpacity>
     );
   };
 

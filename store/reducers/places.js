@@ -8,6 +8,10 @@ const initialState = {
 
 const placesReducer = (state = initialState, action) => {
   switch (action.type) {
+    case CREATE_PLACE: {
+      console.log('DONE');
+      break;
+    }
     case SET_PLACES: {
       return {...state, places: action.places};
     }
