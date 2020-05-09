@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text, StyleSheet } from 'react-native';
-import { CustomDatePicker } from './../components/DatePicker';
-//import DateRangePicker from '../components/DateRangePicker/DateRangePicker';
-import CalendarPicker from 'react-native-calendar-picker'
 import CustomButton from '../components/Buttons/CustomButton';
 import CitySearch from '../components/Inputs/CitySearch';
-import { useDispatch } from 'react-redux';
+import CalendarDatePicker from '../components/Inputs/CalendarDatePicker';
+import { useSelector, useDispatch } from 'react-redux';
 import Style from '../constants/Style';
 import Colors from '../constants/Colors';
 
@@ -16,30 +14,18 @@ import moment from 'moment';
 const AddTrip = () => {
     const dispatch = useDispatch();
     const [tripName, setTripName] = useState('');
-    const [cityName, setCityName] = useState('');
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
+    const selectedCity = useSelector(state => state.cities.selectedCity);
+    const newTrip = useSelector(state => state.trips.newTrip);
 
     const addTripHandler = () => {
         dispatch(tripActions.createTrip(
             {
                 name: tripName,
-                city: cityName,
+                city: selectedCity.id,
                 startDate: startDate.unix(),
                 endDate: endDate.unix()
             }
         ))
-    }
-
-    const onDateChangeHandler = (date, type) =>{
-        console.log(`Start date: ${moment.unix(startDate)}`);
-        console.log(`End date: ${moment.unix(endDate)}`);
-        if(type == 'END_DATE'){
-            setEndDate(date);
-        }else{
-            setStartDate(date);
-            setEndDate(null);
-        }
     }
 
     return (
@@ -61,22 +47,8 @@ const AddTrip = () => {
                 />
 
                 <CitySearch />
-                {/* <CustomDatePicker label='From' placeholder="Choose start date" />
-                <CustomDatePicker label='To' placeholder="Choose end date" /> */}
-                {/* <DateRangePicker
-                    onSuccess={(s, e) => alert(s + '||' + e)}
-                    theme={{ markColor: 'red', markTextColor: 'white' }}
-                /> */}
-
-                <CalendarPicker
-                    onDateChange={onDateChangeHandler}
-                    allowRangeSelection={true}
-                    allowRangeSelection={true}
-                    todayBackgroundColor="#f2e6ff"
-                    selectedDayColor="#7300e6"
-                    selectedDayTextColor="#FFFFFF"
-                    selectedRangeStyle={{ backgroundColor: Colors.greenButtonColor }}
-                />
+                <CalendarDatePicker datesString={newTrip.dateString}/>
+                
                 <View
                     style={{
                         width: '100%',

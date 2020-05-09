@@ -6,4 +6,5 @@ export default {
   greenSubTitleColor: '#7BE495',
   inputBackgroundColor: '#F0F4F8',
   greyIconColor: '#89909B',
+  placeholderColor: '#1A1A1A'
 };
