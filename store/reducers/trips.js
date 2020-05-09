@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
                 []
             );
 
-            return {...state, userTrips: state.userTrips.push(newTrip)}
+            return {...state, userTrips: [...state.userTrips, newTrip]}
         default:
             return state;
     }

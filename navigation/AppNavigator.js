@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, SafeAreaView} from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { StyleSheet, SafeAreaView } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import MainPageScreen from '../screens/MainPageScreen';
 import PlaceScreen from '../screens/PlaceScreen';
@@ -10,6 +10,7 @@ import SearchScreen from '../screens/SearchScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import FavouriteScreen from '../screens/FavouritesScreen';
 import AddTripScreen from '../screens/AddTripScreen';
+import TripsScreen from '../screens/TripsScreen';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import GroupedPlacesScreen from './../screens/GroupedPlacesScreen';
@@ -20,23 +21,21 @@ const Tab = createBottomTabNavigator();
 
 function HomeStackNavigator() {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <Stack.Navigator headerMode="none">
-        <Stack.Screen name="MainPage" component={MainPageScreen} />
-        <Stack.Screen name="Place" component={PlaceScreen} />
-        <Stack.Screen name="Map" component={MapScreen} />
-        <Stack.Screen name="Mapf" component={MapScreenf} />
-        <Stack.Screen name="Search" component={SearchScreen} />
-        <Stack.Screen name="AddTrip" component={AddTripScreen} />
-        <Stack.Screen name="GroupedPlaces" component={GroupedPlacesScreen} />
-      </Stack.Navigator>
-    </SafeAreaView>
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="MainPage" component={MainPageScreen} />
+      <Stack.Screen name="Place" component={PlaceScreen} />
+      <Stack.Screen name="Map" component={MapScreen} />
+      <Stack.Screen name="Mapf" component={MapScreenf} />
+      <Stack.Screen name="Search" component={SearchScreen} />
+      <Stack.Screen name="AddTrip" component={AddTripScreen} />
+      <Stack.Screen name="GroupedPlaces" component={GroupedPlacesScreen} />
+    </Stack.Navigator>
   );
 }
 
 function ProfileStackNavigator() {
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <Stack.Navigator headerMode="none">
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Place" component={PlaceScreen} />
@@ -48,14 +47,12 @@ function ProfileStackNavigator() {
 
 function FavouriteStackNavigator() {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <Stack.Navigator headerMode="none">
-        <Stack.Screen name="Favourites" component={FavouriteScreen} />
-        <Stack.Screen name="GroupedPlaces" component={GroupedPlacesScreen} />
-        <Stack.Screen name="Place" component={PlaceScreen} />
-        <Stack.Screen name="AddTrip" component={AddTripScreen} />
-      </Stack.Navigator>
-    </SafeAreaView>
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="Favourites" component={FavouriteScreen} />
+      <Stack.Screen name="GroupedPlaces" component={GroupedPlacesScreen} />
+      <Stack.Screen name="Place" component={PlaceScreen} />
+      <Stack.Screen name="AddTrip" component={AddTripScreen} />
+    </Stack.Navigator>
   );
 }
 
@@ -66,9 +63,9 @@ function TabNavigator() {
         name="HomeStackNavigator"
         component={HomeStackNavigator}
         options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({color, size}) => (
-            <Icon name="home" color={color} size={size} />
+          title: 'Discover',
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="compass" color={color} size={size} />
           ),
         }}
       />
@@ -76,9 +73,19 @@ function TabNavigator() {
         name="Search"
         component={SearchScreen}
         options={{
-          tabBarLabel: 'Search',
-          tabBarIcon: ({color, size}) => (
+          title: 'Search',
+          tabBarIcon: ({ color, size }) => (
             <Icon name="search" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="AddTrip"
+        component={AddTripScreen}
+        options={{
+          tabBarLabel:'Add Trip',
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="plus-square" color={color} size={size} />
           ),
         }}
       />
@@ -86,8 +93,8 @@ function TabNavigator() {
         name="Profile"
         component={ProfileStackNavigator}
         options={{
-          tabBarLabel: 'Profile',
-          tabBarIcon: ({color, size}) => (
+          title: 'Profile',
+          tabBarIcon: ({ color, size }) => (
             <Icon name="user" color={color} size={size} />
           ),
         }}
@@ -96,8 +103,8 @@ function TabNavigator() {
         name="Favourites"
         component={FavouriteStackNavigator}
         options={{
-          tabBarLabel: 'Favourites',
-          tabBarIcon: ({color, size}) => (
+          title: 'Favourites',
+          tabBarIcon: ({ color, size }) => (
             <Icon name="heart" color={color} size={size} />
           ),
         }}

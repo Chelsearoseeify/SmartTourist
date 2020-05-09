@@ -376,5 +376,5 @@ export const FAVOURITES = [
 ];
 
 export const TRIPS = [
-  new Trip('t0', 'Trip 1', 'c1', new Date(), new Date() + 1, ['p1', 'p4']),
+  new Trip('t0', 'Trip 1', 'c1', '12312421123', '12312212312', ['p1', 'p4']),
 ];

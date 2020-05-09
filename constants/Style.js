@@ -1,3 +1,5 @@
+import Colors from './Colors';
+
 export default {
   borderRadiusCardContainer: 35,
   borderRadiusCard: 20,
@@ -20,4 +22,12 @@ export default {
   paddingCardContainer: 5,
   marginCard: 10,
   paddingCard: 10,
+  inputStyle: {
+    padding: 12,
+    marginBottom: 15,
+    backgroundColor: Colors.inputBackgroundColor,
+    borderColor: Colors.inputBackgroundColor,
+    borderWidth: 0,
+    borderRadius: 20,
+  }
 };

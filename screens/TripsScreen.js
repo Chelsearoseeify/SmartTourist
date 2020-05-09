@@ -1,31 +1,24 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import Colors from '../constants/Colors';
+import { View, StyleSheet, SafeAreaView, Text } from 'react-native';
 import HorizontalScrollView from '../components/HorizontalScrollView';
 import CardTypes from '../constants/CardTypes';
-import { View, StyleSheet, SafeAreaView, ScrollView, Text } from 'react-native';
-import AddTrip from '../components/AddTrip';
+import NavigationBackButton from './../components/Buttons/NavigationBackButton';
+import { useSelector } from 'react-redux';
+import Header from '../components/Header';
 import Style from '../constants/Style';
-import moment from 'moment';
 
-const AddTripScreen = props => {
-  const trips = useSelector(state => state.trips.userTrips);
-  console.log(trips.length);
-
+const TripsScreen = props => {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView keyboardShouldPersistTaps='handled'>
-        <View>
+      <NavigationBackButton {...props} />
+      <View style={styles.titleViewStyle}>
+        <Header title={'Your next trip'} mapIcon={false} />
+      </View>
+      <View>
+        <View style={styles.cardsContainerStyle}>
           <View style={styles.cardStyle}>
-            <AddTrip />
-            {trips && trips.map((trip) => {
-              return <View>
-                <Text>{trip.city}</Text>
-                <Text>{trip.name}</Text>
-                <Text>{moment.unix(trip.startDate).format('LL - MMM')}</Text>
-                <Text>{moment.unix(trip.endDate).format('LL')}</Text>
-              </View>
-            })}
+            <NewTripView />
           </View>
           <View style={[styles.cardStyle, { height: '100%' }]}>
             <View style={styles.listViewStyle}>
@@ -48,40 +41,43 @@ const AddTripScreen = props => {
               </View>
             </View>
           </View>
-
-
         </View>
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
+const topSpace = 70;
+
+let styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.backgroundColor,
     flex: 1,
   },
-  headerContainer: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    padding: 20
+  cardsContainerStyle: {
+    marginTop: topSpace,
+    marginBottom: 30,
   },
   cardStyle: {
     elevation: Style.elevation,
     borderRadius: Style.borderRadiusCardContainer,
     backgroundColor: 'white',
-    padding: 20,
-    paddingVertical: 50
+    marginVertical: 5,
   },
   titleViewStyle: {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    width: '100%',
+    height: topSpace,
     flex: 1,
+    position: 'absolute',
   },
   titleStyle: {
     color: Colors.blueTitleColor,
     fontWeight: 'bold',
   },
   listViewStyle: {
+    flex: 1,
     marginTop: 10,
     marginBottom: 20,
   },
@@ -104,4 +100,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AddTripScreen;
+export default TripsScreen;

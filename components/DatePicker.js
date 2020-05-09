@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 import { Layout, Icon, Input } from '@ui-kitten/components';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Colors from '../constants/Colors';
+import Style from '../constants/Style';
 
 const CalendarIcon = (props) => (
   <Icon {...props} name='calendar' />
@@ -21,21 +22,20 @@ export const CustomDatePicker = (props) => {
   };
 
   return (
-    <Layout>
+    <View>
       {/* <Datepicker
         style={styles.inputStyle}
         date={date}
         onSelect={newDate => setDate(newDate)}
         accessoryRight={CalendarIcon}
       /> */}
-      <Input
+      <TextInput
         label={'    ' + props.label}
         value={dateText}
         placeholder={props.placeholder}
         onFocus={() => setShow(true)}
         onBlur={() => setShow(false)}
-        style={styles.inputStyle}
-        accessoryRight={CalendarIcon}
+        style={Style.inputStyle}
       />
       {show && (
         <DateTimePicker
@@ -47,17 +47,9 @@ export const CustomDatePicker = (props) => {
         onChange={onChange}
         />
       )}
-    </Layout>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  inputStyle: {
-    marginVertical: 5,
-    backgroundColor: Colors.inputBackgroundColor,
-    borderColor: Colors.inputBackgroundColor,
-    borderWidth: 0,
-    borderRadius: 20,
-    width: '100%'
-  },
 });
