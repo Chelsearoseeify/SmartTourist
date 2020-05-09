@@ -9,6 +9,7 @@ import {
 import Description from './Description';
 import Picture from './Picture';
 import Style from '../../constants/Style';
+import {emptyBackground} from './../../data/dummy-data';
 
 const Board = ({places}) => {
   return (
@@ -16,41 +17,33 @@ const Board = ({places}) => {
       <View style={styles.halfRow}>
         <Picture
           src={{
-            uri: places
-              ? places[0]
-              : 'https://i.etsystatic.com/15374903/r/il/003f77/1722369502/il_570xN.1722369502_ka03.jpg',
+            uri: places[0] ? places[0] : emptyBackground,
           }}
           imageStyle={{borderTopLeftRadius: Style.borderRadiusCard}}
-          viewStyle={[styles.halfColumn, {paddingRight: 2, paddingBottom: 2}]}
+          viewStyle={[styles.halfColumn, {paddingRight: 1, paddingBottom: 1}]}
         />
         <Picture
           src={{
-            uri: places
-              ? places[1]
-              : 'https://i.etsystatic.com/15374903/r/il/003f77/1722369502/il_570xN.1722369502_ka03.jpg',
+            uri: places[1] ? places[1] : emptyBackground,
           }}
           imageStyle={{borderBottomLeftRadius: Style.borderRadiusCard}}
-          viewStyle={[styles.halfColumn, {paddingRight: 2, paddingTop: 2}]}
+          viewStyle={[styles.halfColumn, {paddingRight: 1, paddingTop: 1}]}
         />
       </View>
       <View style={styles.halfRow}>
         <Picture
           src={{
-            uri: places
-              ? places[2]
-              : 'https://i.etsystatic.com/15374903/r/il/003f77/1722369502/il_570xN.1722369502_ka03.jpg',
+            uri: places[2] ? places[2] : emptyBackground,
           }}
           imageStyle={{borderTopRightRadius: Style.borderRadiusCard}}
-          viewStyle={[styles.halfColumn, {paddingLeft: 2, paddingBottom: 2}]}
+          viewStyle={[styles.halfColumn, {paddingLeft: 1, paddingBottom: 1}]}
         />
         <Picture
           src={{
-            uri: places
-              ? places[3]
-              : 'https://i.etsystatic.com/15374903/r/il/003f77/1722369502/il_570xN.1722369502_ka03.jpg',
+            uri: places[3] ? places[3] : emptyBackground,
           }}
           imageStyle={{borderBottomRightRadius: Style.borderRadiusCard}}
-          viewStyle={[styles.halfColumn, {paddingLeft: 2, paddingTop: 2}]}
+          viewStyle={[styles.halfColumn, {paddingLeft: 1, paddingTop: 1}]}
         />
       </View>
     </View>

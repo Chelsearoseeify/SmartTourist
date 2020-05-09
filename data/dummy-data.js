@@ -5,6 +5,9 @@ import Trip from '../models/Trip';
 import FavouriteCity from '../models/FavouriteCity';
 import FavouritePlace from '../models/FavouritePlace';
 
+export const emptyBackground =
+  'https://images.obi.pl/product/PL/1500x1500/579558_2.jpg';
+
 export const description =
   'Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblò per preparare un testo campione. È sopravvissuto non solo a più di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni ’60, con la diffusione dei fogli di caratteri trasferibili “Letraset”, che contenevano passaggi del Lorem Ipsum, e più recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.';
 
@@ -15,6 +18,25 @@ export const CATEGORIES = [
   new Category('c4', 'Cinemas', 'film'),
   new Category('c5', 'Restaurants', 'utensils'),
   new Category('c6', 'Cafè', 'mug-hot'),
+];
+
+export const LABELS = [
+  /* 
+  {type: "tourist_attraction", name: "Tourist Attraction"},
+  {type: "point_of_interest", name: "Point of Interest"}, */
+  {type: 'park', name: 'Park'},
+  {type: 'church', name: 'Church'},
+  {type: 'place_of_worship', name: 'Place of Worship'},
+  {type: 'synagogue', name: 'Synagogue'},
+  {type: 'museum', name: 'Museum'},
+  {type: 'stadium', name: 'Stadium'},
+  {type: 'aquarium', name: 'Aquarium'},
+  {type: 'cafe', name: 'Cafè'},
+  {type: 'bar', name: 'Bar'},
+  {type: 'store', name: 'Store'},
+  {type: 'art_gallery', name: 'Art Gallery'},
+  {type: 'amusement_park', name: 'Amusement Park'},
+  {type: 'zoo', name: 'Zoo'},
 ];
 
 export const PLACES = [

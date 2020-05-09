@@ -31,7 +31,9 @@ const PlaceScreen = props => {
     state => state.favourites.favourite_cities,
   );
   const index = favouritePlaces.findIndex(place => place.placeId === id);
-  const [icon, setIcon] = useState(index >= 0 ? 'heartbeat' : 'heart');
+  const [icon, setIcon] = useState(
+    index >= 0 ? 'cards-heart' : 'heart-outline',
+  );
 
   useEffect(() => {
     const loadPlace = async () => {
@@ -43,7 +45,7 @@ const PlaceScreen = props => {
       }
     };
     loadPlace();
-  }, [dispatch, fetchPlace]);
+  }, [dispatch]);
 
   const addToFavoriteHandler = () => {
     const existingCity = favouriteCities.find(
@@ -63,7 +65,7 @@ const PlaceScreen = props => {
         console.log('THE PLACE EXISTS');
         placesIds.splice(placeIndex, 1);
         imageQueue.splice(placeIndex, 1);
-        setIcon('heart');
+        setIcon('heart-outline');
 
         placeActionType = actionType.DELETE_PLACE;
         if (placesIds.length === 0) cityActionType = actionType.DELETE_CITY;
@@ -74,7 +76,7 @@ const PlaceScreen = props => {
         cityActionType = actionType.UPDATE_CITY;
         placesIds.unshift(place.id);
         imageQueue.unshift(place.url);
-        setIcon('heartbeat');
+        setIcon('cards-heart');
       }
       newCity.placesIds = placesIds;
       newCity.imageQueue = imageQueue;
@@ -84,7 +86,7 @@ const PlaceScreen = props => {
       newCity.imageQueue = [place.url];
       cityActionType = actionType.ADD_CITY;
       placeActionType = actionType.ADD_PLACE;
-      setIcon('heartbeat');
+      setIcon('cards-heart');
     }
     dispatch(toggleFavouriteCity(user.uid, newCity, cityActionType));
     dispatch(
@@ -152,7 +154,7 @@ const PlaceScreen = props => {
                 />
                 <PlaceScreenButton
                   name={'Add to trip'}
-                  iconName={'calendar-alt'}
+                  iconName={'calendar-plus'}
                   onPress={pressHandlers}
                 />
               </View>

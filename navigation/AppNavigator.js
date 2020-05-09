@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
+
+import { StyleSheet, SafeAreaView, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import MainPageScreen from '../screens/MainPageScreen';
+import TravelScreen from '../screens/TravelScreen';
 import PlaceScreen from '../screens/PlaceScreen';
 import MapScreen from '../screens/MapScreen';
 import SearchScreen from '../screens/SearchScreen';
@@ -12,9 +13,11 @@ import FavouriteScreen from '../screens/FavouritesScreen';
 import AddTripScreen from '../screens/AddTripScreen';
 import TripsScreen from '../screens/TripsScreen';
 
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import MainPageScreen from './../screens/MainPageScreen';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GroupedPlacesScreen from './../screens/GroupedPlacesScreen';
 import MapScreenf from './../screens/MapScreenf';
+import CustomFloatingButton from './../components/Buttons/CustomFloatingButton';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -22,7 +25,8 @@ const Tab = createBottomTabNavigator();
 function HomeStackNavigator() {
   return (
     <Stack.Navigator headerMode="none">
-      <Stack.Screen name="MainPage" component={MainPageScreen} />
+      <Stack.Screen name="Home" component={MainPageScreen} />
+      <Stack.Screen name="Travel" component={TravelScreen} />
       <Stack.Screen name="Place" component={PlaceScreen} />
       <Stack.Screen name="Map" component={MapScreen} />
       <Stack.Screen name="Mapf" component={MapScreenf} />
@@ -58,14 +62,18 @@ function FavouriteStackNavigator() {
 
 function TabNavigator() {
   return (
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator
+      initialRouteName="Home"
+      tabBarOptions={{
+        showLabel: false,
+      }}>
       <Tab.Screen
         name="HomeStackNavigator"
         component={HomeStackNavigator}
         options={{
-          title: 'Discover',
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="compass" color={color} size={size} />
+          tabBarLabel: 'Travel',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="compass" color={color} size={26} />
           ),
         }}
       />
@@ -73,19 +81,20 @@ function TabNavigator() {
         name="Search"
         component={SearchScreen}
         options={{
-          title: 'Search',
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="search" color={color} size={size} />
+          tabBarLabel: 'Search',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="magnify" color={color} size={26} />
           ),
         }}
       />
       <Tab.Screen
-        name="AddTrip"
+        name="Plus"
         component={AddTripScreen}
         options={{
-          tabBarLabel:'Add Trip',
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="plus-square" color={color} size={size} />
+          tabBarIcon: ({color, size}) => (
+            <View style={{marginBottom: 30, elevation: 6}}>
+              <CustomFloatingButton />
+            </View>
           ),
         }}
       />
@@ -93,9 +102,9 @@ function TabNavigator() {
         name="Profile"
         component={ProfileStackNavigator}
         options={{
-          title: 'Profile',
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="user" color={color} size={size} />
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="account-outline" color={color} size={26} />
           ),
         }}
       />
@@ -103,20 +112,14 @@ function TabNavigator() {
         name="Favourites"
         component={FavouriteStackNavigator}
         options={{
-          title: 'Favourites',
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="heart" color={color} size={size} />
+          tabBarLabel: 'Favourites',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="heart-outline" color={color} size={26} />
           ),
         }}
       />
     </Tab.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  bottomNavigation: {
-    margin: 0,
-  },
-});
 
 export default TabNavigator;

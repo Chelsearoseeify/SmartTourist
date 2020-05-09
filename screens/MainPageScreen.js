@@ -1,162 +1,163 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Colors from '../constants/Colors';
 import {
   View,
   StyleSheet,
-  FlatList,
   SafeAreaView,
-  Image,
-  ActivityIndicator,
+  Text,
+  ImageBackground,
+  Button,
 } from 'react-native';
-import {Text, Button} from '@ui-kitten/components';
-
-import PlaceCard from '../components/Cards/PlaceCard';
-import SearchBar from '../components/SearchBar';
-import CustomFloatingButton from '../components/Buttons/CustomFloatingButton';
+import {Layout, Input} from '@ui-kitten/components';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
-import Header from './../components/Header';
 import Style from '../constants/Style';
-import {fetchPlaces} from './../store/actions/places';
-import {fetchFavourites} from '../store/actions/favourite';
+import {addCity, fetchSelectedCity} from '../store/actions/cities';
+import CustomButton from './../components/Buttons/CustomButton';
+import CustomLabelButton from '../components/Buttons/CustomLabelButton';
+import {LABELS} from '../data/dummy-data';
 
-const MainPageScreen = ({navigation}) => {
+const FavouriteScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false);
+  const [cityName, setCityName] = useState('Prague');
+  const [types, setTypes] = useState([]);
   const [error, setError] = useState();
-  const selectedCity = useSelector(state => state.cities.selected_city);
-  const filteredPlaces = useSelector(state => state.places.places);
-  const favouriteCities = useSelector(
-    state => state.favourites.favourite_cities,
-  );
-  const favouritePlaces = useSelector(
-    state => state.favourites.favourite_places,
-  );
-  //console.log(favouritePlaces);
+  const [isLoading, setIsLoading] = useState(false);
   const user = useSelector(state => state.user.data);
-  //dispatch(createPlace('ciao', 'www.ghgoogog.it'));
-  //
-  //this run whenever the component is loaded
 
+  //this run whenever the component is loaded
   useEffect(() => {
-    const loadPlaces = async () => {
+    const loadProduct = async () => {
       setIsLoading(true);
       try {
-        await dispatch(fetchFavourites(user.uid));
-        await dispatch(fetchPlaces(selectedCity.id));
       } catch (error) {
         setError(error.message); //error to be handled, it has to be defined
       }
       setIsLoading(false);
     };
-    loadPlaces();
-  }, [dispatch, fetchFavourites, fetchPlaces]);
+    loadProduct();
+  }, [dispatch]);
 
-  const addTripHandler = () => {
-    navigation.navigate('AddTrip');
+  const goToTravelPage = () => {
+    dispatch(fetchSelectedCity('ChIJi3lwCZyTC0cRkEAWZg-vAAQ'));
+    navigation.navigate('Travel');
   };
 
-  const renderGridItem = itemData => {
-    const index = favouritePlaces.findIndex(
-      place => place.placeId === itemData.item.id,
-    );
-    return (
-      <PlaceCard
-        name={itemData.item.name}
-        imageUrl={itemData.item.url}
-        rating={itemData.item.rating}
-        icon={index >= 0 ? 'heartbeat' : 'heart'}
-        onSelect={() => {
-          navigation.navigate('Place', {
-            id: itemData.item.id,
-            cityName: selectedCity.name,
-          });
-        }}
-      />
-    );
-  };
+  /* const addNewCity = () => {
+    dispatch(addCity());
+  }; */
 
-  const headerComponent = () => {
-    return <Text style={styles.textStyle}>Things to do</Text>;
+  const toggleType = newType => {
+    const newTypeList = [...types];
+    const index = types.findIndex(type => type === newType);
+    if (index >= 0) newTypeList.splice(index, 1);
+    else newTypeList.push(newType);
+    setTypes(newTypeList);
+    console.log(types);
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View>
-        <View
-          style={{
-            position: 'absolute',
-            alignItems: 'center',
-            justifyContent: 'center',
-            right: 30,
-            bottom: 30,
-            zIndex: 1,
-            elevation: Style.elevation,
-          }}>
-          <CustomFloatingButton onPress={addTripHandler} />
-        </View>
+    <View style={{flex: 1}}>
+      <View style={{height: 350, width: '100%', flex: 1, position: 'absolute'}}>
+        <ImageBackground
+          source={require('./../assets/images/MainPage.png')}
+          style={styles.imageBackgroundStyle}
+          resizeMode="cover">
+          <View style={{paddingTop: 30, paddingLeft: 40}}>
+            <Text
+              style={{
+                color: Colors.blueTitleColor,
+                fontSize: 40,
+                fontWeight: 'bold',
+              }}>
+              Choose
+            </Text>
+            <Text
+              style={{
+                color: Colors.blueTitleColor,
+                fontSize: 40,
+                fontWeight: 'bold',
+              }}>
+              Your
+            </Text>
+            <Text
+              style={{
+                color: Colors.blueTitleColor,
+                fontSize: 40,
+                fontWeight: 'bold',
+              }}>
+              Destination
+            </Text>
+          </View>
+          <View style={{paddingTop: 10, paddingLeft: 40}}>
+            <Text
+              style={{
+                color: Colors.blueTitleColor,
+                fontSize: 18,
+              }}>
+              Where do you wanna go next?
+            </Text>
+            <Text
+              style={{
+                color: Colors.blueTitleColor,
+                fontSize: 18,
+              }}>
+              Select your favourite city!
+            </Text>
+          </View>
+        </ImageBackground>
+      </View>
+      <View
+        style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          zIndex: 1,
+        }}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View>
-            <Header title={selectedCity.name} navigation={navigation} />
-            <SearchBar />
-            <View style={styles.cardStyle}>
-              {isLoading ? (
-                <View
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: 600,
-                  }}>
-                  <ActivityIndicator
-                    size="large"
-                    color={Colors.greenTitleColor}
+          <View style={styles.cardStyle}>
+            <View style={styles.cardContentStyle}>
+              <Input
+                value={cityName}
+                placeholder="Choose your city"
+                onChangeText={v => setCityName(v)}
+                style={styles.inputStyle}
+              />
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignContent: 'center',
+                  alignSelf: 'flex-start',
+                  flexWrap: 'wrap',
+                  paddingBottom: 20,
+                }}>
+                {LABELS.map(label => (
+                  <CustomLabelButton
+                    text={label.name}
+                    toggleList={() => toggleType(label.name)}
                   />
-                </View>
-              ) : (
-                <FlatList
-                  contentContainerStyle={styles.placesContainer}
-                  data={filteredPlaces}
-                  numColumns={2}
-                  renderItem={renderGridItem}
-                  horizontal={false}
-                  ListHeaderComponent={headerComponent}
-                  scrollEnabled={false}
-                />
-              )}
+                ))}
+              </View>
+              {/* <CustomButton text={'Add City'} onPress={addNewCity} /> */}
+              <View style={{margin: 5}}>
+                <CustomButton text={'Next'} onPress={goToTravelPage} />
+              </View>
             </View>
           </View>
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
 let styles = StyleSheet.create({
-  container: {
-    backgroundColor: Colors.backgroundColor,
-    flex: 1,
-  },
-  textStyle: {
-    color: Colors.blueTitleColor,
-    fontSize: Style.fontSize.h4,
-    fontWeight: 'bold',
-    padding: Style.paddingCardContainer,
-    marginHorizontal: 20,
-    marginTop: 20,
-  },
-  iconStyle: {
-    fontSize: Style.iconSize,
-    color: Colors.greenTitleColor,
-  },
-  button: {
-    margin: 0,
-    borderWidth: 1,
-  },
-  placesContainer: {
-    marginHorizontal: 5,
+  imageBackgroundStyle: {
+    width: '100%',
+    height: '100%',
   },
   cardStyle: {
-    marginTop: Style.marginTopCardContainer,
+    marginTop: 260,
     padding: Style.paddingCardContainer,
     elevation: Style.elevation,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
@@ -165,25 +166,19 @@ let styles = StyleSheet.create({
     width: '100%',
     backgroundColor: 'white',
   },
+  cardContentStyle: {
+    padding: Style.paddingCardContainer,
+    height: 350,
+    justifyContent: 'center',
+  },
+  inputStyle: {
+    backgroundColor: Colors.inputBackgroundColor,
+    marginVertical: 5,
+    padding: 16,
+    borderColor: Colors.inputBackgroundColor,
+    borderWidth: 0,
+    borderRadius: 20,
+  },
 });
 
-export default MainPageScreen;
-
-/*
-  const sendData = () => {
-    filteredPlaces.map(place => {
-      dispatch(
-        createPlace(
-          place.name,
-          'ci9',
-          place.types,
-          place.url,
-          place.rating,
-          place.geometry,
-          place.address,
-          place.business_status,
-          place.user_ratings_total,
-        ),
-      );
-    });
-  }; */
+export default FavouriteScreen;

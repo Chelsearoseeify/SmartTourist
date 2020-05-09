@@ -6,14 +6,23 @@ import {View, StyleSheet, Text, ScrollView} from 'react-native';
 import ListHeader from './ListHeader';
 import CardTypes from '../constants/CardTypes';
 import {useDispatch} from 'react-redux';
-import {setSelectedCity} from '../store/actions/cities';
+import {fetchSelectedCity} from '../store/actions/cities';
+
+let cityIcons = new Map();
+cityIcons.set('Barcelona', require('./../assets/images/icons/Barcelona.png'));
+cityIcons.set('Tokyo', require('./../assets/images/icons/Tokyo.png'));
+cityIcons.set('New York', require('./../assets/images/icons/NewYork.png'));
+cityIcons.set('Prague', require('./../assets/images/icons/Prague.png'));
+cityIcons.set('Rome', require('./../assets/images/icons/Rome.png'));
+cityIcons.set('Paris', require('./../assets/images/icons/Paris.png'));
 
 const HorizontalScrolliew = ({name, cities, elemType, navigation}) => {
   const dispatch = useDispatch();
 
   const onPressHandler = city => {
-    dispatch(setSelectedCity(city));
-    navigation.navigate('MainPage', {});
+    console.log(city);
+    dispatch(fetchSelectedCity(city.id));
+    navigation.navigate('Travel', {});
   };
 
   return (
@@ -27,7 +36,7 @@ const HorizontalScrolliew = ({name, cities, elemType, navigation}) => {
                 return (
                   <SmallListCard
                     name={city.name}
-                    imageId={city.iconId}
+                    imageId={cityIcons.get(city.name)}
                     onPress={() => onPressHandler(city)}
                   />
                 );

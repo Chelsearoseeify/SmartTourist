@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text} from '@ui-kitten/components';
 import Colors from '../constants/Colors';
 import {
@@ -14,16 +14,44 @@ import CustomFloatingButton from '../components/Buttons/CustomFloatingButton';
 import HorizontalScrollView from '../components/HorizontalScrollView';
 import ListHeader from '../components/ListHeader';
 import CardTypes from '../constants/CardTypes';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import Header from './../components/Header';
 import Style from '../constants/Style';
+import {
+  fetchBeautifulCities,
+  fetchTopDestinations,
+} from '../store/actions/cities';
 
 const ProfileScreen = ({navigation}) => {
+  const dispatch = useDispatch();
+  const [error, setError] = useState();
   const userData = useSelector(state => state.user.data);
-  //console.log(userData);
+
   const addTripHandler = () => {
     navigation.navigate('AddTrip');
   };
+
+  useEffect(() => {
+    const loadBeautifulCities = async () => {
+      try {
+        await dispatch(fetchBeautifulCities());
+      } catch (error) {
+        setError(error.message); //error to be handled, it has to be defined
+      }
+    };
+    loadBeautifulCities();
+  }, [dispatch, fetchBeautifulCities]);
+
+  useEffect(() => {
+    const loadTopDestinations = async () => {
+      try {
+        await dispatch(fetchTopDestinations());
+      } catch (error) {
+        setError(error.message); //error to be handled, it has to be defined
+      }
+    };
+    loadTopDestinations();
+  }, [dispatch, fetchTopDestinations]);
 
   return (
     <View
@@ -75,8 +103,14 @@ const ProfileScreen = ({navigation}) => {
                   <NextTripCard />
                 </View>
                 <HorizontalScrollView
-                  name={'Your favourites'}
+                  name={'Prova'}
                   cities={useSelector(state => state.cities.beautiful_cities)}
+                  elemType={CardTypes.LIST_CARD_SMALL}
+                  navigation={navigation}
+                />
+                <HorizontalScrollView
+                  name={'Your favourites'}
+                  cities={useSelector(state => state.cities.top_destinations)}
                   elemType={CardTypes.LIST_CARD_BIG}
                   navigation={navigation}
                 />

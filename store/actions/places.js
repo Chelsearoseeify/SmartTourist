@@ -76,6 +76,7 @@ export const fetchPlaces = cityId => {
 };
 
 export const createPlace = (
+  placeId,
   name,
   cityId,
   types,
@@ -86,28 +87,21 @@ export const createPlace = (
   business_status,
   user_ratings_total,
 ) => {
+  console.log(placeId);
   return async dispatch => {
-    const response = await fetch(
-      'https://smarttourist-275307.firebaseio.com/places.json',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          cityId,
-          types,
-          url,
-          rating,
-          geometry,
-          address,
-          business_status,
-          user_ratings_total,
-        }),
-      },
-    );
-    const resData = await response.json();
+    database()
+      .ref(`places/${placeId}`)
+      .set({
+        name: name,
+        cityId: cityId,
+        types: types,
+        url: url,
+        rating: rating,
+        geometry: geometry,
+        address: address,
+        business_status: business_status,
+        user_ratings_total: user_ratings_total,
+      });
     dispatch({
       type: CREATE_PLACE,
     });
