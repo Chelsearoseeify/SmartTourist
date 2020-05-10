@@ -4,28 +4,29 @@ import {StyleSheet, Text, View, Alert} from 'react-native';
 import Colors from '../../constants/Colors';
 import Style from '../../constants/Style';
 
-const CustomButton = ({
-  text,
-  color: activeColor = Colors.greenTitleColor,
-  disabledColor = Colors.greenSubTitleColor,
-  toggleList,
-}) => {
-  const [color, setColor] = useState(activeColor);
+const CustomButton = ({text, toggleList}) => {
+  const [buttonColor, setButtonColor] = useState('white');
+  const [textColor, setTextColor] = useState(Colors.greenTitleColor);
+
   return (
     <TouchableOpacity
       onPress={() => {
         toggleList();
-        if (color === activeColor) setColor(disabledColor);
-        else setColor(activeColor);
+        if (buttonColor === 'white') {
+          setTextColor('white');
+          setButtonColor(Colors.greenTitleColor);
+        } else {
+          setTextColor(Colors.greenTitleColor);
+          setButtonColor('white');
+        }
       }}
       style={[
         {
-          backgroundColor: color,
-          borderColor: color,
+          backgroundColor: buttonColor,
         },
         styles.buttonStyle,
       ]}>
-      <Text style={{color: 'white', fontSize: 18}}>{text}</Text>
+      <Text style={{color: textColor, fontSize: 18}}>{text}</Text>
     </TouchableOpacity>
   );
 };
@@ -39,6 +40,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingBottom: 3,
     margin: 2,
+    borderColor: Colors.greenTitleColor,
+    borderWidth: 2,
   },
 
   TextStyle: {

@@ -65,18 +65,6 @@ const ProfileScreen = ({navigation}) => {
       <View
         style={{
           position: 'absolute',
-          alignItems: 'center',
-          justifyContent: 'center',
-          right: 30,
-          bottom: 30,
-          zIndex: 1,
-          elevation: Style.elevation,
-        }}>
-        <CustomFloatingButton onPress={addTripHandler} />
-      </View>
-      <View
-        style={{
-          position: 'absolute',
           width: '100%',
           height: '100%',
         }}>

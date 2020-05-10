@@ -65,19 +65,6 @@ const FavouriteScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View
-        style={{
-          position: 'absolute',
-          alignItems: 'center',
-          justifyContent: 'center',
-          right: 30,
-          bottom: 30,
-          zIndex: 1,
-          elevation: Style.elevation,
-          borderRadius: Style.borderRadiusRoundButton,
-        }}>
-        <CustomFloatingButton onPress={addTripHandler} />
-      </View>
       <View>
         <View style={styles.titleViewStyle}>
           <Header title={'Favourites'} mapIcon={false} />

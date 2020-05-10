@@ -16,6 +16,7 @@ const initialState = {
 const cityReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_SELECTED_CITY: {
+      console.log(action.city);
       return {
         ...state,
         selected_city: action.city,

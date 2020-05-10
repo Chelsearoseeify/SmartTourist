@@ -103,18 +103,6 @@ const TravelScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <View
-          style={{
-            position: 'absolute',
-            alignItems: 'center',
-            justifyContent: 'center',
-            right: 30,
-            bottom: 30,
-            zIndex: 1,
-            elevation: Style.elevation,
-          }}>
-          <CustomFloatingButton onPress={addTripHandler} />
-        </View>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View>
             <Header title={selectedCity.name} navigation={navigation} />

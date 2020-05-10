@@ -1,21 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import Colors from '../constants/Colors';
-import {
-  View,
-  StyleSheet,
-  SafeAreaView,
-  Text,
-  ImageBackground,
-  Button,
-} from 'react-native';
-import {Layout, Input} from '@ui-kitten/components';
+import {View, StyleSheet, Text, ImageBackground} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
 import Style from '../constants/Style';
-import {addCity, fetchSelectedCity} from '../store/actions/cities';
 import CustomButton from './../components/Buttons/CustomButton';
 import CustomLabelButton from '../components/Buttons/CustomLabelButton';
 import {LABELS} from '../data/dummy-data';
+import CitySearch from '../components/Inputs/CitySearch';
 
 const FavouriteScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -39,8 +31,7 @@ const FavouriteScreen = ({navigation}) => {
   }, [dispatch]);
 
   const goToTravelPage = () => {
-    dispatch(fetchSelectedCity('ChIJi3lwCZyTC0cRkEAWZg-vAAQ'));
-    navigation.navigate('Travel');
+    navigation.navigate('Travel', {id: 'ChIJi3lwCZyTC0cRkEAWZg-vAAQ'});
   };
 
   /* const addNewCity = () => {
@@ -117,12 +108,10 @@ const FavouriteScreen = ({navigation}) => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.cardStyle}>
             <View style={styles.cardContentStyle}>
-              <Input
-                value={cityName}
-                placeholder="Choose your city"
-                onChangeText={v => setCityName(v)}
-                style={styles.inputStyle}
-              />
+              <View style={{margin: 10, zIndex: 2, height: 200}}>
+                <CitySearch />
+              </View>
+
               <View
                 style={{
                   flexDirection: 'row',
@@ -157,7 +146,7 @@ let styles = StyleSheet.create({
     height: '100%',
   },
   cardStyle: {
-    marginTop: 260,
+    marginTop: 100,
     padding: Style.paddingCardContainer,
     elevation: Style.elevation,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
@@ -168,7 +157,6 @@ let styles = StyleSheet.create({
   },
   cardContentStyle: {
     padding: Style.paddingCardContainer,
-    height: 350,
     justifyContent: 'center',
   },
   inputStyle: {
