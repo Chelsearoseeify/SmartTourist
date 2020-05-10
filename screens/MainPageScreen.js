@@ -105,7 +105,7 @@ const FavouriteScreen = ({navigation}) => {
           height: '100%',
           zIndex: 1,
         }}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps='handled'>
           <View style={styles.cardStyle}>
             <View style={styles.cardContentStyle}>
               <View style={{margin: 10, zIndex: 2, height: 200}}>

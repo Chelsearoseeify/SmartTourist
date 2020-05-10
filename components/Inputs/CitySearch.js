@@ -1,27 +1,24 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, Keyboard } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, Keyboard } from 'react-native';
 import Colors from '../../constants/Colors';
 import Style from '../../constants/Style';
 import { v4 as uuidv4 } from 'react-native-uuid';
-import axios from 'axios';
-const API_KEY = 'AIzaSyBZnXD0YlNLMtcDswoLpkUTu_cBYP3Ud0w';
+import { queryCity, setSelectedCity } from '../../store/actions/cities';
 
-const CitySearch = () => {
-    const [text, setText] = useState('');
+const CitySearch = props => {
+    const dispatch = useDispatch();
+    const [text, setText] = useState(props.cityName ? props.cityName : '');
     const [token, setToken] = useState('');
     const [showList, setShowList] = useState(false);
-    const [predictions, setPredictions] = useState([]);
-
+    const predictions = useSelector(state => state.cities.queryPredictions);
     const onFocus = () => {
         setToken(uuidv4());
         setText('');
     }
 
-    const queryData = async () => {
-        const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${text}&key=${API_KEY}&sessiontoken=${token}`
-        const response = await axios.get(url);
-        console.log(response.data);
-        setPredictions(response.data.predictions);
+    const queryData = () => {
+        dispatch(queryCity(token,text));
         setShowList(true);
     }
 
@@ -36,6 +33,7 @@ const CitySearch = () => {
     }
 
     const predictionSelectHandler = (item) => {
+        dispatch(setSelectedCity(item.place_id, token));
         setText(item.description);
         Keyboard.dismiss();
     }

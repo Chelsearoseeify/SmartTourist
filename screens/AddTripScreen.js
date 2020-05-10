@@ -22,7 +22,7 @@ const AddTripScreen = props => {
               return <View>
                 <Text>{trip.city}</Text>
                 <Text>{trip.name}</Text>
-                <Text>{moment.unix(trip.startDate).format('LL - MMM')}</Text>
+                <Text>{moment.unix(trip.startDate).format('LL')}</Text>
                 <Text>{moment.unix(trip.endDate).format('LL')}</Text>
               </View>
             })}

@@ -14,16 +14,14 @@ import moment from 'moment';
 const AddTrip = () => {
     const dispatch = useDispatch();
     const [tripName, setTripName] = useState('');
-    const selectedCity = useSelector(state => state.cities.selectedCity);
+    const selectedCity = useSelector(state => state.cities.selected_city);
     const newTrip = useSelector(state => state.trips.newTrip);
 
     const addTripHandler = () => {
         dispatch(tripActions.createTrip(
             {
                 name: tripName,
-                city: selectedCity.id,
-                startDate: startDate.unix(),
-                endDate: endDate.unix()
+                city: selectedCity.name
             }
         ))
     }
@@ -46,7 +44,7 @@ const AddTrip = () => {
                     style={Style.inputStyle}
                 />
 
-                <CitySearch />
+                <CitySearch cityName={selectedCity.name}/>
                 <CalendarDatePicker datesString={newTrip.dateString}/>
                 
                 <View

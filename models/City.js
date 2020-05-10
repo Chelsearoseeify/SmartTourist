@@ -2,13 +2,17 @@ class City {
   constructor(
     id,
     name,
-    imageId,
+    imageUrl,
     iconId = require('./../assets/images/empty.jpg'),
+    geometry = {},
+    photoReference
   ) {
     this.id = id;
     this.name = name;
-    this.imageId = imageId;
+    this.imageUrl = imageUrl;
     this.iconId = iconId;
+    this.geometry = geometry;
+    this.photoRreference = photoReference;
   }
 }
 

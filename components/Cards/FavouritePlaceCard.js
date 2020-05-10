@@ -17,7 +17,7 @@ const FavouritePlaceCard = ({name, imageUrl, onSelect}) => {
     TouchableCmp = TouchableNativeFeedback;
 
   return (
-    <TouchableCmp onPress={onSelect}>
+    <TouchableCmp onPress={onSelect} style={{flex: 1}}>
       <View style={styles.cardStyle}>
         <ImageBackground
           source={{

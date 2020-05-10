@@ -1,10 +1,44 @@
 import database from '@react-native-firebase/database';
 import City from './../../models/City';
+import axios from 'axios';
+import API_KEY from '../../constants/API_KEY';
 export const SET_SELECTED_CITY = 'SET_SELECTED_CITY';
+export const QUERY_CITY = 'QUERY_CITY';
+export const SET_QUERY_PREDICTIONS = 'QUERY_CITY';
 export const FETCH_SELECTED_CITY = 'FETCH_SELECTED_CITY';
 export const FETCH_BEAUTIFUL_CITIES = 'FETCH_BEAUTIFUL_CITIES';
 export const FETCH_TOP_DESTINATIONS = 'FETCH_TOP_DESTINATIONS';
 export const ADD_CITY = 'ADD_CITY';
+
+export const setSelectedCity = (cityId, token) => {
+  return async dispatch => {
+    const res = await axios.get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${cityId}&fields=name,geometry,photo&key=${API_KEY.API_KEY_PLACES}&sessiontoken=${token}`)
+    const cityData = res.data.result;
+    const city = new City(cityId, cityData.name, '', null, cityData.geometry);
+    await database()
+      .ref(`/cities/`)
+      .child(cityId)
+      .set({
+        name: city.name,
+        imageUrl: city.imageUrl,
+        iconId: city.iconId,
+        geometry: city.geometry,
+        photoReference: city.photoRreference
+      });
+
+    dispatch({ type: SET_SELECTED_CITY, city });
+  };
+};
+
+export const queryCity = (token, queryString) => {
+  return async dispatch => {
+    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${queryString}&key=${API_KEY.API_KEY_PLACES}&sessiontoken=${token}`
+    const response = await axios.get(url);
+    const predictions = response.data.predictions;
+
+    dispatch({ type: SET_QUERY_PREDICTIONS, predictions });
+  };
+};
 
 export const fetchSelectedCity = cityId => {
   return async dispatch => {
@@ -13,7 +47,7 @@ export const fetchSelectedCity = cityId => {
       .once('value');
     console.log(res);
     const city = new City(res.key, res.val().name);
-    dispatch({type: FETCH_SELECTED_CITY, city});
+    dispatch({ type: FETCH_SELECTED_CITY, city });
   };
 };
 
@@ -29,7 +63,7 @@ export const fetchTopDestinations = () => {
           new City(child.key, child.val().name, child.val().url),
         );
       });
-      dispatch({type: FETCH_TOP_DESTINATIONS, topDestinations});
+      dispatch({ type: FETCH_TOP_DESTINATIONS, topDestinations });
     } catch (error) {
       throw error;
     }
@@ -46,7 +80,7 @@ export const fetchBeautifulCities = () => {
       res.forEach(child => {
         beautifulCities.push(new City(child.key, child.val().name));
       });
-      dispatch({type: FETCH_BEAUTIFUL_CITIES, beautifulCities});
+      dispatch({ type: FETCH_BEAUTIFUL_CITIES, beautifulCities });
     } catch (error) {
       throw error;
     }

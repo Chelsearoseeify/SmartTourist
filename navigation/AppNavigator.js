@@ -18,6 +18,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GroupedPlacesScreen from './../screens/GroupedPlacesScreen';
 import MapScreenf from './../screens/MapScreenf';
 import CustomFloatingButton from './../components/Buttons/CustomFloatingButton';
+import Colors from '../constants/Colors';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -37,13 +38,12 @@ function HomeStackNavigator() {
   );
 }
 
-function ProfileStackNavigator() {
+function MyTripsStackNavigator() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: Colors.backgroundColor }}>
       <Stack.Navigator headerMode="none">
-        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="MyTrips" component={TripsScreen} />
         <Stack.Screen name="Place" component={PlaceScreen} />
-        <Stack.Screen name="AddTrip" component={AddTripScreen} />
       </Stack.Navigator>
     </SafeAreaView>
   );
@@ -72,7 +72,7 @@ function TabNavigator() {
         component={HomeStackNavigator}
         options={{
           tabBarLabel: 'Travel',
-          tabBarIcon: ({color, size}) => (
+          tabBarIcon: ({ color, size }) => (
             <Icon name="compass" color={color} size={26} />
           ),
         }}
@@ -82,7 +82,7 @@ function TabNavigator() {
         component={SearchScreen}
         options={{
           tabBarLabel: 'Search',
-          tabBarIcon: ({color, size}) => (
+          tabBarIcon: ({ color, size }) => (
             <Icon name="magnify" color={color} size={26} />
           ),
         }}
@@ -91,20 +91,20 @@ function TabNavigator() {
         name="Plus"
         component={AddTripScreen}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <View style={{marginBottom: 30, elevation: 6}}>
+          tabBarIcon: ({ color, size }) => (
+            <View style={{ marginBottom: 30, elevation: 6 }}>
               <CustomFloatingButton />
             </View>
           ),
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={ProfileStackNavigator}
+        name="MyTrips"
+        component={MyTripsStackNavigator}
         options={{
-          tabBarLabel: 'Profile',
-          tabBarIcon: ({color, size}) => (
-            <Icon name="account-outline" color={color} size={26} />
+          tabBarLabel: 'My Trips',
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="wallet-travel" color={color} size={26} />
           ),
         }}
       />
@@ -113,7 +113,7 @@ function TabNavigator() {
         component={FavouriteStackNavigator}
         options={{
           tabBarLabel: 'Favourites',
-          tabBarIcon: ({color, size}) => (
+          tabBarIcon: ({ color, size }) => (
             <Icon name="heart-outline" color={color} size={26} />
           ),
         }}

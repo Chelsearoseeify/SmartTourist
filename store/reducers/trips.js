@@ -24,8 +24,8 @@ export default (state = initialState, action) => {
                 Math.random(0, 1000),
                 action.trip.name,
                 action.trip.city,
-                action.trip.startDate,
-                action.trip.endDate,
+                state.newTrip.startDate,
+                state.newTrip.endDate,
                 []
             );
 

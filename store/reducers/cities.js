@@ -3,6 +3,8 @@ import {
   FETCH_SELECTED_CITY,
   FETCH_BEAUTIFUL_CITIES,
   FETCH_TOP_DESTINATIONS,
+  SET_SELECTED_CITY,
+  SET_QUERY_PREDICTIONS,
 } from './../actions/cities';
 import City from './../../models/City';
 
@@ -11,10 +13,24 @@ const initialState = {
   top_destinations: [],
   beautiful_cities: [],
   selected_city: {},
+  queryPredictions: []
 };
 
 const cityReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_SELECTED_CITY: {
+      console.log(action.city);
+      return {
+        ...state,
+        selected_city: action.city,
+      };
+    }
+    case SET_QUERY_PREDICTIONS: {
+      return {
+        ...state,
+        queryPredictions: action.predictions,
+      };
+    }
     case FETCH_SELECTED_CITY: {
       console.log(action.city);
       return {
