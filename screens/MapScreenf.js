@@ -55,11 +55,12 @@ locateCurrentPosition = () => {
 
 const MapScreenf = ({navigation}) => {
   const places = useSelector(state => state.places.places);
+  const currentCity = useSelector(state => state.cities.selected_city);
 
   const markers = [];
   const [initialPosition, setInitialPosition] = useState({
-    latitude: 50.0869316,
-    longitude: 14.4212589,
+    latitude: currentCity.geometry.location.lat,
+    longitude: currentCity.geometry.location.lng,
     latitudeDelta: 0.003,
     longitudeDelta: 0.003,
   });
