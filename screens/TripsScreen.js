@@ -4,7 +4,7 @@ import Colors from '../constants/Colors';
 import { View, StyleSheet, SafeAreaView, Text } from 'react-native';
 import HorizontalScrollView from '../components/HorizontalScrollView';
 import CardTypes from '../constants/CardTypes';
-import NavigationBackButton from './../components/Buttons/NavigationBackButton';
+import NextTripCard from '../components/Cards/NextTripCard';
 
 import {
   fetchBeautifulCities,
@@ -17,6 +17,7 @@ import Style from '../constants/Style';
 const TripsScreen = props => {
   const dispatch = useDispatch();
   const [error, setError] = useState();
+  const trips = useSelector(state => state.trips.userTrips);
   const topDestinations = useSelector(state => state.cities.top_destinations);
   const beautifulCities = useSelector(state => state.cities.beautiful_cities);
 
@@ -44,29 +45,53 @@ const TripsScreen = props => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <NavigationBackButton {...props} />
       <View style={styles.titleViewStyle}>
-        <Header title={'Your next trip'} mapIcon={false} />
+        <Header title={'Your trips'} mapIcon={false} />
       </View>
       <View>
         <View style={styles.cardsContainerStyle}>
           <View style={[styles.cardStyle, { height: '100%' }]}>
+            <View style={{ padding: 20 }}>
+              <Text style={{
+                color: Colors.greenTitleColor,
+                fontWeight: 'bold',
+                fontSize: Style.fontSize.h4,
+              }}
+              >
+                Your next trip
+              </Text>
+              <NextTripCard />
+
+
+            </View>
+            <View style={{marginVertical: 10}}>
+              <HorizontalScrollView
+                name={'All Trips'}
+                cities={trips}
+                elemType={CardTypes.LIST_CARD_BIG}
+                navigation={props.navigation}
+                paddingLeft={20}
+                action={()=>{console.log('See all trips')}}
+              />
+            </View>
             <View style={styles.listViewStyle}>
               <View>
                 <Text style={styles.subtitleStyle}>Suggestions</Text>
               </View>
-              <View style={{ paddingLeft: 25, height: '100%' }}>
+              <View>
                 <HorizontalScrollView
                   name={'Top destinations'}
                   cities={topDestinations}
                   elemType={CardTypes.LIST_CARD_BIG}
                   navigation={props.navigation}
+                  paddingLeft={20}
                 />
                 <HorizontalScrollView
                   name={'Beautiful cities'}
                   cities={beautifulCities}
                   elemType={CardTypes.LIST_CARD_SMALL}
                   navigation={props.navigation}
+                  paddingLeft={20}
                 />
               </View>
             </View>
@@ -92,7 +117,7 @@ let styles = StyleSheet.create({
     elevation: Style.elevation,
     borderRadius: Style.borderRadiusCardContainer,
     backgroundColor: 'white',
-    marginVertical: 5,
+    marginVertical: 5
   },
   titleViewStyle: {
     alignItems: 'flex-end',
@@ -107,26 +132,15 @@ let styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   listViewStyle: {
-    flex: 1,
     marginTop: 10,
-    marginBottom: 20,
-  },
-  inputStyle: {
-    backgroundColor: Colors.inputBackgroundColor,
-    marginVertical: 5,
-    borderColor: Colors.inputBackgroundColor,
-    borderWidth: 0,
-    borderRadius: 20,
+    marginBottom: 20
   },
   subtitleStyle: {
     color: Colors.blueTitleColor,
     fontWeight: 'bold',
     fontSize: 25,
-    paddingTop: 20,
     marginBottom: 5,
-    paddingStart: 5,
-    marginHorizontal: 25,
-    paddingBottom: 5,
+    paddingLeft: 20
   }
 });
 

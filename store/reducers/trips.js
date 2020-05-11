@@ -39,8 +39,6 @@ export default (state = initialState, action) => {
                 dateString: dateString
             }
 
-            console.log(updatedNewTrip);
-
             return { ...state, newTrip: updatedNewTrip}
         default:
             return state;

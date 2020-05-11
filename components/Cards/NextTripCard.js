@@ -1,16 +1,11 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, ImageBackground, View} from 'react-native';
-import {Text} from '@ui-kitten/components';
+import React from 'react';
+import { StyleSheet, ImageBackground, View, Text } from 'react-native';
 
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import Style from '../../constants/Style';
 
 const NextTripCard = props => {
   const trips = useSelector(state => state.trips.userTrips);
-
-  useEffect(() => {
-    console.log(trips);
-  }, [trips]);
 
   return (
     <View style={styles.cardStyle}>
@@ -20,7 +15,7 @@ const NextTripCard = props => {
             'https://static.brusselsairlines.com/_img/destinationPage2/UK/Edinburgh/Edinburgh-view.jpg',
         }}
         style={styles.imageBackgroundStyle}
-        imageStyle={{borderRadius: Style.borderRadiusCard, opacity: 10}}
+        imageStyle={{ borderRadius: Style.borderRadiusCard, opacity: .8 }}
         resizeMode="cover">
         <View style={styles.filterStyle}>
           <View style={styles.dataStyle}>
@@ -52,11 +47,10 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   cardStyle: {
-    margin: Style.marginCard,
+    marginVertical: Style.marginCard,
     elevation: Style.elevation,
     borderRadius: Style.borderRadiusCard,
-    flex: 1,
-    height: 220,
+    height: 200
   },
   dataStyle: {
     flex: 1,

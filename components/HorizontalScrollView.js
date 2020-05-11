@@ -2,11 +2,11 @@ import React from 'react';
 
 import SmallListCard from './Cards/ListCardCitySmall';
 import BigListCard from './Cards/ListCardCityBig';
-import {View, StyleSheet, Text, ScrollView} from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import ListHeader from './ListHeader';
 import CardTypes from '../constants/CardTypes';
-import {useDispatch} from 'react-redux';
-import {fetchSelectedCity} from '../store/actions/cities';
+import { useDispatch } from 'react-redux';
+import { fetchSelectedCity } from '../store/actions/cities';
 
 let cityIcons = new Map();
 cityIcons.set('Barcelona', require('./../assets/images/icons/Barcelona.png'));
@@ -16,7 +16,7 @@ cityIcons.set('Prague', require('./../assets/images/icons/Prague.png'));
 cityIcons.set('Rome', require('./../assets/images/icons/Rome.png'));
 cityIcons.set('Paris', require('./../assets/images/icons/Paris.png'));
 
-const HorizontalScrolliew = ({name, cities, elemType, navigation}) => {
+const HorizontalScrolliew = ({ name, cities, elemType, navigation, paddingLeft, action }) => {
   const dispatch = useDispatch();
 
   const onPressHandler = city => {
@@ -27,9 +27,9 @@ const HorizontalScrolliew = ({name, cities, elemType, navigation}) => {
 
   return (
     <View>
-      <ListHeader name={name} />
+      <ListHeader name={name} padding={paddingLeft} action={action} />
       <View>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{paddingLeft: paddingLeft}}>
           {cities.map(city => {
             switch (elemType) {
               case CardTypes.LIST_CARD_SMALL:

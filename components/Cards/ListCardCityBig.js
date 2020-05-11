@@ -1,12 +1,11 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {View, Text, ImageBackground, StyleSheet} from 'react-native';
-import Colors from '../../constants/Colors';
 import Style from '../../constants/Style';
 
 const ListCardCityBig = ({name, imageId, onPress, style = {height: 200}}) => {
   return (
-    <TouchableOpacity style={[style, {padding: 8}]} onPress={onPress}>
+    <TouchableOpacity style={[style, {marginRight: 16, marginVertical: 8}]} onPress={onPress}>
       <View
         style={[
           styles.filterStyle,
