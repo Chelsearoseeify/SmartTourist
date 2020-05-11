@@ -7,6 +7,7 @@ import {
   ImageBackground,
   KeyboardAvoidingView,
 } from 'react-native';
+import _ from 'lodash';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
 import Style from '../constants/Style';
@@ -21,20 +22,8 @@ const FavouriteScreen = ({navigation}) => {
   const [types, setTypes] = useState([]);
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
-
-  //this run whenever the component is loaded
-  useEffect(() => {
-    const loadProduct = async () => {
-      setIsLoading(true);
-      try {
-      } catch (error) {
-        setError(error.message); //error to be handled, it has to be defined
-      }
-      setIsLoading(false);
-    };
-    loadProduct();
-  }, [dispatch]);
-
+  const selectedCity = useSelector(state => state.cities.selected_city);
+  console.log(Object.keys(selectedCity).length);
   const goToTravelPage = () => {
     navigation.navigate('Travel');
   };
@@ -44,10 +33,7 @@ const FavouriteScreen = ({navigation}) => {
   }; */
 
   const toggleType = newType => {
-    const newTypeList = [...types];
-    const index = types.findIndex(type => type === newType);
-    if (index >= 0) newTypeList.splice(index, 1);
-    else newTypeList.push(newType);
+    const newTypeList = _.xor(types, [newType]);
     setTypes(newTypeList);
     dispatch(setPlaceTypes(newType));
   };
@@ -139,7 +125,11 @@ const FavouriteScreen = ({navigation}) => {
               </View>
               {/* <CustomButton text={'Add City'} onPress={addNewCity} /> */}
               <View style={{margin: 5}}>
-                <CustomButton text={'Next'} onPress={goToTravelPage} />
+                <CustomButton
+                  text={'Next'}
+                  onPress={goToTravelPage}
+                  disabled={Object.keys(selectedCity).length > 0 ? false : true}
+                />
               </View>
             </View>
           </KeyboardAvoidingView>

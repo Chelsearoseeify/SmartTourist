@@ -1,4 +1,4 @@
-import {PLACES} from './../../data/dummy-data';
+import _ from 'lodash';
 import {
   SET_PLACES,
   CREATE_PLACE,
@@ -52,8 +52,7 @@ const placesReducer = (state = initialState, action) => {
       return {...state, place: action.place};
     }
     case SET_PLACE_TYPES: {
-      const types = [...state.types];
-      types.push(action.newType);
+      const types = _.xor(state.types, [action.newType]);
       console.log(types);
       return {...state, types: types};
     }

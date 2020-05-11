@@ -4,9 +4,10 @@ import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import Colors from '../../constants/Colors';
 import Style from '../../constants/Style';
 
-const CustomButton = ({text, onPress}) => {
+const CustomButton = ({text, onPress, disabled}) => {
   return (
     <TouchableOpacity
+      disabled={disabled}
       onPress={onPress}
       style={{
         backgroundColor: Colors.greenButtonColor,
@@ -17,6 +18,7 @@ const CustomButton = ({text, onPress}) => {
         borderColor: Colors.greenButtonColor,
         borderWidth: 0,
         height: 45,
+        /* opacity: disabled? 0.5:1, */
       }}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>
         {text}

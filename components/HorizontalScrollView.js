@@ -44,7 +44,7 @@ const HorizontalScrolliew = ({name, cities, elemType, navigation}) => {
                 return (
                   <BigListCard
                     name={city.name}
-                    imageId={city.imageId}
+                    imageId={city.imageUrl}
                     onPress={() => onPressHandler(city)}
                   />
                 );
