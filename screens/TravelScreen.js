@@ -12,22 +12,25 @@ import {Text, Button} from '@ui-kitten/components';
 
 import PlaceCard from '../components/Cards/PlaceCard';
 import SearchBar from '../components/SearchBar';
-import CustomFloatingButton from '../components/Buttons/CustomFloatingButton';
+import CustomLabelButton from '../components/Buttons/CustomLabelButton';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
 import Header from '../components/Header';
 import Style from '../constants/Style';
 import {fetchPlaces, createPlace} from '../store/actions/places';
 import {fetchFavourites} from '../store/actions/favourite';
+import {LABELS} from '../data/dummy-data';
+import {setPlaceTypes} from './../store/actions/places';
 
-const TravelScreen = ({navigation}) => {
+const TravelScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [error, setError] = useState();
   const selectedCity = useSelector(state => state.cities.selected_city);
-  const filteredPlaces = useSelector(state => state.places.places);
-
+  const filteredPlaces = useSelector(state => state.places.filtered_places);
+  const [types, setTypes] = useState(useSelector(state => state.places.types));
+  console.log(selectedCity);
   const favouritePlaces = useSelector(
     state => state.favourites.favourite_places,
   );
@@ -37,14 +40,13 @@ const TravelScreen = ({navigation}) => {
     setError(null);
     setIsRefreshing(true);
     try {
-      console.log(selectedCity.id);
-      await dispatch(fetchFavourites(user.uid));
-      await dispatch(fetchPlaces(selectedCity.id));
+      dispatch(fetchFavourites(user.uid));
+      dispatch(fetchPlaces(selectedCity.id));
     } catch (error) {
       setError(error.message);
     }
     setIsRefreshing(false);
-  }, [dispatch, selectedCity]);
+  }, [dispatch, selectedCity, types]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -53,8 +55,11 @@ const TravelScreen = ({navigation}) => {
     });
   }, [dispatch, loadPlaces]);
 
-  const addTripHandler = () => {
-    navigation.navigate('AddTrip');
+  const mapHandler = () => {
+    navigation.navigate('Mapf', {
+      lat: selectedCity.geometry.location.lat,
+      lng: selectedCity.geometry.location.lng,
+    });
   };
   /* 
   const addPlaces = () => {
@@ -96,6 +101,15 @@ const TravelScreen = ({navigation}) => {
     );
   };
 
+  const toggleType = newType => {
+    const newTypeList = [...types];
+    const index = types.findIndex(type => type === newType);
+    if (index >= 0) newTypeList.splice(index, 1);
+    else newTypeList.push(newType);
+    setTypes(newTypeList);
+    dispatch(setPlaceTypes(newType));
+  };
+
   const headerComponent = () => {
     return <Text style={styles.textStyle}>Things to do</Text>;
   };
@@ -105,8 +119,28 @@ const TravelScreen = ({navigation}) => {
       <View>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View>
-            <Header title={selectedCity.name} navigation={navigation} />
+            <Header
+              title={selectedCity.name}
+              navigation={navigation}
+              onMapPress={mapHandler}
+            />
             <SearchBar />
+            <View style={{marginVertical: 10, marginHorizontal: 20}}>
+              <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}>
+                {LABELS.map(label => (
+                  <CustomLabelButton
+                    text={label.name}
+                    toggleList={() => toggleType(label.type)}
+                    active={
+                      types.findIndex(t => t === label.type) >= 0 ? true : false
+                    }
+                  />
+                ))}
+              </ScrollView>
+            </View>
+            {/*  */}
             <View style={styles.cardStyle}>
               {isLoading ? (
                 <View

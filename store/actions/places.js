@@ -3,7 +3,12 @@ import database from '@react-native-firebase/database';
 export const CREATE_PLACE = 'CREATE_PLACE';
 export const SET_PLACES = 'SET_PLACES';
 export const FETCH_PLACE = 'FETCH_PLACE';
+export const SET_PLACE_TYPES = 'SET_TYPES';
 const API_KEY = 'AIzaSyBZnXD0YlNLMtcDswoLpkUTu_cBYP3Ud0w';
+
+export const setPlaceTypes = newType => {
+  return {type: SET_PLACE_TYPES, newType: newType};
+};
 
 const getPictures = async photo_reference => {
   /* const response = await fetch(

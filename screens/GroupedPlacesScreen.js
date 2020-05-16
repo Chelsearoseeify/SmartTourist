@@ -32,7 +32,7 @@ const GroupedPlacesScreen = props => {
       setIsLoading(false);
     };
     loadProduct();
-  }, [dispatch, fetchFavouritePlaces]);
+  }, [dispatch, fetchFavouritePlaces, places]);
 
   const renderGridItem = itemData => {
     return (

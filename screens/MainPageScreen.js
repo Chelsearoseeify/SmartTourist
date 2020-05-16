@@ -1,6 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import Colors from '../constants/Colors';
-import {View, StyleSheet, Text, ImageBackground} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  ImageBackground,
+  KeyboardAvoidingView,
+} from 'react-native';
+import _ from 'lodash';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
 import Style from '../constants/Style';
@@ -8,30 +15,17 @@ import CustomButton from './../components/Buttons/CustomButton';
 import CustomLabelButton from '../components/Buttons/CustomLabelButton';
 import {LABELS} from '../data/dummy-data';
 import CitySearch from '../components/Inputs/CitySearch';
+import {setPlaceTypes} from './../store/actions/places';
 
 const FavouriteScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const [cityName, setCityName] = useState('Prague');
   const [types, setTypes] = useState([]);
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const user = useSelector(state => state.user.data);
-
-  //this run whenever the component is loaded
-  useEffect(() => {
-    const loadProduct = async () => {
-      setIsLoading(true);
-      try {
-      } catch (error) {
-        setError(error.message); //error to be handled, it has to be defined
-      }
-      setIsLoading(false);
-    };
-    loadProduct();
-  }, [dispatch]);
-
+  const selectedCity = useSelector(state => state.cities.selected_city);
+  console.log(Object.keys(selectedCity).length);
   const goToTravelPage = () => {
-    navigation.navigate('Travel', {id: 'ChIJi3lwCZyTC0cRkEAWZg-vAAQ'});
+    navigation.navigate('Travel');
   };
 
   /* const addNewCity = () => {
@@ -39,12 +33,9 @@ const FavouriteScreen = ({navigation}) => {
   }; */
 
   const toggleType = newType => {
-    const newTypeList = [...types];
-    const index = types.findIndex(type => type === newType);
-    if (index >= 0) newTypeList.splice(index, 1);
-    else newTypeList.push(newType);
+    const newTypeList = _.xor(types, [newType]);
     setTypes(newTypeList);
-    console.log(types);
+    dispatch(setPlaceTypes(newType));
   };
 
   return (
@@ -98,6 +89,7 @@ const FavouriteScreen = ({navigation}) => {
           </View>
         </ImageBackground>
       </View>
+
       <View
         style={{
           position: 'absolute',
@@ -105,13 +97,16 @@ const FavouriteScreen = ({navigation}) => {
           height: '100%',
           zIndex: 1,
         }}>
-        <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps='handled'>
-          <View style={styles.cardStyle}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled">
+          <KeyboardAvoidingView style={styles.cardStyle}>
             <View style={styles.cardContentStyle}>
-              <View style={{margin: 10, zIndex: 2, height: 200}}>
+              <View
+                behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+                style={{marginTop: 50, marginHorizontal: 10, zIndex: 2}}>
                 <CitySearch />
               </View>
-
               <View
                 style={{
                   flexDirection: 'row',
@@ -124,16 +119,20 @@ const FavouriteScreen = ({navigation}) => {
                 {LABELS.map(label => (
                   <CustomLabelButton
                     text={label.name}
-                    toggleList={() => toggleType(label.name)}
+                    toggleList={() => toggleType(label.type)}
                   />
                 ))}
               </View>
               {/* <CustomButton text={'Add City'} onPress={addNewCity} /> */}
               <View style={{margin: 5}}>
-                <CustomButton text={'Next'} onPress={goToTravelPage} />
+                <CustomButton
+                  text={'Next'}
+                  onPress={goToTravelPage}
+                  disabled={Object.keys(selectedCity).length > 0 ? false : true}
+                />
               </View>
             </View>
-          </View>
+          </KeyboardAvoidingView>
         </ScrollView>
       </View>
     </View>
@@ -146,7 +145,7 @@ let styles = StyleSheet.create({
     height: '100%',
   },
   cardStyle: {
-    marginTop: 100,
+    marginTop: 280,
     padding: Style.paddingCardContainer,
     elevation: Style.elevation,
     borderTopLeftRadius: Style.borderRadiusCardContainer,

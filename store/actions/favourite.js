@@ -7,7 +7,12 @@ export const TOGGLE_FAVOURITE_CITY = 'TOGGLE_FAVOURITE_CITY';
 export const TOGGLE_FAVOURITE_PLACE = 'TOGGLE_FAVOURITE_PLACE';
 export const FETCH_FAVOURITES = 'FETCH_FAVOURITES';
 export const FETCH_FAVOURITE_PLACES = 'FETCH_FAVOURITE_PLACES';
+export const SET_FAVOURITE_REQUEST = 'SET_FAVOURITE_REQUEST';
 
+/* export const setFavouriteRequest = (place, cityName) => {
+  return {type: SET_FAVOURITE_REQUEST, place, cityName};
+};
+ */
 export const setCardStyle = cardtype => {
   return {type: SET_CARD_STYLE, cardtype};
 };
