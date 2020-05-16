@@ -4,10 +4,7 @@ import MapButton from './Buttons/MapButton';
 import Colors from '../constants/Colors';
 import Style from '../constants/Style';
 
-const Header = ({title, mapIcon = 'true', navigation}) => {
-  const goToMapHandler = () => {
-    navigation.navigate('Mapf');
-  };
+const Header = ({title, mapIcon = 'true', onMapPress}) => {
   return (
     <View
       style={{
@@ -18,7 +15,7 @@ const Header = ({title, mapIcon = 'true', navigation}) => {
         paddingHorizontal: 15,
         width: '100%',
       }}>
-      {mapIcon ? <MapButton onPress={goToMapHandler} /> : <View />}
+      {mapIcon ? <MapButton onPress={onMapPress} /> : <View />}
       <Text
         style={{
           color: Colors.blueTitleColor,

@@ -53,14 +53,13 @@ locateCurrentPosition = () => {
   );
 };
 
-const MapScreenf = ({navigation}) => {
+const MapScreenf = ({navigation, route}) => {
   const places = useSelector(state => state.places.places);
   const currentCity = useSelector(state => state.cities.selected_city);
-
   const markers = [];
   const [initialPosition, setInitialPosition] = useState({
-    latitude: currentCity.geometry.location.lat,
-    longitude: currentCity.geometry.location.lng,
+    latitude: route.params.lat,
+    longitude: route.params.lng,
     latitudeDelta: 0.003,
     longitudeDelta: 0.003,
   });
@@ -92,7 +91,7 @@ const MapScreenf = ({navigation}) => {
     return d;
   };
 
-  onCarouselItemChange = index => {
+  const onCarouselItemChange = index => {
     let location = places[index].geometry.location;
     _map.animateToRegion({
       latitude: location.lat,
@@ -103,7 +102,7 @@ const MapScreenf = ({navigation}) => {
     markers[index].showCallout();
   };
 
-  onMarkerPressed = (location, index) => {
+  const onMarkerPressed = (location, index) => {
     _map.animateToRegion({
       latitude: location.lat,
       longitude: location.lng,
@@ -113,7 +112,7 @@ const MapScreenf = ({navigation}) => {
     _carousel.snapToItem(index);
   };
 
-  renderCarouselItem = ({item, index}) => {
+  const renderCarouselItem = ({item, index}) => {
     return (
       <TouchableOpacity
         onPress={() => {
@@ -149,7 +148,7 @@ const MapScreenf = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <BackButton navigation={navigation} />
+      <BackButton {...navigation} />
       <PositionButton onPress={returnToInitialPosition} />
       <View style={{position: 'absolute', top: 50, width: '100%'}}>
         <SearchBar />

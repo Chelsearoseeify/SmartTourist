@@ -5,7 +5,7 @@ import {View} from 'react-native';
 import Style from '../../constants/Style';
 import Colors from '../../constants/Colors';
 
-const BackButton = ({navigation}) => {
+const BackButton = navigation => {
   return (
     <View
       style={{

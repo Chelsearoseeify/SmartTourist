@@ -30,7 +30,7 @@ const TravelScreen = ({navigation, route}) => {
   const selectedCity = useSelector(state => state.cities.selected_city);
   const filteredPlaces = useSelector(state => state.places.filtered_places);
   const [types, setTypes] = useState(useSelector(state => state.places.types));
-  console.log('travel types: ' + types);
+  console.log(selectedCity);
   const favouritePlaces = useSelector(
     state => state.favourites.favourite_places,
   );
@@ -40,8 +40,8 @@ const TravelScreen = ({navigation, route}) => {
     setError(null);
     setIsRefreshing(true);
     try {
-      await dispatch(fetchFavourites(user.uid));
-      await dispatch(fetchPlaces(selectedCity.id));
+      dispatch(fetchFavourites(user.uid));
+      dispatch(fetchPlaces(selectedCity.id));
     } catch (error) {
       setError(error.message);
     }
@@ -56,7 +56,10 @@ const TravelScreen = ({navigation, route}) => {
   }, [dispatch, loadPlaces]);
 
   const mapHandler = () => {
-    navigation.navigate('Mapf');
+    navigation.navigate('Mapf', {
+      lat: selectedCity.geometry.location.lat,
+      lng: selectedCity.geometry.location.lng,
+    });
   };
   /* 
   const addPlaces = () => {
@@ -116,7 +119,11 @@ const TravelScreen = ({navigation, route}) => {
       <View>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View>
-            <Header title={selectedCity.name} navigation={navigation} />
+            <Header
+              title={selectedCity.name}
+              navigation={navigation}
+              onMapPress={mapHandler}
+            />
             <SearchBar />
             <View style={{marginVertical: 10, marginHorizontal: 20}}>
               <ScrollView

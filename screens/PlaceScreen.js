@@ -18,11 +18,11 @@ import StarsRating from '../components/StarsRating';
 import FavouritePlace from './../models/FavouritePlace';
 import FavouriteCity from './../models/FavouriteCity';
 
-const PlaceScreen = props => {
+const PlaceScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const [error, setError] = useState();
   const user = useSelector(state => state.user.data);
-  const {id, cityName} = props.route.params;
+  const {id, cityName} = route.params;
   const place = useSelector(state => state.places.place);
   const favouritePlaces = useSelector(
     state => state.favourites.favourite_places,
@@ -102,6 +102,13 @@ const PlaceScreen = props => {
     console.log('PRESSED');
   };
 
+  const mapHandler = () => {
+    navigation.navigate('Mapf', {
+      lat: place.geometry.location.lat,
+      lng: place.geometry.location.lng,
+    });
+  };
+
   return (
     <View style={{flex: 1}}>
       <View style={{height: 200, width: '100%', flex: 1, position: 'absolute'}}>
@@ -111,7 +118,7 @@ const PlaceScreen = props => {
           resizeMode="cover"
         />
       </View>
-      <BackButton {...props} />
+      <BackButton {...navigation} />
       <View
         style={{
           position: 'absolute',
@@ -145,7 +152,7 @@ const PlaceScreen = props => {
                 <PlaceScreenButton
                   name={'Navigate'}
                   iconName={'directions'}
-                  onPress={pressHandlers}
+                  onPress={mapHandler}
                 />
                 <PlaceScreenButton
                   name={'Favourite'}
