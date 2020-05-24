@@ -1,22 +1,12 @@
 import React from 'react';
 
-import SmallListCard from './Cards/ListCardCitySmall';
-import BigListCard from './Cards/ListCardCityBig';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import ListHeader from './ListHeader';
-import CardTypes from '../constants/CardTypes';
 import { useDispatch } from 'react-redux';
 import { fetchSelectedCity } from '../store/actions/cities';
 
-let cityIcons = new Map();
-cityIcons.set('Barcelona', require('./../assets/images/icons/Barcelona.png'));
-cityIcons.set('Tokyo', require('./../assets/images/icons/Tokyo.png'));
-cityIcons.set('New York', require('./../assets/images/icons/NewYork.png'));
-cityIcons.set('Prague', require('./../assets/images/icons/Prague.png'));
-cityIcons.set('Rome', require('./../assets/images/icons/Rome.png'));
-cityIcons.set('Paris', require('./../assets/images/icons/Paris.png'));
 
-const HorizontalScrolliew = ({ name, cities, elemType, navigation, paddingLeft, action }) => {
+const HorizontalScrolliew = ({ name, paddingLeft, onMoreTap, children }) => {
   const dispatch = useDispatch();
 
   const onPressHandler = city => {
@@ -27,31 +17,10 @@ const HorizontalScrolliew = ({ name, cities, elemType, navigation, paddingLeft, 
 
   return (
     <View>
-      <ListHeader name={name} padding={paddingLeft} action={action} />
+      <ListHeader name={name} padding={paddingLeft} action={onMoreTap} />
       <View>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{paddingLeft: paddingLeft}}>
-          {cities.map(city => {
-            switch (elemType) {
-              case CardTypes.LIST_CARD_SMALL:
-                return (
-                  <SmallListCard
-                    name={city.name}
-                    imageId={cityIcons.get(city.name)}
-                    onPress={() => onPressHandler(city)}
-                  />
-                );
-              case CardTypes.LIST_CARD_BIG:
-                return (
-                  <BigListCard
-                    name={city.name}
-                    imageId={city.imageUrl}
-                    onPress={() => onPressHandler(city)}
-                  />
-                );
-              default:
-                break;
-            }
-          })}
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ paddingLeft: paddingLeft }}>
+          {children}
         </ScrollView>
       </View>
     </View>

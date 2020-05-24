@@ -8,6 +8,9 @@ import AddTrip from '../components/AddTrip';
 import Style from '../constants/Style';
 import moment from 'moment';
 
+import TopDestinations from '../containers/TopDestinations';
+import BeautifulCities from '../containers/BeautifulCities';
+
 const AddTripScreen = props => {
   const trips = useSelector(state => state.trips.userTrips);
   console.log(trips.length);
@@ -16,7 +19,7 @@ const AddTripScreen = props => {
     <SafeAreaView style={styles.container}>
       <ScrollView keyboardShouldPersistTaps='handled'>
         <View>
-          <View style={styles.cardStyle}>
+          <View style={{...styles.cardStyle, padding: 20}}>
             <AddTrip />
             {trips && trips.map((trip) => {
               return <View>
@@ -27,24 +30,14 @@ const AddTripScreen = props => {
               </View>
             })}
           </View>
-          <View style={[styles.cardStyle, { height: '100%' }]}>
+          <View style={{...styles.cardStyle, height: '100%'}}>
             <View style={styles.listViewStyle}>
               <View>
                 <Text style={styles.subtitleStyle}>Suggestions</Text>
               </View>
-              <View style={{ paddingLeft: 25, height: '100%' }}>
-                <HorizontalScrollView
-                  name={'Top destinations'}
-                  cities={useSelector(state => state.cities.top_destinations)}
-                  elemType={CardTypes.LIST_CARD_BIG}
-                  navigation={props.navigation}
-                />
-                <HorizontalScrollView
-                  name={'Beautiful cities'}
-                  cities={useSelector(state => state.cities.beautiful_cities)}
-                  elemType={CardTypes.LIST_CARD_SMALL}
-                  navigation={props.navigation}
-                />
+              <View style={{ height: '100%' }}>
+                <TopDestinations/>
+                <BeautifulCities/>
               </View>
             </View>
           </View>
@@ -71,8 +64,7 @@ const styles = StyleSheet.create({
     elevation: Style.elevation,
     borderRadius: Style.borderRadiusCardContainer,
     backgroundColor: 'white',
-    padding: 20,
-    paddingVertical: 50
+    paddingVertical: 30
   },
   titleViewStyle: {
     flex: 1,
@@ -99,7 +91,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     marginBottom: 5,
     paddingStart: 5,
-    marginHorizontal: 25,
+    marginHorizontal: 15,
     paddingBottom: 5,
   }
 });

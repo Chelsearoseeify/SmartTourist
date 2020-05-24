@@ -12,6 +12,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import FavouriteScreen from '../screens/FavouritesScreen';
 import AddTripScreen from '../screens/AddTripScreen';
 import TripsScreen from '../screens/TripsScreen';
+import TripDetailScreen from '../screens/TripDetailScreen';
 
 import MainPageScreen from './../screens/MainPageScreen';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -43,6 +44,7 @@ function MyTripsStackNavigator() {
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.backgroundColor }}>
       <Stack.Navigator headerMode="none">
         <Stack.Screen name="MyTrips" component={TripsScreen} />
+        <Stack.Screen name="TripDetailScreen" component={TripDetailScreen} />
         <Stack.Screen name="Place" component={PlaceScreen} />
       </Stack.Navigator>
     </SafeAreaView>

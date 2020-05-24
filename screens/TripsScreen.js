@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Colors from '../constants/Colors';
-import { View, StyleSheet, SafeAreaView, Text } from 'react-native';
+import { View, StyleSheet, SafeAreaView, Text, ScrollView } from 'react-native';
 import HorizontalScrollView from '../components/HorizontalScrollView';
-import CardTypes from '../constants/CardTypes';
 import NextTripCard from '../components/Cards/NextTripCard';
+import BigListCard from '../components/Cards/ListCardCityBig';
 
-import {
-  fetchBeautifulCities,
-  fetchTopDestinations,
-} from '../store/actions/cities';
+import TopDestinations from '../containers/TopDestinations';
+import BeautifulCities from '../containers/BeautifulCities';
 
 import Header from '../components/Header';
 import Style from '../constants/Style';
@@ -18,86 +16,61 @@ const TripsScreen = props => {
   const dispatch = useDispatch();
   const [error, setError] = useState();
   const trips = useSelector(state => state.trips.userTrips);
-  const topDestinations = useSelector(state => state.cities.top_destinations);
-  const beautifulCities = useSelector(state => state.cities.beautiful_cities);
 
-  useEffect(() => {
-    const loadBeautifulCities = async () => {
-      try {
-        await dispatch(fetchBeautifulCities());
-      } catch (error) {
-        setError(error.message); //error to be handled, it has to be defined
-      }
-    };
-    loadBeautifulCities();
-  }, [dispatch, fetchBeautifulCities]);
-
-  useEffect(() => {
-    const loadTopDestinations = async () => {
-      try {
-        await dispatch(fetchTopDestinations());
-      } catch (error) {
-        setError(error.message); //error to be handled, it has to be defined
-      }
-    };
-    loadTopDestinations();
-  }, [dispatch, fetchTopDestinations]);
+  const onTripSelected = (trip) =>{
+    console.log(`Selected trip ${trip.name}`);
+    props.navigation.navigate('TripDetailScreen', {
+      tripId: trip.id
+    });
+  }
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.titleViewStyle}>
-        <Header title={'Your trips'} mapIcon={false} />
-      </View>
-      <View>
-        <View style={styles.cardsContainerStyle}>
-          <View style={[styles.cardStyle, { height: '100%' }]}>
-            <View style={{ padding: 20 }}>
-              <Text style={{
-                color: Colors.greenTitleColor,
-                fontWeight: 'bold',
-                fontSize: Style.fontSize.h4,
-              }}
-              >
-                Your next trip
-              </Text>
-              <NextTripCard />
-
-
-            </View>
-            <View style={{marginVertical: 10}}>
-              <HorizontalScrollView
-                name={'All Trips'}
-                cities={trips}
-                elemType={CardTypes.LIST_CARD_BIG}
-                navigation={props.navigation}
-                paddingLeft={20}
-                action={()=>{console.log('See all trips')}}
-              />
-            </View>
-            <View style={styles.listViewStyle}>
-              <View>
-                <Text style={styles.subtitleStyle}>Suggestions</Text>
+      <ScrollView>
+        <View style={styles.titleViewStyle}>
+          <Header title={'Your trips'} mapIcon={false} />
+        </View>
+        <View>
+          <View style={styles.cardsContainerStyle}>
+            <View style={[styles.cardStyle, { height: '100%' }]}>
+              <View style={{ padding: 20 }}>
+                <Text style={{
+                  color: Colors.greenTitleColor,
+                  fontWeight: 'bold',
+                  fontSize: Style.fontSize.h4,
+                }}
+                >
+                  Your next trip
+                </Text>
+                <NextTripCard />
               </View>
-              <View>
+              <View style={{ marginVertical: 10 }}>
                 <HorizontalScrollView
-                  name={'Top destinations'}
-                  cities={topDestinations}
-                  elemType={CardTypes.LIST_CARD_BIG}
-                  navigation={props.navigation}
+                  name={'All Trips'}
                   paddingLeft={20}
-                />
-                <HorizontalScrollView
-                  name={'Beautiful cities'}
-                  cities={beautifulCities}
-                  elemType={CardTypes.LIST_CARD_SMALL}
-                  navigation={props.navigation}
-                  paddingLeft={20}
-                />
+                  onMoreTap={() => { console.log('See all trips') }}
+                >
+                  {trips.map(trip => {
+                    return <BigListCard
+                      name={trip.name}
+                      onPress={() => onTripSelected(trip)}
+                    />
+                  })}
+                </HorizontalScrollView>
+              </View>
+              <View style={styles.listViewStyle}>
+                <View>
+                  <Text style={styles.subtitleStyle}>Suggestions</Text>
+                </View>
+                <View>
+                  <TopDestinations/>
+                  <BeautifulCities/>
+                </View>
               </View>
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -126,10 +99,6 @@ let styles = StyleSheet.create({
     height: topSpace,
     flex: 1,
     position: 'absolute',
-  },
-  titleStyle: {
-    color: Colors.blueTitleColor,
-    fontWeight: 'bold',
   },
   listViewStyle: {
     marginTop: 10,
