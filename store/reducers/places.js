@@ -35,14 +35,13 @@ const placesReducer = (state = initialState, action) => {
     }
     case SET_PLACES: {
       let filters = {};
-      console.log('reducer types: ' + state.types);
       if (state.types.length > 0) {
         filters = {
           types: types => state.types.find(x => types.includes(x)),
         };
       }
       const filteredPlaces = filterArray(action.places, filters);
-      filteredPlaces.map(place => console.log(place.name, place.types));
+      //filteredPlaces.map(place => console.log(place.name, place.types));
       return {...state, places: action.places, filtered_places: filteredPlaces};
     }
     case CREATE_PLACE: {

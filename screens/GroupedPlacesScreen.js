@@ -8,12 +8,13 @@ import Style from '../constants/Style';
 import Header from '../components/Header';
 import FavouritePlaceCard from './../components/Cards/FavouritePlaceCard';
 import {fetchFavouritePlaces} from './../store/actions/favourite';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const GroupedPlacesScreen = props => {
+const GroupedPlacesScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
-  const {navigation, route} = props;
   const {title, cityId} = route.params;
   const [isLoading, setIsLoading] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [error, setError] = useState(false);
   const places = useSelector(
     state => state.favourites.selected_favourite_places,
@@ -36,28 +37,58 @@ const GroupedPlacesScreen = props => {
 
   const renderGridItem = itemData => {
     return (
-      <FavouritePlaceCard
-        name={itemData.item.name}
-        imageUrl={itemData.item.url}
-        onSelect={() => {
-          navigation.navigate('Place', {
-            id: itemData.item.placeId,
-            cityName: title,
-          });
-        }}
-      />
+      <View style={{flex: 1, margin: Style.marginCard}}>
+        {isDeleting ? (
+          <View
+            style={{
+              padding: 0,
+              alignItems: 'flex-end',
+              marginHorizontal: -12,
+              marginVertical: -5,
+            }}>
+            <Icon
+              style={{
+                fontSize: Style.iconSize,
+                color: Colors.blueTitleColor,
+              }}
+              name="close"
+              onPress={() => {}}
+            />
+          </View>
+        ) : null}
+
+        <FavouritePlaceCard
+          name={itemData.item.name}
+          imageUrl={itemData.item.url}
+          onSelect={() => {
+            navigation.navigate('Place', {
+              id: itemData.item.placeId,
+              cityName: title,
+            });
+          }}
+        />
+      </View>
     );
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <BackButton {...props} />
+      <BackButton {...navigation} />
       <View style={styles.titleViewStyle}>
         <Header title={title} mapIcon={false} />
       </View>
       <View style={styles.cardViewStyle}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.cardStyle}>
+            <View style={styles.iconViewStyle}>
+              <Icon
+                style={styles.icon}
+                name="pencil"
+                onPress={() => {
+                  isDeleting ? setIsDeleting(false) : setIsDeleting(true);
+                }}
+              />
+            </View>
             <View style={styles.contentStyle}>
               <FlatList
                 contentContainerStyle={styles.placesContainer}
@@ -107,6 +138,18 @@ let styles = StyleSheet.create({
     height: topSpace,
     flex: 1,
     position: 'absolute',
+  },
+  iconViewStyle: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    paddingHorizontal: 10,
+    marginVertical: 10,
+  },
+  icon: {
+    fontSize: Style.iconSize,
+    paddingHorizontal: 24,
+    color: Colors.blueTitleColor,
   },
 });
 

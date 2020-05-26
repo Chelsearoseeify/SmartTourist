@@ -25,7 +25,6 @@ import {setPlaceTypes} from './../store/actions/places';
 const TravelScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
-  const [isRefreshing, setIsRefreshing] = useState(false);
   const [error, setError] = useState();
   const selectedCity = useSelector(state => state.cities.selected_city);
   const filteredPlaces = useSelector(state => state.places.filtered_places);
@@ -38,14 +37,14 @@ const TravelScreen = ({navigation, route}) => {
 
   const loadPlaces = useCallback(async () => {
     setError(null);
-    setIsRefreshing(true);
+    setIsLoading(true);
     try {
       dispatch(fetchFavourites(user.uid));
       dispatch(fetchPlaces(selectedCity.id));
     } catch (error) {
       setError(error.message);
     }
-    setIsRefreshing(false);
+    setIsLoading(false);
   }, [dispatch, selectedCity, types]);
 
   useEffect(() => {
@@ -94,6 +93,7 @@ const TravelScreen = ({navigation, route}) => {
         onSelect={() => {
           navigation.navigate('Place', {
             id: itemData.item.id,
+            placeName: itemData.item.name,
             cityName: selectedCity.name,
           });
         }}
@@ -162,7 +162,6 @@ const TravelScreen = ({navigation, route}) => {
                   renderItem={renderGridItem}
                   horizontal={false}
                   ListHeaderComponent={headerComponent}
-                  scrollEnabled={false}
                 />
               )}
             </View>

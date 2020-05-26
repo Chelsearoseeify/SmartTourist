@@ -4,7 +4,10 @@ export const CREATE_PLACE = 'CREATE_PLACE';
 export const SET_PLACES = 'SET_PLACES';
 export const FETCH_PLACE = 'FETCH_PLACE';
 export const SET_PLACE_TYPES = 'SET_TYPES';
+export const FETCH_PLACE_DESCRIPTION = 'FETCH_PLACE_DESCRIPTION';
 const API_KEY = 'AIzaSyBZnXD0YlNLMtcDswoLpkUTu_cBYP3Ud0w';
+import axios from 'axios';
+import _ from 'lodash';
 
 export const setPlaceTypes = newType => {
   return {type: SET_PLACE_TYPES, newType: newType};
@@ -26,7 +29,7 @@ export const fetchPlace = placeId => {
     try {
       let ref = database().ref(`places/${placeId}`);
       let res = await ref.once('value');
-      const place = new CompletePlace(
+      let place = new CompletePlace(
         res.key,
         res.val().name,
         res.val().cityId,
@@ -44,6 +47,16 @@ export const fetchPlace = placeId => {
     } catch (error) {
       throw error;
     }
+  };
+};
+
+export const fetchPlaceDescription = placeName => {
+  return async dispatch => {
+    const response = await axios.get(
+      `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&titles=Clementinum&redirects=true`,
+    );
+    console.log(response.query);
+    dispatch({type: FETCH_PLACE_DESCRIPTION, response});
   };
 };
 

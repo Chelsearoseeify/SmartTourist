@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   cardStyle: {
-    margin: Style.marginCard,
     borderRadius: Style.borderRadiusCard,
     flex: 1,
     height: 180,
