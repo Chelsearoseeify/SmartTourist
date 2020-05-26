@@ -29,7 +29,7 @@ const TravelScreen = ({navigation, route}) => {
   const selectedCity = useSelector(state => state.cities.selected_city);
   const filteredPlaces = useSelector(state => state.places.filtered_places);
   const [types, setTypes] = useState(useSelector(state => state.places.types));
-  console.log(selectedCity);
+
   const favouritePlaces = useSelector(
     state => state.favourites.favourite_places,
   );
@@ -82,7 +82,7 @@ const TravelScreen = ({navigation, route}) => {
 
   const renderGridItem = itemData => {
     const index = favouritePlaces.findIndex(
-      place => place.placeId === itemData.item.id,
+      place => place.id === itemData.item.id,
     );
     return (
       <PlaceCard

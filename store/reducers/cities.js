@@ -12,8 +12,18 @@ const initialState = {
   cities: [],
   top_destinations: [],
   beautiful_cities: [],
-  selected_city: {},
-  queryPredictions: []
+  selected_city: {
+    geometry: {
+      location: {lat: 50.0755381, lng: 14.4378005},
+      viewport: {northeast: [Object], southwest: [Object]},
+    },
+    iconId: null,
+    id: 'ChIJi3lwCZyTC0cRkEAWZg-vAAQ',
+    imageUrl: '',
+    name: 'Prague',
+    photoRreference: undefined,
+  },
+  queryPredictions: [],
 };
 
 const cityReducer = (state = initialState, action) => {

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { StyleSheet, SafeAreaView, View } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {StyleSheet, SafeAreaView, View} from 'react-native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import TravelScreen from '../screens/TravelScreen';
 import PlaceScreen from '../screens/PlaceScreen';
@@ -27,7 +27,7 @@ const Tab = createBottomTabNavigator();
 function HomeStackNavigator() {
   return (
     <Stack.Navigator headerMode="none">
-      <Stack.Screen name="Home" component={MainPageScreen} />
+      {/*  <Stack.Screen name="Home" component={MainPageScreen} /> */}
       <Stack.Screen name="Travel" component={TravelScreen} />
       <Stack.Screen name="Place" component={PlaceScreen} />
       <Stack.Screen name="Map" component={MapScreen} />
@@ -41,7 +41,7 @@ function HomeStackNavigator() {
 
 function MyTripsStackNavigator() {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: Colors.backgroundColor }}>
+    <SafeAreaView style={{flex: 1, backgroundColor: Colors.backgroundColor}}>
       <Stack.Navigator headerMode="none">
         <Stack.Screen name="MyTrips" component={TripsScreen} />
         <Stack.Screen name="TripDetailScreen" component={TripDetailScreen} />
@@ -74,7 +74,7 @@ function TabNavigator() {
         component={HomeStackNavigator}
         options={{
           tabBarLabel: 'Travel',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({color, size}) => (
             <Icon name="compass" color={color} size={26} />
           ),
         }}
@@ -84,7 +84,7 @@ function TabNavigator() {
         component={SearchScreen}
         options={{
           tabBarLabel: 'Search',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({color, size}) => (
             <Icon name="magnify" color={color} size={26} />
           ),
         }}
@@ -93,8 +93,8 @@ function TabNavigator() {
         name="Plus"
         component={AddTripScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <View style={{ marginBottom: 30, elevation: 6 }}>
+          tabBarIcon: ({color, size}) => (
+            <View style={{marginBottom: 30, elevation: 6}}>
               <CustomFloatingButton />
             </View>
           ),
@@ -105,7 +105,7 @@ function TabNavigator() {
         component={MyTripsStackNavigator}
         options={{
           tabBarLabel: 'My Trips',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({color, size}) => (
             <Icon name="wallet-travel" color={color} size={26} />
           ),
         }}
@@ -115,7 +115,7 @@ function TabNavigator() {
         component={FavouriteStackNavigator}
         options={{
           tabBarLabel: 'Favourites',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({color, size}) => (
             <Icon name="heart-outline" color={color} size={26} />
           ),
         }}

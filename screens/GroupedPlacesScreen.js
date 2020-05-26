@@ -7,26 +7,35 @@ import {useSelector, useDispatch} from 'react-redux';
 import Style from '../constants/Style';
 import Header from '../components/Header';
 import FavouritePlaceCard from './../components/Cards/FavouritePlaceCard';
-import {fetchFavouritePlaces} from './../store/actions/favourite';
+import {
+  toggleFavouriteCity,
+  toggleFavouritePlace,
+} from '../store/actions/favourite';
+import {
+  fetchFavouritePlaces,
+  setFavouriteRequest,
+} from './../store/actions/favourite';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const GroupedPlacesScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const {title, cityId} = route.params;
+  const user = useSelector(state => state.user.data);
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [error, setError] = useState(false);
+  const placeRequest = useSelector(state => state.favourites.place_request);
+  const cityRequest = useSelector(state => state.favourites.city_request);
   const places = useSelector(
     state => state.favourites.selected_favourite_places,
   );
-  const user = useSelector(state => state.user.data);
 
   //this run whenever the component is loaded
   useEffect(() => {
     const loadProduct = async () => {
       setIsLoading(true);
       try {
-        await dispatch(fetchFavouritePlaces(user.uid, cityId));
+        dispatch(fetchFavouritePlaces(user.uid, cityId));
       } catch (error) {
         setError(error.message); //error to be handled, it has to be defined
       }
@@ -34,6 +43,32 @@ const GroupedPlacesScreen = ({navigation, route}) => {
     };
     loadProduct();
   }, [dispatch, fetchFavouritePlaces, places]);
+
+  useEffect(() => {
+    const toggleFavs = async () => {
+      if (Object.keys(cityRequest.city).length > 0) {
+        dispatch(
+          toggleFavouriteCity(
+            user.uid,
+            cityRequest.city,
+            cityRequest.actionType,
+          ),
+        );
+        dispatch(
+          toggleFavouritePlace(
+            user.uid,
+            placeRequest.place,
+            placeRequest.actionType,
+          ),
+        );
+      }
+    };
+    toggleFavs();
+  }, [dispatch, cityRequest]);
+
+  const removePlace = place => {
+    dispatch(setFavouriteRequest(place, title));
+  };
 
   const renderGridItem = itemData => {
     return (
@@ -52,7 +87,9 @@ const GroupedPlacesScreen = ({navigation, route}) => {
                 color: Colors.blueTitleColor,
               }}
               name="close"
-              onPress={() => {}}
+              onPress={() => {
+                removePlace(itemData.item);
+              }}
             />
           </View>
         ) : null}
@@ -62,7 +99,7 @@ const GroupedPlacesScreen = ({navigation, route}) => {
           imageUrl={itemData.item.url}
           onSelect={() => {
             navigation.navigate('Place', {
-              id: itemData.item.placeId,
+              id: itemData.item.id,
               cityName: title,
             });
           }}

@@ -9,10 +9,10 @@ export const FETCH_FAVOURITES = 'FETCH_FAVOURITES';
 export const FETCH_FAVOURITE_PLACES = 'FETCH_FAVOURITE_PLACES';
 export const SET_FAVOURITE_REQUEST = 'SET_FAVOURITE_REQUEST';
 
-/* export const setFavouriteRequest = (place, cityName) => {
+export const setFavouriteRequest = (place, cityName) => {
   return {type: SET_FAVOURITE_REQUEST, place, cityName};
 };
- */
+
 export const setCardStyle = cardtype => {
   return {type: SET_CARD_STYLE, cardtype};
 };
@@ -89,7 +89,7 @@ export const toggleFavouritePlace = (uid, newPlace, actionType) => {
       case ActionType.ADD_PLACE:
         database()
           .ref(`/favourite_places/${uid}`)
-          .child(newPlace.placeId)
+          .child(newPlace.id)
           .set({
             cityId: newPlace.cityId,
             name: newPlace.name,
@@ -99,7 +99,7 @@ export const toggleFavouritePlace = (uid, newPlace, actionType) => {
         break;
       case ActionType.DELETE_PLACE:
         database()
-          .ref(`/favourite_places/${uid}/${newPlace.placeId}`)
+          .ref(`/favourite_places/${uid}/${newPlace.id}`)
           .remove()
           .then(() => console.log('Place data removed.'));
         break;
@@ -119,6 +119,7 @@ export const toggleFavouriteCity = (uid, newCity, actionType) => {
   return async dispatch => {
     switch (actionType) {
       case ActionType.UPDATE_CITY:
+        console.log(newCity.imageQueue);
         database()
           .ref(`/favourite_cities/${uid}`)
           .child(newCity.cityName)
@@ -130,6 +131,7 @@ export const toggleFavouriteCity = (uid, newCity, actionType) => {
           .then(() => console.log('Data updated.'));
         break;
       case ActionType.ADD_CITY:
+        console.log(newCity.imageQueue);
         database()
           .ref(`/favourite_cities/${uid}`)
           .child(newCity.cityName)

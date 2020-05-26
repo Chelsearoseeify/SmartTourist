@@ -16,15 +16,13 @@ import {
   toggleFavouritePlace,
 } from '../store/actions/favourite';
 import {fetchPlace, fetchPlaces} from '../store/actions/places';
-import actionType from './../constants/ActionType';
 import Style from '../constants/Style';
 import Detail from '../components/Detail';
 import PlaceScreenButton from '../components/Buttons/PlaceScreenButton';
 import StarsRating from '../components/StarsRating';
-import FavouritePlace from './../models/FavouritePlace';
-import FavouriteCity from './../models/FavouriteCity';
 import HTML from 'react-native-render-html';
 import {fetchPlaceDescription} from './../store/actions/places';
+import {setFavouriteRequest} from './../store/actions/favourite';
 
 const PlaceScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -32,13 +30,12 @@ const PlaceScreen = ({navigation, route}) => {
   const user = useSelector(state => state.user.data);
   const {id, cityName, placeName} = route.params;
   const place = useSelector(state => state.places.place);
+  const placeRequest = useSelector(state => state.favourites.place_request);
+  const cityRequest = useSelector(state => state.favourites.city_request);
   const favouritePlaces = useSelector(
     state => state.favourites.favourite_places,
   );
-  const favouriteCities = useSelector(
-    state => state.favourites.favourite_cities,
-  );
-  const index = favouritePlaces.findIndex(place => place.placeId === id);
+  const index = favouritePlaces.findIndex(place => place.id === id);
   const [icon, setIcon] = useState(
     index >= 0 ? 'cards-heart' : 'heart-outline',
   );
@@ -56,55 +53,31 @@ const PlaceScreen = ({navigation, route}) => {
     loadPlace();
   }, [dispatch]);
 
-  const toggleFavouriteHandler = () => {
-    const existingCity = favouriteCities.find(
-      city => city.cityId === place.cityId,
-    );
-    let newCity = new FavouriteCity(place.cityId, cityName, [], []);
-    let cityActionType = '';
-    let placeActionType = '';
-    if (existingCity) {
-      console.log('THE CITY EXISTS');
-      const placeIndex = existingCity.placesIds.findIndex(
-        id => id === place.id,
-      );
-      let placesIds = [...existingCity.placesIds];
-      let imageQueue = [...existingCity.imageQueue];
-      if (placeIndex >= 0) {
-        console.log('THE PLACE EXISTS');
-        placesIds.splice(placeIndex, 1);
-        imageQueue.splice(placeIndex, 1);
-        setIcon('heart-outline');
-
-        placeActionType = actionType.DELETE_PLACE;
-        if (placesIds.length === 0) cityActionType = actionType.DELETE_CITY;
-        else cityActionType = actionType.UPDATE_CITY;
-      } else {
-        console.log("THE PLACE DOESN'T EXIST");
-        placeActionType = actionType.ADD_PLACE;
-        cityActionType = actionType.UPDATE_CITY;
-        placesIds.unshift(place.id);
-        imageQueue.unshift(place.url);
-        setIcon('cards-heart');
+  useEffect(() => {
+    const toggleFavs = async () => {
+      if (Object.keys(cityRequest.city).length > 0) {
+        setIcon(placeRequest.icon);
+        dispatch(
+          toggleFavouriteCity(
+            user.uid,
+            cityRequest.city,
+            cityRequest.actionType,
+          ),
+        );
+        dispatch(
+          toggleFavouritePlace(
+            user.uid,
+            placeRequest.place,
+            placeRequest.actionType,
+          ),
+        );
       }
-      newCity.placesIds = placesIds;
-      newCity.imageQueue = imageQueue;
-    } else {
-      console.log("THE CITY DOESN'T EXIST");
-      newCity.placesIds = [place.id];
-      newCity.imageQueue = [place.url];
-      cityActionType = actionType.ADD_CITY;
-      placeActionType = actionType.ADD_PLACE;
-      setIcon('cards-heart');
-    }
-    dispatch(toggleFavouriteCity(user.uid, newCity, cityActionType));
-    dispatch(
-      toggleFavouritePlace(
-        user.uid,
-        new FavouritePlace(place.cityId, place.id, place.name, place.url),
-        placeActionType,
-      ),
-    );
+    };
+    toggleFavs();
+  }, [dispatch, cityRequest]);
+
+  const toggleFavouriteHandler = () => {
+    dispatch(setFavouriteRequest(place, cityName));
   };
 
   const pressHandlers = () => {
