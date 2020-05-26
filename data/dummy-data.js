@@ -398,5 +398,5 @@ export const FAVOURITES = [
 ];
 
 export const TRIPS = [
-  new Trip('t0', 'Trip 1', 'c1', '12312421123', '12312212312', ['p1', 'p4']),
+  new Trip(0.3904136693167304, 'New Trip', 'c1', 1590573600, 1590746400, [['-M60vD50Fs_wnpCsNXyP','-M60vD50Fs_wnpCsNXyQ'], ['-M60vD50Fs_wnpCsNXyQ']])
 ];
