@@ -9,13 +9,17 @@ import Colors from '../constants/Colors';
 
 import * as tripActions from '../store/actions/trips';
 
-import moment from 'moment';
+import { setSelectedCity } from '../store/actions/cities';
 
 const AddTrip = () => {
     const dispatch = useDispatch();
     const [tripName, setTripName] = useState('');
     const selectedCity = useSelector(state => state.cities.selected_city);
     const newTrip = useSelector(state => state.trips.newTrip);
+
+    const onCitySelected = (cityId, token) => {
+        dispatch(setSelectedCity(cityId, token));
+    }
 
     const addTripHandler = () => {
         dispatch(tripActions.createTrip(
@@ -44,7 +48,7 @@ const AddTrip = () => {
                     style={Style.inputStyle}
                 />
 
-                <CitySearch cityName={selectedCity.name}/>
+                <CitySearch cityName={selectedCity.name} onQuerySelected={(cityId, token) => onCitySelected(cityId, token)}/>
                 <CalendarDatePicker datesString={newTrip.dateString}/>
                 
                 <View

@@ -26,7 +26,7 @@ const renderTabBar = props => (
   />
 );
 
-const renderLabel = ({ route, focused, color }) => (
+const renderLabel = ({ route, color }) => (
   <Text style={{ color }}>
     {route.title}
   </Text>
@@ -34,7 +34,7 @@ const renderLabel = ({ route, focused, color }) => (
 
 const initialLayout = { width: Dimensions.get('window').width };
 
-const TripsScreen = props => {
+const TripDetailScreen = props => {
   const tripId = props.route.params.tripId;
   const trips = useSelector(state => state.trips.userTrips);
   const trip = trips.find(t => t.id === tripId);
@@ -133,4 +133,4 @@ let styles = StyleSheet.create({
   },
 });
 
-export default TripsScreen;
+export default TripDetailScreen;

@@ -10,32 +10,42 @@ import Colors from '../constants/Colors';
 const TripDay = props => {
   const dispatch = useDispatch();
   const places = useSelector(state => state.places.places);
+  console.log(places);
 
+  let component;
 
+  if(props.places.length === 0){
+    component = (
+      <View style={{marginVertical: 20}}>
+        <Text style={styles.emptyDayContainer}>There are no places added to this day, add places to see them here!</Text>
+      </View>
+    )
+  } else{
+    component = props.places.map(place => {
+      const currentPlace = places.find(p => p.id == place);
+      const type = currentPlace.types.slice(-1);
+      return (
+        <View style={styles.placeCard}>
+          <View style={styles.detailContainer}>
+            <Text style={styles.placeName}>{currentPlace.name}</Text>
+            <Text style={styles.placeType}>{type}</Text>
+          </View>
+
+          <View style={styles.imageContainer}>
+            <Image
+              source={{
+                uri: currentPlace.url,
+              }}
+              style={styles.imageStyle}>
+            </Image>
+          </View>
+        </View>)
+    })
+  }
 
   return (
     <View style={styles.container}>
-      {props.places && props.places.map(place => {
-        const currentPlace = places.find(p => p.id == place);
-        const type = currentPlace.types.slice(-1);
-        return (
-          <View style={styles.placeCard}>
-            <View style={styles.detailContainer}>
-              <Text style={styles.placeName}>{currentPlace.name}</Text>
-              <Text style={styles.placeType}>{type}</Text>
-            </View>
-
-            <View style={styles.imageContainer}>
-              <Image
-                source={{
-                  uri: currentPlace.url,
-                }}
-                style={styles.imageStyle}>
-              </Image>
-            </View>
-
-          </View>)
-      })}
+      {component}
     </View>
   )
 }
@@ -77,6 +87,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: 'flex-end',
     justifyContent: 'flex-end'
+  },
+  emptyDayContainer:{
+    flex: 1,
+    textAlign: "center",
+    color: Colors.textAccentColor
   }
 });
 

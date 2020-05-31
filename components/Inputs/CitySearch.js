@@ -39,7 +39,7 @@ const CitySearch = props => {
   };
 
   const predictionSelectHandler = item => {
-    dispatch(setSelectedCity(item.place_id, token));
+    props.onQuerySelected(item.place_id, token)
     setText(item.description);
     Keyboard.dismiss();
   };
