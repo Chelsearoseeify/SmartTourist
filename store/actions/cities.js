@@ -15,7 +15,8 @@ export const setSelectedCity = (cityId, token) => {
     const res = await axios.get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${cityId}&fields=name,geometry,photo&key=${API_KEY.API_KEY_PLACES}&sessiontoken=${token}`)
     const cityData = res.data.result;
     const city = new City(cityId, cityData.name, '', null, cityData.geometry);
-    await database()
+    try{
+      await database()
       .ref(`/cities/`)
       .child(cityId)
       .set({
@@ -26,6 +27,10 @@ export const setSelectedCity = (cityId, token) => {
         photoReference: city.photoRreference
       });
 
+    } catch(err){
+      console.log(err);
+    }
+    
     dispatch({ type: SET_SELECTED_CITY, city });
   };
 };

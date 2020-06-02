@@ -1,8 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Colors from '../constants/Colors';
-import HorizontalScrollView from '../components/HorizontalScrollView';
-import CardTypes from '../constants/CardTypes';
 import { View, StyleSheet, SafeAreaView, ScrollView, Text } from 'react-native';
 import AddTrip from '../components/AddTrip';
 import Style from '../constants/Style';

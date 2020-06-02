@@ -1,5 +1,5 @@
 import { TRIPS } from '../../data/dummy-data';
-import { CREATE_TRIP, SET_TRIP_DATES } from '../actions/trips';
+import { CREATE_TRIP, SET_TRIP_DATES, SET_TRIP_CITY } from '../actions/trips';
 import Trip from '../../models/Trip';
 import moment from 'moment';
 
@@ -39,7 +39,14 @@ export default (state = initialState, action) => {
                 dateString: dateString
             }
 
-            return { ...state, newTrip: updatedNewTrip}
+            return { ...state, newTrip: updatedNewTrip};
+        case SET_TRIP_CITY:
+            const updatedTrip = {
+                ...state.newTrip,
+                city: action.cityId
+            }
+
+            return { ...state, newTrip: updatedTrip}
         default:
             return state;
     }
