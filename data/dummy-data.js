@@ -24,19 +24,80 @@ export const LABELS = [
   /* 
   {type: "tourist_attraction", name: "Tourist Attraction"},
   {type: "point_of_interest", name: "Point of Interest"}, */
-  {type: 'park', name: 'Park'},
-  {type: 'church', name: 'Church'},
-  {type: 'place_of_worship', name: 'Place of Worship'},
-  {type: 'synagogue', name: 'Synagogue'},
-  {type: 'museum', name: 'Museum'},
-  {type: 'stadium', name: 'Stadium'},
-  {type: 'aquarium', name: 'Aquarium'},
-  {type: 'cafe', name: 'Cafè'},
-  {type: 'bar', name: 'Bar'},
-  {type: 'store', name: 'Store'},
-  {type: 'art_gallery', name: 'Art Gallery'},
-  {type: 'amusement_park', name: 'Amusement Park'},
-  {type: 'zoo', name: 'Zoo'},
+  {
+    type: 'park',
+    name: 'Park',
+    url:
+      'https://www.viaggiarelondra.it/wp-content/uploads/2019/04/regents-park.jpg',
+  },
+  {
+    type: 'church',
+    name: 'Church',
+    url:
+      'https://mywowo.net/media/images/cache/parigi_notre_dame_05_interno_jpg_1200_630_cover_85.jpg',
+  },
+  {
+    type: 'place_of_worship',
+    name: 'Place of Worship',
+    url: 'https://www.nativeplanet.com/img/2017/10/cover-19-1508384544.jpg',
+  },
+  {
+    type: 'synagogue',
+    name: 'Synagogue',
+    url: 'https://sydneylivingmuseums.com.au/sites/default/files/SO17_0384.jpg',
+  },
+  {
+    type: 'museum',
+    name: 'Museum',
+    url:
+      'https://anamericaninrome.com/wp/wp-content/uploads/2018/06/Vatican-Museums-by-Night-31-1024x683.jpg',
+  },
+  {
+    type: 'stadium',
+    name: 'Stadium',
+    url:
+      'https://cdn.tuttosport.com/images/2019/05/03/215343209-edf05740-73d6-4619-b968-a13d65d613f2.jpg',
+  },
+  {
+    type: 'aquarium',
+    name: 'Aquarium',
+    url: 'https://www.cattolicaonthebeach.com/img/top/acquario.jpg',
+  },
+  {
+    type: 'cafe',
+    name: 'Cafè',
+    url: 'https://cdn-vsh.prague.eu/object/960/savoy-2.jpg',
+  },
+  /* {
+    type: 'bar',
+    name: 'Bar',
+    url:
+      'https://tellusdmsmedia.newmindmedia.com/wsimgs/Clarion-Hotel-Oslo_SHUTTER_BAR_c_Clarion_Hotel_Oslo_1958839922.jpg[ProductImage][4D037D0DBEC02ED25D8FFE6D4BB6]',
+  }, */
+  {
+    type: 'store',
+    name: 'Store',
+    url:
+      'https://citynews-milanotoday.stgy.ovh/~media/original-hi/39470983067263/nba-store-milano-2.jpg',
+  },
+  {
+    type: 'art_gallery',
+    name: 'Art Gallery',
+    url:
+      'https://citynews-milanotoday.stgy.ovh/~media/original-hi/39470983067263/nba-store-milano-2.jpg',
+  },
+  {
+    type: 'amusement_park',
+    name: 'Amusement Park',
+    url:
+      'https://files.guidedanmark.org/files/382/199935_tivoli_erik-hageman.jpg?width=1024',
+  },
+  {
+    type: 'zoo',
+    name: 'Zoo',
+    url:
+      'https://www.gelestatic.it/thimg/CYE3WNzLsFwZunpLB8Bws33--I0=/960x540/smart/https%3A//www.lastampa.it/image/contentid/policy%3A1.38683411%3A1586125194/2020-04-05T215427Z_1880090818_RC2LYF9WG3YJ_RTRMADP_3_HEALTH-CORONAVIRUS-USA-ZOO.JPG%3Ff%3Ddetail_558%26h%3D720%26w%3D1280%26%24p%24f%24h%24w%3D1ec1f75',
+  },
 ];
 
 export const PLACES = [
@@ -398,5 +459,8 @@ export const FAVOURITES = [
 ];
 
 export const TRIPS = [
-  new Trip(0.3904136693167304, 'New Trip', 'c1', 1590573600, 1590746400, [['-M60vD50Fs_wnpCsNXyP','-M60vD50Fs_wnpCsNXyQ'], ['-M60vD50Fs_wnpCsNXyQ']])
+  new Trip(0.3904136693167304, 'New Trip', 'c1', 1590573600, 1590746400, [
+    ['-M60vD50Fs_wnpCsNXyP', '-M60vD50Fs_wnpCsNXyQ'],
+    ['-M60vD50Fs_wnpCsNXyQ'],
+  ]),
 ];

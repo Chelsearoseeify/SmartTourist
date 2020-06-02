@@ -4,11 +4,15 @@ import {
   CREATE_PLACE,
   FETCH_PLACE,
   SET_PLACE_TYPES,
+  SET_SEARCH_TYPE,
 } from './../actions/places';
+import SearchType from '../../constants/SearchType';
 
 const initialState = {
   places: [],
   filtered_places: [],
+  search: SearchType.TEXT,
+  type: '',
   place: {},
   types: [
     /* 'tourist_attraction', 'point_of_interest' */
@@ -55,7 +59,9 @@ const placesReducer = (state = initialState, action) => {
       console.log(types);
       return {...state, types: types};
     }
-
+    case SET_SEARCH_TYPE: {
+      return {...state, search: action.type};
+    }
     default:
       return state;
   }

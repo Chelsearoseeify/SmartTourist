@@ -29,7 +29,7 @@ const TravelScreen = ({navigation, route}) => {
   const selectedCity = useSelector(state => state.cities.selected_city);
   const filteredPlaces = useSelector(state => state.places.filtered_places);
   const [types, setTypes] = useState(useSelector(state => state.places.types));
-
+  const searchType = useSelector(state => state.places.search);
   const favouritePlaces = useSelector(
     state => state.favourites.favourite_places,
   );
@@ -124,7 +124,7 @@ const TravelScreen = ({navigation, route}) => {
               navigation={navigation}
               onMapPress={mapHandler}
             />
-            <SearchBar />
+            {/* <SearchBar /> */}
             <View style={{marginVertical: 10, marginHorizontal: 20}}>
               <ScrollView
                 horizontal={true}

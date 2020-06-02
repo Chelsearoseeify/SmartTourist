@@ -21,6 +21,7 @@ export default {
   marginTopCardContainer: 10,
   paddingCardContainer: 5,
   marginCard: 10,
+  marginSmallCard: 4,
   paddingCard: 10,
   inputStyle: {
     padding: 12,
@@ -29,5 +30,5 @@ export default {
     borderColor: Colors.inputBackgroundColor,
     borderWidth: 0,
     borderRadius: 20,
-  }
+  },
 };

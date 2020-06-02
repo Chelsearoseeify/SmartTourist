@@ -4,10 +4,16 @@ export const CREATE_PLACE = 'CREATE_PLACE';
 export const SET_PLACES = 'SET_PLACES';
 export const FETCH_PLACE = 'FETCH_PLACE';
 export const SET_PLACE_TYPES = 'SET_TYPES';
+export const SET_SEARCH_TYPE = 'SET_SEARCH_TYPE';
 export const FETCH_PLACE_DESCRIPTION = 'FETCH_PLACE_DESCRIPTION';
 const API_KEY = 'AIzaSyBZnXD0YlNLMtcDswoLpkUTu_cBYP3Ud0w';
 import axios from 'axios';
 import _ from 'lodash';
+import SearchType from '../../constants/SearchType';
+
+export const setSearchType = type => {
+  return {type: SET_SEARCH_TYPE, type: type};
+};
 
 export const setPlaceTypes = newType => {
   return {type: SET_PLACE_TYPES, newType: newType};
@@ -24,6 +30,8 @@ const getPictures = async photo_reference => {
   return response.url;
 };
 
+/* https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=50.0755381,14.4378005&radius=3000&type=church&key=AIzaSyBZnXD0YlNLMtcDswoLpkUTu_cBYP3Ud0w
+ */
 export const fetchPlace = placeId => {
   return async dispatch => {
     try {
@@ -57,6 +65,55 @@ export const fetchPlaceDescription = placeName => {
     );
     console.log(response.query);
     dispatch({type: FETCH_PLACE_DESCRIPTION, response});
+  };
+};
+
+export const fetchPlacesFromGoogle = (city, type, searchType) => {
+  let url = `https://maps.googleapis.com/maps/api/place/`;
+  const key = `&key=${API_KEY}`;
+  const textSearch = `textsearch/json?query=${
+    city.name
+  }+point+of+interest&language=en`;
+  const nearbySearch = `nearbysearch/json?location=${
+    city.geometry.location.lat
+  },${city.geometry.location.lng}&radius=3000&type=${type}`;
+
+  switch (searchType) {
+    case SearchType.NEARBY:
+      url = url.concat(nearbySearch, key);
+      break;
+    case searchType.TEXT:
+      url = url.concat(textSearch, key);
+      break;
+    default:
+      break;
+  }
+  console.log(url);
+  return async dispatch => {
+    try {
+      const res = await axios.get(url);
+      const loadedPlaces = [];
+      res.forEach(child => {
+        loadedPlaces.push(
+          new CompletePlace(
+            child.key,
+            child.val().name,
+            child.val().cityId,
+            child.val().types,
+            'https://cdn.civitatis.com/belgica/bruselas/guia/grand-place.jpg',
+            child.val().rating,
+            child.val().geometry,
+            child.val().address,
+            child.val().business_status,
+            child.val().user_ratings_total,
+            '',
+          ),
+        );
+      });
+      dispatch({type: SET_PLACES, places: loadedPlaces});
+    } catch (error) {
+      throw error;
+    }
   };
 };
 

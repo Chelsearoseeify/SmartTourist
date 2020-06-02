@@ -1,46 +1,74 @@
 import React, {Component} from 'react';
 import {
   StyleSheet,
+  ImageBackground,
   View,
   TouchableOpacity,
   TouchableNativeFeedback,
   Platform,
+  Text,
 } from 'react-native';
-import {Text} from '@ui-kitten/components';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import Colors from '../../constants/Colors';
 import Style from '../../constants/Style';
 
-const CategoryCard = ({name, iconId, onSelect}) => {
+const FavouritePlaceCard = ({name, imageUrl, onSelect}) => {
   let TouchableCmp = TouchableOpacity;
 
   if (Platform.OS === 'android' && Platform.Version > 21)
     TouchableCmp = TouchableNativeFeedback;
 
   return (
-    <View style={{flex: 1, padding: 10}}>
-      <TouchableCmp onPress={onSelect}>
-        <View style={styles.cardStyle}>
-          <Icon name={iconId} style={styles.iconStyle} />
-          <Text style={styles.textStyle}>{name}</Text>
-        </View>
-      </TouchableCmp>
-    </View>
+    <TouchableCmp onPress={onSelect} style={{flex: 1}}>
+      <View style={styles.cardStyle}>
+        <ImageBackground
+          source={{
+            uri: imageUrl,
+          }}
+          style={styles.imageBackgroundStyle}
+          imageStyle={{borderRadius: Style.borderRadiusCard, opacity: 10}}
+          resizeMode="cover">
+          <View style={styles.filterStyle}>
+            <View style={styles.dataStyle}>
+              <Text style={styles.nameStyle}>{name}</Text>
+            </View>
+          </View>
+        </ImageBackground>
+      </View>
+    </TouchableCmp>
   );
 };
 
 const styles = StyleSheet.create({
-  cardStyle: {
-    elevation: Style.elevation,
-    borderRadius: 20,
-    flex: 1,
-    height: 130,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
+  nameStyle: {
+    fontSize: Style.fontSize.h5,
+    fontWeight: 'bold',
+    padding: 5,
+    textAlign: 'center',
+    color: 'white',
   },
-  iconStyle: {fontSize: 60, color: Colors.greenTitleColor},
-  textStyle: {fontSize: 20, color: Colors.blueTitleColor, marginTop: 15},
+  cardStyle: {
+    borderRadius: Style.borderRadiusCard,
+    flex: 1,
+    height: 80,
+    elevation: Style.elevation,
+  },
+  dataStyle: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: Style.paddingCard,
+  },
+  filterStyle: {
+    flex: 1,
+    backgroundColor: 'rgba(10,10,20, 0.3)',
+    borderRadius: Style.borderRadiusCard,
+  },
+  imageBackgroundStyle: {
+    width: '100%',
+    height: '100%',
+    borderRadius: Style.borderRadiusCard,
+  },
+  iconStyle: {alignItems: 'flex-end', padding: 10},
 });
 
-export default CategoryCard;
+export default FavouritePlaceCard;
