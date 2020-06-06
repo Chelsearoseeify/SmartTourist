@@ -1,6 +1,7 @@
 import CompletePlace from '../../models/CompletePlace';
 import database from '@react-native-firebase/database';
 export const CREATE_PLACE = 'CREATE_PLACE';
+export const UPDATE_PLACE = 'UPDATE_PLACE';
 export const SET_PLACES = 'SET_PLACES';
 export const FETCH_PLACE = 'FETCH_PLACE';
 export const SET_PLACE_TYPES = 'SET_TYPES';
@@ -19,15 +20,12 @@ export const setPlaceTypes = newType => {
   return {type: SET_PLACE_TYPES, newType: newType};
 };
 
-const getPictures = async photo_reference => {
-  const response = await fetch(
-    `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${photo_reference}&key=${API_KEY}`,
-  );
-  /* const response = {
-    url:
-      'https://www.wanderlustitalia.it/wp-content/uploads/2014/09/Copertina-Cattedrale-1280x720.jpg',
-  }; */
-  return response.url;
+const getPhoto = async photo_reference => {
+  //console.log(photo_reference);
+  const url = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${photo_reference}&key=${API_KEY}`;
+  const response = await axios.get(url, { responseType: 'blob' });
+
+  return response.request.responseURL;
 };
 
 /* https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=50.0755381,14.4378005&radius=3000&type=church&key=AIzaSyBZnXD0YlNLMtcDswoLpkUTu_cBYP3Ud0w
@@ -58,67 +56,79 @@ export const fetchPlace = placeId => {
   };
 };
 
+export const fetchPhoto = (place) =>{
+  return async dispatch => {
+    const photoUrl = await getPhoto(place.photo_reference);
+    newPlace = {...place, photoUrl: photoUrl};
+    dispatch({type: UPDATE_PLACE, place: newPlace});
+  };
+}
+
 export const fetchPlaceDescription = placeName => {
   return async dispatch => {
     const response = await axios.get(
       `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&titles=Clementinum&redirects=true`,
     );
-    console.log(response.query);
+    //console.log(response.query);
     dispatch({type: FETCH_PLACE_DESCRIPTION, response});
   };
 };
 
-export const fetchPlacesFromGoogle = (city, searchType, type = null) => {
-  console.log(searchType);
+export const fetchPlacesFromGoogle = (city, searchType) => {
   let url = `https://maps.googleapis.com/maps/api/place/`;
   const key = `&key=${API_KEY}`;
-  const textSearch = `textsearch/json?query=${
-    city.name
-  }+point+of+interest&language=en`;
-  const nearbySearch = `nearbysearch/json?location=${
-    city.geometry.location.lat
-  },${city.geometry.location.lng}&radius=3000&type=${type}`;
+
+  const textSearch = `textsearch/json?query=${city.name}+point+of+interest&language=en`;
+
+  const nearbySearch = `nearbysearch/json?location=${city.geometry.location.lat},${city.geometry.location.lng}&radius=3000&type=park`;
+
 
   switch (searchType) {
     case SearchType.NEARBY:
       url = url.concat(nearbySearch, key);
       break;
-    case SearchType.TEXT:
-      console.log('AAAAA');
+    case searchType.TEXT:
       url = url.concat(textSearch, key);
-      console.log(url);
       break;
     default:
       break;
   }
+
+  console.log(url);
+
   return async dispatch => {
     try {
       const res = await axios.get(url);
-      console.log(res.data.results);
       const loadedPlaces = [];
-      res.data.results.forEach(result => {
+
+      await Promise.all(res.data.results.map(async (place) => {
+        const photoUrl = await getPhoto(place.photos[0].photo_reference);
         loadedPlaces.push(
           new CompletePlace(
-            result.id,
-            result.name,
+            place.place_id,
+            place.name,
             city.id,
-            result.types,
-            'https://cdn.civitatis.com/belgica/bruselas/guia/grand-place.jpg',
-            result.rating,
-            result.geometry,
-            result.formatted_address,
-            result.business_status,
-            result.user_ratings_total,
+            place.types,
+            photoUrl,
+            place.rating,
+            place.geometry,
+            place.address,
+            place.business_status,
+            place.user_ratings_total,
             '',
-          ),
+          )
         );
-      });
+      }));
       dispatch({type: SET_PLACES, places: loadedPlaces});
     } catch (error) {
       throw error;
     }
   };
 };
+
+export const updatePlace = place => {
+  return {type: UPDATE_PLACE, place: place};
+}
 
 export const fetchPlaces = cityId => {
   return async dispatch => {
@@ -165,7 +175,7 @@ export const createPlace = (
   business_status,
   user_ratings_total,
 ) => {
-  console.log(placeId);
+  //console.log(placeId);
   return async dispatch => {
     database()
       .ref(`places/${placeId}`)

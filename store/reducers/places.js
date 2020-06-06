@@ -5,6 +5,7 @@ import {
   FETCH_PLACE,
   SET_PLACE_TYPES,
   SET_SEARCH_TYPE,
+  UPDATE_PLACE
 } from './../actions/places';
 import SearchType from '../../constants/SearchType';
 import {LABELS} from '../../data/dummy-data';
@@ -52,6 +53,11 @@ const placesReducer = (state = initialState, action) => {
     }
     case CREATE_PLACE: {
       console.log('Done');
+    }
+    case UPDATE_PLACE: {
+      let updatedPlaces = state.places.filter(p => p.id !== action.place.id);
+      updatedPlaces.push(action.place);
+      return {...state, places: updatedPlaces};
     }
     case FETCH_PLACE: {
       return {...state, place: action.place};

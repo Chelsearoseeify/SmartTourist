@@ -4,7 +4,7 @@ class CompletePlace {
     name,
     cityId,
     types,
-    url,
+    photoUrl,
     rating,
     geometry,
     address,
@@ -16,7 +16,7 @@ class CompletePlace {
     this.name = name;
     this.cityId = cityId;
     this.types = types;
-    this.url = url;
+    this.photoUrl = photoUrl;
     this.rating = rating;
     this.geometry = geometry;
     this.address = address;

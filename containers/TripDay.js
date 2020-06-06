@@ -4,13 +4,19 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 
 import { fetchPlace } from '../store/actions/places';
 
+import placeRequest from '../utils/placeRequest';
+
 import Style from '../constants/Style';
 import Colors from '../constants/Colors';
 
 const TripDay = props => {
   const dispatch = useDispatch();
   const places = useSelector(state => state.places.places);
-  console.log(places);
+  //console.log(places);
+
+  if(props.places.length > 0){
+    placeRequest(props.places[0]);
+  }
 
   let component;
 
