@@ -1,21 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import Colors from '../constants/Colors';
-import {
-  View,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  Dimensions,
-} from 'react-native';
+import {View, ImageBackground, StyleSheet, Text} from 'react-native';
 import BackButton from '../components/Buttons/BackButton';
 import {ScrollView} from 'react-native-gesture-handler';
-import {PLACES, description} from './../data/dummy-data';
 import {useSelector, useDispatch} from 'react-redux';
 import {
   toggleFavouriteCity,
   toggleFavouritePlace,
 } from '../store/actions/favourite';
-import {fetchPlace, fetchPlaces} from '../store/actions/places';
+import {fetchPlace} from '../store/actions/places';
 import Style from '../constants/Style';
 import Detail from '../components/Detail';
 import PlaceScreenButton from '../components/Buttons/PlaceScreenButton';
@@ -23,6 +16,7 @@ import StarsRating from '../components/StarsRating';
 import HTML from 'react-native-render-html';
 import {fetchPlaceDescription} from './../store/actions/places';
 import {setFavouriteRequest} from './../store/actions/favourite';
+import LikeButton from '../components/Buttons/LikeButton';
 
 const PlaceScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -105,6 +99,11 @@ const PlaceScreen = ({navigation, route}) => {
         />
       </View>
       <BackButton {...navigation} />
+      <LikeButton
+        name={'Favourite'}
+        iconName={icon}
+        onPress={toggleFavouriteHandler}
+      />
       <View
         style={{
           position: 'absolute',

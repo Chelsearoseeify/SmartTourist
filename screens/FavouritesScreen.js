@@ -97,28 +97,15 @@ const FavouriteScreen = ({navigation}) => {
                 }}
               />
             </View>
-            {oneColumn && (
-              <FlatList
-                contentContainerStyle={styles.placesContainer}
-                data={favouriteCities}
-                numColumns={1}
-                horizontal={false}
-                renderItem={renderGridItem}
-                scrollEnabled={false}
-                keyExtractor={item => item.cityId}
-              />
-            )}
-            {!oneColumn && (
-              <FlatList
-                contentContainerStyle={styles.placesContainer}
-                data={favouriteCities}
-                numColumns={2}
-                horizontal={false}
-                renderItem={renderGridItem}
-                scrollEnabled={false}
-                keyExtractor={item => item.cityId}
-              />
-            )}
+            <FlatList
+              contentContainerStyle={styles.placesContainer}
+              data={favouriteCities}
+              numColumns={2}
+              horizontal={false}
+              renderItem={renderGridItem}
+              scrollEnabled={false}
+              keyExtractor={(item, index) => index.toString()}
+            />
           </View>
         </ScrollView>
       </View>

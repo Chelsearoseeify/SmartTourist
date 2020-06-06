@@ -161,6 +161,7 @@ const GroupedPlacesScreen = ({navigation, route}) => {
                 renderItem={renderGridItem}
                 horizontal={false}
                 scrollEnabled={false}
+                keyExtractor={(item, index) => index.toString()}
               />
             </View>
           </View>

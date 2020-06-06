@@ -14,8 +14,9 @@ import CategoryCard from './../components/Cards/CategoryCard';
 import Style from '../constants/Style';
 import TopDestinations from '../containers/TopDestinations';
 import {useDispatch} from 'react-redux';
-import {resetPlaceTypes} from './../store/actions/places';
+import {resetPlaceTypes, setSearchType} from './../store/actions/places';
 import SearchBar2 from './../components/SearchBar2';
+import SearchType from '../constants/SearchType';
 
 const SearchScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -27,8 +28,10 @@ const SearchScreen = ({navigation, route}) => {
           name={itemData.item.name}
           imageUrl={itemData.item.url}
           onSelect={() => {
-            //dispatch(resetPlaceTypes(itemData.item.type));
-            navigation.navigate('SearchedPlaces', {value: itemData.item.name});
+            navigation.navigate('SearchedPlaces', {
+              value: itemData.item.name,
+              searchType: SearchType.NEARBY,
+            });
           }}
         />
       </View>
@@ -52,6 +55,7 @@ const SearchScreen = ({navigation, route}) => {
               numColumns={2}
               renderItem={renderGridItem}
               showsVerticalScrollIndicator={false}
+              keyExtractor={(item, index) => index.toString()}
             />
           </View>
         </View>

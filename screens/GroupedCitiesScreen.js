@@ -7,6 +7,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import Style from '../constants/Style';
 import {fetchTopDestinations} from '../store/actions/cities';
 import BigListCard from './../components/Cards/ListCardCityBig';
+import {setSelectedCity} from '../store/actions/cities';
+import {v4 as uuidv4} from 'react-native-uuid';
 
 const GroupedCitiesScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -26,6 +28,8 @@ const GroupedCitiesScreen = ({navigation, route}) => {
 
   const onCitySelected = city => {
     console.log(`Selected city ${city.name}`);
+    dispatch(setSelectedCity(city.id, uuidv4()));
+    navigation.navigate('Travel', city);
   };
 
   const renderGridItem = itemData => {
@@ -34,7 +38,7 @@ const GroupedCitiesScreen = ({navigation, route}) => {
         <BigListCard
           name={itemData.item.name}
           imageId={itemData.item.imageUrl}
-          onPress={() => onCitySelected(city)}
+          onPress={() => onCitySelected(itemData.item)}
           style={{width: '100%'}}
         />
       </View>
@@ -73,6 +77,7 @@ const GroupedCitiesScreen = ({navigation, route}) => {
                 renderItem={renderGridItem}
                 horizontal={false}
                 scrollEnabled={false}
+                keyExtractor={(item, index) => index.toString()}
               />
             </View>
           </View>

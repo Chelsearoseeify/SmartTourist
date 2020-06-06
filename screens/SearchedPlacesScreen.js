@@ -20,6 +20,7 @@ const SearchedPlacesScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [searchType, setSearchType] = useState(SearchType.TEXT);
+  const [error, setError] = useState();
   const selectedCity = useSelector(state => state.cities.selected_city);
   const filteredPlaces = useSelector(state => state.places.filtered_places);
   const favouritePlaces = useSelector(
@@ -27,25 +28,16 @@ const SearchedPlacesScreen = ({navigation, route}) => {
   );
   const user = useSelector(state => state.user.data);
 
-  const loadPlaces = useCallback(async () => {
-    setError(null);
-    setIsLoading(true);
+  useEffect(() => {
     try {
+      console.log(filteredPlaces[0].name);
       dispatch(fetchFavourites(user.uid));
-      dispatch(fetchPlaces(selectedCity.id));
+      dispatch(fetchPlaces('ChIJD7fiBh9u5kcRYJSMaMOCCwQ'));
       //dispatch(fetchPlacesFromGoogle(selectedCity, searchType));
     } catch (error) {
       setError(error.message);
     }
-    setIsLoading(false);
-  }, [dispatch, selectedCity]);
-
-  useEffect(() => {
-    setIsLoading(true);
-    loadPlaces().then(() => {
-      setIsLoading(false);
-    });
-  }, [dispatch, loadPlaces]);
+  }, [dispatch, filteredPlaces]);
 
   const renderPlaceItem = itemData => {
     const index = favouritePlaces.findIndex(

@@ -17,9 +17,12 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
 import Header from '../components/Header';
 import Style from '../constants/Style';
-import {fetchPlaces, createPlace} from '../store/actions/places';
 import {fetchFavourites} from '../store/actions/favourite';
-import {setPlaceTypes, fetchPlacesFromGoogle} from './../store/actions/places';
+import {
+  setPlaceTypes,
+  fetchPlacesFromGoogle,
+  fetchPlaces,
+} from './../store/actions/places';
 import _ from 'lodash';
 import SearchType from '../constants/SearchType';
 
@@ -30,7 +33,7 @@ const TravelScreen = ({navigation, route}) => {
   const selectedCity = useSelector(state => state.cities.selected_city);
   const filteredPlaces = useSelector(state => state.places.filtered_places);
   const [types, setTypes] = useState(useSelector(state => state.places.types));
-  const [searchType, setSearchType] = useState(SearchType.TEXT);
+  const [searchType, setSearchType] = useState(SearchType.NEARBY);
   const [allTypes, setAllTypes] = useState(
     useSelector(state => state.places.all_types),
   );
@@ -44,8 +47,8 @@ const TravelScreen = ({navigation, route}) => {
     setIsLoading(true);
     try {
       dispatch(fetchFavourites(user.uid));
-      dispatch(fetchPlaces(selectedCity.id));
-      //dispatch(fetchPlacesFromGoogle(selectedCity, searchType));
+      //dispatch(fetchPlaces(selectedCity.id));
+      dispatch(fetchPlacesFromGoogle(selectedCity, searchType));
     } catch (error) {
       setError(error.message);
     }
@@ -85,20 +88,18 @@ const TravelScreen = ({navigation, route}) => {
     });
   }; */
 
-  const renderPlaceItem = itemData => {
-    const index = favouritePlaces.findIndex(
-      place => place.id === itemData.item.id,
-    );
+  const renderPlaceItem = (item, index) => {
+    const ind = favouritePlaces.findIndex(place => place.id === item.id);
     return (
       <PlaceCard
-        name={itemData.item.name}
-        imageUrl={itemData.item.url}
-        rating={itemData.item.rating}
-        icon={index >= 0 ? 'heart' : 'heart-outline'}
+        name={item.name}
+        imageUrl={item.photoUrl}
+        rating={item.rating}
+        icon={ind >= 0 ? 'heart' : 'heart-outline'}
         onSelect={() => {
           navigation.navigate('Place', {
-            id: itemData.item.id,
-            placeName: itemData.item.name,
+            id: item.id,
+            placeName: item.name,
             cityName: selectedCity.name,
           });
         }}
@@ -106,12 +107,12 @@ const TravelScreen = ({navigation, route}) => {
     );
   };
 
-  const renderTypeItem = itemData => {
+  const renderTypeItem = item => {
     return (
       <CustomLabelButton
-        text={itemData.item.name}
-        toggleList={() => toggleType(itemData.item.type)}
-        active={itemData.item.selected}
+        text={item.name}
+        toggleList={() => toggleType(item.type)}
+        active={item.selected}
       />
     );
   };
@@ -127,48 +128,43 @@ const TravelScreen = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View>
-            <Header
-              title={selectedCity.name}
-              navigation={navigation}
-              onMapPress={mapHandler}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Header
+          title={selectedCity.name}
+          navigation={navigation}
+          onMapPress={mapHandler}
+        />
+        <View style={{flex: 1, paddingLeft: 10}}>
+          <FlatList
+            data={allTypes}
+            renderItem={({item, index}) => renderTypeItem(item, index)}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        </View>
+        <View style={styles.cardStyle}>
+          {isLoading ? (
+            <View
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: 600,
+              }}>
+              <ActivityIndicator size="large" color={Colors.greenTitleColor} />
+            </View>
+          ) : (
+            <FlatList
+              contentContainerStyle={styles.placesContainer}
+              data={filteredPlaces}
+              numColumns={2}
+              renderItem={({item, index}) => renderPlaceItem(item, index)}
+              horizontal={false}
+              keyExtractor={(item, index) => index.toString()}
             />
-            <View>
-              <FlatList
-                data={allTypes}
-                renderItem={renderTypeItem}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-              />
-            </View>
-            <View style={styles.cardStyle}>
-              {isLoading ? (
-                <View
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: 600,
-                  }}>
-                  <ActivityIndicator
-                    size="large"
-                    color={Colors.greenTitleColor}
-                  />
-                </View>
-              ) : (
-                <FlatList
-                  contentContainerStyle={styles.placesContainer}
-                  data={filteredPlaces}
-                  numColumns={2}
-                  renderItem={renderPlaceItem}
-                  horizontal={false}
-                />
-              )}
-            </View>
-          </View>
-        </ScrollView>
-      </View>
+          )}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

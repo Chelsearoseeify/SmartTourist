@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { View, ScrollView } from 'react-native';
+import {View, ScrollView} from 'react-native';
 import ListHeader from './ListHeader';
-import { useDispatch } from 'react-redux';
-import { fetchSelectedCity } from '../store/actions/cities';
+import {useDispatch} from 'react-redux';
+import {fetchSelectedCity} from '../store/actions/cities';
 
-
-const HorizontalScrolliew = ({ name, paddingLeft, onMoreTap, children }) => {
+const HorizontalScrolliew = ({name, paddingLeft, onMoreTap, children}) => {
   const dispatch = useDispatch();
 
   const onPressHandler = city => {
@@ -19,7 +18,7 @@ const HorizontalScrolliew = ({ name, paddingLeft, onMoreTap, children }) => {
     <View>
       <ListHeader name={name} padding={paddingLeft} action={onMoreTap} />
       <View>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ paddingLeft: paddingLeft }}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {children}
         </ScrollView>
       </View>
