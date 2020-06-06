@@ -1,5 +1,5 @@
 import React from 'react';
-import {Layout, Text, Button} from '@ui-kitten/components';
+import {Text} from '@ui-kitten/components';
 import Colors from '../constants/Colors';
 import {
   StyleSheet,
@@ -12,11 +12,10 @@ import SearchBar from '../components/SearchBar';
 import {LABELS} from './../data/dummy-data';
 import CategoryCard from './../components/Cards/CategoryCard';
 import Style from '../constants/Style';
-import Header from './../components/Header';
 import TopDestinations from '../containers/TopDestinations';
 import {useDispatch} from 'react-redux';
-import {fetchPlacesGoogle, setSearchType} from './../store/actions/places';
-import SearchType from '../constants/SearchType';
+import {resetPlaceTypes} from './../store/actions/places';
+import SearchBar2 from './../components/SearchBar2';
 
 const SearchScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -28,33 +27,23 @@ const SearchScreen = ({navigation, route}) => {
           name={itemData.item.name}
           imageUrl={itemData.item.url}
           onSelect={() => {
-            console.log(itemData.item.name + ' selected');
+            //dispatch(resetPlaceTypes(itemData.item.type));
+            navigation.navigate('SearchedPlaces', {value: itemData.item.name});
           }}
         />
       </View>
     );
   };
 
-  const mapHandler = () => {
-    navigation.navigate('Mapf', {
-      lat: place.geometry.location.lat,
-      lng: place.geometry.location.lng,
-    });
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
-          <Header
-            title={'Search'}
-            navigation={navigation}
-            onMapPress={mapHandler}
-          />
-          <SearchBar />
+          <SearchBar2 />
+
           <View style={styles.cardStyle}>
             <View style={{marginEnd: -5, marginTop: 10}}>
-              <TopDestinations />
+              <TopDestinations {...navigation} />
             </View>
 
             <Text style={styles.subtitleStyle}>Categories</Text>
@@ -74,7 +63,6 @@ const SearchScreen = ({navigation, route}) => {
 let styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.backgroundColor,
-    flexDirection: 'column',
   },
   cardStyle: {
     marginTop: Style.marginTopCardContainer,

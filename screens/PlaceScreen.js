@@ -97,7 +97,7 @@ const PlaceScreen = ({navigation, route}) => {
 
   return (
     <View style={{flex: 1}}>
-      <View style={{height: 200, width: '100%', flex: 1, position: 'absolute'}}>
+      <View style={{height: 400, width: '100%', flex: 1, position: 'absolute'}}>
         <ImageBackground
           source={{uri: place.url}}
           style={styles.imageBackgroundStyle}
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   cardStyle: {
-    marginTop: 150,
+    marginTop: 350,
     padding: Style.paddingCardContainer,
     elevation: Style.elevation,
     borderTopLeftRadius: Style.borderRadiusCardContainer,

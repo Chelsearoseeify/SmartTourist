@@ -20,9 +20,12 @@ export default {
   elevation: 6,
   marginTopCardContainer: 10,
   paddingCardContainer: 5,
-  marginCard: 10,
+  marginCard: 7,
   marginSmallCard: 4,
+  marginTextInput: 5,
   paddingCard: 10,
+  paddingTextInputContent: 15,
+  paddingTextInput: 5,
   inputStyle: {
     padding: 12,
     marginBottom: 15,

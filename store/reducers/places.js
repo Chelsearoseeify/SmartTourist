@@ -7,6 +7,7 @@ import {
   SET_SEARCH_TYPE,
 } from './../actions/places';
 import SearchType from '../../constants/SearchType';
+import {LABELS} from '../../data/dummy-data';
 
 const initialState = {
   places: [],
@@ -14,6 +15,7 @@ const initialState = {
   search: SearchType.TEXT,
   type: '',
   place: {},
+  all_types: LABELS,
   types: [
     /* 'tourist_attraction', 'point_of_interest' */
   ],

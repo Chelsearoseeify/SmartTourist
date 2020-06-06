@@ -6,23 +6,23 @@ import Style from '../../constants/Style';
 
 const CustomButton = ({text, toggleList, active}) => {
   const [buttonColor, setButtonColor] = useState(
-    active ? Colors.greenTitleColor : 'white',
+    active ? Colors.greenTitleColor : Colors.backgroundColor,
   );
   const [textColor, setTextColor] = useState(
-    active ? 'white' : Colors.greenTitleColor,
+    active ? Colors.backgroundColor : Colors.greenTitleColor,
   );
 
   return (
     <TouchableOpacity
       onPress={() => {
         toggleList();
-        if (buttonColor === 'white') {
-          setTextColor('white');
+        if (buttonColor === Colors.backgroundColor) {
+          setTextColor(Colors.backgroundColor);
           setButtonColor(Colors.greenTitleColor);
           active = true;
         } else {
           setTextColor(Colors.greenTitleColor);
-          setButtonColor('white');
+          setButtonColor(Colors.backgroundColor);
           active = false;
         }
       }}
@@ -32,7 +32,9 @@ const CustomButton = ({text, toggleList, active}) => {
         },
         styles.buttonStyle,
       ]}>
-      <Text style={{color: textColor, fontSize: 18}}>{text}</Text>
+      <Text style={{color: textColor, fontSize: Style.fontSize.h6}}>
+        {text}
+      </Text>
     </TouchableOpacity>
   );
 };

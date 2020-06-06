@@ -19,8 +19,9 @@ import Header from '../components/Header';
 import Style from '../constants/Style';
 import {fetchPlaces, createPlace} from '../store/actions/places';
 import {fetchFavourites} from '../store/actions/favourite';
-import {LABELS} from '../data/dummy-data';
-import {setPlaceTypes} from './../store/actions/places';
+import {setPlaceTypes, fetchPlacesFromGoogle} from './../store/actions/places';
+import _ from 'lodash';
+import SearchType from '../constants/SearchType';
 
 const TravelScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -29,7 +30,10 @@ const TravelScreen = ({navigation, route}) => {
   const selectedCity = useSelector(state => state.cities.selected_city);
   const filteredPlaces = useSelector(state => state.places.filtered_places);
   const [types, setTypes] = useState(useSelector(state => state.places.types));
-  const searchType = useSelector(state => state.places.search);
+  const [searchType, setSearchType] = useState(SearchType.TEXT);
+  const [allTypes, setAllTypes] = useState(
+    useSelector(state => state.places.all_types),
+  );
   const favouritePlaces = useSelector(
     state => state.favourites.favourite_places,
   );
@@ -41,6 +45,7 @@ const TravelScreen = ({navigation, route}) => {
     try {
       dispatch(fetchFavourites(user.uid));
       dispatch(fetchPlaces(selectedCity.id));
+      //dispatch(fetchPlacesFromGoogle(selectedCity, searchType));
     } catch (error) {
       setError(error.message);
     }
@@ -80,7 +85,7 @@ const TravelScreen = ({navigation, route}) => {
     });
   }; */
 
-  const renderGridItem = itemData => {
+  const renderPlaceItem = itemData => {
     const index = favouritePlaces.findIndex(
       place => place.id === itemData.item.id,
     );
@@ -101,12 +106,18 @@ const TravelScreen = ({navigation, route}) => {
     );
   };
 
+  const renderTypeItem = itemData => {
+    return (
+      <CustomLabelButton
+        text={itemData.item.name}
+        toggleList={() => toggleType(itemData.item.type)}
+        active={itemData.item.selected}
+      />
+    );
+  };
+
   const toggleType = newType => {
-    const newTypeList = [...types];
-    const index = types.findIndex(type => type === newType);
-    if (index >= 0) newTypeList.splice(index, 1);
-    else newTypeList.push(newType);
-    setTypes(newTypeList);
+    setTypes(_.xor(types, [newType]));
     dispatch(setPlaceTypes(newType));
   };
 
@@ -124,23 +135,14 @@ const TravelScreen = ({navigation, route}) => {
               navigation={navigation}
               onMapPress={mapHandler}
             />
-            {/* <SearchBar /> */}
-            <View style={{marginVertical: 10, marginHorizontal: 20}}>
-              <ScrollView
+            <View>
+              <FlatList
+                data={allTypes}
+                renderItem={renderTypeItem}
                 horizontal={true}
-                showsHorizontalScrollIndicator={false}>
-                {LABELS.map(label => (
-                  <CustomLabelButton
-                    text={label.name}
-                    toggleList={() => toggleType(label.type)}
-                    active={
-                      types.findIndex(t => t === label.type) >= 0 ? true : false
-                    }
-                  />
-                ))}
-              </ScrollView>
+                showsHorizontalScrollIndicator={false}
+              />
             </View>
-            {/*  */}
             <View style={styles.cardStyle}>
               {isLoading ? (
                 <View
@@ -159,9 +161,8 @@ const TravelScreen = ({navigation, route}) => {
                   contentContainerStyle={styles.placesContainer}
                   data={filteredPlaces}
                   numColumns={2}
-                  renderItem={renderGridItem}
+                  renderItem={renderPlaceItem}
                   horizontal={false}
-                  ListHeaderComponent={headerComponent}
                 />
               )}
             </View>
@@ -194,7 +195,7 @@ let styles = StyleSheet.create({
     borderWidth: 1,
   },
   placesContainer: {
-    marginHorizontal: 5,
+    margin: 5,
   },
   cardStyle: {
     marginTop: Style.marginTopCardContainer,

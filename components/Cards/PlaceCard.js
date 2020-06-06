@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     margin: Style.marginCard,
     borderRadius: Style.borderRadiusCard,
     flex: 1,
-    height: 210,
+    height: 200,
     elevation: Style.elevation,
   },
   dataStyle: {

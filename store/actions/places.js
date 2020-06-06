@@ -20,13 +20,13 @@ export const setPlaceTypes = newType => {
 };
 
 const getPictures = async photo_reference => {
-  /* const response = await fetch(
+  const response = await fetch(
     `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${photo_reference}&key=${API_KEY}`,
-  ); */
-  const response = {
+  );
+  /* const response = {
     url:
       'https://www.wanderlustitalia.it/wp-content/uploads/2014/09/Copertina-Cattedrale-1280x720.jpg',
-  };
+  }; */
   return response.url;
 };
 
@@ -68,7 +68,8 @@ export const fetchPlaceDescription = placeName => {
   };
 };
 
-export const fetchPlacesFromGoogle = (city, type, searchType) => {
+export const fetchPlacesFromGoogle = (city, searchType, type = null) => {
+  console.log(searchType);
   let url = `https://maps.googleapis.com/maps/api/place/`;
   const key = `&key=${API_KEY}`;
   const textSearch = `textsearch/json?query=${
@@ -82,30 +83,32 @@ export const fetchPlacesFromGoogle = (city, type, searchType) => {
     case SearchType.NEARBY:
       url = url.concat(nearbySearch, key);
       break;
-    case searchType.TEXT:
+    case SearchType.TEXT:
+      console.log('AAAAA');
       url = url.concat(textSearch, key);
+      console.log(url);
       break;
     default:
       break;
   }
-  console.log(url);
   return async dispatch => {
     try {
       const res = await axios.get(url);
+      console.log(res.data.results);
       const loadedPlaces = [];
-      res.forEach(child => {
+      res.data.results.forEach(result => {
         loadedPlaces.push(
           new CompletePlace(
-            child.key,
-            child.val().name,
-            child.val().cityId,
-            child.val().types,
+            result.id,
+            result.name,
+            city.id,
+            result.types,
             'https://cdn.civitatis.com/belgica/bruselas/guia/grand-place.jpg',
-            child.val().rating,
-            child.val().geometry,
-            child.val().address,
-            child.val().business_status,
-            child.val().user_ratings_total,
+            result.rating,
+            result.geometry,
+            result.formatted_address,
+            result.business_status,
+            result.user_ratings_total,
             '',
           ),
         );

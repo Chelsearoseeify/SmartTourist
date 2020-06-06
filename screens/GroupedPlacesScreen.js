@@ -1,11 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import Colors from '../constants/Colors';
-import {View, StyleSheet, SafeAreaView, FlatList} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  FlatList,
+  ImageBackground,
+  Text,
+} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import BackButton from '../components/Buttons/BackButton';
 import {useSelector, useDispatch} from 'react-redux';
 import Style from '../constants/Style';
-import Header from '../components/Header';
 import FavouritePlaceCard from './../components/Cards/FavouritePlaceCard';
 import {
   toggleFavouriteCity,
@@ -111,8 +117,20 @@ const GroupedPlacesScreen = ({navigation, route}) => {
   return (
     <SafeAreaView style={styles.container}>
       <BackButton {...navigation} />
-      <View style={styles.titleViewStyle}>
-        <Header title={title} mapIcon={false} />
+      <View />
+      <View
+        style={
+          (styles.titleViewStyle,
+          [{height: 150, width: '100%', flex: 1, position: 'absolute'}])
+        }>
+        <ImageBackground
+          source={{
+            uri:
+              'https://www.bblamacaroma.it//wp-content/uploads/2015/05/roma-2.jpg',
+          }}
+          style={styles.imageBackgroundStyle}
+          resizeMode="cover"
+        />
       </View>
       <View style={styles.cardViewStyle}>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -127,6 +145,15 @@ const GroupedPlacesScreen = ({navigation, route}) => {
               />
             </View>
             <View style={styles.contentStyle}>
+              <Text
+                style={{
+                  color: Colors.blueTitleColor,
+                  fontWeight: 'bold',
+                  fontSize: Style.fontSize.h2,
+                  marginLeft: Style.marginTopCardContainer,
+                }}>
+                {title}
+              </Text>
               <FlatList
                 contentContainerStyle={styles.placesContainer}
                 data={places}
@@ -143,7 +170,7 @@ const GroupedPlacesScreen = ({navigation, route}) => {
   );
 };
 
-const topSpace = 80;
+const topSpace = 100;
 
 let styles = StyleSheet.create({
   container: {
@@ -156,7 +183,7 @@ let styles = StyleSheet.create({
     height: '100%',
   },
   contentStyle: {
-    padding: Style.paddingCard,
+    paddingHorizontal: Style.paddingCard,
   },
   cardStyle: {
     marginTop: topSpace,
@@ -187,6 +214,10 @@ let styles = StyleSheet.create({
     fontSize: Style.iconSize,
     paddingHorizontal: 24,
     color: Colors.blueTitleColor,
+  },
+  imageBackgroundStyle: {
+    width: '100%',
+    height: '100%',
   },
 });
 

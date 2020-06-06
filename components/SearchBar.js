@@ -5,30 +5,30 @@ import {StyleSheet, View} from 'react-native';
 import Colors from '../constants/Colors';
 import Style from '../constants/Style';
 
-const SearchBar = () => {
+const SearchBar = style => {
   const [value, setValue] = React.useState('');
 
   const renderIcon = () => <Icon style={styles.iconStyle} name="search" />;
 
   return (
-    <Input
-      value={value}
-      placeholder="What are you looking for?"
-      icon={renderIcon}
-      onChangeText={setValue}
-      style={styles.inputStyle}
-    />
+    <View style={[style, {borderWidth: 1, marginHorizontal: 5, marginTop: 10}]}>
+      <Input
+        value={value}
+        placeholder="What are you looking for?"
+        icon={renderIcon}
+        onChangeText={setValue}
+        style={styles.inputStyle}
+      />
+    </View>
   );
 };
 
 let styles = StyleSheet.create({
   inputStyle: {
     backgroundColor: 'white',
-    marginHorizontal: 15,
-    marginVertical: 10,
-    borderWidth: 0,
     elevation: Style.elevation,
     borderRadius: Style.borderRadiusCardContainer,
+    width: '100%',
   },
   iconStyle: {
     color: Colors.blueTitleColor,

@@ -19,7 +19,7 @@ const BackButton = navigation => {
         style={{
           margin: 10,
           padding: 10,
-          backgroundColor: 'rgba(123,228,149, 0.1)',
+          backgroundColor: 'rgba(50, 120, 120, 0.5)',
           borderRadius: Style.borderRadiusRoundButton,
           height: 40,
           width: 40,
@@ -27,11 +27,7 @@ const BackButton = navigation => {
           justifyContent: 'center',
         }}>
         <View>
-          <Icon
-            name="arrow-left"
-            size={Style.iconSize}
-            color={Colors.blueTitleColor}
-          />
+          <Icon name="arrow-left" size={Style.iconSize} color={'white'} />
         </View>
       </TouchableOpacity>
     </View>

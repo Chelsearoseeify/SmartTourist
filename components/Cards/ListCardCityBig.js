@@ -3,15 +3,16 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {View, Text, ImageBackground, StyleSheet} from 'react-native';
 import Style from '../../constants/Style';
 
-const ListCardCityBig = ({name, imageId, onPress, style = {height: 200}}) => {
+const ListCardCityBig = ({name, imageId, onPress, style = {width: 140}}) => {
   return (
-    <TouchableOpacity style={[style, {marginRight: 16, marginVertical: 8}]} onPress={onPress}>
+    <TouchableOpacity
+      style={[style, {padding: Style.marginCard}]}
+      onPress={onPress}>
       <View
         style={[
           styles.filterStyle,
           {
-            height: '100%',
-            width: 130,
+            height: 180,
             elevation: Style.elevation,
             borderRadius: Style.borderRadiusCard,
           },
@@ -26,7 +27,7 @@ const ListCardCityBig = ({name, imageId, onPress, style = {height: 200}}) => {
           <View style={styles.filterStyle}>
             <Text
               style={{
-                fontSize: Style.fontSize.h4,
+                fontSize: Style.fontSize.h5,
                 fontWeight: 'bold',
                 color: 'white',
               }}>
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     borderRadius: Style.borderRadiusCard,
+    backgroundColor: 'beige',
   },
   filterStyle: {
     height: '100%',

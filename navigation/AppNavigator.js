@@ -6,20 +6,19 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import TravelScreen from '../screens/TravelScreen';
 import PlaceScreen from '../screens/PlaceScreen';
-import MapScreen from '../screens/MapScreen';
 import SearchScreen from '../screens/SearchScreen';
-import ProfileScreen from '../screens/ProfileScreen';
 import FavouriteScreen from '../screens/FavouritesScreen';
 import AddTripScreen from '../screens/AddTripScreen';
 import TripsScreen from '../screens/TripsScreen';
 import TripDetailScreen from '../screens/TripDetailScreen';
 
-import MainPageScreen from './../screens/MainPageScreen';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GroupedPlacesScreen from './../screens/GroupedPlacesScreen';
 import MapScreenf from './../screens/MapScreenf';
 import CustomFloatingButton from './../components/Buttons/CustomFloatingButton';
 import Colors from '../constants/Colors';
+import GroupedCitiesScreen from './../screens/GroupedCitiesScreen';
+import SearchedPlacesScreen from './../screens/SearchedPlacesScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,7 +29,6 @@ function HomeStackNavigator() {
       {/*  <Stack.Screen name="Home" component={MainPageScreen} /> */}
       <Stack.Screen name="Travel" component={TravelScreen} />
       <Stack.Screen name="Place" component={PlaceScreen} />
-      <Stack.Screen name="Map" component={MapScreen} />
       <Stack.Screen name="Mapf" component={MapScreenf} />
       <Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen name="AddTrip" component={AddTripScreen} />
@@ -48,6 +46,17 @@ function MyTripsStackNavigator() {
         <Stack.Screen name="Place" component={PlaceScreen} />
       </Stack.Navigator>
     </SafeAreaView>
+  );
+}
+
+function SearchStackNavigator() {
+  return (
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="Search" component={SearchScreen} />
+      <Stack.Screen name="GroupedCities" component={GroupedCitiesScreen} />
+      <Stack.Screen name="SearchedPlaces" component={SearchedPlacesScreen} />
+      <Stack.Screen name="Place" component={PlaceScreen} />
+    </Stack.Navigator>
   );
 }
 
@@ -81,7 +90,7 @@ function TabNavigator() {
       />
       <Tab.Screen
         name="Search"
-        component={SearchScreen}
+        component={SearchStackNavigator}
         options={{
           tabBarLabel: 'Search',
           tabBarIcon: ({color, size}) => (
