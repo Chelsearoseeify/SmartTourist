@@ -1,8 +1,9 @@
 import axios from 'axios';
 import API_KEY from '../constants/API_KEY';
 
-const placeRequest = async (placeId, fields, token) => {
+import photoRequest from './photoRequest';
 
+const placeRequest = async (placeId, fields, token) => {
     let fieldsString = 'geometry,icon,name,photo,type';
 
     if(fields && fields.length > 0){
@@ -15,11 +16,10 @@ const placeRequest = async (placeId, fields, token) => {
         url += `&sessiontoken=${token}`;
     }
 
-    console.log(url);
-
     try{
-        const res = await axios.get('url');
-        console.log(res.data);
+        const res = await axios.get(url);
+        const photoUrl = await photoRequest(res.data.result.photos[0].photo_reference);
+        return {...res.data.result, photoUrl: photoUrl, id: placeId};
 
     }catch(err){
         console.log(err);

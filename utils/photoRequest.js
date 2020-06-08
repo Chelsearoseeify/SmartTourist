@@ -1,3 +1,4 @@
+import axios from 'axios';
 const API_KEY = 'AIzaSyBZnXD0YlNLMtcDswoLpkUTu_cBYP3Ud0w';
 
 const getPicture = async photo_reference => {

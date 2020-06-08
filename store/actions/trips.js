@@ -1,8 +1,12 @@
 export const CREATE_TRIP = 'CREATE_TRIP';
 export const SET_TRIP_DATES = 'SET_TRIP_DATES';
 export const SET_TRIP_CITY = 'SET_TRIP_CITY';
+export const FETCH_TRIP_PLACES = 'FETCH_TRIP_PLACES';
+export const SET_TRIP_PLACES = 'SET_TRIP_PLACES';
 
 import API_KEY from '../../constants/API_KEY';
+
+import placeRequest from '../../utils/placeRequest';
 
 export const createTrip = trip => {
   return { type: CREATE_TRIP, trip: trip }
@@ -10,6 +14,16 @@ export const createTrip = trip => {
 
 export const setTripDates = dates => {
   return { type: SET_TRIP_DATES, dates: dates }
+}
+
+export const fetchTripPlaces = places => {
+  return async dispatch => {
+    let loadedPlaces = [];
+    await Promise.all(places.map(async p => {
+      loadedPlaces.push(await placeRequest(p));
+    }))
+    dispatch({ type: SET_TRIP_PLACES, places: loadedPlaces });
+  }
 }
 
 export const setTripCity = (cityId, token) => {
@@ -29,7 +43,7 @@ export const setTripCity = (cityId, token) => {
           photoReference: city.photoRreference
         });
 
-      return { type: SET_TRIP_CITY, cityId: cityId }
+      dispatch({ type: SET_TRIP_CITY, cityId: cityId });
     } catch (err) {
       console.log(err);
     }

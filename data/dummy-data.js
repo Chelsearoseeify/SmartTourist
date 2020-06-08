@@ -460,8 +460,8 @@ export const FAVOURITES = [
 
 export const TRIPS = [
   new Trip(0.3904136693167304, 'New Trip', 'c1', 1590573600, 1590746400, [
-    ['-M60vD50Fs_wnpCsNXyP', '-M60vD50Fs_wnpCsNXyQ'],
-    ['-M60vD50Fs_wnpCsNXyQ'],
+    ['ChIJ_SWtQuKUC0cR52xyBNibDjA', 'ChIJIfpRNOmUC0cRxHIewgck75c'],
+    ['ChIJQxyaBeGUC0cRZjpStOMuVMs'],
     [],
-  ]),
+  ], []),
 ];

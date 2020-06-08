@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { View, StyleSheet, SafeAreaView, Text, ScrollView, Dimensions } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-
 import TripDay from '../containers/TripDay';
+
+import { fetchMultiplePlaces } from '../store/actions/places';
 
 import Header from '../components/Header';
 import Style from '../constants/Style';
 import Colors from '../constants/Colors';
 
-const renderTripDay = (places) => (
-  <TripDay places={places}/>
+const renderTripDay = (placeIds, placesData) => (
+  <TripDay placeIds={placeIds} placesData={placesData}/>
 );
 
 const renderTabBar = props => (
@@ -35,17 +36,57 @@ const renderLabel = ({ route, color }) => (
 const initialLayout = { width: Dimensions.get('window').width };
 
 const TripDetailScreen = props => {
+  const dispatch = useDispatch();
   const tripId = props.route.params.tripId;
   const trips = useSelector(state => state.trips.userTrips);
   const trip = trips.find(t => t.id === tripId);
+  const places = useSelector(state => state.places.cachedPlaces);
   const dateString = trip.getTripDateString();
   const numberOfDays = trip.numberOfDays();
   let tabRouteData = [];
   let sceneMapData = {};
+  let missingPlaceIds = [];
+  let placesData = [];
+  //console.log(places.length);
+
+  if(trip.placeIds.length > 0){
+    trip.placeIds.map((ids,index) => {
+      if(ids.length > 0){
+        //console.log(`index: ${index}`);
+        ids.map(id => {
+          const foundIndex = places.findIndex(p => p.id === id);
+          if(foundIndex === -1){
+            //console.log('place not found');
+            missingPlaceIds.push(id);
+          }else{
+            //console.log('place found');
+            placesData.push(places[foundIndex]);
+          }
+        })
+      }
+    })
+  }
+
+  const loadPlaces = useCallback(async () => {
+    try {
+      dispatch(fetchMultiplePlaces(missingPlaceIds));
+    } catch (error) {
+      console.log(error);
+    }
+  }, [fetchMultiplePlaces, dispatch]);
+
+  useEffect(() => {
+    if(missingPlaceIds.length > 0){
+      console.log('missing place ids!');
+      loadPlaces().then(() => {
+      });
+    }
+    
+  }, [loadPlaces, fetchMultiplePlaces]);
 
   for (let i = 0; i < numberOfDays; i++) {
     tabRouteData.push({key: `key${i}`, title: `Day ${i+1}`});
-    sceneMapData[`key${i}`] = () => renderTripDay(trip.places[i]);
+    sceneMapData[`key${i}`] = () => renderTripDay(trip.placeIds[i], placesData);
   }
 
   const [index, setIndex] = useState(0)

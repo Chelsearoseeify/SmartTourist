@@ -16,7 +16,6 @@ const TripsScreen = props => {
   const dispatch = useDispatch();
   const [error, setError] = useState();
   const trips = useSelector(state => state.trips.userTrips);
-  console.log(trips);
 
   const onTripSelected = (trip) =>{
     console.log(`Selected trip ${trip.name}`);

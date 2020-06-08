@@ -5,13 +5,15 @@ import {
   FETCH_PLACE,
   SET_PLACE_TYPES,
   SET_SEARCH_TYPE,
-  UPDATE_PLACE
+  UPDATE_PLACE,
+  ADD_PLACES_TO_LIST
 } from './../actions/places';
 import SearchType from '../../constants/SearchType';
 import {LABELS} from '../../data/dummy-data';
 
 const initialState = {
   places: [],
+  cachedPlaces: [],
   filtered_places: [],
   search: SearchType.TEXT,
   type: '',
@@ -69,6 +71,22 @@ const placesReducer = (state = initialState, action) => {
     }
     case SET_SEARCH_TYPE: {
       return {...state, search: action.type};
+    }
+    case ADD_PLACES_TO_LIST: {
+      let updatedPlaces = [...state.cachedPlaces];
+      //console.log(`new places length: ${action.places.length}`);
+      //console.log(action.places[0].id);
+      //console.log(`old places length: ${updatedPlaces.length}`);
+      action.places.map(actionPlace => {
+        //console.log(actionPlace.id);
+        const foundIndex = updatedPlaces.findIndex(p => p.id === actionPlace.id);
+        //console.log(foundIndex);
+        if(foundIndex === -1){
+          updatedPlaces.push(actionPlace);
+        }
+      })
+      //console.log(`updated places length: ${updatedPlaces.length}`);
+      return {...state, cachedPlaces: updatedPlaces};
     }
     default:
       return state;
