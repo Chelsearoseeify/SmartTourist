@@ -21,7 +21,7 @@ const initialState = {
     id: 'ChIJi3lwCZyTC0cRkEAWZg-vAAQ',
     imageUrl: '',
     name: 'Prague',
-    photoRreference: undefined,
+    photoReference: undefined,
   },
   queryPredictions: [],
 };

@@ -1,29 +1,37 @@
-import React, {useState, useEffect} from 'react';
-import Colors from '../constants/Colors';
-import {View, ImageBackground, StyleSheet, Text} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, ImageBackground, StyleSheet, Text } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { useSelector, useDispatch } from 'react-redux';
+
 import BackButton from '../components/Buttons/BackButton';
-import {ScrollView} from 'react-native-gesture-handler';
-import {useSelector, useDispatch} from 'react-redux';
+import NavigateButton from '../components/Buttons/NavigateButton';
+import PlaceScreenButton from '../components/Buttons/PlaceScreenButton';
+import StarsRating from '../components/StarsRating';
+import TripModal from '../components/Cards/TripModal';
+
 import {
   toggleFavouriteCity,
   toggleFavouritePlace,
+  setFavouriteRequest
 } from '../store/actions/favourite';
-import {fetchPlace} from '../store/actions/places';
+import {
+  fetchPlaceDescription,
+  fetchPlace,
+  emptyPlace
+} from '../store/actions/places';
+
 import Style from '../constants/Style';
 import Detail from '../components/Detail';
-import PlaceScreenButton from '../components/Buttons/PlaceScreenButton';
-import StarsRating from '../components/StarsRating';
-import HTML from 'react-native-render-html';
-import {fetchPlaceDescription, emptyPlace} from './../store/actions/places';
-import {setFavouriteRequest} from './../store/actions/favourite';
-import NavigateButton from '../components/Buttons/NavigateButton';
+import Colors from '../constants/Colors';
 
-const PlaceScreen = ({navigation, route}) => {
+import HTML from 'react-native-render-html';
+
+const PlaceScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
   const [error, setError] = useState();
   const user = useSelector(state => state.user.data);
   const selectedCity = useSelector(state => state.cities.selected_city);
-  const {id, cityName, cityId, placeName} = route.params;
+  const { id, cityName, cityId, placeName } = route.params;
   const places = useSelector(state => state.places.places);
   console.log(id);
   console.log(selectedCity.name === cityName);
@@ -98,10 +106,11 @@ const PlaceScreen = ({navigation, route}) => {
 `;
 
   return (
-    <View style={{flex: 1}}>
-      <View style={{height: 400, width: '100%', flex: 1, position: 'absolute'}}>
+    <View style={{ flex: 1 }}>
+      {/* <TripModal/> */}
+      <View style={{ height: 400, width: '100%', flex: 1, position: 'absolute' }}>
         <ImageBackground
-          source={{uri: place.photoUrl}}
+          source={{ uri: place.photoUrl }}
           style={styles.imageBackgroundStyle}
           resizeMode="cover"
         />
@@ -111,6 +120,7 @@ const PlaceScreen = ({navigation, route}) => {
         onPress={() => dispatch(emptyPlace())}
       />
 
+      
       <View
         style={{
           position: 'absolute',
@@ -118,6 +128,7 @@ const PlaceScreen = ({navigation, route}) => {
           height: '100%',
           zIndex: 1,
         }}>
+
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.cardStyle}>
             <View
@@ -137,7 +148,7 @@ const PlaceScreen = ({navigation, route}) => {
             <View style={styles.cardContentStyle}>
               <View style={styles.titleViewStyle}>
                 <Text style={styles.placeNameStyle}>{place.name}</Text>
-                <View style={{flexDirection: 'row'}}>
+                <View style={{ flexDirection: 'row' }}>
                   <StarsRating
                     rating={place.rating}
                     size={24}
@@ -245,7 +256,7 @@ const styles = StyleSheet.create({
     width: 55,
     position: 'absolute',
     backgroundColor: Colors.backgroundColor,
-  },
+  }
 });
 
 export default PlaceScreen;

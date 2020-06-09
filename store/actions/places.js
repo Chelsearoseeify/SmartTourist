@@ -71,14 +71,6 @@ export const fetchPlace = (placeId, cityId) => {
   };
 };
 
-export const fetchPhoto = place => {
-  return async dispatch => {
-    const photoUrl = await getPhoto(place.photo_reference);
-    newPlace = {...place, photoUrl: photoUrl};
-    dispatch({type: UPDATE_PLACE, place: newPlace});
-  };
-};
-
 export const fetchPlaceDescription = placeName => {
   return async dispatch => {
     const response = await axios.get(

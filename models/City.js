@@ -12,7 +12,7 @@ class City {
     this.imageUrl = imageUrl;
     this.iconId = iconId;
     this.geometry = geometry;
-    this.photoRreference = photoReference;
+    this.photoReference = photoReference;
   }
 }
 

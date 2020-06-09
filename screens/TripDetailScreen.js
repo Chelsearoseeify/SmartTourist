@@ -12,14 +12,17 @@ import Style from '../constants/Style';
 import Colors from '../constants/Colors';
 
 const renderTripDay = (placeIds, placesData) => (
-  <TripDay placeIds={placeIds} placesData={placesData}/>
+  <View style={{flex: 1}}>
+    <TripDay placeIds={placeIds} placesData={placesData} />
+  </View>
+  
 );
 
 const renderTabBar = props => (
   <TabBar
     {...props}
     indicatorStyle={{ backgroundColor: Colors.greenSubTitleColor }}
-    indicatorContainerStyle={{alignItems: 'center'}}
+    indicatorContainerStyle={{ alignItems: 'center' }}
     style={{ backgroundColor: 'white' }}
     inactiveColor={Colors.inactiveTabColor}
     activeColor={Colors.activeTabColor}
@@ -49,16 +52,16 @@ const TripDetailScreen = props => {
   let placesData = [];
   //console.log(places.length);
 
-  if(trip.placeIds.length > 0){
-    trip.placeIds.map((ids,index) => {
-      if(ids.length > 0){
+  if (trip.placeIds.length > 0) {
+    trip.placeIds.map((ids, index) => {
+      if (ids.length > 0) {
         //console.log(`index: ${index}`);
         ids.map(id => {
           const foundIndex = places.findIndex(p => p.id === id);
-          if(foundIndex === -1){
+          if (foundIndex === -1) {
             //console.log('place not found');
             missingPlaceIds.push(id);
-          }else{
+          } else {
             //console.log('place found');
             placesData.push(places[foundIndex]);
           }
@@ -76,16 +79,16 @@ const TripDetailScreen = props => {
   }, [fetchMultiplePlaces, dispatch]);
 
   useEffect(() => {
-    if(missingPlaceIds.length > 0){
+    if (missingPlaceIds.length > 0) {
       console.log('missing place ids!');
       loadPlaces().then(() => {
       });
     }
-    
+
   }, [loadPlaces, fetchMultiplePlaces]);
 
   for (let i = 0; i < numberOfDays; i++) {
-    tabRouteData.push({key: `key${i}`, title: `Day ${i+1}`});
+    tabRouteData.push({ key: `key${i}`, title: `Day ${i + 1}` });
     sceneMapData[`key${i}`] = () => renderTripDay(trip.placeIds[i], placesData);
   }
 
@@ -96,43 +99,39 @@ const TripDetailScreen = props => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <View style={styles.titleViewStyle}>
-          <Header title={'Your trip'} mapIcon={false} />
-        </View>
-        <View>
-          <View style={styles.cardsContainerStyle}>
-            <View style={[styles.cardStyle, { flex: 1 }]}>
-              <View style={{ paddingVertical: 10 }}>
-                <Text style={styles.tripNameStyle}>
-                  {trip.name}
-                </Text>
-              </View>
-              <View style={{ paddingVertical: 10 }}>
-                <Text style={styles.tripDatesStyle}>
-                  {dateString}
-                </Text>
-              </View>
-              <View style={{flex: 1}}>
-                <TabView
-                  renderTabBar={renderTabBar}
-                  renderLabel={renderLabel}
-                  inactiveColor="red"
-                  navigationState={{ index, routes }}
-                  renderScene={renderScene}
-                  onIndexChange={setIndex}
-                  initialLayout={initialLayout}
-                />
-              </View>
-            </View>
+      <View style={styles.titleViewStyle}>
+        <Header title={'Your trip'} mapIcon={false} />
+      </View>
+      <View style={styles.cardsContainerStyle}>
+        <View style={[styles.cardStyle, { flex: 1 }]}>
+          <View style={{ paddingVertical: 10 }}>
+            <Text style={styles.tripNameStyle}>
+              {trip.name}
+            </Text>
+          </View>
+          <View style={{ paddingVertical: 10 }}>
+            <Text style={styles.tripDatesStyle}>
+              {dateString}
+            </Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <TabView
+              renderTabBar={renderTabBar}
+              renderLabel={renderLabel}
+              inactiveColor="red"
+              navigationState={{ index, routes }}
+              renderScene={renderScene}
+              onIndexChange={setIndex}
+              initialLayout={initialLayout}
+            />
           </View>
         </View>
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
 
-const topSpace = 70;
+const topSpace = 120;
 
 let styles = StyleSheet.create({
   scene: {
@@ -145,13 +144,12 @@ let styles = StyleSheet.create({
   cardsContainerStyle: {
     flex: 1,
     marginTop: topSpace,
-    marginBottom: 30,
   },
   cardStyle: {
     elevation: Style.elevation,
-    borderRadius: Style.borderRadiusCardContainer,
+    borderTopLeftRadius: Style.borderRadiusCardContainer,
+    borderTopRightRadius: Style.borderRadiusCardContainer,
     backgroundColor: 'white',
-    marginVertical: 5
   },
   titleViewStyle: {
     alignItems: 'flex-end',
