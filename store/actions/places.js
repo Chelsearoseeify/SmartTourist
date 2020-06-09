@@ -7,10 +7,14 @@ export const FETCH_PLACE = 'FETCH_PLACE';
 export const SET_PLACE_TYPES = 'SET_TYPES';
 export const SET_SEARCH_TYPE = 'SET_SEARCH_TYPE';
 export const FETCH_PLACE_DESCRIPTION = 'FETCH_PLACE_DESCRIPTION';
+export const ADD_PLACES_TO_LIST = 'ADD_PLACES_TO_LIST';
+
 const API_KEY = 'AIzaSyBZnXD0YlNLMtcDswoLpkUTu_cBYP3Ud0w';
 import axios from 'axios';
 import _ from 'lodash';
 import SearchType from '../../constants/SearchType';
+
+import placeRequest from '../../utils/placeRequest';
 
 export const setSearchType = type => {
   return {type: SET_SEARCH_TYPE, type: type};
@@ -33,21 +37,24 @@ const getPhoto = async photo_reference => {
 export const fetchPlace = placeId => {
   return async dispatch => {
     try {
-      let ref = database().ref(`places/${placeId}`);
-      let res = await ref.once('value');
-      let place = new CompletePlace(
-        res.key,
-        res.val().name,
-        res.val().cityId,
-        res.val().types,
-        res.val().url,
-        res.val().rating,
-        res.val().geometry,
-        res.val().address,
-        res.val().business_status,
-        res.val().user_ratings_total,
-        '',
-      );
+      // let ref = database().ref(`places/${placeId}`);
+      // let res = await ref.once('value');
+      // let place = new CompletePlace(
+      //   res.key,
+      //   res.val().name,
+      //   res.val().cityId,
+      //   res.val().types,
+      //   res.val().url,
+      //   res.val().rating,
+      //   res.val().geometry,
+      //   res.val().address,
+      //   res.val().business_status,
+      //   res.val().user_ratings_total,
+      //   '',
+      // );
+
+      const place = await placeRequest(placeId);
+      console.log(place);
 
       dispatch({type: FETCH_PLACE, place});
     } catch (error) {
@@ -87,7 +94,7 @@ export const fetchPlacesFromGoogle = (city, searchType) => {
     case SearchType.NEARBY:
       url = url.concat(nearbySearch, key);
       break;
-    case searchType.TEXT:
+    case SearchType.TEXT:
       url = url.concat(textSearch, key);
       break;
     default:
@@ -119,6 +126,7 @@ export const fetchPlacesFromGoogle = (city, searchType) => {
           )
         );
       }));
+      dispatch({type: ADD_PLACES_TO_LIST, places: loadedPlaces});
       dispatch({type: SET_PLACES, places: loadedPlaces});
     } catch (error) {
       throw error;
@@ -157,6 +165,21 @@ export const fetchPlaces = cityId => {
         );
       });
       dispatch({type: SET_PLACES, places: loadedPlaces});
+    } catch (error) {
+      throw error;
+    }
+  };
+};
+
+export const fetchMultiplePlaces = placeIds => {
+  return async dispatch => {
+    try {
+      const loadedPlaces = [];
+      await Promise.all(placeIds.map(async placeId => {
+        const place = await placeRequest(placeId);
+        loadedPlaces.push(place);
+      }))
+      dispatch({type: ADD_PLACES_TO_LIST, places: loadedPlaces});
     } catch (error) {
       throw error;
     }

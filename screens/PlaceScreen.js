@@ -93,7 +93,7 @@ const PlaceScreen = ({navigation, route}) => {
     <View style={{flex: 1}}>
       <View style={{height: 400, width: '100%', flex: 1, position: 'absolute'}}>
         <ImageBackground
-          source={{uri: place.url}}
+          source={{uri: place.photoUrl}}
           style={styles.imageBackgroundStyle}
           resizeMode="cover"
         />

@@ -33,7 +33,7 @@ const TravelScreen = ({navigation, route}) => {
   const selectedCity = useSelector(state => state.cities.selected_city);
   const filteredPlaces = useSelector(state => state.places.filtered_places);
   const [types, setTypes] = useState(useSelector(state => state.places.types));
-  const [searchType, setSearchType] = useState(SearchType.NEARBY);
+  const [searchType, setSearchType] = useState(SearchType.TEXT);
   const [allTypes, setAllTypes] = useState(
     useSelector(state => state.places.all_types),
   );
