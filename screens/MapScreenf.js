@@ -124,7 +124,8 @@ const MapScreenf = ({navigation, route}) => {
           } else if (index < _carousel.currentIndex) {
             _carousel.snapToPrev();
           }
-        }}>
+        }}
+      >
         <View style={styles.cardContainer}>
           <View style={styles.contentStyle}>
             {item.name.lenght <= 23 ? (
@@ -136,7 +137,7 @@ const MapScreenf = ({navigation, route}) => {
               {computeDistance(item.geometry.location)} m, {item.rating} stars
             </Text>
           </View>
-          <Image source={{uri: item.url}} style={styles.imageStyle} />
+          <Image source={{uri: item.photoUrl}} style={styles.imageStyle} />
         </View>
       </TouchableOpacity>
     );
@@ -148,7 +149,7 @@ const MapScreenf = ({navigation, route}) => {
 
   return (
     <View style={styles.container}>
-      <BackButton {...navigation} />
+      <BackButton navigation={navigation} />
       <PositionButton onPress={returnToInitialPosition} />
       <View style={{position: 'absolute', top: 50, width: '100%'}}>
         <SearchBar />
@@ -158,7 +159,8 @@ const MapScreenf = ({navigation, route}) => {
         style={styles.map}
         provider={PROVIDER_GOOGLE}
         ref={map => (_map = map)}
-        initialRegion={initialPosition}>
+        initialRegion={initialPosition}
+      >
         <Marker
           coordinate={{
             latitude: initialPosition.latitude,
@@ -174,7 +176,8 @@ const MapScreenf = ({navigation, route}) => {
             coordinate={{
               latitude: place.geometry.location.lat,
               longitude: place.geometry.location.lng,
-            }}>
+            }}
+          >
             <Callout>
               <Text>{place.name}</Text>
             </Callout>

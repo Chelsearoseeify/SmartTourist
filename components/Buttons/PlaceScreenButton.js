@@ -16,18 +16,21 @@ const PlaceScreenButton = ({name, iconName, onPress}) => {
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    borderRadius: 18,
+    flexDirection: 'row',
+    borderRadius: 20,
     backgroundColor: 'white',
-    elevation: Style.elevation,
+    elevation: 2,
     alignItems: 'center',
-    marginTop: 10,
-    padding: 5,
-    paddingHorizontal: 20,
+    justifyContent: 'center',
+    paddingHorizontal: 15,
+    marginHorizontal: 10,
+    width: 180,
   },
   buttonIconStyle: {
     color: Colors.blueTitleColor,
-    fontSize: Style.iconSize + 5,
-    paddingVertical: 4,
+    fontSize: Style.iconSize + 10,
+    paddingVertical: 10,
+    paddingRight: 10,
   },
   textIconStyle: {color: Colors.blueTitleColor, fontSize: 15},
 });

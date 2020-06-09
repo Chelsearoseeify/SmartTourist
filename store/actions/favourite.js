@@ -33,7 +33,7 @@ export const fetchFavouritePlaces = (uid, cityId) => {
             child.val().cityId,
             child.key,
             child.val().name,
-            child.val().url,
+            child.val().photoUrl,
           ),
         );
       });
@@ -71,7 +71,7 @@ export const fetchFavourites = uid => {
             child.val().cityId,
             child.key,
             child.val().name,
-            child.val().url,
+            child.val().photoUrl,
           ),
         );
       });
@@ -93,7 +93,7 @@ export const toggleFavouritePlace = (uid, newPlace, actionType) => {
           .set({
             cityId: newPlace.cityId,
             name: newPlace.name,
-            url: newPlace.url,
+            photoUrl: newPlace.photoUrl,
           })
           .then(() => console.log('Place data added.'));
         break;

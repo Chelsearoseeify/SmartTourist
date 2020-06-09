@@ -6,25 +6,21 @@ import {useSelector, useDispatch} from 'react-redux';
 import Header from './../components/Header';
 import Style from '../constants/Style';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {
-  selectFavouritePlaces,
-  fetchFavourites,
-  setCardStyle,
-} from './../store/actions/favourite';
-import CustomFloatingButton from './../components/Buttons/CustomFloatingButton';
+import {fetchFavourites, setCardStyle} from './../store/actions/favourite';
 import CardTypes from '../constants/CardTypes';
+import FlatListBig from '../components/CustomBoard/FlatListBig';
+import FlatListMedium from './../components/CustomBoard/FlatListMedium';
 
 const FavouriteScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const favouriteCities = useSelector(
     state => state.favourites.favourite_cities,
   );
+  const [oneColumn, setOneColumn] = useState(false);
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const user = useSelector(state => state.user.data);
   let Board = useSelector(state => state.favourites.style.board);
-  let numColumns = useSelector(state => state.favourites.style.numColumns);
-  let oneColumn = false;
 
   //this run whenever the component is loaded
   useEffect(() => {
@@ -48,21 +44,6 @@ const FavouriteScreen = ({navigation}) => {
     navigation.navigate('AddTrip');
   };
 
-  const renderGridItem = itemData => {
-    return (
-      <Board
-        name={itemData.item.cityName}
-        places={itemData.item.imageQueue}
-        onPress={() => {
-          navigation.navigate('GroupedPlaces', {
-            cityId: itemData.item.cityId,
-            title: itemData.item.cityName,
-          });
-        }}
-      />
-    );
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -77,7 +58,7 @@ const FavouriteScreen = ({navigation}) => {
                 name="th-large"
                 onPress={() => {
                   setCardStyleHandler(CardTypes.FOUR_PICTURES);
-                  oneColumn = false;
+                  setOneColumn(true);
                 }}
               />
               <Icon
@@ -85,7 +66,7 @@ const FavouriteScreen = ({navigation}) => {
                 name="th-list"
                 onPress={() => {
                   setCardStyleHandler(CardTypes.THREE_PICTURES);
-                  oneColumn = true;
+                  setOneColumn(false);
                 }}
               />
               <Icon
@@ -93,19 +74,21 @@ const FavouriteScreen = ({navigation}) => {
                 name="list"
                 onPress={() => {
                   setCardStyleHandler(CardTypes.TWO_PICTURES);
-                  oneColumn = false;
+                  setOneColumn(true);
                 }}
               />
             </View>
-            <FlatList
-              contentContainerStyle={styles.placesContainer}
-              data={favouriteCities}
-              numColumns={2}
-              horizontal={false}
-              renderItem={renderGridItem}
-              scrollEnabled={false}
-              keyExtractor={(item, index) => index.toString()}
-            />
+            {oneColumn ? (
+              <FlatListBig
+                favouriteCities={favouriteCities}
+                navigation={navigation}
+              />
+            ) : (
+              <FlatListMedium
+                favouriteCities={favouriteCities}
+                navigation={navigation}
+              />
+            )}
           </View>
         </ScrollView>
       </View>
@@ -134,7 +117,7 @@ let styles = StyleSheet.create({
     elevation: Style.elevation,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
     borderTopRightRadius: Style.borderRadiusCardContainer,
-    height: '100%',
+    height: 540,
     width: '100%',
     backgroundColor: 'white',
   },

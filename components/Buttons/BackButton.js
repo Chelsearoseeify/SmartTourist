@@ -5,7 +5,7 @@ import {View} from 'react-native';
 import Style from '../../constants/Style';
 import Colors from '../../constants/Colors';
 
-const BackButton = navigation => {
+const BackButton = ({navigation, onPress = () => {}}) => {
   return (
     <View
       style={{
@@ -16,6 +16,7 @@ const BackButton = navigation => {
       <TouchableOpacity
         onPress={() => {
           navigation.pop();
+          onPress();
         }}
         style={{
           margin: 10,

@@ -1,9 +1,9 @@
 class FavouritePlace {
-  constructor(cityId, id, name, url) {
+  constructor(cityId, id, name, photoUrl) {
     this.cityId = cityId;
     this.id = id;
     this.name = name;
-    this.url = url;
+    this.photoUrl = photoUrl;
   }
 }
 

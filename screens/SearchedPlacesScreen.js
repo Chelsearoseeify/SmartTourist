@@ -6,57 +6,76 @@ import {
   FlatList,
   SafeAreaView,
   ScrollView,
+  Image,
 } from 'react-native';
-
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Style from '../constants/Style';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import SearchBar2 from '../components/SearchBar2';
-import SearchType from '../constants/SearchType';
 import PlaceCard from './../components/Cards/PlaceCard';
+import SearchType from '../constants/SearchType';
+import {fetchPlacesFromGoogle} from './../store/actions/places';
+import {fetchFavourites} from './../store/actions/favourite';
 
 const SearchedPlacesScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
-  const [searchType, setSearchType] = useState(SearchType.TEXT);
   const [error, setError] = useState();
   const selectedCity = useSelector(state => state.cities.selected_city);
-  const filteredPlaces = useSelector(state => state.places.filtered_places);
+  const searchType = SearchType.NEARBY;
+  const places = useSelector(state => state.places.places);
   const favouritePlaces = useSelector(
     state => state.favourites.favourite_places,
   );
   const user = useSelector(state => state.user.data);
+  const pageToken = '';
 
   useEffect(() => {
+    setIsLoading(true);
     try {
-      console.log(filteredPlaces[0].name);
+      console.log('ohi', selectedCity, searchType, route.params.type);
       dispatch(fetchFavourites(user.uid));
-      dispatch(fetchPlaces('ChIJD7fiBh9u5kcRYJSMaMOCCwQ'));
-      //dispatch(fetchPlacesFromGoogle(selectedCity, searchType));
+      //dispatch(fetchPlaces(selectedCity.id));
+      dispatch(
+        fetchPlacesFromGoogle(
+          selectedCity,
+          searchType,
+          route.params.type,
+          pageToken,
+        ),
+      );
     } catch (error) {
-      setError(error.message);
+      console.log(error.message);
     }
-  }, [dispatch, filteredPlaces]);
+    setIsLoading(false);
+  }, [dispatch]);
 
-  const renderPlaceItem = itemData => {
-    const index = favouritePlaces.findIndex(
-      place => place.id === itemData.item.id,
-    );
+  const renderPlaceItem = (item, index) => {
+    const ind = favouritePlaces.findIndex(place => place.id === item.id);
     return (
       <PlaceCard
-        name={itemData.item.name}
-        imageUrl={itemData.item.url}
-        rating={itemData.item.rating}
-        icon={index >= 0 ? 'heart' : 'heart-outline'}
+        name={item.name}
+        imageUrl={item.photoUrl}
+        rating={item.rating}
+        icon={ind >= 0 ? 'heart' : 'heart-outline'}
         onSelect={() => {
           navigation.navigate('Place', {
-            id: itemData.item.id,
-            placeName: itemData.item.name,
+            id: item.id,
+            placeName: item.name,
             cityName: selectedCity.name,
+            cityId: selectedCity.id,
           });
         }}
       />
+    );
+  };
+
+  const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
+    const paddingToBottom = 0;
+    return (
+      layoutMeasurement.height + contentOffset.y >=
+      contentSize.height - paddingToBottom
     );
   };
 
@@ -70,12 +89,14 @@ const SearchedPlacesScreen = ({navigation, route}) => {
               flexDirection: 'row',
               justifyContent: 'center',
               alignContent: 'space-between',
-            }}>
+            }}
+          >
             <View style={{justifyContent: 'center', marginHorizontal: 5}}>
               <TouchableOpacity
                 onPress={() => {
                   navigation.pop();
-                }}>
+                }}
+              >
                 <Icon
                   name="arrow-left"
                   size={Style.iconSize}
@@ -85,17 +106,50 @@ const SearchedPlacesScreen = ({navigation, route}) => {
             </View>
             <SearchBar2
               style={{width: '90%'}}
-              searchedValue={route.params.value}
+              searchedValue={route.params.type}
             />
           </View>
           <View style={styles.cardStyle}>
-            <FlatList
-              contentContainerStyle={styles.placesContainer}
-              data={filteredPlaces}
-              numColumns={2}
-              renderItem={renderPlaceItem}
-              horizontal={false}
-            />
+            {isLoading ? (
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: 600,
+                }}
+              >
+                <ActivityIndicator
+                  size="large"
+                  color={Colors.greenTitleColor}
+                />
+              </View>
+            ) : places.length === 0 ? (
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: 800, //540
+                }}
+              >
+                <Image
+                  style={{
+                    resizeMode: 'contain',
+                    height: 350,
+                    width: 160,
+                  }}
+                  source={require('./../assets/images/sadCloud.png')}
+                />
+              </View>
+            ) : (
+              <FlatList
+                contentContainerStyle={styles.placesContainer}
+                data={places}
+                numColumns={2}
+                renderItem={({item, index}) => renderPlaceItem(item, index)}
+                horizontal={false}
+                keyExtractor={(item, index) => index.toString()}
+              />
+            )}
           </View>
         </View>
       </ScrollView>

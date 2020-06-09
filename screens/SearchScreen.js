@@ -29,8 +29,7 @@ const SearchScreen = ({navigation, route}) => {
           imageUrl={itemData.item.url}
           onSelect={() => {
             navigation.navigate('SearchedPlaces', {
-              value: itemData.item.name,
-              searchType: SearchType.NEARBY,
+              type: itemData.item.type,
             });
           }}
         />

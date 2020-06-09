@@ -19,7 +19,7 @@ const initialState = {
   favourite_places: [],
   selected_favourite_places: [],
   style: {
-    board: FourPicturesBoard,
+    board: ThreePicturesBoard,
     numColumns: 2,
   },
   place_request: {
@@ -133,7 +133,7 @@ const favouritesReducer = (state = initialState, action) => {
           placeRequest.actionType = ActionType.ADD_PLACE;
           cityRequest.actionType = ActionType.UPDATE_CITY;
           placesIds.unshift(place.id);
-          imageQueue.unshift(place.url);
+          imageQueue.unshift(place.photoUrl);
           placeRequest.icon = 'cards-heart';
         }
         cityRequest.city.placesIds = placesIds;
@@ -141,7 +141,7 @@ const favouritesReducer = (state = initialState, action) => {
       } else {
         console.log("THE CITY DOESN'T EXIST");
         cityRequest.city.placesIds = [place.id];
-        cityRequest.city.imageQueue = [place.url];
+        cityRequest.city.imageQueue = [place.photoUrl];
         cityRequest.actionType = ActionType.ADD_CITY;
         placeRequest.actionType = ActionType.ADD_PLACE;
         placeRequest.icon = 'cards-heart';
@@ -150,7 +150,7 @@ const favouritesReducer = (state = initialState, action) => {
         place.cityId,
         place.id,
         place.name,
-        place.url,
+        place.photoUrl,
       );
       return {...state, place_request: placeRequest, city_request: cityRequest};
     }

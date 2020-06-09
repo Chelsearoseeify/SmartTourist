@@ -47,13 +47,14 @@ const GroupedCitiesScreen = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <BackButton {...navigation} />
+      <BackButton navigation={navigation} />
       <View
         style={{
           height: 100,
           alignItems: 'flex-end',
           justifyContent: 'flex-end',
-        }}>
+        }}
+      >
         <Text
           style={{
             color: Colors.blueTitleColor,
@@ -61,7 +62,8 @@ const GroupedCitiesScreen = ({navigation, route}) => {
             fontSize: Style.fontSize.h2,
             marginRight: Style.marginTopCardContainer,
             marginBottom: Style.marginTopCardContainer,
-          }}>
+          }}
+        >
           {route.params.title}
         </Text>
       </View>
@@ -71,12 +73,12 @@ const GroupedCitiesScreen = ({navigation, route}) => {
           <View style={styles.cardStyle}>
             <View style={styles.contentStyle}>
               <FlatList
-                contentContainerStyle={styles.placesContainer}
                 data={topDestinations}
                 numColumns={2}
                 renderItem={renderGridItem}
                 horizontal={false}
                 scrollEnabled={false}
+                showsVerticalScrollIndicator={false}
                 keyExtractor={(item, index) => index.toString()}
               />
             </View>
@@ -100,7 +102,8 @@ let styles = StyleSheet.create({
     height: '100%',
   },
   contentStyle: {
-    padding: Style.paddingCard,
+    paddingHorizontal: Style.paddingCard,
+    paddingTop: Style.paddingCard,
   },
   cardStyle: {
     marginTop: topSpace,

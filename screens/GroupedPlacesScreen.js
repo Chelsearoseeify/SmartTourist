@@ -86,7 +86,8 @@ const GroupedPlacesScreen = ({navigation, route}) => {
               alignItems: 'flex-end',
               marginHorizontal: -12,
               marginVertical: -5,
-            }}>
+            }}
+          >
             <Icon
               style={{
                 fontSize: Style.iconSize,
@@ -102,7 +103,7 @@ const GroupedPlacesScreen = ({navigation, route}) => {
 
         <FavouritePlaceCard
           name={itemData.item.name}
-          imageUrl={itemData.item.url}
+          imageUrl={itemData.item.photoUrl}
           onSelect={() => {
             navigation.navigate('Place', {
               id: itemData.item.id,
@@ -116,13 +117,14 @@ const GroupedPlacesScreen = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <BackButton {...navigation} />
+      <BackButton navigation={navigation} />
       <View />
       <View
         style={
           (styles.titleViewStyle,
           [{height: 150, width: '100%', flex: 1, position: 'absolute'}])
-        }>
+        }
+      >
         <ImageBackground
           source={{
             uri:
@@ -151,7 +153,8 @@ const GroupedPlacesScreen = ({navigation, route}) => {
                   fontWeight: 'bold',
                   fontSize: Style.fontSize.h2,
                   marginLeft: Style.marginTopCardContainer,
-                }}>
+                }}
+              >
                 {title}
               </Text>
               <FlatList
@@ -192,7 +195,7 @@ let styles = StyleSheet.create({
     elevation: Style.elevation,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
     borderTopRightRadius: Style.borderRadiusCardContainer,
-    height: '100%',
+    height: 540,
     width: '100%',
     backgroundColor: 'white',
   },

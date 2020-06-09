@@ -10,7 +10,7 @@ const Description = ({name, counter}) => {
         {name}
       </Text>
       <Text style={{fontWeight: '200', fontSize: Style.fontSize.h6}}>
-        {counter}
+        {counter > 1 ? `${counter} Places` : `${counter} Place`}
       </Text>
     </View>
   );

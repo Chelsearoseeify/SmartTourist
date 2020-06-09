@@ -47,10 +47,11 @@ const TwoPicturesBoard = ({name, places, onPress}) => {
   return (
     <TouchableCmp onPress={onPress}>
       <View style={styles.cardStyle}>
-        <View style={{height: '80%'}}>
-          <Board places={places} />
-        </View>
-        <View style={{height: '20%'}}>
+        <View style={{flexDirection: 'row'}}>
+          <View style={{width: '60%'}}>
+            <Board places={places} />
+          </View>
+
           <Description name={name} counter={places.length} />
         </View>
       </View>
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
     margin: Style.marginCard,
     borderRadius: Style.borderRadiusCard,
     flex: 1,
-    height: 220,
+    height: 100,
   },
 });
 
