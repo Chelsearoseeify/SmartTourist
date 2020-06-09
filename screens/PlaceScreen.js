@@ -14,16 +14,23 @@ import Detail from '../components/Detail';
 import PlaceScreenButton from '../components/Buttons/PlaceScreenButton';
 import StarsRating from '../components/StarsRating';
 import HTML from 'react-native-render-html';
-import {fetchPlaceDescription} from './../store/actions/places';
+import {fetchPlaceDescription, emptyPlace} from './../store/actions/places';
 import {setFavouriteRequest} from './../store/actions/favourite';
-import LikeButton from '../components/Buttons/LikeButton';
+import NavigateButton from '../components/Buttons/NavigateButton';
 
 const PlaceScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const [error, setError] = useState();
   const user = useSelector(state => state.user.data);
-  const {id, cityName, placeName} = route.params;
-  const place = useSelector(state => state.places.place);
+  const selectedCity = useSelector(state => state.cities.selected_city);
+  const {id, cityName, cityId, placeName} = route.params;
+  const places = useSelector(state => state.places.places);
+  console.log(id);
+  console.log(selectedCity.name === cityName);
+  const place =
+    selectedCity.name === cityName
+      ? places.filter(place => place.id === id)[0]
+      : useSelector(state => state.places.place);
   const placeRequest = useSelector(state => state.favourites.place_request);
   const cityRequest = useSelector(state => state.favourites.city_request);
   const favouritePlaces = useSelector(
@@ -33,12 +40,13 @@ const PlaceScreen = ({navigation, route}) => {
   const [icon, setIcon] = useState(
     index >= 0 ? 'cards-heart' : 'heart-outline',
   );
+  console.log(place);
 
   useEffect(() => {
     const loadPlace = async () => {
       try {
         console.log(id, cityName);
-        dispatch(fetchPlace(id));
+        if (selectedCity.name !== cityName) dispatch(fetchPlace(id, cityId));
         dispatch(fetchPlaceDescription(placeName));
       } catch (error) {
         setError(error.message); //error to be handled, it has to be defined
@@ -98,12 +106,11 @@ const PlaceScreen = ({navigation, route}) => {
           resizeMode="cover"
         />
       </View>
-      <BackButton {...navigation} />
-      <LikeButton
-        name={'Favourite'}
-        iconName={icon}
-        onPress={toggleFavouriteHandler}
+      <BackButton
+        navigation={navigation}
+        onPress={() => dispatch(emptyPlace())}
       />
+
       <View
         style={{
           position: 'absolute',
@@ -113,6 +120,20 @@ const PlaceScreen = ({navigation, route}) => {
         }}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.cardStyle}>
+            <View
+              style={[
+                styles.avatarView,
+                {
+                  top: -30,
+                  right: 30,
+                },
+              ]}>
+              <NavigateButton
+                name={'Favourite'}
+                iconName={'near-me'}
+                onPress={mapHandler}
+              />
+            </View>
             <View style={styles.cardContentStyle}>
               <View style={styles.titleViewStyle}>
                 <Text style={styles.placeNameStyle}>{place.name}</Text>
@@ -123,22 +144,17 @@ const PlaceScreen = ({navigation, route}) => {
                     fullStarColor={Colors.greenTitleColor}
                     emptyStarColor={Colors.greenSubTitleColor}
                   />
-                  <Text style={styles.reviewStyle}>
+                  {/* <Text style={styles.reviewStyle}>
                     {place.user_ratings_total} Reviews
-                  </Text>
+                  </Text> */}
                 </View>
               </View>
               <View
                 style={{
                   width: '100%',
                   flexDirection: 'row',
-                  justifyContent: 'space-around',
+                  justifyContent: 'center',
                 }}>
-                <PlaceScreenButton
-                  name={'Navigate'}
-                  iconName={'directions'}
-                  onPress={mapHandler}
-                />
                 <PlaceScreenButton
                   name={'Favourite'}
                   iconName={icon}
@@ -221,6 +237,14 @@ const styles = StyleSheet.create({
   },
   titleViewStyle: {
     margin: 10,
+  },
+  avatarView: {
+    elevation: Style.elevation,
+    borderRadius: 45,
+    height: 55,
+    width: 55,
+    position: 'absolute',
+    backgroundColor: Colors.backgroundColor,
   },
 });
 

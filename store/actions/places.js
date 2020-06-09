@@ -4,7 +4,8 @@ export const CREATE_PLACE = 'CREATE_PLACE';
 export const UPDATE_PLACE = 'UPDATE_PLACE';
 export const SET_PLACES = 'SET_PLACES';
 export const FETCH_PLACE = 'FETCH_PLACE';
-export const SET_PLACE_TYPES = 'SET_TYPES';
+export const EMPTY_PLACE = 'EMPTY_PLACE';
+export const SET_PLACE_TYPE = 'SET_TYPE';
 export const SET_SEARCH_TYPE = 'SET_SEARCH_TYPE';
 export const FETCH_PLACE_DESCRIPTION = 'FETCH_PLACE_DESCRIPTION';
 export const ADD_PLACES_TO_LIST = 'ADD_PLACES_TO_LIST';
@@ -15,45 +16,52 @@ import _ from 'lodash';
 import SearchType from '../../constants/SearchType';
 
 import placeRequest from '../../utils/placeRequest';
-
-export const setSearchType = type => {
-  return {type: SET_SEARCH_TYPE, type: type};
+export const emptyPlace = () => {
+  return {type: EMPTY_PLACE};
 };
 
-export const setPlaceTypes = newType => {
-  return {type: SET_PLACE_TYPES, newType: newType};
+export const setSearchType = newType => {
+  return {type: SET_SEARCH_TYPE, newType: newType};
+};
+
+export const setPlaceType = newType => {
+  return {type: SET_PLACE_TYPE, newType: newType};
 };
 
 const getPhoto = async photo_reference => {
-  //console.log(photo_reference);
   const url = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${photo_reference}&key=${API_KEY}`;
-  const response = await axios.get(url, { responseType: 'blob' });
-
-  return response.request.responseURL;
+  try {
+    const response = await axios.get(url, {responseType: 'blob'});
+    return response.request.responseURL;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
 };
 
-/* https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=50.0755381,14.4378005&radius=3000&type=church&key=AIzaSyBZnXD0YlNLMtcDswoLpkUTu_cBYP3Ud0w
- */
-export const fetchPlace = placeId => {
+export const fetchPlace = (placeId, cityId) => {
   return async dispatch => {
     try {
-      // let ref = database().ref(`places/${placeId}`);
-      // let res = await ref.once('value');
-      // let place = new CompletePlace(
-      //   res.key,
-      //   res.val().name,
-      //   res.val().cityId,
-      //   res.val().types,
-      //   res.val().url,
-      //   res.val().rating,
-      //   res.val().geometry,
-      //   res.val().address,
-      //   res.val().business_status,
-      //   res.val().user_ratings_total,
-      //   '',
-      // );
+      const res = await axios.get(
+        `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=&key=${API_KEY}`,
+      );
+      const result = res.data.result;
+      const photoUrl = await getPhoto(result.photos[0].photo_reference);
+      let place = new CompletePlace(
+        result.place_id,
+        result.name,
+        cityId,
+        result.types,
+        photoUrl,
+        result.rating,
+        result.geometry,
+        result.formatted_address,
+        result.business_status,
+        result.user_ratings_total,
+        '',
+      );
 
-      const place = await placeRequest(placeId);
+      //const place = await placeRequest(placeId);
       console.log(place);
 
       dispatch({type: FETCH_PLACE, place});
@@ -63,13 +71,13 @@ export const fetchPlace = placeId => {
   };
 };
 
-export const fetchPhoto = (place) =>{
+export const fetchPhoto = place => {
   return async dispatch => {
     const photoUrl = await getPhoto(place.photo_reference);
     newPlace = {...place, photoUrl: photoUrl};
     dispatch({type: UPDATE_PLACE, place: newPlace});
   };
-}
+};
 
 export const fetchPlaceDescription = placeName => {
   return async dispatch => {
@@ -81,14 +89,22 @@ export const fetchPlaceDescription = placeName => {
   };
 };
 
-export const fetchPlacesFromGoogle = (city, searchType) => {
+export const fetchPlacesFromGoogle = (
+  city,
+  searchType,
+  placeType,
+  pageToken,
+) => {
   let url = `https://maps.googleapis.com/maps/api/place/`;
   const key = `&key=${API_KEY}`;
 
-  const textSearch = `textsearch/json?query=${city.name}+point+of+interest&language=en`;
+  const textSearch = `textsearch/json?query=${
+    city.name
+  }+point+of+interest&language=en`;
 
-  const nearbySearch = `nearbysearch/json?location=${city.geometry.location.lat},${city.geometry.location.lng}&radius=3000&type=park`;
-
+  const nearbySearch = `nearbysearch/json?location=${
+    city.geometry.location.lat
+  },${city.geometry.location.lng}&radius=3000&type=${placeType}`;
 
   switch (searchType) {
     case SearchType.NEARBY:
@@ -100,6 +116,9 @@ export const fetchPlacesFromGoogle = (city, searchType) => {
     default:
       break;
   }
+  if (pageToken !== '') {
+    url = url.concat(`&pagetoken=${pageToken}`);
+  }
 
   console.log(url);
 
@@ -107,27 +126,38 @@ export const fetchPlacesFromGoogle = (city, searchType) => {
     try {
       const res = await axios.get(url);
       const loadedPlaces = [];
+      await Promise.all(
+        res.data.results.map(async place => {
+          let photoUrl = '';
+          try {
+            photoUrl = await getPhoto(place.photos[0].photo_reference);
+          } catch (error) {
+            console.log(error);
+          }
 
-      await Promise.all(res.data.results.map(async (place) => {
-        const photoUrl = await getPhoto(place.photos[0].photo_reference);
-        loadedPlaces.push(
-          new CompletePlace(
-            place.place_id,
-            place.name,
-            city.id,
-            place.types,
-            photoUrl,
-            place.rating,
-            place.geometry,
-            place.address,
-            place.business_status,
-            place.user_ratings_total,
-            '',
-          )
-        );
-      }));
-      dispatch({type: ADD_PLACES_TO_LIST, places: loadedPlaces});
-      dispatch({type: SET_PLACES, places: loadedPlaces});
+          loadedPlaces.push(
+            new CompletePlace(
+              place.place_id,
+              place.name,
+              city.id,
+              place.types,
+              photoUrl,
+              place.rating,
+              place.geometry,
+              place.formatted_address,
+              place.business_status,
+              place.user_ratings_total,
+              '',
+            ),
+          );
+        }),
+      );
+      console.log(loadedPlaces.length);
+      dispatch({
+        type: SET_PLACES,
+        places: loadedPlaces,
+        pageToken: res.data.next_page_token,
+      });
     } catch (error) {
       throw error;
     }
@@ -136,7 +166,7 @@ export const fetchPlacesFromGoogle = (city, searchType) => {
 
 export const updatePlace = place => {
   return {type: UPDATE_PLACE, place: place};
-}
+};
 
 export const fetchPlaces = cityId => {
   return async dispatch => {
@@ -175,10 +205,12 @@ export const fetchMultiplePlaces = placeIds => {
   return async dispatch => {
     try {
       const loadedPlaces = [];
-      await Promise.all(placeIds.map(async placeId => {
-        const place = await placeRequest(placeId);
-        loadedPlaces.push(place);
-      }))
+      await Promise.all(
+        placeIds.map(async placeId => {
+          const place = await placeRequest(placeId);
+          loadedPlaces.push(place);
+        }),
+      );
       dispatch({type: ADD_PLACES_TO_LIST, places: loadedPlaces});
     } catch (error) {
       throw error;

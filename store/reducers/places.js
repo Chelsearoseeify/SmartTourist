@@ -3,10 +3,11 @@ import {
   SET_PLACES,
   CREATE_PLACE,
   FETCH_PLACE,
-  SET_PLACE_TYPES,
+  SET_PLACE_TYPE,
   SET_SEARCH_TYPE,
   UPDATE_PLACE,
-  ADD_PLACES_TO_LIST
+  ADD_PLACES_TO_LIST,
+  EMPTY_PLACE,
 } from './../actions/places';
 import SearchType from '../../constants/SearchType';
 import {LABELS} from '../../data/dummy-data';
@@ -14,10 +15,10 @@ import {LABELS} from '../../data/dummy-data';
 const initialState = {
   places: [],
   cachedPlaces: [],
-  filtered_places: [],
   search: SearchType.TEXT,
   type: '',
   place: {},
+  pageToken: '',
   all_types: LABELS,
   types: [
     /* 'tourist_attraction', 'point_of_interest' */
@@ -43,15 +44,24 @@ const placesReducer = (state = initialState, action) => {
       break;
     }
     case SET_PLACES: {
-      let filters = {};
+      /* let filters = {};
       if (state.types.length > 0) {
         filters = {
           types: types => state.types.find(x => types.includes(x)),
         };
-      }
-      const filteredPlaces = filterArray(action.places, filters);
-      //filteredPlaces.map(place => console.log(place.name, place.types));
-      return {...state, places: action.places, filtered_places: filteredPlaces};
+      } */
+      //const places = filterArray(action.places, filters);
+      console.log('REDUCER');
+      let places = [];
+      if (action.places.length > 0)
+        places = [...state.places, ...action.places];
+      else places = state.places;
+      //places.map(place => console.log(place.name, place.types));
+      return {
+        ...state,
+        places: places,
+        pageToken: action.pageToken,
+      };
     }
     case CREATE_PLACE: {
       console.log('Done');
@@ -64,13 +74,27 @@ const placesReducer = (state = initialState, action) => {
     case FETCH_PLACE: {
       return {...state, place: action.place};
     }
-    case SET_PLACE_TYPES: {
-      const types = _.xor(state.types, [action.newType]);
-      console.log(types);
-      return {...state, types: types};
+    case EMPTY_PLACE: {
+      console.log('emptied');
+      return {...state, place: {}};
+    }
+    case SET_PLACE_TYPE: {
+      let type = '';
+      if (state.type !== action.newType) type = action.newType;
+      return {
+        ...state,
+        type: type,
+        pageToken: '',
+        places: [],
+      };
     }
     case SET_SEARCH_TYPE: {
-      return {...state, search: action.type};
+      return {
+        ...state,
+        search: action.newType,
+        pageToken: '',
+        places: [],
+      };
     }
     case ADD_PLACES_TO_LIST: {
       let updatedPlaces = [...state.cachedPlaces];
@@ -79,12 +103,14 @@ const placesReducer = (state = initialState, action) => {
       //console.log(`old places length: ${updatedPlaces.length}`);
       action.places.map(actionPlace => {
         //console.log(actionPlace.id);
-        const foundIndex = updatedPlaces.findIndex(p => p.id === actionPlace.id);
+        const foundIndex = updatedPlaces.findIndex(
+          p => p.id === actionPlace.id,
+        );
         //console.log(foundIndex);
-        if(foundIndex === -1){
+        if (foundIndex === -1) {
           updatedPlaces.push(actionPlace);
         }
-      })
+      });
       //console.log(`updated places length: ${updatedPlaces.length}`);
       return {...state, cachedPlaces: updatedPlaces};
     }

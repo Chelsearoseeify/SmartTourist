@@ -8,59 +8,56 @@ import {
   Image,
   ActivityIndicator,
 } from 'react-native';
-import {Text, Button} from '@ui-kitten/components';
-
+import {Text} from '@ui-kitten/components';
 import PlaceCard from '../components/Cards/PlaceCard';
-import SearchBar from '../components/SearchBar';
-import CustomLabelButton from '../components/Buttons/CustomLabelButton';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
 import Header from '../components/Header';
 import Style from '../constants/Style';
 import {fetchFavourites} from '../store/actions/favourite';
-import {
-  setPlaceTypes,
-  fetchPlacesFromGoogle,
-  fetchPlaces,
-} from './../store/actions/places';
+import {fetchPlacesFromGoogle, fetchPlaces} from './../store/actions/places';
 import _ from 'lodash';
 import SearchType from '../constants/SearchType';
+import LabelButtonsList from '../components/LabelButtonsList';
+import NoResult from '../components/NoResult';
+import {Dimensions} from 'react-native';
+
+//full height
 
 const TravelScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
   const selectedCity = useSelector(state => state.cities.selected_city);
-  const filteredPlaces = useSelector(state => state.places.filtered_places);
-  const [types, setTypes] = useState(useSelector(state => state.places.types));
-  const [searchType, setSearchType] = useState(SearchType.TEXT);
-  const [allTypes, setAllTypes] = useState(
-    useSelector(state => state.places.all_types),
-  );
+  const places = useSelector(state => state.places.places);
   const favouritePlaces = useSelector(
     state => state.favourites.favourite_places,
   );
   const user = useSelector(state => state.user.data);
-
-  const loadPlaces = useCallback(async () => {
-    setError(null);
-    setIsLoading(true);
-    try {
-      dispatch(fetchFavourites(user.uid));
-      //dispatch(fetchPlaces(selectedCity.id));
-      dispatch(fetchPlacesFromGoogle(selectedCity, searchType));
-    } catch (error) {
-      setError(error.message);
-    }
-    setIsLoading(false);
-  }, [dispatch, selectedCity, types]);
+  const selectedType = useSelector(state => state.places.type);
+  const searchType = useSelector(state => state.places.search);
+  const pageToken = useSelector(state => state.places.pageToken);
+  const height =
+    places.length > 6 ? '100%' : Dimensions.get('window').height * (1 - 0.24);
+  //console.log('pageToken ' + pageToken);
+  /*  console.log(selectedType === '' ? 'no type' : selectedType, searchType);
+   */
 
   useEffect(() => {
-    setIsLoading(true);
-    loadPlaces().then(() => {
+    const loadPlaces = async () => {
+      setIsLoading(true);
+      await dispatch(fetchFavourites(user.uid));
+      await dispatch(
+        fetchPlacesFromGoogle(
+          selectedCity,
+          searchType,
+          selectedType,
+          pageToken,
+        ),
+      );
       setIsLoading(false);
-    });
-  }, [dispatch, loadPlaces]);
+    };
+    loadPlaces();
+  }, [dispatch, selectedCity, searchType, selectedType]);
 
   const mapHandler = () => {
     navigation.navigate('Mapf', {
@@ -68,32 +65,17 @@ const TravelScreen = ({navigation, route}) => {
       lng: selectedCity.geometry.location.lng,
     });
   };
-  /* 
-  const addPlaces = () => {
-    filteredPlaces.map(place => {
-      dispatch(
-        createPlace(
-          place.id,
-          place.name,
-          selectedCity.id,
-          place.types,
-          place.url,
-          place.rating,
-          place.geometry,
-          place.address,
-          place.business_status,
-          place.user_ratings_total,
-        ),
-      );
-    });
-  }; */
 
   const renderPlaceItem = (item, index) => {
     const ind = favouritePlaces.findIndex(place => place.id === item.id);
     return (
       <PlaceCard
         name={item.name}
-        imageUrl={item.photoUrl}
+        imageUrl={
+          item.photoUrl === ''
+            ? 'https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg'
+            : item.photoUrl
+        }
         rating={item.rating}
         icon={ind >= 0 ? 'heart' : 'heart-outline'}
         onSelect={() => {
@@ -101,67 +83,80 @@ const TravelScreen = ({navigation, route}) => {
             id: item.id,
             placeName: item.name,
             cityName: selectedCity.name,
+            cityId: selectedCity.id,
           });
         }}
       />
     );
   };
 
-  const renderTypeItem = item => {
-    return (
-      <CustomLabelButton
-        text={item.name}
-        toggleList={() => toggleType(item.type)}
-        active={item.selected}
-      />
-    );
-  };
-
-  const toggleType = newType => {
-    setTypes(_.xor(types, [newType]));
-    dispatch(setPlaceTypes(newType));
-  };
-
   const headerComponent = () => {
     return <Text style={styles.textStyle}>Things to do</Text>;
   };
 
+  const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
+    const paddingToBottom = 0;
+    return (
+      layoutMeasurement.height + contentOffset.y >=
+      contentSize.height - paddingToBottom
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{
+          height: '100%',
+        }}
+        onScroll={({nativeEvent}) => {
+          if (isCloseToBottom(nativeEvent)) {
+            if (places.length > 0) {
+              console.log('EndofPage');
+              console.log('adding more places');
+              dispatch(
+                fetchPlacesFromGoogle(
+                  selectedCity,
+                  searchType,
+                  selectedType,
+                  pageToken,
+                ),
+              );
+            }
+          }
+        }}
+        scrollEventThrottle={400}>
         <Header
           title={selectedCity.name}
           navigation={navigation}
           onMapPress={mapHandler}
         />
-        <View style={{flex: 1, paddingLeft: 10}}>
-          <FlatList
-            data={allTypes}
-            renderItem={({item, index}) => renderTypeItem(item, index)}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            keyExtractor={(item, index) => index.toString()}
-          />
-        </View>
-        <View style={styles.cardStyle}>
+        <LabelButtonsList />
+        <View
+          style={[
+            styles.cardStyle,
+            {
+              height: height,
+            },
+          ]}>
           {isLoading ? (
-            <View
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: 600,
-              }}>
+            <View style={styles.centered}>
               <ActivityIndicator size="large" color={Colors.greenTitleColor} />
             </View>
+          ) : places.length === 0 ? (
+            <NoResult />
           ) : (
-            <FlatList
-              contentContainerStyle={styles.placesContainer}
-              data={filteredPlaces}
-              numColumns={2}
-              renderItem={({item, index}) => renderPlaceItem(item, index)}
-              horizontal={false}
-              keyExtractor={(item, index) => index.toString()}
-            />
+            <View style={{flex: 1}}>
+              <FlatList
+                contentContainerStyle={styles.placesContainer}
+                data={places}
+                numColumns={2}
+                renderItem={({item, index}) => renderPlaceItem(item, index)}
+                horizontal={false}
+                scrollEnabled={false}
+                keyExtractor={(item, index) => index.toString()}
+              />
+            </View>
           )}
         </View>
       </ScrollView>
@@ -173,6 +168,7 @@ let styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.backgroundColor,
     flex: 1,
+    height: '100%',
   },
   textStyle: {
     color: Colors.blueTitleColor,
@@ -199,29 +195,16 @@ let styles = StyleSheet.create({
     elevation: Style.elevation,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
     borderTopRightRadius: Style.borderRadiusCardContainer,
-    height: '100%',
-    width: '100%',
     backgroundColor: 'white',
+    width: '100%',
+    alignSelf: 'stretch',
+    flex: 1,
+  },
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
 export default TravelScreen;
-
-/*
-  const sendData = () => {
-    filteredPlaces.map(place => {
-      dispatch(
-        createPlace(
-          place.name,
-          'ci9',
-          place.types,
-          place.url,
-          place.rating,
-          place.geometry,
-          place.address,
-          place.business_status,
-          place.user_ratings_total,
-        ),
-      );
-    });
-  }; */

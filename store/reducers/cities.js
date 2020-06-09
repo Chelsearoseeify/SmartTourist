@@ -20,7 +20,7 @@ const initialState = {
     iconId: null,
     id: 'ChIJi3lwCZyTC0cRkEAWZg-vAAQ',
     imageUrl: '',
-    name: 'Milan',
+    name: 'Prague',
     photoRreference: undefined,
   },
   queryPredictions: [],

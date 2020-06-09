@@ -22,6 +22,7 @@ import {
   setFavouriteRequest,
 } from './../store/actions/favourite';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Dimensions} from 'react-native';
 
 const GroupedPlacesScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -35,7 +36,8 @@ const GroupedPlacesScreen = ({navigation, route}) => {
   const places = useSelector(
     state => state.favourites.selected_favourite_places,
   );
-
+  const height =
+    places.length > 6 ? '100%' : Dimensions.get('window').height * (1 - 0.24);
   //this run whenever the component is loaded
   useEffect(() => {
     const loadProduct = async () => {
@@ -86,8 +88,7 @@ const GroupedPlacesScreen = ({navigation, route}) => {
               alignItems: 'flex-end',
               marginHorizontal: -12,
               marginVertical: -5,
-            }}
-          >
+            }}>
             <Icon
               style={{
                 fontSize: Style.iconSize,
@@ -123,8 +124,7 @@ const GroupedPlacesScreen = ({navigation, route}) => {
         style={
           (styles.titleViewStyle,
           [{height: 150, width: '100%', flex: 1, position: 'absolute'}])
-        }
-      >
+        }>
         <ImageBackground
           source={{
             uri:
@@ -153,8 +153,7 @@ const GroupedPlacesScreen = ({navigation, route}) => {
                   fontWeight: 'bold',
                   fontSize: Style.fontSize.h2,
                   marginLeft: Style.marginTopCardContainer,
-                }}
-              >
+                }}>
                 {title}
               </Text>
               <FlatList
@@ -195,7 +194,7 @@ let styles = StyleSheet.create({
     elevation: Style.elevation,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
     borderTopRightRadius: Style.borderRadiusCardContainer,
-    height: 540,
+    height: '100%',
     width: '100%',
     backgroundColor: 'white',
   },
