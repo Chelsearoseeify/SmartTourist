@@ -15,7 +15,7 @@ import Geolocation from '@react-native-community/geolocation';
 import {request, PERMISSIONS} from 'react-native-permissions';
 import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
 import Style from '../constants/Style';
-import SearchBar from './../components/SearchBar';
+import SearchBar from '../components/SearchBar';
 import {useSelector} from 'react-redux';
 import PositionButton from '../components/Buttons/PositionButton';
 import {TouchableOpacity} from 'react-native-gesture-handler';

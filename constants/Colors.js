@@ -9,5 +9,6 @@ export default {
   placeholderColor: '#1A1A1A',
   inactiveTabColor: '#9e9e9e',
   activeTabColor: '#1A1A1A',
-  textAccentColor: '#56C596'
+  textAccentColor: '#56C596',
+  textInputIconColor: '#A6BCD0',
 };

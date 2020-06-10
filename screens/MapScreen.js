@@ -15,7 +15,7 @@ import Geolocation from '@react-native-community/geolocation';
 import {request, PERMISSIONS} from 'react-native-permissions';
 import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
 import Style from '../constants/Style';
-import SearchBar from './../components/SearchBar';
+import SearchBar from '../components/SearchBar';
 
 export default class MapScreen extends Component {
   static navigationOptions = {
