@@ -18,6 +18,7 @@ const CustomButton = ({text, onPress, disabled}) => {
         borderColor: Colors.greenButtonColor,
         borderWidth: 0,
         height: 45,
+        elevation: 2,
         /* opacity: disabled? 0.5:1, */
       }}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>
@@ -27,24 +28,6 @@ const CustomButton = ({text, onPress, disabled}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  buttonStyle: {
-    marginTop: 5,
-    marginBottom: 10,
-    paddingTop: 10,
-    paddingBottom: 10,
-    backgroundColor: Colors.greenButtonColor,
-    borderRadius: Style.borderRadiusCard,
-    elevation: Style.elevation,
-    height: 30,
-    width: 30,
-  },
-
-  TextStyle: {
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: Style.fontSize.h6,
-  },
-});
+const styles = StyleSheet.create({});
 
 export default CustomButton;

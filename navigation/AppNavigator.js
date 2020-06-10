@@ -11,12 +11,15 @@ import FavouriteScreen from '../screens/FavouritesScreen';
 import AddTripScreen from '../screens/AddTripScreen';
 import TripsScreen from '../screens/TripsScreen';
 import TripDetailScreen from '../screens/TripDetailScreen';
-
+import MainPageScreen from './../screens/MainPageScreen';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GroupedPlacesScreen from './../screens/GroupedPlacesScreen';
 import MapScreenf from './../screens/MapScreenf';
 import CustomFloatingButton from './../components/Buttons/CustomFloatingButton';
 import Colors from '../constants/Colors';
+import SignInScreen from '../screens/SignInScreen';
+import SignUpScreen from './../screens/SignUpScreen';
+import StartupScreen from './../screens/StartupScreen';
 import GroupedCitiesScreen from './../screens/GroupedCitiesScreen';
 import SearchedPlacesScreen from './../screens/SearchedPlacesScreen';
 
@@ -26,7 +29,6 @@ const Tab = createBottomTabNavigator();
 function HomeStackNavigator() {
   return (
     <Stack.Navigator headerMode="none">
-      {/*  <Stack.Screen name="Home" component={MainPageScreen} /> */}
       <Stack.Screen name="Travel" component={TravelScreen} />
       <Stack.Screen name="Place" component={PlaceScreen} />
       <Stack.Screen name="Mapf" component={MapScreenf} />

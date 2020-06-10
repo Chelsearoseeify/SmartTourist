@@ -1,15 +1,24 @@
+import {AUTHENTICATE, LOGOUT} from '../actions/user';
+
 const initialState = {
   data: {
     uid: 'ZYFrVo930EYYtk4SwgNrbOhi6D12',
-    username: 'Chelsearoseeify',
-    mail: 'chelsearoseeify@gmail.com',
-    icon:
-      'https://i.pinimg.com/originals/7b/08/f7/7b08f7217d51c631ed430e1743f11565.jpg',
   },
+  userId: null,
+  token: null,
 };
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
+    case AUTHENTICATE:
+      console.log(action.userId);
+      //console.log(action.token);
+      return {
+        token: action.token,
+        userId: action.userId,
+      };
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }
