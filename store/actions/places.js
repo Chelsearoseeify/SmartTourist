@@ -42,17 +42,13 @@ const getPhoto = async photo_reference => {
 export const fetchPlace = (placeId, cityId) => {
   return async dispatch => {
     try {
-      const res = await axios.get(
-        `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=&key=${API_KEY}`,
-      );
-      const result = res.data.result;
-      const photoUrl = await getPhoto(result.photos[0].photo_reference);
+      const result = await placeRequest(placeId);
       let place = new CompletePlace(
         result.place_id,
         result.name,
         cityId,
         result.types,
-        photoUrl,
+        result.photoUrl,
         result.rating,
         result.geometry,
         result.formatted_address,
@@ -149,6 +145,10 @@ export const fetchPlacesFromGoogle = (
         type: SET_PLACES,
         places: loadedPlaces,
         pageToken: res.data.next_page_token,
+      });
+      dispatch({
+        type: ADD_PLACES_TO_LIST,
+        places: loadedPlaces
       });
     } catch (error) {
       throw error;
