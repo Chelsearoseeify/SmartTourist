@@ -1,21 +1,22 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { View, StyleSheet, SafeAreaView, Text, ScrollView, Dimensions } from 'react-native';
+import { View, StyleSheet, SafeAreaView, Text, ScrollView, Dimensions, ImageBackground } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import TripDay from '../containers/TripDay';
 
 import { fetchMultiplePlaces } from '../store/actions/places';
+import { fetchCities } from '../store/actions/cities';
 
 import Header from '../components/Header';
 import Style from '../constants/Style';
 import Colors from '../constants/Colors';
 
 const renderTripDay = (placeIds, placesData) => (
-  <View style={{flex: 1}}>
+  <View style={{ flex: 1 }}>
     <TripDay placeIds={placeIds} placesData={placesData} />
   </View>
-  
+
 );
 
 const renderTabBar = props => (
@@ -44,6 +45,8 @@ const TripDetailScreen = props => {
   const trips = useSelector(state => state.trips.userTrips);
   const trip = trips.find(t => t.id === tripId);
   const places = useSelector(state => state.places.cachedPlaces);
+  const cities = useSelector(state => state.cities.cachedCities);
+  const tripCity = cities.find(c => c.id === trip.cityId);
   const dateString = trip.getTripDateString();
   const numberOfDays = trip.numberOfDays();
   let tabRouteData = [];
@@ -70,9 +73,17 @@ const TripDetailScreen = props => {
     })
   }
 
-  const loadPlaces = useCallback(async () => {
+  const loadMissingPlaces = useCallback(async () => {
     try {
       dispatch(fetchMultiplePlaces(missingPlaceIds));
+    } catch (error) {
+      console.log(error);
+    }
+  }, [fetchMultiplePlaces, dispatch]);
+
+  const fetchCityData = useCallback(async () => {
+    try {
+      dispatch(fetchCities([trip.cityId]));
     } catch (error) {
       console.log(error);
     }
@@ -81,11 +92,17 @@ const TripDetailScreen = props => {
   useEffect(() => {
     if (missingPlaceIds.length > 0) {
       console.log('missing place ids!');
-      loadPlaces().then(() => {
+      loadMissingPlaces().then(() => {
       });
     }
 
-  }, [loadPlaces, fetchMultiplePlaces]);
+    const foundCityIndex = cities.findIndex(c => c.id === trip.cityId);
+    if (foundCityIndex === -1) {
+      fetchCityData().then(() => {
+      });
+    }
+
+  }, [loadMissingPlaces, fetchMultiplePlaces, fetchCities, fetchCityData]);
 
   for (let i = 0; i < numberOfDays; i++) {
     tabRouteData.push({ key: `key${i}`, title: `Day ${i + 1}` });
@@ -98,9 +115,24 @@ const TripDetailScreen = props => {
   const renderScene = SceneMap(sceneMapData);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
+      {tripCity && <View style={{ height: 300 }}>
+        <ImageBackground
+          source={{ uri: tripCity.photoUrl }}
+          style={styles.imageBackgroundStyle}
+          resizeMode="cover"
+        />
+      </View>}
       <View style={styles.titleViewStyle}>
-        <Header title={'Your trip'} mapIcon={false} />
+        <Text
+          style={{
+            color: "white",
+            fontWeight: 'bold',
+            fontSize: Style.fontSize.h1,
+            padding: 20
+          }}>
+          {tripCity.name}
+        </Text>
       </View>
       <View style={styles.cardsContainerStyle}>
         <View style={[styles.cardStyle, { flex: 1 }]}>
@@ -127,11 +159,11 @@ const TripDetailScreen = props => {
           </View>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
-const topSpace = 120;
+const topSpace = 250;
 
 let styles = StyleSheet.create({
   scene: {
@@ -143,13 +175,13 @@ let styles = StyleSheet.create({
   },
   cardsContainerStyle: {
     flex: 1,
-    marginTop: topSpace,
   },
   cardStyle: {
     elevation: Style.elevation,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
     borderTopRightRadius: Style.borderRadiusCardContainer,
     backgroundColor: 'white',
+    marginTop: -60
   },
   titleViewStyle: {
     alignItems: 'flex-end',
@@ -169,6 +201,10 @@ let styles = StyleSheet.create({
     color: Colors.greenTitleColor,
     fontSize: Style.fontSize.h6,
     textAlign: 'center'
+  },
+  imageBackgroundStyle: {
+    width: '100%',
+    height: '100%',
   },
 });
 

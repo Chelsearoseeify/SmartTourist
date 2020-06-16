@@ -17,7 +17,6 @@ import Style from '../constants/Style';
 import {fetchFavourites} from '../store/actions/favourite';
 import {fetchPlacesFromGoogle, fetchPlaces} from './../store/actions/places';
 import _ from 'lodash';
-import SearchType from '../constants/SearchType';
 import LabelButtonsList from '../components/LabelButtonsList';
 import NoResult from '../components/NoResult';
 import {Dimensions} from 'react-native';
@@ -27,6 +26,7 @@ import {Dimensions} from 'react-native';
 const TravelScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
+  const cachedCities = useSelector(state => state.cities.cachedCities);
   const selectedCity = useSelector(state => state.cities.selected_city);
   const places = useSelector(state => state.places.places);
   const favouritePlaces = useSelector(

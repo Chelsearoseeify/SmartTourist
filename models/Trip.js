@@ -1,10 +1,10 @@
 import moment from 'moment';
 
 class Trip {
-    constructor(id, name, city, startDate, endDate, placeIds, places) {
+    constructor(id, name, cityId, startDate, endDate, placeIds, places) {
         this.id = id
         this.name = name;
-        this.city = city;
+        this.cityId = cityId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.placeIds = placeIds;

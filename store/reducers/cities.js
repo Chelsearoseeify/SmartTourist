@@ -5,11 +5,12 @@ import {
   FETCH_TOP_DESTINATIONS,
   SET_SELECTED_CITY,
   SET_QUERY_PREDICTIONS,
+  CACHE_CITIES,
 } from './../actions/cities';
 import City from './../../models/City';
 
 const initialState = {
-  cities: [],
+  cachedCities: [],
   top_destinations: [],
   beautiful_cities: [],
   selected_city: {
@@ -58,6 +59,23 @@ const cityReducer = (state = initialState, action) => {
       return {
         ...state,
         top_destinations: action.topDestinations,
+      };
+    }
+    case CACHE_CITIES: {
+      updatedCache = [...state.cachedCities];
+
+      action.cities.map(city => {
+        const foundIndex = updatedCache.findIndex(
+          p => p.id === city.id,
+        );
+        if (foundIndex === -1) {
+          updatedCache.push(city);
+        }
+      });
+
+      return {
+        ...state,
+        cachedCities: updatedCache,
       };
     }
     default:

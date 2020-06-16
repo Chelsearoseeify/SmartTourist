@@ -1,14 +1,18 @@
-import database from '@react-native-firebase/database';
-import City from './../../models/City';
-import axios from 'axios';
-import API_KEY from '../../constants/API_KEY';
 export const SET_SELECTED_CITY = 'SET_SELECTED_CITY';
 export const QUERY_CITY = 'QUERY_CITY';
 export const SET_QUERY_PREDICTIONS = 'QUERY_CITY';
 export const FETCH_SELECTED_CITY = 'FETCH_SELECTED_CITY';
+export const CACHE_CITIES = 'CACHE_CITIES';
 export const FETCH_BEAUTIFUL_CITIES = 'FETCH_BEAUTIFUL_CITIES';
 export const FETCH_TOP_DESTINATIONS = 'FETCH_TOP_DESTINATIONS';
 export const ADD_CITY = 'ADD_CITY';
+
+import database from '@react-native-firebase/database';
+import City from './../../models/City';
+import axios from 'axios';
+import API_KEY from '../../constants/API_KEY';
+
+import placeRequest from '../../utils/placeRequest';
 
 export const setSelectedCity = (cityId, token) => {
   return async dispatch => {
@@ -53,6 +57,28 @@ export const fetchSelectedCity = cityId => {
     console.log(res);
     const city = new City(res.key, res.val().name);
     dispatch({ type: FETCH_SELECTED_CITY, city });
+  };
+};
+
+export const fetchCities = cityIds => {
+  return async dispatch => {
+    try{
+      let fetchedCities = [];
+      await Promise.all(cityIds.map(async cityId => {
+        const res = await placeRequest(cityId);
+        city = new City(
+          res.place_id,
+          res.name,
+          res.photoUrl,
+          res.geometry,
+        );
+        fetchedCities.push(city);
+      }))
+
+      dispatch({ type: CACHE_CITIES, cities: fetchedCities });
+    }catch (err){
+      console.log(err);
+    }
   };
 };
 

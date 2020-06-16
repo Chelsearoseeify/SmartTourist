@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Colors from '../constants/Colors';
 import { View, StyleSheet, SafeAreaView, Text, ScrollView } from 'react-native';
@@ -12,10 +12,40 @@ import BeautifulCities from '../containers/BeautifulCities';
 import Header from '../components/Header';
 import Style from '../constants/Style';
 
+import { fetchCities } from '../store/actions/cities';
+
 const TripsScreen = props => {
   const dispatch = useDispatch();
   const [error, setError] = useState();
   const trips = useSelector(state => state.trips.userTrips);
+
+  const cities = useSelector(state => state.cities.cachedCities);
+
+  let missingCities = [];
+
+  if(trips.length > 0){
+    trips.map(trip => {
+      const foundCityIndex = cities.findIndex(c => c.id === trip.cityId);
+      if(foundCityIndex === -1){
+        missingCities.push(trip.cityId);
+      }
+    })
+  }
+
+  const fetchCitiesData = useCallback(async () => {
+    try {
+      dispatch(fetchCities(missingCities));
+    } catch (error) {
+      console.log(error);
+    }
+  },[dispatch]);
+
+  useEffect(() => {
+    if (missingCities.length > 0) {
+      fetchCitiesData().then(() => {
+      });
+    }
+  }, [fetchCitiesData, fetchCities]);
 
   const onTripSelected = (trip) =>{
     console.log(`Selected trip ${trip.name}`);
@@ -51,8 +81,10 @@ const TripsScreen = props => {
                   onMoreTap={() => { console.log('See all trips') }}
                 >
                   {trips.map(trip => {
+                    const city = cities.find(city => city.id === trip.cityId);
                     return <BigListCard
                       name={trip.name}
+                      imageId={city ? city.photoUrl : ''}
                       onPress={() => onTripSelected(trip)}
                     />
                   })}

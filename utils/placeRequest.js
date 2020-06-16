@@ -14,7 +14,6 @@ const placeRequest = async (placeId, token) => {
         const res = await axios.get(url);
         const photoUrl = await photoRequest(res.data.result.photos[0].photo_reference);
         return {...res.data.result, photoUrl: photoUrl, id: placeId};
-
     }catch(err){
         console.log(err);
     }

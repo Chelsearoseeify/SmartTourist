@@ -41,13 +41,11 @@ function HomeStackNavigator() {
 
 function MyTripsStackNavigator() {
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: Colors.backgroundColor}}>
-      <Stack.Navigator headerMode="none">
+    <Stack.Navigator headerMode="none">
         <Stack.Screen name="MyTrips" component={TripsScreen} />
         <Stack.Screen name="TripDetailScreen" component={TripDetailScreen} />
         <Stack.Screen name="Place" component={PlaceScreen} />
-      </Stack.Navigator>
-    </SafeAreaView>
+    </Stack.Navigator>
   );
 }
 

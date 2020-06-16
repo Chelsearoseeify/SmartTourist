@@ -459,7 +459,7 @@ export const FAVOURITES = [
 ];
 
 export const TRIPS = [
-  new Trip(0.3904136693167304, 'New Trip', 'c1', 1590573600, 1590746400, [
+  new Trip(0.3904136693167304, 'New Trip', 'ChIJi3lwCZyTC0cRkEAWZg-vAAQ', 1590573600, 1590746400, [
     ['ChIJ_SWtQuKUC0cR52xyBNibDjA', 'ChIJIfpRNOmUC0cRxHIewgck75c'],
     ['ChIJQxyaBeGUC0cRZjpStOMuVMs'],
     [],
