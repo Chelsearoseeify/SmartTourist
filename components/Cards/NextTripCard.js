@@ -1,18 +1,14 @@
 import React from 'react';
-import { StyleSheet, ImageBackground, View, Text } from 'react-native';
-
-import { useSelector } from 'react-redux';
+import { StyleSheet, ImageBackground, View, Text, TouchableOpacity } from 'react-native';
 import Style from '../../constants/Style';
 
 const NextTripCard = props => {
-  const trips = useSelector(state => state.trips.userTrips);
-
   return (
-    <View style={styles.cardStyle}>
+    <TouchableOpacity style={styles.cardStyle} onPress={props.onPress}>
       <ImageBackground
         source={{
           uri:
-            'https://static.brusselsairlines.com/_img/destinationPage2/UK/Edinburgh/Edinburgh-view.jpg',
+            props.tripCity.photoUrl,
         }}
         style={styles.imageBackgroundStyle}
         imageStyle={{ borderRadius: Style.borderRadiusCard, opacity: .8 }}
@@ -20,7 +16,7 @@ const NextTripCard = props => {
         <View style={styles.filterStyle}>
           <View style={styles.dataStyle}>
             <Text style={styles.nameStyle}>
-              {trips ? trips[0].name : 'Edinburgh'}
+              {props.tripName}
             </Text>
             <View style={styles.ratingStyle}>
               <Text
@@ -29,13 +25,13 @@ const NextTripCard = props => {
                   padding: 5,
                   color: 'white',
                 }}>
-                Fri 13 - Mon 16 March
+                {props.dateString}
               </Text>
             </View>
           </View>
         </View>
       </ImageBackground>
-    </View>
+    </TouchableOpacity>
   );
 };
 

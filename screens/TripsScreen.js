@@ -23,10 +23,10 @@ const TripsScreen = props => {
 
   let missingCities = [];
 
-  if(trips.length > 0){
+  if (trips.length > 0) {
     trips.map(trip => {
       const foundCityIndex = cities.findIndex(c => c.id === trip.cityId);
-      if(foundCityIndex === -1){
+      if (foundCityIndex === -1) {
         missingCities.push(trip.cityId);
       }
     })
@@ -38,7 +38,7 @@ const TripsScreen = props => {
     } catch (error) {
       console.log(error);
     }
-  },[dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
     if (missingCities.length > 0) {
@@ -47,12 +47,59 @@ const TripsScreen = props => {
     }
   }, [fetchCitiesData, fetchCities]);
 
-  const onTripSelected = (trip) =>{
+  const onTripSelected = (trip) => {
     console.log(`Selected trip ${trip.name}`);
     props.navigation.navigate('TripDetailScreen', {
       tripId: trip.id
     });
   }
+
+  let nextTripComponent;
+
+  if (trips.length === 0) {
+    nextTripComponent = (
+      <Text>No trips</Text>
+    )
+  } else {
+    const nextCity = cities.find(city => city.id === trips[0].cityId);
+    nextTripComponent = <View style={{ padding: 20 }}>
+      <Text style={{
+        color: Colors.greenTitleColor,
+        fontWeight: 'bold',
+        fontSize: Style.fontSize.h4,
+      }}
+      >
+        Your next trip
+      </Text>
+      {nextCity &&
+        <NextTripCard
+          tripName={trips[0].name}
+          tripCity={nextCity}
+          dateString={trips[0].getTripDateString()}
+          onPress={() => onTripSelected(trips[0])}
+        />
+      }
+
+    </View>
+  }
+
+  let tripsHorizontal = trips.length > 1 ?
+    <View style={{ marginVertical: 10, paddingLeft: 10 }}>
+      <HorizontalScrollView
+        name={'All Trips'}
+        paddingLeft={10}
+        onMoreTap={() => { console.log('See all trips') }}
+      >
+        {trips.map(trip => {
+          const city = cities.find(city => city.id === trip.cityId);
+          return <BigListCard
+            name={trip.name}
+            imageId={city ? city.photoUrl : ''}
+            onPress={() => onTripSelected(trip)}
+          />
+        })}
+      </HorizontalScrollView>
+    </View> : null;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -63,40 +110,17 @@ const TripsScreen = props => {
         <View>
           <View style={styles.cardsContainerStyle}>
             <View style={[styles.cardStyle, { height: '100%' }]}>
-              <View style={{ padding: 20 }}>
-                <Text style={{
-                  color: Colors.greenTitleColor,
-                  fontWeight: 'bold',
-                  fontSize: Style.fontSize.h4,
-                }}
-                >
-                  Your next trip
-                </Text>
-                <NextTripCard />
-              </View>
-              <View style={{ marginVertical: 10 }}>
-                <HorizontalScrollView
-                  name={'All Trips'}
-                  paddingLeft={20}
-                  onMoreTap={() => { console.log('See all trips') }}
-                >
-                  {trips.map(trip => {
-                    const city = cities.find(city => city.id === trip.cityId);
-                    return <BigListCard
-                      name={trip.name}
-                      imageId={city ? city.photoUrl : ''}
-                      onPress={() => onTripSelected(trip)}
-                    />
-                  })}
-                </HorizontalScrollView>
-              </View>
+              {nextTripComponent}
+
+              {tripsHorizontal}
+
               <View style={styles.listViewStyle}>
                 <View>
                   <Text style={styles.subtitleStyle}>Suggestions</Text>
                 </View>
                 <View>
-                  <TopDestinations/>
-                  <BeautifulCities/>
+                  <TopDestinations />
+                  <BeautifulCities />
                 </View>
               </View>
             </View>

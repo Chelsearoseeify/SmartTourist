@@ -31,7 +31,7 @@ const TripDay = props => {
 
   if (props.placeIds && props.placeIds.length === 0) {
     component = (
-      <View style={{ marginVertical: 20 }}>
+      <View style={{ padding: 40, flex: 1 }}>
         <Text style={styles.emptyDayContainer}>There are no places added to this day, add places to see them here!</Text>
       </View>
     )
@@ -97,7 +97,6 @@ const styles = StyleSheet.create({
   emptyDayContainer: {
     flex: 1,
     textAlign: "center",
-    color: Colors.textAccentColor
   }
 });
 

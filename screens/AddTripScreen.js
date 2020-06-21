@@ -19,14 +19,14 @@ const AddTripScreen = props => {
         <View>
           <View style={{...styles.cardStyle, padding: 20}}>
             <AddTrip />
-            {trips && trips.map((trip) => {
+            {/* {trips && trips.map((trip) => {
               return <View>
                 <Text>{trip.city}</Text>
                 <Text>{trip.name}</Text>
                 <Text>{moment.unix(trip.startDate).format('LL')}</Text>
                 <Text>{moment.unix(trip.endDate).format('LL')}</Text>
               </View>
-            })}
+            })} */}
           </View>
           <View style={{...styles.cardStyle, height: '100%'}}>
             <View style={styles.listViewStyle}>

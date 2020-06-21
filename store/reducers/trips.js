@@ -1,9 +1,9 @@
 import { TRIPS } from '../../data/dummy-data';
-import { 
+import {
     CREATE_TRIP,
     SET_TRIP_DATES,
     SET_TRIP_CITY,
-    SET_TRIP_PLACES 
+    SET_TRIP_PLACES
 } from '../actions/trips';
 import Trip from '../../models/Trip';
 import moment from 'moment';
@@ -35,6 +35,8 @@ export default (state = initialState, action) => {
                 []
             );
 
+            newTrip.setPlaceIds();
+
             return { ...state, userTrips: [...state.userTrips, newTrip], newTrip: emptyTrip }
         case SET_TRIP_DATES:
             const dateString = `${moment.unix(action.dates.startDate).format('LL')} - ${moment.unix(action.dates.endDate).format('LL')}`
@@ -45,16 +47,16 @@ export default (state = initialState, action) => {
                 dateString: dateString
             }
 
-            return { ...state, newTrip: updatedNewTrip};
+            return { ...state, newTrip: updatedNewTrip };
         case SET_TRIP_CITY:
             const updatedTrip = {
                 ...state.newTrip,
                 city: action.cityId
             }
 
-            return { ...state, newTrip: updatedTrip}
+            return { ...state, newTrip: updatedTrip }
         case SET_TRIP_PLACES:
-            return { ...state, tripPlaces: action.places}
+            return { ...state, tripPlaces: action.places }
         default:
             return state;
     }

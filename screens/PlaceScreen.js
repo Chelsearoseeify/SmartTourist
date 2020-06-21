@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, ImageBackground, StyleSheet, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux';
@@ -20,6 +20,8 @@ import {
   emptyPlace
 } from '../store/actions/places';
 
+import { fetchCities } from '../store/actions/cities';
+
 import Style from '../constants/Style';
 import Detail from '../components/Detail';
 import Colors from '../constants/Colors';
@@ -29,16 +31,18 @@ import HTML from 'react-native-render-html';
 const PlaceScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
   const [error, setError] = useState();
+  const [addToTrip, setAddToTrip] = useState(false);
   const user = useSelector(state => state.user.data);
   const selectedCity = useSelector(state => state.cities.selected_city);
   const { id, cityName, cityId, placeName } = route.params;
   const places = useSelector(state => state.places.places);
-  console.log(id);
-  console.log(selectedCity.name === cityName);
+  const cities = useSelector(state => state.cities.cachedCities);
   const place =
     selectedCity.name === cityName
       ? places.filter(place => place.id === id)[0]
       : useSelector(state => state.places.place);
+  const currentCity = cities.find(c => c.id === place.cityId);
+
   const placeRequest = useSelector(state => state.favourites.place_request);
   const cityRequest = useSelector(state => state.favourites.city_request);
   const favouritePlaces = useSelector(
@@ -48,7 +52,6 @@ const PlaceScreen = ({ navigation, route }) => {
   const [icon, setIcon] = useState(
     index >= 0 ? 'cards-heart' : 'heart-outline',
   );
-  console.log(place);
 
   useEffect(() => {
     const loadPlace = async () => {
@@ -86,12 +89,27 @@ const PlaceScreen = ({ navigation, route }) => {
     toggleFavs();
   }, [dispatch, cityRequest]);
 
+  const fetchCitiesData = useCallback(async () => {
+    try {
+      dispatch(fetchCities([place.cityId]));
+    } catch (error) {
+      console.log(error);
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (cities.find(c => c.id === place.cityId) === -1) {
+      fetchCitiesData().then(() => {
+      });
+    }
+  }, [fetchCitiesData, fetchCities]);
+
   const toggleFavouriteHandler = () => {
     dispatch(setFavouriteRequest(place, cityName));
   };
 
   const pressHandlers = () => {
-    console.log('PRESSED');
+    setAddToTrip(true);
   };
 
   const mapHandler = () => {
@@ -107,7 +125,12 @@ const PlaceScreen = ({ navigation, route }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      {/* <TripModal/> */}
+      <TripModal
+        place={place}
+        visible={addToTrip}
+        onCloseModal={() => setAddToTrip(false)}
+        navigation={navigation}
+      />
       <View style={{ height: 400, width: '100%', flex: 1, position: 'absolute' }}>
         <ImageBackground
           source={{ uri: place.photoUrl }}
@@ -120,7 +143,7 @@ const PlaceScreen = ({ navigation, route }) => {
         onPress={() => dispatch(emptyPlace())}
       />
 
-      
+
       <View
         style={{
           position: 'absolute',
