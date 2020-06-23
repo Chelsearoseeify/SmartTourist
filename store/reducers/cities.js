@@ -13,7 +13,7 @@ const initialState = {
   cachedCities: [],
   top_destinations: [],
   beautiful_cities: [],
-  selected_city: {
+  selected_city: /* null */ {
     geometry: {
       location: {lat: 50.0755381, lng: 14.4378005},
       viewport: {northeast: [Object], southwest: [Object]},
@@ -30,6 +30,7 @@ const initialState = {
 const cityReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SELECTED_CITY: {
+      console.log('SET_SELECTED_CITY');
       console.log(action.city);
       return {
         ...state,
@@ -43,6 +44,7 @@ const cityReducer = (state = initialState, action) => {
       };
     }
     case FETCH_SELECTED_CITY: {
+      console.log('FETCH_SELECTED_CITY');
       console.log(action.city);
       return {
         ...state,
@@ -65,9 +67,7 @@ const cityReducer = (state = initialState, action) => {
       updatedCache = [...state.cachedCities];
 
       action.cities.map(city => {
-        const foundIndex = updatedCache.findIndex(
-          p => p.id === city.id,
-        );
+        const foundIndex = updatedCache.findIndex(p => p.id === city.id);
         if (foundIndex === -1) {
           updatedCache.push(city);
         }

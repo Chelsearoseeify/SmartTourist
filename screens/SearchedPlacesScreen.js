@@ -35,7 +35,7 @@ const SearchedPlacesScreen = ({navigation, route}) => {
     setIsLoading(true);
     try {
       console.log('ohi', selectedCity, searchType, route.params.type);
-      dispatch(fetchFavourites(user.uid));
+      dispatch(fetchFavourites(user.userId));
       //dispatch(fetchPlaces(selectedCity.id));
       dispatch(
         fetchPlacesFromGoogle(
@@ -89,14 +89,12 @@ const SearchedPlacesScreen = ({navigation, route}) => {
               flexDirection: 'row',
               justifyContent: 'center',
               alignContent: 'space-between',
-            }}
-          >
+            }}>
             <View style={{justifyContent: 'center', marginHorizontal: 5}}>
               <TouchableOpacity
                 onPress={() => {
                   navigation.pop();
-                }}
-              >
+                }}>
                 <Icon
                   name="arrow-left"
                   size={Style.iconSize}
@@ -116,8 +114,7 @@ const SearchedPlacesScreen = ({navigation, route}) => {
                   justifyContent: 'center',
                   alignItems: 'center',
                   height: 600,
-                }}
-              >
+                }}>
                 <ActivityIndicator
                   size="large"
                   color={Colors.greenTitleColor}
@@ -129,8 +126,7 @@ const SearchedPlacesScreen = ({navigation, route}) => {
                   justifyContent: 'center',
                   alignItems: 'center',
                   height: 800, //540
-                }}
-              >
+                }}>
                 <Image
                   style={{
                     resizeMode: 'contain',
@@ -164,7 +160,7 @@ let styles = StyleSheet.create({
   cardStyle: {
     marginTop: Style.marginTopCardContainer,
     padding: Style.paddingCardContainer,
-    elevation: Style.elevation,
+    ...Style.shadow,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
     borderTopRightRadius: Style.borderRadiusCardContainer,
     height: '100%',

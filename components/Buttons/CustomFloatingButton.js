@@ -27,24 +27,4 @@ const CustomFloatingButton = ({onPress}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  buttonStyle: {
-    marginTop: 5,
-    marginBottom: 10,
-    paddingTop: 10,
-    paddingBottom: 10,
-    backgroundColor: Colors.greenButtonColor,
-    borderRadius: 20,
-    elevation: Style.elevation,
-    height: 30,
-    width: 30,
-  },
-
-  TextStyle: {
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: Style.fontSize.h6,
-  },
-});
-
 export default CustomFloatingButton;

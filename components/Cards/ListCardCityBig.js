@@ -11,9 +11,9 @@ const ListCardCityBig = ({name, imageId, onPress, style = {width: 140}}) => {
       <View
         style={[
           styles.filterStyle,
+          Style.shadow,
           {
             height: 180,
-            elevation: Style.elevation,
             borderRadius: Style.borderRadiusCard,
           },
         ]}>

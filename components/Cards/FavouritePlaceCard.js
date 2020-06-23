@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     borderRadius: Style.borderRadiusCard,
     flex: 1,
     height: 180,
-    elevation: Style.elevation,
+    ...Style.shadow,
   },
   dataStyle: {
     flex: 1,

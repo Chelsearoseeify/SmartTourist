@@ -65,7 +65,6 @@ const AuthInput = props => {
 
   return (
     <View style={styles.formControl}>
-      <Text style={styles.label}>{props.label}</Text>
       <View style={styles.inputSection}>
         <Icon style={styles.iconStyle} name={props.icon} />
         <TextInput
@@ -91,7 +90,6 @@ let styles = StyleSheet.create({
   inputSection: {
     flexDirection: 'row',
     backgroundColor: Colors.backgroundColor,
-    elevation: 2,
     borderRadius: Style.borderRadiusCardContainer,
     alignItems: 'center',
     paddingHorizontal: 10,
@@ -99,6 +97,7 @@ let styles = StyleSheet.create({
     borderWidth: 0,
     borderColor: Colors.backgroundColor,
     marginBottom: 20,
+    ...Style.shadow,
   },
   iconStyle: {
     color: Colors.textInputIconColor,

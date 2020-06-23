@@ -27,7 +27,7 @@ import {Dimensions} from 'react-native';
 const GroupedPlacesScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const {title, cityId} = route.params;
-  const user = useSelector(state => state.user.data);
+  const user = useSelector(state => state.user);
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [error, setError] = useState(false);
@@ -43,7 +43,7 @@ const GroupedPlacesScreen = ({navigation, route}) => {
     const loadProduct = async () => {
       setIsLoading(true);
       try {
-        dispatch(fetchFavouritePlaces(user.uid, cityId));
+        dispatch(fetchFavouritePlaces(user.userId, cityId));
       } catch (error) {
         setError(error.message); //error to be handled, it has to be defined
       }
@@ -57,14 +57,14 @@ const GroupedPlacesScreen = ({navigation, route}) => {
       if (Object.keys(cityRequest.city).length > 0) {
         dispatch(
           toggleFavouriteCity(
-            user.uid,
+            user.userId,
             cityRequest.city,
             cityRequest.actionType,
           ),
         );
         dispatch(
           toggleFavouritePlace(
-            user.uid,
+            user.userId,
             placeRequest.place,
             placeRequest.actionType,
           ),
@@ -191,7 +191,7 @@ let styles = StyleSheet.create({
   cardStyle: {
     marginTop: topSpace,
     padding: Style.paddingCardContainer,
-    elevation: Style.elevation,
+    ...Style.shadow,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
     borderTopRightRadius: Style.borderRadiusCardContainer,
     height: '100%',

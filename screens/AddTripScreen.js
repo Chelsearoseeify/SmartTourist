@@ -1,7 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 import Colors from '../constants/Colors';
-import { View, StyleSheet, SafeAreaView, ScrollView, Text } from 'react-native';
+import {View, StyleSheet, SafeAreaView, ScrollView, Text} from 'react-native';
 import AddTrip from '../components/AddTrip';
 import Style from '../constants/Style';
 import moment from 'moment';
@@ -15,7 +15,7 @@ const AddTripScreen = props => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView keyboardShouldPersistTaps='handled'>
+      <ScrollView keyboardShouldPersistTaps="handled">
         <View>
           <View style={{...styles.cardStyle, padding: 20}}>
             <AddTrip />
@@ -33,14 +33,12 @@ const AddTripScreen = props => {
               <View>
                 <Text style={styles.subtitleStyle}>Suggestions</Text>
               </View>
-              <View style={{ height: '100%' }}>
-                <TopDestinations/>
-                <BeautifulCities/>
+              <View style={{height: '100%'}}>
+                <TopDestinations />
+                <BeautifulCities />
               </View>
             </View>
           </View>
-
-
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -53,16 +51,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   headerContainer: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    padding: 20
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    padding: 20,
   },
   cardStyle: {
-    elevation: Style.elevation,
     borderRadius: Style.borderRadiusCardContainer,
     backgroundColor: 'white',
-    paddingVertical: 30
+    paddingVertical: 30,
   },
   titleViewStyle: {
     flex: 1,
@@ -91,7 +88,7 @@ const styles = StyleSheet.create({
     paddingStart: 5,
     marginHorizontal: 15,
     paddingBottom: 5,
-  }
+  },
 });
 
 export default AddTripScreen;

@@ -6,10 +6,11 @@ import {
   SafeAreaView,
   TextInput,
   Text,
-  CheckBox,
   Dimensions,
   Alert,
+  KeyboardAvoidingView,
 } from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
 import Style from '../constants/Style';
 import {useDispatch} from 'react-redux';
 import CustomButton from '../components/Buttons/CustomButton';
@@ -61,6 +62,10 @@ const SignInScreen = ({navigation, route}) => {
     formIsValid: false,
   });
 
+  const onToggleChange = () => {
+    isSelected ? setSelection(false) : setSelection(true);
+  };
+
   useEffect(() => {
     if (error) {
       Alert.alert('An Error Occurred!', error, [{text: 'Okay'}]);
@@ -74,6 +79,7 @@ const SignInScreen = ({navigation, route}) => {
         authActions.login(
           formState.inputValues.email,
           formState.inputValues.password,
+          isSelected,
         ),
       );
       Alert.alert('Logged!');
@@ -115,64 +121,68 @@ const SignInScreen = ({navigation, route}) => {
                 Sign In
               </Text>
             </View>
-
-            <AuthInput
-              id="email"
-              label="Email"
-              keyboardType="email-address"
-              required
-              email
-              autoCapitalize="none"
-              errorText="Please enter a valid email address."
-              onInputChange={inputChangeHandler}
-              initialValue=""
-              icon={'email-outline'}
-            />
-            <AuthInput
-              id="password"
-              label="Password"
-              keyboardType="default"
-              secureTextEntry
-              required
-              minLength={5}
-              autoCapitalize="none"
-              errorText="Please enter a valid password."
-              onInputChange={inputChangeHandler}
-              initialValue=""
-              icon={'lock-outline'}
-            />
-            <View
-              style={{
-                flex: 1,
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginVertical: 10,
-              }}>
+            <KeyboardAvoidingView
+              behavior="padding"
+              keyboardVerticalOffset={50}>
+              <AuthInput
+                id="email"
+                label="Email"
+                keyboardType="email-address"
+                required
+                email
+                autoCapitalize="none"
+                errorText="Please enter a valid email address."
+                onInputChange={inputChangeHandler}
+                initialValue=""
+                icon={'email-outline'}
+              />
+              <AuthInput
+                id="password"
+                label="Password"
+                keyboardType="default"
+                secureTextEntry
+                required
+                minLength={5}
+                autoCapitalize="none"
+                errorText="Please enter a valid password."
+                onInputChange={inputChangeHandler}
+                initialValue=""
+                icon={'lock-outline'}
+              />
               <View
                 style={{
                   flex: 1,
                   flexDirection: 'row',
                   alignItems: 'center',
+                  marginVertical: 10,
                 }}>
-                <CheckBox
-                  value={isSelected}
-                  onValueChange={setSelection}
-                  style={styles.checkbox}
-                />
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}>
+                  <CheckBox
+                    value={isSelected}
+                    onValueChange={() => onToggleChange()}
+                    style={{width: 20, height: 20, marginRight: 10}}
+                  />
+                  <Text style={{color: Colors.greenTitleColor}}>
+                    Stay logged in
+                  </Text>
+                </View>
                 <Text style={{color: Colors.greenTitleColor}}>
-                  Stay logged in
+                  Forgot your password?
                 </Text>
               </View>
-              <Text style={{color: Colors.greenTitleColor}}>
-                Forgot your password?
-              </Text>
-            </View>
-            <View style={{marginTop: 100}}>
-              <CustomButton text={'Sign in'} onPress={authHandler} />
-            </View>
+              <View style={{marginTop: 100}}>
+                <CustomButton text={'Sign in'} onPress={authHandler} />
+              </View>
+            </KeyboardAvoidingView>
           </View>
         </View>
       </View>
+
       <View
         style={{
           position: 'absolute',
@@ -202,7 +212,7 @@ let styles = StyleSheet.create({
   cardStyle: {
     marginBottom: Style.marginTopCardContainer,
     padding: Style.paddingCardContainer,
-    elevation: Style.elevation,
+    ...Style.shadow,
     borderBottomLeftRadius: Style.borderRadiusCardContainer,
     borderBottomRightRadius: Style.borderRadiusCardContainer,
     width: '100%',

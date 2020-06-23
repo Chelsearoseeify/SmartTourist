@@ -17,11 +17,11 @@ export const setCardStyle = cardtype => {
   return {type: SET_CARD_STYLE, cardtype};
 };
 
-export const fetchFavouritePlaces = (uid, cityId) => {
+export const fetchFavouritePlaces = (userId, cityId) => {
   //console.log(cityId);
   return async dispatch => {
     try {
-      let ref = database().ref(`/favourite_places/${uid}`);
+      let ref = database().ref(`/favourite_places/${userId}`);
       let res = await ref
         .orderByChild('cityId')
         .equalTo(cityId)
@@ -45,12 +45,13 @@ export const fetchFavouritePlaces = (uid, cityId) => {
   };
 };
 
-export const fetchFavourites = uid => {
-  //console.log(uid);
+export const fetchFavourites = userId => {
+  //userId = 'D0aDtWpCmSgvIW8Y9EBxx2lSuBk2';
   return async dispatch => {
     try {
-      let cities_ref = database().ref(`/favourite_cities/${uid}`);
+      let cities_ref = database().ref(`/favourite_cities/${userId}`);
       let cities_res = await cities_ref.once('value');
+      //console.log(cities_res);
       let favouriteCities = [];
       cities_res.forEach(child => {
         favouriteCities.push(
@@ -62,8 +63,9 @@ export const fetchFavourites = uid => {
           ),
         );
       });
-      let places_ref = database().ref(`/favourite_places/${uid}`);
+      let places_ref = database().ref(`/favourite_places/${userId}`);
       let places_res = await places_ref.once('value');
+      //console.log(places_res);
       let favouritePlaces = [];
       places_res.forEach(child => {
         favouritePlaces.push(
@@ -82,13 +84,13 @@ export const fetchFavourites = uid => {
   };
 };
 
-export const toggleFavouritePlace = (uid, newPlace, actionType) => {
+export const toggleFavouritePlace = (userId, newPlace, actionType) => {
   console.log('place action type: ' + actionType);
   return async dispatch => {
     switch (actionType) {
       case ActionType.ADD_PLACE:
         database()
-          .ref(`/favourite_places/${uid}`)
+          .ref(`/favourite_places/${userId}`)
           .child(newPlace.id)
           .set({
             cityId: newPlace.cityId,
@@ -99,7 +101,7 @@ export const toggleFavouritePlace = (uid, newPlace, actionType) => {
         break;
       case ActionType.DELETE_PLACE:
         database()
-          .ref(`/favourite_places/${uid}/${newPlace.id}`)
+          .ref(`/favourite_places/${userId}/${newPlace.id}`)
           .remove()
           .then(() => console.log('Place data removed.'));
         break;
@@ -114,14 +116,14 @@ export const toggleFavouritePlace = (uid, newPlace, actionType) => {
   };
 };
 
-export const toggleFavouriteCity = (uid, newCity, actionType) => {
+export const toggleFavouriteCity = (userId, newCity, actionType) => {
   console.log('city action type: ' + actionType);
   return async dispatch => {
     switch (actionType) {
       case ActionType.UPDATE_CITY:
         console.log(newCity.imageQueue);
         database()
-          .ref(`/favourite_cities/${uid}`)
+          .ref(`/favourite_cities/${userId}`)
           .child(newCity.cityName)
           .update({
             cityId: newCity.cityId,
@@ -133,7 +135,7 @@ export const toggleFavouriteCity = (uid, newCity, actionType) => {
       case ActionType.ADD_CITY:
         console.log(newCity.imageQueue);
         database()
-          .ref(`/favourite_cities/${uid}`)
+          .ref(`/favourite_cities/${userId}`)
           .child(newCity.cityName)
           .set({
             cityId: newCity.cityId,
@@ -144,7 +146,7 @@ export const toggleFavouriteCity = (uid, newCity, actionType) => {
         break;
       case ActionType.DELETE_CITY:
         database()
-          .ref(`/favourite_cities/${uid}/${newCity.cityName}`)
+          .ref(`/favourite_cities/${userId}/${newCity.cityName}`)
           .remove()
           .then(() => console.log('City data removed.'));
         break;

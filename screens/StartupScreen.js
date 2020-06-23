@@ -28,9 +28,14 @@ const StartupScreen = props => {
     dispatch(authActions.authenticate(userId, token, expirationTime));
   };
 
+  const getSelectedCity = async () => {
+    const selectedCity = await AsyncStorage.getItem('selectedCity');
+  };
+
   useEffect(() => {
     tryLogin();
-  }, [tryLogin]);
+    getSelectedCity();
+  }, [tryLogin, getSelectedCity]);
 
   return (
     <View style={styles.screen}>

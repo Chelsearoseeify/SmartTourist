@@ -12,6 +12,7 @@ import Colors from '../../constants/Colors';
 import Style from '../../constants/Style';
 import {v4 as uuidv4} from 'react-native-uuid';
 import {queryCity, setSelectedCity} from '../../store/actions/cities';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const CitySearch = props => {
   const dispatch = useDispatch();
@@ -39,12 +40,13 @@ const CitySearch = props => {
   };
 
   const predictionSelectHandler = item => {
-    props.onQuerySelected(item.place_id, token)
+    props.onQuerySelected(item.place_id, token);
     setText(item.description);
     Keyboard.dismiss();
   };
 
   const renderPredictionItem = item => {
+    console.log(item);
     return (
       <TouchableOpacity
         onPress={() => {
@@ -58,16 +60,20 @@ const CitySearch = props => {
 
   return (
     <View style={{zIndex: 1}}>
-      <TextInput
-        value={text}
-        onChangeText={nText => changeTextHandler(nText)}
-        style={Style.inputStyle}
-        placeholder="Type city name"
-        onFocus={onFocus}
-        onBlur={() => setShowList(false)}
-        label="    City"
-        keyboardType="default"
-      />
+      <View style={styles.inputSection}>
+        <Icon style={styles.iconStyle} name={'city-variant-outline'} />
+        <TextInput
+          value={text}
+          onChangeText={nText => changeTextHandler(nText)}
+          placeholder="Type city name"
+          onFocus={onFocus}
+          onBlur={() => setShowList(false)}
+          label="    City"
+          keyboardType="default"
+          placeholderTextColor={Colors.textInputIconColor}
+        />
+      </View>
+
       {showList && (
         <View style={styles.predictionContainer}>
           {predictions.map(p => renderPredictionItem(p))}
@@ -78,6 +84,18 @@ const CitySearch = props => {
 };
 
 const styles = StyleSheet.create({
+  inputSection: {
+    flexDirection: 'row',
+    backgroundColor: Colors.backgroundColor,
+    borderRadius: Style.borderRadiusCardContainer,
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    height: 50,
+    borderWidth: 0,
+    borderColor: Colors.backgroundColor,
+    marginBottom: 20,
+    ...Style.shadow,
+  },
   predictionContainer: {
     position: 'absolute',
     top: 50,
@@ -85,7 +103,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.inputBackgroundColor,
     borderRadius: 10,
     zIndex: 2,
-    elevation: Style.elevation + 1,
+    ...Style.shadow,
   },
   predictionItem: {
     width: '100%',
@@ -93,6 +111,12 @@ const styles = StyleSheet.create({
     borderBottomColor: 'grey',
     borderBottomWidth: 1,
     zIndex: 4,
+  },
+  iconStyle: {
+    color: Colors.textInputIconColor,
+    fontSize: Style.inputIconSize + 3,
+    fontWeight: 'bold',
+    paddingHorizontal: 10,
   },
 });
 

@@ -17,7 +17,6 @@ export default {
     h7: 14,
     h8: 12,
   },
-  elevation: 6,
   marginTopCardContainer: 10,
   paddingCardContainer: 5,
   marginCard: 7,
@@ -33,5 +32,12 @@ export default {
     borderColor: Colors.inputBackgroundColor,
     borderWidth: 0,
     borderRadius: 20,
+  },
+  shadow: {
+    shadowColor: 'black',
+    shadowOpacity: 0.26,
+    shadowOffset: {width: 0, height: 2},
+    shadowRadius: 5,
+    elevation: 6,
   },
 };

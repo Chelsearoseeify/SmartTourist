@@ -19,7 +19,7 @@ const FavouriteScreen = ({navigation}) => {
   const [oneColumn, setOneColumn] = useState(false);
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const user = useSelector(state => state.user.data);
+  const user = useSelector(state => state.user);
   let Board = useSelector(state => state.favourites.style.board);
 
   //this run whenever the component is loaded
@@ -27,7 +27,7 @@ const FavouriteScreen = ({navigation}) => {
     const loadProduct = async () => {
       setIsLoading(true);
       try {
-        await dispatch(fetchFavourites(user.uid));
+        await dispatch(fetchFavourites(user.userId));
       } catch (error) {
         setError(error.message); //error to be handled, it has to be defined
       }
@@ -114,12 +114,14 @@ let styles = StyleSheet.create({
   cardStyle: {
     marginTop: topSpace,
     padding: Style.paddingCardContainer,
-    elevation: Style.elevation,
+    ...Style.shadow,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
     borderTopRightRadius: Style.borderRadiusCardContainer,
-    height: 540,
+    height: '100%',
     width: '100%',
     backgroundColor: 'white',
+    alignSelf: 'baseline',
+    ...Style.shadow,
   },
   titleViewStyle: {
     alignItems: 'flex-end',

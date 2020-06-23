@@ -70,7 +70,7 @@ let styles = StyleSheet.create({
   cardStyle: {
     marginTop: Style.marginTopCardContainer,
     padding: Style.paddingCardContainer,
-    elevation: Style.elevation,
+    ...Style.shadow,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
     borderTopRightRadius: Style.borderRadiusCardContainer,
     height: '100%',

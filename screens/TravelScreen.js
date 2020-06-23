@@ -7,8 +7,8 @@ import {
   SafeAreaView,
   Image,
   ActivityIndicator,
+  Text,
 } from 'react-native';
-import {Text} from '@ui-kitten/components';
 import PlaceCard from '../components/Cards/PlaceCard';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
@@ -32,7 +32,7 @@ const TravelScreen = ({navigation, route}) => {
   const favouritePlaces = useSelector(
     state => state.favourites.favourite_places,
   );
-  const user = useSelector(state => state.user.data);
+  const user = useSelector(state => state.user);
   const selectedType = useSelector(state => state.places.type);
   const searchType = useSelector(state => state.places.search);
   const pageToken = useSelector(state => state.places.pageToken);
@@ -41,21 +41,15 @@ const TravelScreen = ({navigation, route}) => {
   //console.log('pageToken ' + pageToken);
   /*  console.log(selectedType === '' ? 'no type' : selectedType, searchType);
    */
-
+  const loadPlaces = async () => {
+    setIsLoading(true);
+    await dispatch(fetchFavourites(user.userId));
+    await dispatch(
+      fetchPlacesFromGoogle(selectedCity, searchType, selectedType, pageToken),
+    );
+    setIsLoading(false);
+  };
   useEffect(() => {
-    const loadPlaces = async () => {
-      setIsLoading(true);
-      await dispatch(fetchFavourites(user.uid));
-      await dispatch(
-        fetchPlacesFromGoogle(
-          selectedCity,
-          searchType,
-          selectedType,
-          pageToken,
-        ),
-      );
-      setIsLoading(false);
-    };
     loadPlaces();
   }, [dispatch, selectedCity, searchType, selectedType]);
 
@@ -90,42 +84,26 @@ const TravelScreen = ({navigation, route}) => {
     );
   };
 
-  const headerComponent = () => {
-    return <Text style={styles.textStyle}>Things to do</Text>;
+  const footerComponent = () => {
+    if (isLoading)
+      return <ActivityIndicator size="large" color={Colors.greenTitleColor} />;
+    return <View />;
   };
 
-  const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
-    const paddingToBottom = 0;
+  const headerComponent = () => {
     return (
-      layoutMeasurement.height + contentOffset.y >=
-      contentSize.height - paddingToBottom
+      <View>
+        <Text style={styles.subtitleStyle}>Things to do</Text>
+      </View>
     );
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
+      <View
         style={{
-          height: '100%',
-        }}
-        onScroll={({nativeEvent}) => {
-          if (isCloseToBottom(nativeEvent)) {
-            if (places.length > 0) {
-              console.log('EndofPage');
-              console.log('adding more places');
-              dispatch(
-                fetchPlacesFromGoogle(
-                  selectedCity,
-                  searchType,
-                  selectedType,
-                  pageToken,
-                ),
-              );
-            }
-          }
-        }}
-        scrollEventThrottle={400}>
+          height: 105,
+        }}>
         <Header
           title={selectedCity.name}
           navigation={navigation}
@@ -133,33 +111,36 @@ const TravelScreen = ({navigation, route}) => {
         />
         <LabelButtonsList />
         <View
-          style={[
-            styles.cardStyle,
-            {
-              height: height,
-            },
-          ]}>
-          {isLoading ? (
-            <View style={styles.centered}>
-              <ActivityIndicator size="large" color={Colors.greenTitleColor} />
-            </View>
-          ) : places.length === 0 ? (
-            <NoResult />
-          ) : (
-            <View style={{flex: 1}}>
-              <FlatList
-                contentContainerStyle={styles.placesContainer}
-                data={places}
-                numColumns={2}
-                renderItem={({item, index}) => renderPlaceItem(item, index)}
-                horizontal={false}
-                scrollEnabled={false}
-                keyExtractor={(item, index) => index.toString()}
-              />
-            </View>
-          )}
+          style={{
+            marginHorizontal: 15,
+            borderBottomColor: '#DBE5EE',
+            borderBottomWidth: 2,
+          }}
+        />
+      </View>
+
+      {isLoading ? (
+        <View style={styles.centered}>
+          <ActivityIndicator size="large" color={Colors.greenTitleColor} />
         </View>
-      </ScrollView>
+      ) : places.length === 0 ? (
+        <NoResult />
+      ) : (
+        <View style={{flex: 1}}>
+          <FlatList
+            contentContainerStyle={styles.placesContainer}
+            data={places}
+            numColumns={2}
+            renderItem={({item, index}) => renderPlaceItem(item, index)}
+            horizontal={false}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item, index) => index.toString()}
+            ListFooterComponent={footerComponent}
+            ListHeaderComponent={headerComponent}
+            onEndReached={loadPlaces}
+          />
+        </View>
+      )}
     </SafeAreaView>
   );
 };
@@ -189,21 +170,17 @@ let styles = StyleSheet.create({
   placesContainer: {
     margin: 5,
   },
-  cardStyle: {
-    marginTop: Style.marginTopCardContainer,
-    padding: Style.paddingCardContainer,
-    elevation: Style.elevation,
-    borderTopLeftRadius: Style.borderRadiusCardContainer,
-    borderTopRightRadius: Style.borderRadiusCardContainer,
-    backgroundColor: 'white',
-    width: '100%',
-    alignSelf: 'stretch',
-    flex: 1,
-  },
   centered: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  subtitleStyle: {
+    color: Colors.greenTitleColor,
+    fontWeight: 'bold',
+    fontSize: Style.fontSize.h4,
+    marginStart: 20,
+    marginBottom: 10,
   },
 });
 

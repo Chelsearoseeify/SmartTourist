@@ -140,7 +140,7 @@ export const fetchPlacesFromGoogle = (
           );
         }),
       );
-      console.log(loadedPlaces.length);
+      //console.log(loadedPlaces.length);
       dispatch({
         type: SET_PLACES,
         places: loadedPlaces,

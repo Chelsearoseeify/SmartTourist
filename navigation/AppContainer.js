@@ -7,7 +7,7 @@ import TabNavigator from './AppNavigator';
 import SignInScreen from './../screens/SignInScreen';
 import SignUpScreen from './../screens/SignUpScreen';
 import StartupScreen from './../screens/StartupScreen';
-
+import MainPageScreen from './../screens/MainPageScreen';
 const Stack = createStackNavigator();
 
 function AuthNavigator() {
@@ -21,12 +21,22 @@ function AuthNavigator() {
 }
 
 const AppContainer = props => {
-  /* const isAuth = useSelector(state => !!state.user.token);
-  console.log(isAuth); */
-  const isAuth = true;
+  const isAuth = useSelector(state => !!state.user.token);
+  const isCitySelected = useSelector(state => !!state.cities.selected_city);
+  console.log(isAuth);
+  console.log(isCitySelected);
+  //const isAuth = true;
   return (
     <NavigationContainer style={{transparentCard: true}}>
-      {isAuth ? <TabNavigator /> : <AuthNavigator />}
+      {isAuth ? (
+        isCitySelected ? (
+          <TabNavigator />
+        ) : (
+          <MainPageScreen />
+        )
+      ) : (
+        <AuthNavigator />
+      )}
     </NavigationContainer>
   );
 };

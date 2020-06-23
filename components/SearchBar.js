@@ -26,9 +26,9 @@ const SearchBar = style => {
 let styles = StyleSheet.create({
   inputStyle: {
     backgroundColor: 'white',
-    elevation: Style.elevation,
     borderRadius: Style.borderRadiusCardContainer,
     width: '100%',
+    ...Style.shadow,
   },
   iconStyle: {
     color: Colors.blueTitleColor,

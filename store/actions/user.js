@@ -49,7 +49,7 @@ export const signup = (email, password) => {
   };
 };
 
-export const login = (email, password) => {
+export const login = (email, password, remember) => {
   return async dispatch => {
     let response = {};
     try {
@@ -85,7 +85,8 @@ export const login = (email, password) => {
     const expirationDate = new Date(
       new Date().getTime() + parseInt(resData.expiresIn) * 1000,
     );
-    saveDataToStorage(resData.idToken, resData.localId, expirationDate);
+    if (remember)
+      saveDataToStorage(resData.idToken, resData.localId, expirationDate);
   };
 };
 

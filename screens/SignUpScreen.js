@@ -7,6 +7,7 @@ import {
   Text,
   Alert,
   Dimensions,
+  KeyboardAvoidingView,
 } from 'react-native';
 import Style from '../constants/Style';
 import {useDispatch} from 'react-redux';
@@ -94,7 +95,7 @@ const SignUpScreen = ({navigation, route}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <View style={[styles.cardStyle, {height: height}]}>
+        <View style={[styles.cardStyle, Style.shadow, {height: height}]}>
           <View style={{paddingHorizontal: 20}}>
             <View
               style={{
@@ -110,35 +111,38 @@ const SignUpScreen = ({navigation, route}) => {
                 Create Account
               </Text>
             </View>
-
-            <AuthInput
-              id="email"
-              label="Email"
-              keyboardType="email-address"
-              required
-              email
-              autoCapitalize="none"
-              errorText="Please enter a valid email address."
-              onInputChange={inputChangeHandler}
-              initialValue=""
-              icon={'email-outline'}
-            />
-            <AuthInput
-              id="password"
-              label="Password"
-              keyboardType="default"
-              secureTextEntry
-              required
-              minLength={5}
-              autoCapitalize="none"
-              errorText="Please enter a valid password."
-              onInputChange={inputChangeHandler}
-              initialValue=""
-              icon={'lock-outline'}
-            />
-            <View style={{marginTop: 100}}>
-              <CustomButton text={'Register'} onPress={authHandler} />
-            </View>
+            <KeyboardAvoidingView
+              behavior="padding"
+              keyboardVerticalOffset={50}>
+              <AuthInput
+                id="email"
+                label="Email"
+                keyboardType="email-address"
+                required
+                email
+                autoCapitalize="none"
+                errorText="Please enter a valid email address."
+                onInputChange={inputChangeHandler}
+                initialValue=""
+                icon={'email-outline'}
+              />
+              <AuthInput
+                id="password"
+                label="Password"
+                keyboardType="default"
+                secureTextEntry
+                required
+                minLength={5}
+                autoCapitalize="none"
+                errorText="Please enter a valid password."
+                onInputChange={inputChangeHandler}
+                initialValue=""
+                icon={'lock-outline'}
+              />
+              <View style={{marginTop: 100}}>
+                <CustomButton text={'Register'} onPress={authHandler} />
+              </View>
+            </KeyboardAvoidingView>
           </View>
         </View>
       </View>
@@ -171,7 +175,6 @@ let styles = StyleSheet.create({
   cardStyle: {
     marginBottom: Style.marginTopCardContainer,
     padding: Style.paddingCardContainer,
-    elevation: Style.elevation,
     borderBottomLeftRadius: Style.borderRadiusCardContainer,
     borderBottomRightRadius: Style.borderRadiusCardContainer,
     width: '100%',
@@ -185,7 +188,6 @@ let styles = StyleSheet.create({
     borderWidth: 0,
     borderRadius: 20,
   },
-  checkbox: {},
 });
 
 export default SignUpScreen;

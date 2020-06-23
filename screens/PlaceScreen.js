@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { View, ImageBackground, StyleSheet, Text } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { useSelector, useDispatch } from 'react-redux';
+import React, {useState, useEffect, useCallback} from 'react';
+import {View, ImageBackground, StyleSheet, Text} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+import {useSelector, useDispatch} from 'react-redux';
 
 import BackButton from '../components/Buttons/BackButton';
 import NavigateButton from '../components/Buttons/NavigateButton';
@@ -12,15 +12,15 @@ import TripModal from '../components/Cards/TripModal';
 import {
   toggleFavouriteCity,
   toggleFavouritePlace,
-  setFavouriteRequest
+  setFavouriteRequest,
 } from '../store/actions/favourite';
 import {
   fetchPlaceDescription,
   fetchPlace,
-  emptyPlace
+  emptyPlace,
 } from '../store/actions/places';
 
-import { fetchCities } from '../store/actions/cities';
+import {fetchCities} from '../store/actions/cities';
 
 import Style from '../constants/Style';
 import Detail from '../components/Detail';
@@ -28,13 +28,13 @@ import Colors from '../constants/Colors';
 
 import HTML from 'react-native-render-html';
 
-const PlaceScreen = ({ navigation, route }) => {
+const PlaceScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const [error, setError] = useState();
   const [addToTrip, setAddToTrip] = useState(false);
-  const user = useSelector(state => state.user.data);
+  const user = useSelector(state => state.user);
   const selectedCity = useSelector(state => state.cities.selected_city);
-  const { id, cityName, cityId, placeName } = route.params;
+  const {id, cityName, cityId, placeName} = route.params;
   const places = useSelector(state => state.places.places);
   const cities = useSelector(state => state.cities.cachedCities);
   const place =
@@ -72,14 +72,14 @@ const PlaceScreen = ({ navigation, route }) => {
         setIcon(placeRequest.icon);
         dispatch(
           toggleFavouriteCity(
-            user.uid,
+            user.userId,
             cityRequest.city,
             cityRequest.actionType,
           ),
         );
         dispatch(
           toggleFavouritePlace(
-            user.uid,
+            user.userId,
             placeRequest.place,
             placeRequest.actionType,
           ),
@@ -99,8 +99,7 @@ const PlaceScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     if (cities.find(c => c.id === place.cityId) === -1) {
-      fetchCitiesData().then(() => {
-      });
+      fetchCitiesData().then(() => {});
     }
   }, [fetchCitiesData, fetchCities]);
 
@@ -124,16 +123,16 @@ const PlaceScreen = ({ navigation, route }) => {
 `;
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{flex: 1}}>
       <TripModal
         place={place}
         visible={addToTrip}
         onCloseModal={() => setAddToTrip(false)}
         navigation={navigation}
       />
-      <View style={{ height: 400, width: '100%', flex: 1, position: 'absolute' }}>
+      <View style={{height: 400, width: '100%', flex: 1, position: 'absolute'}}>
         <ImageBackground
-          source={{ uri: place.photoUrl }}
+          source={{uri: place.photoUrl}}
           style={styles.imageBackgroundStyle}
           resizeMode="cover"
         />
@@ -143,7 +142,6 @@ const PlaceScreen = ({ navigation, route }) => {
         onPress={() => dispatch(emptyPlace())}
       />
 
-
       <View
         style={{
           position: 'absolute',
@@ -151,7 +149,6 @@ const PlaceScreen = ({ navigation, route }) => {
           height: '100%',
           zIndex: 1,
         }}>
-
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.cardStyle}>
             <View
@@ -171,7 +168,7 @@ const PlaceScreen = ({ navigation, route }) => {
             <View style={styles.cardContentStyle}>
               <View style={styles.titleViewStyle}>
                 <Text style={styles.placeNameStyle}>{place.name}</Text>
-                <View style={{ flexDirection: 'row' }}>
+                <View style={{flexDirection: 'row'}}>
                   <StarsRating
                     rating={place.rating}
                     size={24}
@@ -237,7 +234,7 @@ const styles = StyleSheet.create({
   cardStyle: {
     marginTop: 350,
     padding: Style.paddingCardContainer,
-    elevation: Style.elevation,
+    ...Style.shadow,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
     borderTopRightRadius: Style.borderRadiusCardContainer,
     height: '100%',
@@ -273,13 +270,13 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   avatarView: {
-    elevation: Style.elevation,
+    ...Style.shadow,
     borderRadius: 45,
     height: 55,
     width: 55,
     position: 'absolute',
     backgroundColor: Colors.backgroundColor,
-  }
+  },
 });
 
 export default PlaceScreen;

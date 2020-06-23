@@ -4,22 +4,25 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import Colors from '../../constants/Colors';
 import Style from '../../constants/Style';
 
-const ListCardCitySmall = ({name, imageId, onPress, style = {height: 160}}) => {
+const ListCardCitySmall = ({name, imageId, onPress, style = {height: 170}}) => {
   return (
-    <TouchableOpacity style={[style, {marginRight: 16, marginVertical: 8}]} onPress={onPress}>
+    <TouchableOpacity style={[style, {paddingVertical: 10}]} onPress={onPress}>
       <View
-        style={{
-          width: 130,
-          height: '100%',
-          elevation: Style.elevation,
-          borderRadius: Style.borderRadiusCard,
-          backgroundColor: 'white',
-        }}>
+        style={[
+          Style.shadow,
+          {
+            width: 120,
+            height: '100%',
+            borderRadius: Style.borderRadiusCard,
+            backgroundColor: 'white',
+            marginHorizontal: 8,
+          },
+        ]}>
         <View
           style={{
-            paddingVertical: 20,
-            paddingHorizontal: 15,
-            paddingBottom: 70,
+            paddingVertical: 12,
+            paddingHorizontal: 12,
+            paddingBottom: 65,
           }}>
           <Image
             style={{
@@ -31,7 +34,7 @@ const ListCardCitySmall = ({name, imageId, onPress, style = {height: 160}}) => {
           />
           <Text
             style={{
-              fontSize: Style.fontSize.h5,
+              fontSize: Style.fontSize.h6,
               fontWeight: 'bold',
               color: Colors.blueTitleColor,
               alignSelf: 'center',
@@ -43,7 +46,5 @@ const ListCardCitySmall = ({name, imageId, onPress, style = {height: 160}}) => {
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default ListCardCitySmall;

@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleSheet, ImageBackground, View, Text, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  ImageBackground,
+  View,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import Style from '../../constants/Style';
 
 const NextTripCard = props => {
@@ -7,17 +13,14 @@ const NextTripCard = props => {
     <TouchableOpacity style={styles.cardStyle} onPress={props.onPress}>
       <ImageBackground
         source={{
-          uri:
-            props.tripCity.photoUrl,
+          uri: props.tripCity.photoUrl,
         }}
         style={styles.imageBackgroundStyle}
-        imageStyle={{ borderRadius: Style.borderRadiusCard, opacity: .8 }}
+        imageStyle={{borderRadius: Style.borderRadiusCard, opacity: 0.8}}
         resizeMode="cover">
         <View style={styles.filterStyle}>
           <View style={styles.dataStyle}>
-            <Text style={styles.nameStyle}>
-              {props.tripName}
-            </Text>
+            <Text style={styles.nameStyle}>{props.tripName}</Text>
             <View style={styles.ratingStyle}>
               <Text
                 style={{
@@ -44,9 +47,9 @@ const styles = StyleSheet.create({
   },
   cardStyle: {
     marginVertical: Style.marginCard,
-    elevation: Style.elevation,
     borderRadius: Style.borderRadiusCard,
-    height: 200
+    height: 200,
+    ...Style.shadow,
   },
   dataStyle: {
     flex: 1,

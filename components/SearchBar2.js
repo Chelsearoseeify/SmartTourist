@@ -30,12 +30,12 @@ let styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: 'white',
-    elevation: Style.elevation,
     borderRadius: Style.borderRadiusCardContainer,
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: Style.paddingTextInputContent,
     height: 45,
+    ...Style.shadow,
   },
   iconStyle: {
     color: Colors.blueTitleColor,

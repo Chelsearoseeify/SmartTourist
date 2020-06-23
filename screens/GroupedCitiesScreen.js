@@ -53,8 +53,7 @@ const GroupedCitiesScreen = ({navigation, route}) => {
           height: 100,
           alignItems: 'flex-end',
           justifyContent: 'flex-end',
-        }}
-      >
+        }}>
         <Text
           style={{
             color: Colors.blueTitleColor,
@@ -62,8 +61,7 @@ const GroupedCitiesScreen = ({navigation, route}) => {
             fontSize: Style.fontSize.h2,
             marginRight: Style.marginTopCardContainer,
             marginBottom: Style.marginTopCardContainer,
-          }}
-        >
+          }}>
           {route.params.title}
         </Text>
       </View>
@@ -108,7 +106,7 @@ let styles = StyleSheet.create({
   cardStyle: {
     marginTop: topSpace,
     padding: Style.paddingCardContainer,
-    elevation: Style.elevation,
+    ...Style.shadow,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
     borderTopRightRadius: Style.borderRadiusCardContainer,
     height: '100%',

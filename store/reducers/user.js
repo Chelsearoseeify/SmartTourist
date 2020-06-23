@@ -1,10 +1,7 @@
 import {AUTHENTICATE, LOGOUT} from '../actions/user';
 
 const initialState = {
-  data: {
-    uid: 'ZYFrVo930EYYtk4SwgNrbOhi6D12',
-  },
-  userId: null,
+  userId: 'ZYFrVo930EYYtk4SwgNrbOhi6D12',
   token: null,
 };
 

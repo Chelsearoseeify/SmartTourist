@@ -17,11 +17,9 @@ import GroupedPlacesScreen from './../screens/GroupedPlacesScreen';
 import MapScreenf from './../screens/MapScreenf';
 import CustomFloatingButton from './../components/Buttons/CustomFloatingButton';
 import Colors from '../constants/Colors';
-import SignInScreen from '../screens/SignInScreen';
-import SignUpScreen from './../screens/SignUpScreen';
-import StartupScreen from './../screens/StartupScreen';
 import GroupedCitiesScreen from './../screens/GroupedCitiesScreen';
 import SearchedPlacesScreen from './../screens/SearchedPlacesScreen';
+import Style from '../constants/Style';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -42,9 +40,9 @@ function HomeStackNavigator() {
 function MyTripsStackNavigator() {
   return (
     <Stack.Navigator headerMode="none">
-        <Stack.Screen name="MyTrips" component={TripsScreen} />
-        <Stack.Screen name="TripDetailScreen" component={TripDetailScreen} />
-        <Stack.Screen name="Place" component={PlaceScreen} />
+      <Stack.Screen name="MyTrips" component={TripsScreen} />
+      <Stack.Screen name="TripDetailScreen" component={TripDetailScreen} />
+      <Stack.Screen name="Place" component={PlaceScreen} />
     </Stack.Navigator>
   );
 }
@@ -103,7 +101,7 @@ function TabNavigator() {
         component={AddTripScreen}
         options={{
           tabBarIcon: ({color, size}) => (
-            <View style={{marginBottom: 30, elevation: 6}}>
+            <View style={[Style.shadow, {marginBottom: 30}]}>
               <CustomFloatingButton />
             </View>
           ),

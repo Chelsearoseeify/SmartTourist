@@ -51,7 +51,7 @@ const placesReducer = (state = initialState, action) => {
         };
       } */
       //const places = filterArray(action.places, filters);
-      console.log('REDUCER');
+
       let places = [];
       if (action.places.length > 0)
         places = [...state.places, ...action.places];

@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   cardStyle: {
     marginTop: 80,
     padding: Style.paddingCardContainer,
-    elevation: Style.elevation,
+    ...Style.shadow,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
     borderTopRightRadius: Style.borderRadiusCardContainer,
     height: '100%',
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     width: 85,
   },
   avatarView: {
-    elevation: Style.elevation,
+    ...Style.shadow,
     borderRadius: 45,
     height: 85,
     width: 85,
