@@ -8,6 +8,7 @@ import {
   UPDATE_PLACE,
   ADD_PLACES_TO_LIST,
   EMPTY_PLACE,
+  FETCH_PLACE_DESCRIPTION,
 } from './../actions/places';
 import SearchType from '../../constants/SearchType';
 import {LABELS} from '../../data/dummy-data';
@@ -17,6 +18,7 @@ const initialState = {
   cachedPlaces: [],
   search: SearchType.TEXT,
   type: '',
+  description: '',
   place: {},
   pageToken: '',
   all_types: LABELS,
@@ -73,6 +75,9 @@ const placesReducer = (state = initialState, action) => {
     }
     case FETCH_PLACE: {
       return {...state, place: action.place};
+    }
+    case FETCH_PLACE_DESCRIPTION: {
+      return {...state, description: action.description};
     }
     case EMPTY_PLACE: {
       console.log('emptied');

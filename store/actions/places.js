@@ -68,12 +68,15 @@ export const fetchPlace = (placeId, cityId) => {
 };
 
 export const fetchPlaceDescription = placeName => {
+  var replacedPlaceName = placeName.split(' ').join('_');
+  const url = `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&titles=${replacedPlaceName}&redirects=true`;
+  console.log(url);
   return async dispatch => {
-    const response = await axios.get(
-      `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&titles=Clementinum&redirects=true`,
-    );
-    //console.log(response.query);
-    dispatch({type: FETCH_PLACE_DESCRIPTION, response});
+    const response = await axios.get(url);
+
+    var page = Object.keys(response.data.query.pages);
+    const description = response.data.query.pages[page].extract;
+    dispatch({type: FETCH_PLACE_DESCRIPTION, description});
   };
 };
 
@@ -148,7 +151,7 @@ export const fetchPlacesFromGoogle = (
       });
       dispatch({
         type: ADD_PLACES_TO_LIST,
-        places: loadedPlaces
+        places: loadedPlaces,
       });
     } catch (error) {
       throw error;

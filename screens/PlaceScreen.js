@@ -26,7 +26,7 @@ import Style from '../constants/Style';
 import Detail from '../components/Detail';
 import Colors from '../constants/Colors';
 
-import HTML from 'react-native-render-html';
+import HTMLView from 'react-native-htmlview';
 
 const PlaceScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -41,8 +41,7 @@ const PlaceScreen = ({navigation, route}) => {
     selectedCity.name === cityName
       ? places.filter(place => place.id === id)[0]
       : useSelector(state => state.places.place);
-  const currentCity = cities.find(c => c.id === place.cityId);
-
+  const description = useSelector(state => state.places.description);
   const placeRequest = useSelector(state => state.favourites.place_request);
   const cityRequest = useSelector(state => state.favourites.city_request);
   const favouritePlaces = useSelector(
@@ -58,7 +57,7 @@ const PlaceScreen = ({navigation, route}) => {
       try {
         console.log(id, cityName);
         if (selectedCity.name !== cityName) dispatch(fetchPlace(id, cityId));
-        dispatch(fetchPlaceDescription(placeName));
+        await dispatch(fetchPlaceDescription(placeName));
       } catch (error) {
         setError(error.message); //error to be handled, it has to be defined
       }
@@ -117,10 +116,6 @@ const PlaceScreen = ({navigation, route}) => {
       lng: place.geometry.location.lng,
     });
   };
-
-  const htmlContent = `
-    <p><b>Old Town Square</b> (Czech: <i lang="cs">Staroměstské náměstí</i> <small></small><span title="Representation in the International Phonetic Alphabet (IPA)">[ˈstaroˌmɲɛstskɛː ˈnaːmɲɛsciː]</span> or colloquially <i lang="cs" title="Czech language text">Staromák</i> <small></small><span title="Representation in the International Phonetic Alphabet (IPA)">[ˈstaromaːk]</span> <span>(<span><span><span></span>listen</span></span>)</span>) is an historic square in the Old Town quarter of Prague, the capital of the Czech Republic. It is located between Wenceslas Square and Charles Bridge. </p> <h2><span id="Buildings">Buildings</span></h2> <p>The square features buildings belonging to various architectural styles, including the Gothic Church of Our Lady before Týn, which has been the main church of this part of the city since the 14th century. Its characteristic towers are 80 m high. The Baroque St. Nicholas Church is another church located in the square. </p><p>Prague Orloj is a medieval astronomical clock mounted on the Old Town Hall. The clock was first installed in 1410, making it the third-oldest astronomical clock in the world and the oldest one still in operation. The tower of the Old Town Hall is open to the public and offers panoramic views of the Old Town. </p><p>An art museum of the Czech National Gallery is located in the Kinský Palace. </p> <h2><span id="Statues_and_memorials">Statues and memorials</span></h2> <p>The square's center is home to a statue of religious reformer Jan Hus, who was burned at the stake for his beliefs in Constance. This led to the Hussite Wars. The statue known as the Jan Hus Memorial was erected on 6 July 1915 to mark the 500th anniversary of his death. </p><p>In front of the Old Town Hall, there is also a memorial to martyrs (including Jan Jesenius and Maxmilián Hošťálek) beheaded on that spot during the Old Town Square execution by Habsburgs, after the Battle of White Mountain. Twenty-seven crosses mark the pavement in their honour. The crosses were installed during the repairs of the Old Town Hall after the WW2, while a nearby plaque which lists the names of all 27 victims dates from 1911. Orthodox Czechs do not trample these crosses because for respect. </p><p>On 3 November 1918, a Marian Column that had been erected in the square shortly after the Thirty Years' War was demolished in celebration of independence from the Habsburg empire. 2020 this columnn gets reerected. </p> <h2><span id="Markets">Markets</span></h2> <p>At Christmas and Easter, markets are held on the square; they resemble medieval markets. A tall decorated tree and a musical stage are set up. </p><p>The Christmas Markets in Old Town Square are the largest Christmas markets in the Czech Republic and are visited by hundreds of thousands of visitors from the Czech Republic and abroad, primarily Germans, Russians, Italians and Britons. In 2016, CNN ranked  Prague’s Christmas Markets among the 10 best ones worldwide.</p> <h2><span id="See_also">See also</span></h2> <ul><li>Old Town Square execution</li></ul><h2><span id="References">References</span></h2> <h2><span id="External_links">External links</span></h2> <ul><li>Photos of Old Town Square and Background Information</li> <li>Old Town Square Live WebCam</li></ul><p><span></span> </p>
-`;
 
   return (
     <View style={{flex: 1}}>
@@ -208,8 +203,9 @@ const PlaceScreen = ({navigation, route}) => {
                 <Detail text={'www.dinocoffee.com'} iconName="link" />
               </View>
 
-              <View>
-                <HTML html={htmlContent} />
+              <View style={styles.detailViewStyle}>
+                <Text style={styles.detailStyle}>Description</Text>
+                <HTMLView value={description} stylesheet={HTMLstyles} />
               </View>
               {/* <Text
                 style={{
@@ -225,6 +221,52 @@ const PlaceScreen = ({navigation, route}) => {
     </View>
   );
 };
+
+const HTMLstyles = StyleSheet.create({
+  p: {
+    color: Colors.blueTitleColor,
+    /* marginTop: -20,
+    marginBottom: -10, */
+    borderWidth: 1,
+  },
+  i: {
+    fontStyle: 'italic',
+  },
+  span: {
+    color: Colors.greenTitleColor,
+  },
+  b: {
+    fontWeight: 'bold',
+  },
+  h2: {
+    fontSize: Style.fontSize.h5,
+    fontWeight: 'bold',
+    borderWidth: 1,
+  },
+  h3: {
+    fontSize: Style.fontSize.h6,
+    fontWeight: '800',
+    /* marginVertical: -20, */
+    borderWidth: 1,
+  },
+  ul: {
+    color: Colors.blueTitleColor,
+    /* marginBottom: 30,
+    marginTop: -20, */
+    borderWidth: 1,
+  },
+  li: {
+    color: Colors.blueTitleColor,
+  },
+
+  /* b: {
+    color: Colors.greenTitleColor,
+    fontWeight: 'bold',
+    fontSize: Style.fontSize.h5,
+    marginStart: 10,
+    marginVertical: 5,
+  }, */
+});
 
 const styles = StyleSheet.create({
   imageBackgroundStyle: {
@@ -260,7 +302,7 @@ const styles = StyleSheet.create({
   },
   detailStyle: {
     fontWeight: 'bold',
-    fontSize: Style.fontSize.h5,
+    fontSize: Style.fontSize.h4,
     color: Colors.blueTitleColor,
   },
   detailViewStyle: {
