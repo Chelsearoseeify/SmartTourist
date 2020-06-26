@@ -21,11 +21,11 @@ function AuthNavigator() {
 }
 
 const AppContainer = props => {
-  const isAuth = useSelector(state => !!state.user.token);
+  let isAuth = useSelector(state => !!state.user.token);
   const isCitySelected = useSelector(state => !!state.cities.selected_city);
   console.log(isAuth);
   console.log(isCitySelected);
-  //const isAuth = true;
+  isAuth = true;
   return (
     <NavigationContainer style={{transparentCard: true}}>
       {isAuth ? (

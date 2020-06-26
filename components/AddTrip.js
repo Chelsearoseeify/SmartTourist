@@ -3,6 +3,7 @@ import { View, TextInput, Text, StyleSheet } from 'react-native';
 import CustomButton from '../components/Buttons/CustomButton';
 import CitySearch from '../components/Inputs/CitySearch';
 import CalendarDatePicker from '../components/Inputs/CalendarDatePicker';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector, useDispatch } from 'react-redux';
 import Style from '../constants/Style';
 import Colors from '../constants/Colors';
@@ -16,10 +17,6 @@ const AddTrip = () => {
     const [tripName, setTripName] = useState('');
     const selectedCity = useSelector(state => state.cities.selected_city);
     const newTrip = useSelector(state => state.trips.newTrip);
-
-    const onCitySelected = (cityId, token) => {
-        dispatch(setSelectedCity(cityId, token));
-    }
 
     const addTripHandler = () => {
         dispatch(tripActions.createTrip(
@@ -41,16 +38,20 @@ const AddTrip = () => {
                     width: '100%',
                     alignContent: 'center',
                 }}>
-                <TextInput
-                    value={tripName}
-                    placeholder="Choose your trip name"
-                    onChangeText={v => setTripName(v)}
-                    style={Style.inputStyle}
-                />
+                <View style={Style.inputStyle}>
+                    <Icon name="pen" size={22} style={Style.inputIconStyle} />
+                    <TextInput
+                        value={tripName}
+                        placeholder="Choose your trip name"
+                        placeholderTextColor={Colors.textInputIconColor}
+                        onChangeText={v => setTripName(v)}
+                    />
+                </View>
 
-                <CitySearch cityName={selectedCity.name} onQuerySelected={(cityId, token) => onCitySelected(cityId, token)}/>
-                <CalendarDatePicker datesString={newTrip.dateString}/>
-                
+
+                <CitySearch cityName={selectedCity.name} onQuerySelected={(cityId, token) => onCitySelected(cityId, token)} />
+                <CalendarDatePicker datesString={newTrip.dateString} />
+
                 <View
                     style={{
                         width: '100%',

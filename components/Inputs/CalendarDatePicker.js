@@ -8,6 +8,7 @@ import moment from 'moment';
 import * as tripActions from '../../store/actions/trips';
 
 import Colors from '../../constants/Colors';
+import Style from '../../constants/Style';
 
 const CalendarDatePicker = props => {
     const dispatch = useDispatch();
@@ -33,9 +34,9 @@ const CalendarDatePicker = props => {
     }
     return (
         <View style={styles.inputContainer}>
-            <TouchableOpacity style={styles.touchableStyle} onPress={() => setShowCalendar(true)}>
-                <Text>{props.datesString ? props.datesString : 'Select travel dates'}</Text>
-                <Icon name="calendar-month" size={22} style={{paddingTop: 4}} />
+            <TouchableOpacity style={Style.inputStyle} onPress={() => setShowCalendar(true)}>
+                <Icon name="calendar-month" size={22} style={Style.inputIconStyle} />
+                <Text style={!props.datesString ? {color: Colors.textInputIconColor} : {}}>{props.datesString ? props.datesString : 'Select travel dates'}</Text>
             </TouchableOpacity>
             {showCalendar &&
                 <View>
@@ -63,20 +64,6 @@ const CalendarDatePicker = props => {
 const styles = StyleSheet.create({
     inputContainer: {
         marginBottom: 20
-    },
-    touchableStyle: {
-        height: 40,
-        paddingLeft: 12,
-        paddingRight: 20,
-        marginBottom: 15,
-        backgroundColor: Colors.inputBackgroundColor,
-        borderColor: Colors.inputBackgroundColor,
-        borderWidth: 0,
-        borderRadius: 20,
-        justifyContent: "space-between",
-        flex: 1,
-        flexDirection: "row",
-        alignItems: "center"
     },
     calendarContainer: {
         flex: 1,

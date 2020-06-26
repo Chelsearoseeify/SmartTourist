@@ -1,84 +1,50 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   StyleSheet,
   View,
   Text,
   TextInput,
   TouchableOpacity,
-  Keyboard,
 } from 'react-native';
 import Colors from '../../constants/Colors';
 import Style from '../../constants/Style';
-import {v4 as uuidv4} from 'react-native-uuid';
-import {queryCity, setSelectedCity} from '../../store/actions/cities';
+import {setSelectedCity } from '../../store/actions/cities';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import CitySearchModal from '../Cards/CitySearchModal';
+import { v4 as uuidv4 } from 'react-native-uuid';
+
 
 const CitySearch = props => {
   const dispatch = useDispatch();
-  const [text, setText] = useState(props.cityName ? props.cityName : '');
   const [token, setToken] = useState('');
-  const [showList, setShowList] = useState(false);
-  const predictions = useSelector(state => state.cities.queryPredictions);
-  const onFocus = () => {
+  const [cityModalVisible, setCityModalVisible] = useState(false);
+
+  const onCitySelected = (cityId) => {
+    dispatch(setSelectedCity(cityId, token));
+  }
+
+  const onModalClose = () => {
+    setCityModalVisible(false);
+  }
+
+  const openCityModal = () => {
     setToken(uuidv4());
-    setText('');
-  };
-
-  const queryData = () => {
-    dispatch(queryCity(token, text));
-    setShowList(true);
-  };
-
-  const changeTextHandler = text => {
-    if (text.length > 2) {
-      queryData();
-    } else {
-      setShowList(false);
-    }
-    setText(text);
-  };
-
-  const predictionSelectHandler = item => {
-    props.onQuerySelected(item.place_id, token);
-    setText(item.description);
-    Keyboard.dismiss();
-  };
-
-  const renderPredictionItem = item => {
-    console.log(item);
-    return (
-      <TouchableOpacity
-        onPress={() => {
-          predictionSelectHandler(item);
-        }}
-        style={styles.predictionItem}>
-        <Text>{item.description}</Text>
-      </TouchableOpacity>
-    );
-  };
+    setCityModalVisible(true)
+  } 
 
   return (
-    <View style={{zIndex: 1}}>
-      <View style={styles.inputSection}>
-        <Icon style={styles.iconStyle} name={'city-variant-outline'} />
-        <TextInput
-          value={text}
-          onChangeText={nText => changeTextHandler(nText)}
-          placeholder="Type city name"
-          onFocus={onFocus}
-          onBlur={() => setShowList(false)}
-          label="    City"
-          keyboardType="default"
-          placeholderTextColor={Colors.textInputIconColor}
+    <View>
+      <CitySearchModal
+        visible={cityModalVisible}
+        closeModal={onModalClose}
+        token={token}
+        onCitySelected={(cityId)=>onCitySelected(cityId)}
         />
-      </View>
-
-      {showList && (
-        <View style={styles.predictionContainer}>
-          {predictions.map(p => renderPredictionItem(p))}
-        </View>
-      )}
+      <TouchableOpacity style={styles.inputSection} onPress={openCityModal} >
+        <Icon style={styles.iconStyle} name={'city-variant-outline'} />
+        <Text>{props.cityName ? props.cityName : 'Search for a city'}</Text>
+      </TouchableOpacity>
     </View>
   );
 };

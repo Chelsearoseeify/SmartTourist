@@ -14,7 +14,7 @@ const initialState = {
   top_destinations: [],
   beautiful_cities: [],
   selected_city: null,
-  // selected_city: /* null */ {
+  // selected_city:{
   //   geometry: {
   //     location: {lat: 50.0755381, lng: 14.4378005},
   //     viewport: {northeast: [Object], southwest: [Object]},

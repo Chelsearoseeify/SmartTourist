@@ -16,12 +16,8 @@ import placeRequest from '../../utils/placeRequest';
 
 export const setSelectedCity = (cityId, token) => {
   return async dispatch => {
-    const res = await axios.get(
-      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${cityId}&fields=name,geometry,photo&key=${
-        API_KEY.API_KEY_PLACES
-      }&sessiontoken=${token}`,
-    );
-    const cityData = res.data.result;
+    const res = await placeRequest(cityId,token);
+    const cityData = res;
     const city = new City(cityId, cityData.name, '', null, cityData.geometry);
     try {
       await database()
@@ -59,7 +55,7 @@ export const queryCity = (token, queryString) => {
   return async dispatch => {
     const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${queryString}&key=${
       API_KEY.API_KEY_PLACES
-    }&sessiontoken=${token}`;
+    }&sessiontoken=${token}&language=en`;
     const response = await axios.get(url);
     const predictions = response.data.predictions;
 
