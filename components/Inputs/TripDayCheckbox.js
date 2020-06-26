@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import {View, Text} from 'react-native';
 
 import CheckBox from '@react-native-community/checkbox';
+import Colors from '../../constants/Colors';
 
 const TripDayCheckbox = props => {
-    const [toggleCheckBox, setToggleCheckBox] = useState(false);
+    const [toggleCheckBox, setToggleCheckBox] = useState(props.value);
 
     const onToggleChange = () => {
         toggleCheckBox ? setToggleCheckBox(false) : setToggleCheckBox(true);
@@ -17,6 +18,8 @@ const TripDayCheckbox = props => {
             <CheckBox
             value={toggleCheckBox}
             onValueChange={()=> onToggleChange()}
+            onCheckColor={Colors.greenTitleColor}
+            onTintColor={Colors.greenTitleColor}
             style={{width: 20, height: 20}}
         />
         </View>

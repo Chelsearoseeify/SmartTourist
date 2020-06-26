@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, Button, TouchableOpacity, StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import SelectTripDay from '../SelectTripDay';
 import CustomButton from '../Buttons/CustomButton';
@@ -11,7 +11,10 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Colors from '../../constants/Colors';
 import Style from '../../constants/Style';
 
+import { addPlaceToTrip } from '../../store/actions/trips';
+
 const TripModal = props => {
+    const dispatch = useDispatch();
     const trips = useSelector(state => state.trips.userTrips);
 
     //const filteredTrips = [];
@@ -19,12 +22,12 @@ const TripModal = props => {
 
     let selectionData = [];
     if (filteredTrips.length > 0) {
-        filteredTrips.map(trip => {
+        filteredTrips.map((trip,tripIndex) => {
             const numberOfDays = trip.numberOfDays();
             if (numberOfDays > 0) {
                 daysData = [];
                 for (let i = 0; i < numberOfDays; i++) {
-                    daysData.push(false);
+                    daysData.push(trip.placeIds[i].includes(props.place.id));
                 }
                 selectionData.push(daysData)
             }
@@ -41,6 +44,10 @@ const TripModal = props => {
 
     const onSelectionConfirm = () => {
         console.log(selections);
+        selections.map((selection,index) =>{
+            const trip = filteredTrips[index];
+            dispatch(addPlaceToTrip(trip.id, props.place.id, selection));
+        })
     }
 
     const onCreateTrip = () =>{

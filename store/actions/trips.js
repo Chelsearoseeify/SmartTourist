@@ -3,6 +3,7 @@ export const SET_TRIP_DATES = 'SET_TRIP_DATES';
 export const SET_TRIP_CITY = 'SET_TRIP_CITY';
 export const FETCH_TRIP_PLACES = 'FETCH_TRIP_PLACES';
 export const SET_TRIP_PLACES = 'SET_TRIP_PLACES';
+export const ADD_PLACE_TO_TRIP = 'ADD_PLACE_TO_TRIP';
 
 import API_KEY from '../../constants/API_KEY';
 
@@ -48,4 +49,8 @@ export const setTripCity = (cityId, token) => {
       console.log(err);
     }
   }
+}
+
+export const addPlaceToTrip = (tripId, placeId, selections) => {
+  return { type: ADD_PLACE_TO_TRIP, payload: {tripId: tripId, placeId: placeId, selections: selections } } 
 }
