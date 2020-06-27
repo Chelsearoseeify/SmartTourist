@@ -13,10 +13,10 @@ const CustomButton = ({name, toggleType, buttonStyle}) => {
       style={[
         {
           backgroundColor: buttonStyle.buttonColor,
+          ...Style.shadow,
         },
         styles.buttonStyle,
-      ]}
-    >
+      ]}>
       <Text style={{color: buttonStyle.textColor, fontSize: Style.fontSize.h6}}>
         {name}
       </Text>

@@ -16,6 +16,8 @@ import TripDay from '../containers/TripDay';
 import {fetchMultiplePlaces} from '../store/actions/places';
 import {fetchCities} from '../store/actions/cities';
 
+import LinearGradient from 'react-native-linear-gradient';
+import RNColorThief from 'react-native-color-thief';
 import Header from '../components/Header';
 import Style from '../constants/Style';
 import Colors from '../constants/Colors';
@@ -51,6 +53,7 @@ const TripDetailScreen = props => {
   const trip = trips.find(t => t.id === tripId);
   const places = useSelector(state => state.places.cachedPlaces);
   const cities = useSelector(state => state.cities.cachedCities);
+  const [backgroundColor, setBackgroundColor] = useState('transparent');
   const tripCity = cities.find(c => c.id === trip.cityId);
   const dateString = trip.getTripDateString();
   const numberOfDays = trip.numberOfDays();
@@ -59,6 +62,14 @@ const TripDetailScreen = props => {
   let missingPlaceIds = [];
   let placesData = [];
   //console.log(places.length);
+
+  useEffect(() => {
+    const stealColor = async () => {
+      let colors = await RNColorThief.getColor(tripCity.photoUrl, 500, true);
+      setBackgroundColor(`rgb(${colors.r}, ${colors.g}, ${colors.b})`);
+    };
+    stealColor();
+  });
 
   if (trip.placeIds.length > 0) {
     trip.placeIds.map((ids, index) => {
@@ -123,11 +134,35 @@ const TripDetailScreen = props => {
           <ImageBackground
             source={{uri: tripCity.photoUrl}}
             style={styles.imageBackgroundStyle}
-            resizeMode="cover"
-          />
+            resizeMode="cover">
+            <LinearGradient
+              colors={['transparent', backgroundColor]}
+              start={{x: 0.8, y: 0.4}}
+              end={{x: 0.72, y: 1.0}}
+              locations={[0.1, 0.8]}
+              style={{height: '100%'}}>
+              <View
+                style={{
+                  height: 240,
+                  flexDirection: 'column-reverse',
+                  paddingStart: Style.paddingCard,
+                  paddingBottom: Style.paddingCard,
+                }}>
+                <Text
+                  style={{
+                    color: 'white',
+                    fontWeight: 'bold',
+                    fontSize: Style.fontSize.h2,
+                    marginLeft: Style.marginTopCardContainer,
+                  }}>
+                  {tripCity.name}
+                </Text>
+              </View>
+            </LinearGradient>
+          </ImageBackground>
         </View>
       )}
-      <View style={styles.titleViewStyle}>
+      {/* <View style={styles.titleViewStyle}>
         <Text
           style={{
             color: 'white',
@@ -137,7 +172,7 @@ const TripDetailScreen = props => {
           }}>
           {tripCity.name}
         </Text>
-      </View>
+      </View> */}
       <View style={styles.cardsContainerStyle}>
         <View style={[styles.cardStyle, Style.shadow, {flex: 1}]}>
           <View style={{paddingVertical: 10}}>
@@ -163,7 +198,7 @@ const TripDetailScreen = props => {
   );
 };
 
-const topSpace = 250;
+const topSpace = 240;
 
 let styles = StyleSheet.create({
   scene: {

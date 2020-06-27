@@ -8,8 +8,6 @@ import Style from '../constants/Style';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {fetchFavourites, setCardStyle} from './../store/actions/favourite';
 import CardTypes from '../constants/CardTypes';
-import FlatListBig from '../components/CustomBoard/FlatListBig';
-import FlatListMedium from './../components/CustomBoard/FlatListMedium';
 import {fetchCities} from '../store/actions/cities';
 
 const FavouriteScreen = ({navigation}) => {
@@ -18,10 +16,11 @@ const FavouriteScreen = ({navigation}) => {
   const favouriteCities = useSelector(
     state => state.favourites.favourite_cities,
   );
-  const [oneColumn, setOneColumn] = useState(false);
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const user = useSelector(state => state.user);
+  let CardView = useSelector(state => state.favourites.cardStyle);
+  console.log(CardView);
   let missingCities = [];
 
   if (favouriteCities.length > 0) {
@@ -61,10 +60,6 @@ const FavouriteScreen = ({navigation}) => {
     loadProduct();
   }, [dispatch]);
 
-  const setCardStyleHandler = cardType => {
-    dispatch(setCardStyle(cardType));
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -78,38 +73,28 @@ const FavouriteScreen = ({navigation}) => {
                 style={styles.icon}
                 name="th-large"
                 onPress={() => {
-                  setCardStyleHandler(CardTypes.FOUR_PICTURES);
-                  setOneColumn(true);
+                  dispatch(setCardStyle(CardTypes.BIG));
                 }}
               />
               <Icon
                 style={styles.icon}
                 name="th-list"
                 onPress={() => {
-                  setCardStyleHandler(CardTypes.THREE_PICTURES);
-                  setOneColumn(false);
+                  dispatch(setCardStyle(CardTypes.SMALL));
                 }}
               />
               <Icon
                 style={styles.icon}
                 name="list"
                 onPress={() => {
-                  setCardStyleHandler(CardTypes.TWO_PICTURES);
-                  setOneColumn(true);
+                  dispatch(setCardStyle(CardTypes.LIST));
                 }}
               />
             </View>
-            {oneColumn ? (
-              <FlatListBig
-                favouriteCities={favouriteCities}
-                navigation={navigation}
-              />
-            ) : (
-              <FlatListMedium
-                favouriteCities={favouriteCities}
-                navigation={navigation}
-              />
-            )}
+            <CardView
+              favouriteCities={favouriteCities}
+              navigation={navigation}
+            />
           </View>
         </ScrollView>
       </View>

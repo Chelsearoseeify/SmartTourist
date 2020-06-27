@@ -8,6 +8,7 @@ import {
   UPDATE_PLACE,
   ADD_PLACES_TO_LIST,
   EMPTY_PLACE,
+  EMPTY_PLACES,
   FETCH_PLACE_DESCRIPTION,
 } from './../actions/places';
 import SearchType from '../../constants/SearchType';
@@ -53,17 +54,24 @@ const placesReducer = (state = initialState, action) => {
         };
       } */
       //const places = filterArray(action.places, filters);
-
+      //ChIJi3lwCZyTC0cRkEAWZg-vAAQ
       let places = [];
-      if (action.places.length > 0)
+      if (action.places.length > 0) {
+        const currentCityId = action.places[0].cityId;
+        state.places.map((place, index) => console.log(index, place.name));
+        action.places.map((place, index) => console.log(index, place.name));
         places = [...state.places, ...action.places];
-      else places = state.places;
-      //places.map(place => console.log(place.name, place.types));
+        places = places.filter(place => place.cityId === currentCityId);
+        places.map((place, index) => console.log(index, place.name));
+      } else places = state.places;
       return {
         ...state,
         places: places,
         pageToken: action.pageToken,
       };
+    }
+    case EMPTY_PLACES: {
+      return {...state, places: [], pageToken: ''};
     }
     case CREATE_PLACE: {
       console.log('Done');

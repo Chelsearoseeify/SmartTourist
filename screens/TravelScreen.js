@@ -38,12 +38,15 @@ const TravelScreen = ({navigation, route}) => {
   const user = useSelector(state => state.user);
   const selectedType = useSelector(state => state.places.type);
   const searchType = useSelector(state => state.places.search);
-  const pageToken = useSelector(state => state.places.pageToken);
+  const [pageToken, setPageToken] = useState(
+    useSelector(state => state.places.pageToken),
+  );
   const [token, setToken] = useState('');
   const [cityModalVisible, setCityModalVisible] = useState(false);
 
   const onCitySelected = cityId => {
     dispatch(setSelectedCity(cityId, token));
+    setPageToken('');
   };
 
   const onModalClose = () => {
@@ -56,16 +59,15 @@ const TravelScreen = ({navigation, route}) => {
   };
 
   const loadPlaces = async () => {
-    setIsLoading(true);
     await dispatch(fetchFavourites(user.userId));
     await dispatch(
       fetchPlacesFromGoogle(selectedCity, searchType, selectedType, pageToken),
     );
-    setIsLoading(false);
   };
-
   useEffect(() => {
+    setIsLoading(true);
     loadPlaces();
+    setIsLoading(false);
   }, [dispatch, selectedCity, searchType, selectedType]);
 
   const mapHandler = () => {

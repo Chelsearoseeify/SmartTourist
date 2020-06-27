@@ -69,14 +69,18 @@ const TripsScreen = props => {
           }}>
           Your next trip
         </Text>
-        {nextCity && (
-          <NextTripCard
-            tripName={trips[0].name}
-            tripCity={nextCity}
-            dateString={trips[0].getTripDateString()}
-            onPress={() => onTripSelected(trips[0])}
-          />
-        )}
+        <View style={styles.tripContainer}>
+          {nextCity ? (
+            <NextTripCard
+              tripName={trips[0].name}
+              tripCity={nextCity}
+              dateString={trips[0].getTripDateString()}
+              onPress={() => onTripSelected(trips[0])}
+            />
+          ) : (
+            <Text>You have no trips. Create one!</Text>
+          )}
+        </View>
       </View>
     );
   }
@@ -168,6 +172,12 @@ let styles = StyleSheet.create({
     fontSize: 25,
     marginBottom: 5,
     paddingLeft: 20,
+  },
+  tripContainer: {
+    flex: 1,
+    textAlign: 'center',
+    color: Colors.blueTitleColor,
+    height: 200,
   },
 });
 

@@ -5,6 +5,7 @@ export const UPDATE_PLACE = 'UPDATE_PLACE';
 export const SET_PLACES = 'SET_PLACES';
 export const FETCH_PLACE = 'FETCH_PLACE';
 export const EMPTY_PLACE = 'EMPTY_PLACE';
+export const EMPTY_PLACES = 'EMPTY_PLACES';
 export const SET_PLACE_TYPE = 'SET_TYPE';
 export const SET_SEARCH_TYPE = 'SET_SEARCH_TYPE';
 export const FETCH_PLACE_DESCRIPTION = 'FETCH_PLACE_DESCRIPTION';
@@ -16,8 +17,13 @@ import _ from 'lodash';
 import SearchType from '../../constants/SearchType';
 
 import placeRequest from '../../utils/placeRequest';
+
 export const emptyPlace = () => {
   return {type: EMPTY_PLACE};
+};
+
+export const emptyPlaces = () => {
+  return {type: EMPTY_PLACES};
 };
 
 export const setSearchType = newType => {
@@ -115,7 +121,7 @@ export const fetchPlacesFromGoogle = (
     url = url.concat(`&pagetoken=${pageToken}`);
   }
 
-  console.log(url);
+  //console.log(url);
 
   return async dispatch => {
     try {

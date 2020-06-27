@@ -1,28 +1,23 @@
 import {
   SET_CARD_STYLE,
   FETCH_FAVOURITES,
-  TOGGLE_FAVOURITE_CITY,
-  TOGGLE_FAVOURITE_PLACE,
   SET_FAVOURITE_REQUEST,
   FETCH_FAVOURITE_PLACES,
   TOGGLE_FAVOURITE,
 } from '../actions/favourite';
 import CardTypes from '../../constants/CardTypes';
-import TwoPicturesBoard from './../../components/CustomBoard/TwoPicturesBoard';
-import ThreePicturesBoard from './../../components/CustomBoard/ThreePicturesBoard';
-import FourPicturesBoard from '../../components/CustomBoard/FourPicturesBoard';
 import ActionType from '../../constants/ActionType';
 import FavouriteCity from './../../models/FavouriteCity';
 import FavouritePlace from './../../models/FavouritePlace';
+import FavSmallView from './../../components/CustomBoard/FavSmallView';
+import FavBigView from './../../components/CustomBoard/FavBigView';
+import FavListView from './../../components/CustomBoard/FavListView';
 
 const initialState = {
   favourite_cities: [],
   favourite_places: [],
   selected_favourite_places: [],
-  style: {
-    board: ThreePicturesBoard,
-    numColumns: 2,
-  },
+  cardStyle: FavSmallView,
   place_request: {
     place: {},
     actionType: '',
@@ -35,24 +30,20 @@ const initialState = {
 };
 
 const favouritesReducer = (state = initialState, action) => {
+  console.log(action.type);
   switch (action.type) {
     case SET_CARD_STYLE:
-      let newStyle = {
-        board: null,
-        numColumns: 2,
-      };
+      console.log(action.cardtype);
       switch (action.cardtype) {
-        case CardTypes.TWO_PICTURES:
-          newStyle.board = TwoPicturesBoard;
-          return {...state, style: newStyle};
-        case CardTypes.THREE_PICTURES:
-          newStyle.board = ThreePicturesBoard;
-          return {...state, style: newStyle};
-        case CardTypes.FOUR_PICTURES:
-          newStyle.board = FourPicturesBoard;
-          return {...state, style: newStyle};
+        case CardTypes.BIG:
+          return {...state, cardStyle: FavBigView};
+
+        case CardTypes.SMALL:
+          return {...state, cardStyle: FavSmallView};
+        case CardTypes.LIST:
+          return {...state, cardStyle: FavListView};
         default:
-          return state;
+          return {...state, cardStyle: FavSmallView};
       }
     /* case TOGGLE_FAVOURITE_CITY: {
       const favouriteCities = [...state.favourite_cities];
