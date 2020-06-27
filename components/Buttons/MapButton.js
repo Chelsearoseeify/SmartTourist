@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {View} from 'react-native';
 import Colors from '../../constants/Colors';
@@ -11,7 +11,7 @@ const MapButton = ({onPress}) => {
       <View>
         <Icon
           size={Style.iconSize}
-          name="map-marker-alt"
+          name="near-me"
           color={Colors.greenTitleColor}
         />
       </View>

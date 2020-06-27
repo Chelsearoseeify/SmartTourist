@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {
   StyleSheet,
   View,
@@ -9,29 +9,28 @@ import {
 } from 'react-native';
 import Colors from '../../constants/Colors';
 import Style from '../../constants/Style';
-import {setSelectedCity } from '../../store/actions/cities';
+import {setSelectedCity} from '../../store/actions/cities';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CitySearchModal from '../Cards/CitySearchModal';
-import { v4 as uuidv4 } from 'react-native-uuid';
-
+import {v4 as uuidv4} from 'react-native-uuid';
 
 const CitySearch = props => {
   const dispatch = useDispatch();
   const [token, setToken] = useState('');
   const [cityModalVisible, setCityModalVisible] = useState(false);
 
-  const onCitySelected = (cityId) => {
+  const onCitySelected = cityId => {
     dispatch(setSelectedCity(cityId, token));
-  }
+  };
 
   const onModalClose = () => {
     setCityModalVisible(false);
-  }
+  };
 
   const openCityModal = () => {
     setToken(uuidv4());
-    setCityModalVisible(true)
-  } 
+    setCityModalVisible(true);
+  };
 
   return (
     <View>
@@ -39,11 +38,25 @@ const CitySearch = props => {
         visible={cityModalVisible}
         closeModal={onModalClose}
         token={token}
-        onCitySelected={(cityId)=>onCitySelected(cityId)}
-        />
-      <TouchableOpacity style={styles.inputSection} onPress={openCityModal} >
+        onCitySelected={cityId => onCitySelected(cityId)}
+      />
+      {/* <Icon style={styles.iconStyle} name={'city-variant-outline'} />
+      <TextInput
+        value={props.cityName ? props.cityName : 'Search for a city'}
+        onChangeText={() => openCityModal()}
+        placeholder="Type city name"
+        onFocus={onFocus}
+        onBlur={() => setShowList(false)}
+        label="    City"
+        keyboardType="default"
+        placeholderTextColor={Colors.textInputIconColor}
+        style={{color: Colors.blueTitleColor}}
+      /> */}
+      <TouchableOpacity style={styles.inputSection} onPress={openCityModal}>
         <Icon style={styles.iconStyle} name={'city-variant-outline'} />
-        <Text>{props.cityName ? props.cityName : 'Search for a city'}</Text>
+        <Text style={{color: Colors.blueTitleColor}}>
+          {props.cityName ? props.cityName : 'Search for a city'}
+        </Text>
       </TouchableOpacity>
     </View>
   );

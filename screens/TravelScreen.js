@@ -19,14 +19,17 @@ import {fetchPlacesFromGoogle, fetchPlaces} from './../store/actions/places';
 import _ from 'lodash';
 import LabelButtonsList from '../components/LabelButtonsList';
 import NoResult from '../components/NoResult';
-import {Dimensions} from 'react-native';
+import MapButton from './../components/Buttons/MapButton';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import CitySearchModal from './../components/Cards/CitySearchModal';
+import {v4 as uuidv4} from 'react-native-uuid';
+import {setSelectedCity} from './../store/actions/cities';
 
 //full height
 
 const TravelScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
-  const cachedCities = useSelector(state => state.cities.cachedCities);
   const selectedCity = useSelector(state => state.cities.selected_city);
   const places = useSelector(state => state.places.places);
   const favouritePlaces = useSelector(
@@ -36,11 +39,22 @@ const TravelScreen = ({navigation, route}) => {
   const selectedType = useSelector(state => state.places.type);
   const searchType = useSelector(state => state.places.search);
   const pageToken = useSelector(state => state.places.pageToken);
-  const height =
-    places.length > 6 ? '100%' : Dimensions.get('window').height * (1 - 0.24);
-  //console.log('pageToken ' + pageToken);
-  /*  console.log(selectedType === '' ? 'no type' : selectedType, searchType);
-   */
+  const [token, setToken] = useState('');
+  const [cityModalVisible, setCityModalVisible] = useState(false);
+
+  const onCitySelected = cityId => {
+    dispatch(setSelectedCity(cityId, token));
+  };
+
+  const onModalClose = () => {
+    setCityModalVisible(false);
+  };
+
+  const openCityModal = () => {
+    setToken(uuidv4());
+    setCityModalVisible(true);
+  };
+
   const loadPlaces = async () => {
     setIsLoading(true);
     await dispatch(fetchFavourites(user.userId));
@@ -49,6 +63,7 @@ const TravelScreen = ({navigation, route}) => {
     );
     setIsLoading(false);
   };
+
   useEffect(() => {
     loadPlaces();
   }, [dispatch, selectedCity, searchType, selectedType]);
@@ -100,15 +115,50 @@ const TravelScreen = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <CitySearchModal
+        visible={cityModalVisible}
+        closeModal={onModalClose}
+        token={token}
+        onCitySelected={cityId => onCitySelected(cityId)}
+      />
       <View
         style={{
           height: 105,
         }}>
-        <Header
-          title={selectedCity.name}
-          navigation={navigation}
-          onMapPress={mapHandler}
-        />
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginVertical: 8,
+            paddingHorizontal: 15,
+            width: '100%',
+          }}>
+          <MapButton onPress={mapHandler} />
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+            }}>
+            <Icon
+              size={Style.iconSize}
+              name="pencil"
+              color={Colors.greenTitleColor}
+              style={{paddingHorizontal: 10}}
+              onPress={openCityModal}
+            />
+            <Text
+              style={{
+                color: Colors.blueTitleColor,
+                fontWeight: 'bold',
+                fontSize: Style.fontSize.h1,
+              }}>
+              {selectedCity.name}
+            </Text>
+          </View>
+        </View>
         <LabelButtonsList />
         <View
           style={{
@@ -169,6 +219,7 @@ let styles = StyleSheet.create({
   },
   placesContainer: {
     margin: 5,
+    marginTop: 10,
   },
   centered: {
     flex: 1,

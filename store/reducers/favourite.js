@@ -5,6 +5,7 @@ import {
   TOGGLE_FAVOURITE_PLACE,
   SET_FAVOURITE_REQUEST,
   FETCH_FAVOURITE_PLACES,
+  TOGGLE_FAVOURITE,
 } from '../actions/favourite';
 import CardTypes from '../../constants/CardTypes';
 import TwoPicturesBoard from './../../components/CustomBoard/TwoPicturesBoard';
@@ -53,7 +54,7 @@ const favouritesReducer = (state = initialState, action) => {
         default:
           return state;
       }
-    case TOGGLE_FAVOURITE_CITY: {
+    /* case TOGGLE_FAVOURITE_CITY: {
       const favouriteCities = [...state.favourite_cities];
       const index = state.favourite_cities.findIndex(
         city => city.cityId === action.newCity.cityId,
@@ -70,19 +71,58 @@ const favouritesReducer = (state = initialState, action) => {
     case TOGGLE_FAVOURITE_PLACE: {
       const favouritePlaces = [...state.favourite_places];
       const selectedFavouritePlaces = [...state.selected_favourite_places];
-      let index = state.favourite_places.findIndex(
+      let placeIndex = state.favourite_places.findIndex(
         place => place.id === action.newPlace.id,
       );
-      if (index >= 0) favouritePlaces.splice(index, 1);
+      if (placeIndex >= 0) favouritePlaces.splice(placeIndex, 1);
       else favouritePlaces.unshift(action.newPlace);
-      index = state.selected_favourite_places.findIndex(
+      placeIndex = state.selected_favourite_places.findIndex(
         place => place.id === action.newPlace.id,
       );
-      if (index >= 0) selectedFavouritePlaces.splice(index, 1);
+      if (placeIndex >= 0) selectedFavouritePlaces.splice(placeIndex, 1);
+      const favouriteCities = [...state.favourite_cities];
+      const cityIndex = state.favourite_cities.findIndex(
+        city => city.cityId === action.newCity.cityId,
+      );
+      if (cityIndex >= 0) favouriteCities.splice(cityIndex, 1);
+      if (state.actionType !== ActionType.DELETE_CITY)
+        favouriteCities.unshift(action.newCity);
+
       return {
         ...state,
         favourite_places: favouritePlaces,
         selected_favourite_places: selectedFavouritePlaces,
+        favourite_cities: favouriteCities,
+      };
+    } */
+    case TOGGLE_FAVOURITE: {
+      const favouritePlaces = [...state.favourite_places];
+      const selectedFavouritePlaces = [...state.selected_favourite_places];
+      let placeIndex = state.favourite_places.findIndex(
+        place => place.id === action.newPlace.id,
+      );
+      if (placeIndex >= 0) favouritePlaces.splice(placeIndex, 1);
+      else favouritePlaces.unshift(action.newPlace);
+      placeIndex = state.selected_favourite_places.findIndex(
+        place => place.id === action.newPlace.id,
+      );
+      if (placeIndex >= 0) selectedFavouritePlaces.splice(placeIndex, 1);
+
+      const favouriteCities = [...state.favourite_cities];
+      const cityIndex = state.favourite_cities.findIndex(
+        city => city.cityId === action.newCity.cityId,
+      );
+      if (cityIndex >= 0) favouriteCities.splice(cityIndex, 1);
+
+      if (!action.deleteCity) favouriteCities.unshift(action.newCity);
+      /* 
+      console.log(favouritePlaces);
+      console.log(favouriteCities); */
+      return {
+        ...state,
+        favourite_places: favouritePlaces,
+        selected_favourite_places: selectedFavouritePlaces,
+        favourite_cities: favouriteCities,
       };
     }
     case FETCH_FAVOURITE_PLACES: {

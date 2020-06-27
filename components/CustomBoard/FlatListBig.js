@@ -5,15 +5,15 @@ import {useSelector, useDispatch} from 'react-redux';
 const FlatListBig = ({favouriteCities, navigation}) => {
   let Board = useSelector(state => state.favourites.style.board);
 
-  const renderGridItem = itemData => {
+  const renderGridItem = item => {
     return (
       <Board
-        name={itemData.item.cityName}
-        places={itemData.item.imageQueue}
+        name={item.cityName}
+        places={item.imageQueue}
         onPress={() => {
           navigation.navigate('GroupedPlaces', {
-            cityId: itemData.item.cityId,
-            title: itemData.item.cityName,
+            cityId: item.cityId,
+            title: item.cityName,
           });
         }}
       />
@@ -27,7 +27,7 @@ const FlatListBig = ({favouriteCities, navigation}) => {
         data={favouriteCities}
         numColumns={1}
         horizontal={false}
-        renderItem={renderGridItem}
+        renderItem={item => renderGridItem(item)}
         scrollEnabled={false}
         keyExtractor={(item, index) => index.toString()}
       />

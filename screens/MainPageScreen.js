@@ -16,7 +16,7 @@ import CitySearch from '../components/Inputs/CitySearch';
 import {fetchBeautifulCities, setSelectedCity} from './../store/actions/cities';
 import SmallListCard from '../components/Cards/ListCardCitySmall';
 
-const FavouriteScreen = ({navigation}) => {
+const MainPageScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const beautifulCities = useSelector(state => state.cities.beautiful_cities);
   const [cityId, setCityId] = useState();
@@ -170,4 +170,4 @@ let styles = StyleSheet.create({
   },
 });
 
-export default FavouriteScreen;
+export default MainPageScreen;

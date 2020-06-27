@@ -16,6 +16,7 @@ import FavouritePlaceCard from './../components/Cards/FavouritePlaceCard';
 import {
   toggleFavouriteCity,
   toggleFavouritePlace,
+  toggleFavourite,
 } from '../store/actions/favourite';
 import {
   fetchFavouritePlaces,
@@ -23,6 +24,8 @@ import {
 } from './../store/actions/favourite';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Dimensions} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import RNColorThief from 'react-native-color-thief';
 
 const GroupedPlacesScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -30,28 +33,35 @@ const GroupedPlacesScreen = ({navigation, route}) => {
   const user = useSelector(state => state.user);
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState('transparent');
   const [error, setError] = useState(false);
-  const placeRequest = useSelector(state => state.favourites.place_request);
-  const cityRequest = useSelector(state => state.favourites.city_request);
+  /* const placeRequest = useSelector(state => state.favourites.place_request);
+  const cityRequest = useSelector(state => state.favourites.city_request); */
+  const cities = useSelector(state => state.cities.cachedCities);
+  const favCity = cities.find(c => c.id === cityId);
   const places = useSelector(
     state => state.favourites.selected_favourite_places,
   );
-  const height =
-    places.length > 6 ? '100%' : Dimensions.get('window').height * (1 - 0.24);
-  //this run whenever the component is loaded
-  useEffect(() => {
-    const loadProduct = async () => {
-      setIsLoading(true);
-      try {
-        dispatch(fetchFavouritePlaces(user.userId, cityId));
-      } catch (error) {
-        setError(error.message); //error to be handled, it has to be defined
-      }
-      setIsLoading(false);
-    };
-    loadProduct();
-  }, [dispatch, fetchFavouritePlaces, places]);
 
+  useEffect(() => {
+    const stealColor = async () => {
+      let colors = await RNColorThief.getColor(favCity.photoUrl, 500, true);
+      setBackgroundColor(`rgb(${colors.r}, ${colors.g}, ${colors.b})`);
+    };
+    stealColor();
+  });
+
+  const loadProduct = async () => {
+    setIsLoading(true);
+    await dispatch(fetchFavouritePlaces(user.userId, cityId));
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    loadProduct();
+  }, [dispatch, places]);
+
+  /* 
   useEffect(() => {
     const toggleFavs = async () => {
       if (Object.keys(cityRequest.city).length > 0) {
@@ -72,10 +82,11 @@ const GroupedPlacesScreen = ({navigation, route}) => {
       }
     };
     toggleFavs();
-  }, [dispatch, cityRequest]);
+  }, [dispatch, cityRequest]); */
 
   const removePlace = place => {
-    dispatch(setFavouriteRequest(place, title));
+    dispatch(toggleFavourite(place, title, user.userId));
+    //dispatch(setFavouriteRequest(place, title));
   };
 
   const renderGridItem = itemData => {
@@ -123,16 +134,39 @@ const GroupedPlacesScreen = ({navigation, route}) => {
       <View
         style={
           (styles.titleViewStyle,
-          [{height: 150, width: '100%', flex: 1, position: 'absolute'}])
+          [{height: 200, width: '100%', flex: 1, position: 'absolute'}])
         }>
         <ImageBackground
           source={{
-            uri:
-              'https://www.bblamacaroma.it//wp-content/uploads/2015/05/roma-2.jpg',
+            uri: favCity.photoUrl,
           }}
           style={styles.imageBackgroundStyle}
-          resizeMode="cover"
-        />
+          resizeMode="cover">
+          <LinearGradient
+            colors={['transparent', backgroundColor]}
+            start={{x: 0.8, y: 0.4}}
+            end={{x: 0.72, y: 1.0}}
+            locations={[0.1, 0.8]}
+            style={{height: '100%'}}>
+            <View
+              style={{
+                height: 160,
+                flexDirection: 'column-reverse',
+                paddingStart: Style.paddingCard,
+                paddingBottom: Style.paddingCard,
+              }}>
+              <Text
+                style={{
+                  color: 'white',
+                  fontWeight: 'bold',
+                  fontSize: Style.fontSize.h2,
+                  marginLeft: Style.marginTopCardContainer,
+                }}>
+                {title}
+              </Text>
+            </View>
+          </LinearGradient>
+        </ImageBackground>
       </View>
       <View style={styles.cardViewStyle}>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -147,15 +181,6 @@ const GroupedPlacesScreen = ({navigation, route}) => {
               />
             </View>
             <View style={styles.contentStyle}>
-              <Text
-                style={{
-                  color: Colors.blueTitleColor,
-                  fontWeight: 'bold',
-                  fontSize: Style.fontSize.h2,
-                  marginLeft: Style.marginTopCardContainer,
-                }}>
-                {title}
-              </Text>
               <FlatList
                 contentContainerStyle={styles.placesContainer}
                 data={places}
@@ -173,7 +198,7 @@ const GroupedPlacesScreen = ({navigation, route}) => {
   );
 };
 
-const topSpace = 100;
+const topSpace = 160;
 
 let styles = StyleSheet.create({
   container: {

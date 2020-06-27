@@ -75,6 +75,7 @@ function TabNavigator() {
       initialRouteName="Home"
       tabBarOptions={{
         showLabel: false,
+        activeTintColor: Colors.blueTitleColor,
       }}>
       <Tab.Screen
         name="HomeStackNavigator"

@@ -13,6 +13,7 @@ import {
   toggleFavouriteCity,
   toggleFavouritePlace,
   setFavouriteRequest,
+  toggleFavourite,
 } from '../store/actions/favourite';
 import {
   fetchPlaceDescription,
@@ -42,15 +43,20 @@ const PlaceScreen = ({navigation, route}) => {
       ? places.filter(place => place.id === id)[0]
       : useSelector(state => state.places.place);
   const description = useSelector(state => state.places.description);
-  const placeRequest = useSelector(state => state.favourites.place_request);
-  const cityRequest = useSelector(state => state.favourites.city_request);
+  //const placeRequest = useSelector(state => state.favourites.place_request);
+  //const cityRequest = useSelector(state => state.favourites.city_request);
   const favouritePlaces = useSelector(
     state => state.favourites.favourite_places,
   );
-  const index = favouritePlaces.findIndex(place => place.id === id);
+  let index = favouritePlaces.findIndex(place => place.id === id);
   const [icon, setIcon] = useState(
     index >= 0 ? 'cards-heart' : 'heart-outline',
   );
+
+  useEffect(() => {
+    index = favouritePlaces.findIndex(place => place.id === id);
+    setIcon(index >= 0 ? 'cards-heart' : 'heart-outline');
+  }, [favouritePlaces]);
 
   useEffect(() => {
     const loadPlace = async () => {
@@ -65,7 +71,7 @@ const PlaceScreen = ({navigation, route}) => {
     loadPlace();
   }, [dispatch]);
 
-  useEffect(() => {
+  /* useEffect(() => {
     const toggleFavs = async () => {
       if (Object.keys(cityRequest.city).length > 0) {
         setIcon(placeRequest.icon);
@@ -86,7 +92,7 @@ const PlaceScreen = ({navigation, route}) => {
       }
     };
     toggleFavs();
-  }, [dispatch, cityRequest]);
+  }, [dispatch, cityRequest]); */
 
   const fetchCitiesData = useCallback(async () => {
     try {
@@ -103,7 +109,8 @@ const PlaceScreen = ({navigation, route}) => {
   }, [fetchCitiesData, fetchCities]);
 
   const toggleFavouriteHandler = () => {
-    dispatch(setFavouriteRequest(place, cityName));
+    console.log('id: ' + user.userId);
+    dispatch(toggleFavourite(place, cityName, user.userId));
   };
 
   const pressHandlers = () => {
@@ -205,7 +212,20 @@ const PlaceScreen = ({navigation, route}) => {
 
               <View style={styles.detailViewStyle}>
                 <Text style={styles.detailStyle}>Description</Text>
-                <HTMLView value={description} stylesheet={HTMLstyles} />
+                {description ? (
+                  <HTMLView value={description} stylesheet={HTMLstyles} />
+                ) : (
+                  <View style={{padding: 40, flex: 1}}>
+                    <Text style={styles.noDescriptionContainer}>
+                      There is no available description for this place, sorry,
+                      but it's probably Google's fault
+                    </Text>
+                  </View>
+                )}
+
+                {/* <Text style={{color: Colors.blueTitleColor}}>
+                  {description}
+                </Text> */}
               </View>
               {/* <Text
                 style={{
@@ -227,7 +247,6 @@ const HTMLstyles = StyleSheet.create({
     color: Colors.blueTitleColor,
     /* marginTop: -20,
     marginBottom: -10, */
-    borderWidth: 1,
   },
   i: {
     fontStyle: 'italic',
@@ -241,19 +260,17 @@ const HTMLstyles = StyleSheet.create({
   h2: {
     fontSize: Style.fontSize.h5,
     fontWeight: 'bold',
-    borderWidth: 1,
+    marginVertical: -15,
   },
   h3: {
     fontSize: Style.fontSize.h6,
     fontWeight: '800',
-    /* marginVertical: -20, */
-    borderWidth: 1,
+    marginVertical: -10,
   },
   ul: {
     color: Colors.blueTitleColor,
     /* marginBottom: 30,
     marginTop: -20, */
-    borderWidth: 1,
   },
   li: {
     color: Colors.blueTitleColor,
@@ -318,6 +335,11 @@ const styles = StyleSheet.create({
     width: 55,
     position: 'absolute',
     backgroundColor: Colors.backgroundColor,
+  },
+  noDescriptionContainer: {
+    flex: 1,
+    textAlign: 'center',
+    color: Colors.blueTitleColor,
   },
 });
 

@@ -5,7 +5,6 @@ import BigListCard from '../components/Cards/ListCardCityBig';
 import {setSelectedCity} from '../store/actions/cities';
 import {fetchTopDestinations} from '../store/actions/cities';
 import {v4 as uuidv4} from 'react-native-uuid';
-import {View} from 'react-native';
 
 const TopDestinations = navigation => {
   const dispatch = useDispatch();

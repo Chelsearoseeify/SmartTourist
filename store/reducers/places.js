@@ -80,7 +80,6 @@ const placesReducer = (state = initialState, action) => {
       return {...state, description: action.description};
     }
     case EMPTY_PLACE: {
-      console.log('emptied');
       return {...state, place: {}};
     }
     case SET_PLACE_TYPE: {

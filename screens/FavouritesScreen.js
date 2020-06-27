@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import Colors from '../constants/Colors';
 import {View, StyleSheet, SafeAreaView, FlatList} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -10,9 +10,11 @@ import {fetchFavourites, setCardStyle} from './../store/actions/favourite';
 import CardTypes from '../constants/CardTypes';
 import FlatListBig from '../components/CustomBoard/FlatListBig';
 import FlatListMedium from './../components/CustomBoard/FlatListMedium';
+import {fetchCities} from '../store/actions/cities';
 
 const FavouriteScreen = ({navigation}) => {
   const dispatch = useDispatch();
+  const cities = useSelector(state => state.cities.cachedCities);
   const favouriteCities = useSelector(
     state => state.favourites.favourite_cities,
   );
@@ -20,7 +22,30 @@ const FavouriteScreen = ({navigation}) => {
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const user = useSelector(state => state.user);
-  let Board = useSelector(state => state.favourites.style.board);
+  let missingCities = [];
+
+  if (favouriteCities.length > 0) {
+    favouriteCities.map(city => {
+      const foundCityIndex = cities.findIndex(c => c.id === city.cityId);
+      if (foundCityIndex === -1) {
+        missingCities.push(city.cityId);
+      }
+    });
+  }
+
+  const fetchCitiesData = useCallback(async () => {
+    try {
+      dispatch(fetchCities(missingCities));
+    } catch (error) {
+      console.log(error);
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (missingCities.length > 0) {
+      fetchCitiesData().then(() => {});
+    }
+  }, [fetchCitiesData, fetchCities]);
 
   //this run whenever the component is loaded
   useEffect(() => {
@@ -38,10 +63,6 @@ const FavouriteScreen = ({navigation}) => {
 
   const setCardStyleHandler = cardType => {
     dispatch(setCardStyle(cardType));
-  };
-
-  const addTripHandler = () => {
-    navigation.navigate('AddTrip');
   };
 
   return (

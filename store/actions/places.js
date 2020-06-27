@@ -69,13 +69,17 @@ export const fetchPlace = (placeId, cityId) => {
 
 export const fetchPlaceDescription = placeName => {
   var replacedPlaceName = placeName.split(' ').join('_');
-  const url = `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&titles=${replacedPlaceName}&redirects=true`;
+  const url = `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${replacedPlaceName}&redirects=true&exchars=800`;
+  //const url = `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&titles=${replacedPlaceName}&redirects=true`;
   console.log(url);
   return async dispatch => {
     const response = await axios.get(url);
 
     var page = Object.keys(response.data.query.pages);
-    const description = response.data.query.pages[page].extract;
+    let description = response.data.query.pages[page].extract;
+    //console.log(description);
+    description = description.replace('<p class="mw-empty-elt">\n</p>', '');
+    description = description.replace(/(\r\n|\n|\r)/gm, '');
     dispatch({type: FETCH_PLACE_DESCRIPTION, description});
   };
 };

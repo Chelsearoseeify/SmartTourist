@@ -21,7 +21,7 @@ const BackButton = ({navigation, onPress = () => {}}) => {
         style={{
           margin: 10,
           padding: 10,
-          backgroundColor: 'rgba(50, 120, 120, 0.5)',
+          backgroundColor: 'rgba(32,80,114, 0.7)',
           borderRadius: Style.borderRadiusRoundButton,
           height: 40,
           width: 40,
