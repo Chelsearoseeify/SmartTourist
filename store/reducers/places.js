@@ -42,10 +42,6 @@ function filterArray(array, filters) {
 
 const placesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CREATE_PLACE: {
-      console.log('DONE');
-      break;
-    }
     case SET_PLACES: {
       /* let filters = {};
       if (state.types.length > 0) {
@@ -58,11 +54,11 @@ const placesReducer = (state = initialState, action) => {
       let places = [];
       if (action.places.length > 0) {
         const currentCityId = action.places[0].cityId;
-        state.places.map((place, index) => console.log(index, place.name));
-        action.places.map((place, index) => console.log(index, place.name));
+        /* state.places.map((place, index) => console.log(index, place.name));
+        action.places.map((place, index) => console.log(index, place.name)); */
         places = [...state.places, ...action.places];
         places = places.filter(place => place.cityId === currentCityId);
-        places.map((place, index) => console.log(index, place.name));
+        /* places.map((place, index) => console.log(index, place.name)); */
       } else places = state.places;
       return {
         ...state,

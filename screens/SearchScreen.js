@@ -17,6 +17,7 @@ import {useDispatch} from 'react-redux';
 import {resetPlaceTypes, setSearchType} from './../store/actions/places';
 import SearchBar2 from './../components/SearchBar2';
 import SearchType from '../constants/SearchType';
+import BeautifulCities from './../containers/BeautifulCities';
 
 const SearchScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -46,6 +47,9 @@ const SearchScreen = ({navigation, route}) => {
           <View style={styles.cardStyle}>
             <View style={{marginEnd: -5, marginTop: 10}}>
               <TopDestinations {...navigation} />
+            </View>
+            <View style={{marginEnd: -5, marginTop: 10}}>
+              <BeautifulCities {...navigation} />
             </View>
 
             <Text style={styles.subtitleStyle}>Categories</Text>

@@ -5,6 +5,7 @@ import BigListCard from '../components/Cards/ListCardCityBig';
 import {setSelectedCity} from '../store/actions/cities';
 import {fetchTopDestinations} from '../store/actions/cities';
 import {v4 as uuidv4} from 'react-native-uuid';
+import {View} from 'react-native';
 
 const TopDestinations = navigation => {
   const dispatch = useDispatch();
@@ -33,16 +34,25 @@ const TopDestinations = navigation => {
       paddingLeft={20}
       onMoreTap={() => {
         navigation.navigate('GroupedCities', {title: 'Top destinations'});
-      }}>
-      {topDestinations.map(city => {
-        return (
-          <BigListCard
-            name={city.name}
-            imageId={city.imageUrl}
-            onPress={() => onCitySelected(city)}
-          />
-        );
-      })}
+      }}
+      height={210}>
+      {topDestinations ? (
+        topDestinations.map(city => {
+          return (
+            <BigListCard
+              name={city.name}
+              imageId={city.photoUrl}
+              onPress={() => onCitySelected(city)}
+            />
+          );
+        })
+      ) : (
+        <View>
+          <BigListCard name={''} imageId={''} onPress={() => {}} />
+          <BigListCard name={''} imageId={''} onPress={() => {}} />
+          <BigListCard name={''} imageId={''} onPress={() => {}} />
+        </View>
+      )}
     </HorizontalScrollView>
   );
 };

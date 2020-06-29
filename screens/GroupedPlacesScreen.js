@@ -44,6 +44,11 @@ const GroupedPlacesScreen = ({navigation, route}) => {
   );
 
   useEffect(() => {
+    console.log(places.length);
+    if (places.length === 0) navigation.pop();
+  });
+
+  useEffect(() => {
     const stealColor = async () => {
       let colors = await RNColorThief.getColor(favCity.photoUrl, 500, true);
       setBackgroundColor(`rgb(${colors.r}, ${colors.g}, ${colors.b})`);
@@ -51,60 +56,39 @@ const GroupedPlacesScreen = ({navigation, route}) => {
     stealColor();
   });
 
-  const loadProduct = async () => {
+  /* useEffect(() => {
+    console.log('a');
+    const loadPlaces = async () => {
+      try {
+        dispatch(fetchFavouritePlaces(user.userId, cityId));
+      } catch (error) {
+        setError(error.message); //error to be handled, it has to be defined
+      }
+    };
+    loadPlaces();
+  }, [dispatch]); */
+
+  /* const loadPlaces = async () => {
     setIsLoading(true);
     await dispatch(fetchFavouritePlaces(user.userId, cityId));
     setIsLoading(false);
   };
 
   useEffect(() => {
-    loadProduct();
-  }, [dispatch, places]);
-
-  /* 
-  useEffect(() => {
-    const toggleFavs = async () => {
-      if (Object.keys(cityRequest.city).length > 0) {
-        dispatch(
-          toggleFavouriteCity(
-            user.userId,
-            cityRequest.city,
-            cityRequest.actionType,
-          ),
-        );
-        dispatch(
-          toggleFavouritePlace(
-            user.userId,
-            placeRequest.place,
-            placeRequest.actionType,
-          ),
-        );
-      }
-    };
-    toggleFavs();
-  }, [dispatch, cityRequest]); */
+    loadPlaces();
+  }, [dispatch, places]); */
 
   const removePlace = place => {
     dispatch(toggleFavourite(place, title, user.userId));
-    //dispatch(setFavouriteRequest(place, title));
   };
 
   const renderGridItem = itemData => {
     return (
       <View style={{flex: 1, margin: Style.marginCard}}>
         {isDeleting ? (
-          <View
-            style={{
-              padding: 0,
-              alignItems: 'flex-end',
-              marginHorizontal: -12,
-              marginVertical: -5,
-            }}>
+          <View style={styles.deleteIconContainer}>
             <Icon
-              style={{
-                fontSize: Style.iconSize,
-                color: Colors.blueTitleColor,
-              }}
+              style={styles.deleteIcon}
               name="close"
               onPress={() => {
                 removePlace(itemData.item);
@@ -130,12 +114,7 @@ const GroupedPlacesScreen = ({navigation, route}) => {
   return (
     <SafeAreaView style={styles.container}>
       <BackButton navigation={navigation} />
-      <View />
-      <View
-        style={
-          (styles.titleViewStyle,
-          [{height: 200, width: '100%', flex: 1, position: 'absolute'}])
-        }>
+      <View style={styles.titleViewStyle}>
         <ImageBackground
           source={{
             uri: favCity.photoUrl,
@@ -148,22 +127,8 @@ const GroupedPlacesScreen = ({navigation, route}) => {
             end={{x: 0.72, y: 1.0}}
             locations={[0.1, 0.8]}
             style={{height: '100%'}}>
-            <View
-              style={{
-                height: 160,
-                flexDirection: 'column-reverse',
-                paddingStart: Style.paddingCard,
-                paddingBottom: Style.paddingCard,
-              }}>
-              <Text
-                style={{
-                  color: 'white',
-                  fontWeight: 'bold',
-                  fontSize: Style.fontSize.h2,
-                  marginLeft: Style.marginTopCardContainer,
-                }}>
-                {title}
-              </Text>
+            <View style={styles.titleContainerStyle}>
+              <Text style={styles.titleStyle}>{title}</Text>
             </View>
           </LinearGradient>
         </ImageBackground>
@@ -198,8 +163,7 @@ const GroupedPlacesScreen = ({navigation, route}) => {
   );
 };
 
-const topSpace = 160;
-
+const topSpace = 180;
 let styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.backgroundColor,
@@ -230,6 +194,10 @@ let styles = StyleSheet.create({
     height: topSpace,
     flex: 1,
     position: 'absolute',
+    height: 200,
+    width: '100%',
+    flex: 1,
+    position: 'absolute',
   },
   iconViewStyle: {
     width: '100%',
@@ -246,6 +214,28 @@ let styles = StyleSheet.create({
   imageBackgroundStyle: {
     width: '100%',
     height: '100%',
+  },
+  deleteIconContainer: {
+    padding: 0,
+    alignItems: 'flex-end',
+    marginHorizontal: -12,
+    marginVertical: -5,
+  },
+  deleteIcon: {
+    fontSize: Style.iconSize,
+    color: Colors.blueTitleColor,
+  },
+  titleContainerStyle: {
+    height: 180,
+    flexDirection: 'column-reverse',
+    paddingStart: Style.paddingCard,
+    paddingBottom: Style.paddingCard,
+  },
+  titleStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: Style.fontSize.h2,
+    marginLeft: Style.marginTopCardContainer,
   },
 });
 

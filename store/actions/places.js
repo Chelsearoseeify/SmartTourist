@@ -121,7 +121,7 @@ export const fetchPlacesFromGoogle = (
     url = url.concat(`&pagetoken=${pageToken}`);
   }
 
-  //console.log(url);
+  console.log(url);
 
   return async dispatch => {
     try {

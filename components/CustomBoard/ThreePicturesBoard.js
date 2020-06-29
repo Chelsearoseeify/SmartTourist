@@ -49,7 +49,6 @@ const ThreePicturesBoard = ({name, places, onPress}) => {
 
   if (Platform.OS === 'android' && Platform.Version > 21)
     TouchableCmp = TouchableNativeFeedback;
-  console.log(places);
 
   return (
     <TouchableCmp onPress={onPress}>

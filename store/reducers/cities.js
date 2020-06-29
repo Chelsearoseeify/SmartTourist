@@ -12,8 +12,8 @@ import City from './../../models/City';
 const initialState = {
   cachedCities: [],
   top_destinations: [],
-  beautiful_cities: [],
-  /* selected_city: null, */
+  beautiful_cities: [] /* 
+  selected_city: null, */,
   selected_city: {
     geometry: {
       location: {lat: 50.0755381, lng: 14.4378005},

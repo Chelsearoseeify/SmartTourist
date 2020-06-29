@@ -40,18 +40,6 @@ const CitySearch = props => {
         token={token}
         onCitySelected={cityId => onCitySelected(cityId)}
       />
-      {/* <Icon style={styles.iconStyle} name={'city-variant-outline'} />
-      <TextInput
-        value={props.cityName ? props.cityName : 'Search for a city'}
-        onChangeText={() => openCityModal()}
-        placeholder="Type city name"
-        onFocus={onFocus}
-        onBlur={() => setShowList(false)}
-        label="    City"
-        keyboardType="default"
-        placeholderTextColor={Colors.textInputIconColor}
-        style={{color: Colors.blueTitleColor}}
-      /> */}
       <TouchableOpacity style={styles.inputSection} onPress={openCityModal}>
         <Icon style={styles.iconStyle} name={'city-variant-outline'} />
         <Text style={{color: Colors.blueTitleColor}}>
@@ -72,7 +60,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderWidth: 0,
     borderColor: Colors.backgroundColor,
-    marginBottom: 20,
+    marginBottom: 10,
     ...Style.shadow,
   },
   predictionContainer: {

@@ -8,40 +8,17 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import _ from 'lodash';
-import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
 import Style from '../constants/Style';
 import CustomButton from './../components/Buttons/CustomButton';
 import CitySearch from '../components/Inputs/CitySearch';
-import {fetchBeautifulCities, setSelectedCity} from './../store/actions/cities';
-import SmallListCard from '../components/Cards/ListCardCitySmall';
+import {setSelectedCity} from './../store/actions/cities';
+import BeautifulCities from './../containers/BeautifulCities';
 
 const MainPageScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const beautifulCities = useSelector(state => state.cities.beautiful_cities);
   const [cityId, setCityId] = useState();
   const [token, setToken] = useState();
-
-  let cityIcons = new Map();
-  cityIcons.set(
-    'Barcelona',
-    require('../assets/images/icons/barcelonaIcon.png'),
-  );
-  cityIcons.set('New York', require('../assets/images/icons/newYorkIcon.png'));
-  cityIcons.set('Rome', require('../assets/images/icons/romeIcon.png'));
-  cityIcons.set('Paris', require('../assets/images/icons/parisIcon.png'));
-  cityIcons.set('London', require('../assets/images/icons/londonIcon.png'));
-
-  useEffect(() => {
-    const loadBeautifulCities = async () => {
-      try {
-        await dispatch(fetchBeautifulCities());
-      } catch (error) {
-        setError(error.message); //error to be handled, it has to be defined
-      }
-    };
-    loadBeautifulCities();
-  }, [dispatch, fetchBeautifulCities]);
 
   const onCitySelected = (cityId, token) => {
     dispatch(setSelectedCity(cityId, token));
@@ -82,7 +59,6 @@ const MainPageScreen = ({navigation}) => {
           position: 'absolute',
           width: '100%',
           height: '100%',
-          zIndex: 1,
         }}>
         <View style={styles.cardStyle}>
           <View style={styles.cardContentStyle}>
@@ -92,7 +68,6 @@ const MainPageScreen = ({navigation}) => {
                 alignContent: 'center',
               }}>
               <Text style={styles.subtitleStyle}>Choose a city</Text>
-
               <CitySearch
                 onQuerySelected={(cityId, token) => {
                   setCityId(cityId);
@@ -101,23 +76,16 @@ const MainPageScreen = ({navigation}) => {
               />
             </View>
 
-            <Text style={styles.subtitleStyle}>Beautiful Cities</Text>
-            <ScrollView
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}>
-              {beautifulCities.map(city => {
-                return (
-                  <SmallListCard
-                    name={city.name}
-                    imageId={cityIcons.get(city.name)}
-                    onPress={() => {
-                      console.log('here');
-                      setCityId(city);
-                    }}
-                  />
-                );
-              })}
-            </ScrollView>
+            <View style={{marginEnd: -5, marginTop: 10}}>
+              <BeautifulCities
+                {...navigation}
+                onCitySelected={(cityId, token) => {
+                  setCityId(cityId);
+                  setToken(token);
+                }}
+              />
+            </View>
+
             <View style={{marginTop: 20}}>
               <CustomButton
                 text={'Travel'}
@@ -165,8 +133,9 @@ let styles = StyleSheet.create({
     color: Colors.greenTitleColor,
     fontWeight: 'bold',
     fontSize: Style.fontSize.h5,
-    marginStart: 10,
-    marginVertical: 5,
+    marginStart: 20,
+    marginTop: 5,
+    marginBottom: 10,
   },
 });
 

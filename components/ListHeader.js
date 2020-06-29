@@ -4,13 +4,15 @@ import Colors from '../constants/Colors';
 import Style from '../constants/Style';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const ListHeader = ({name, padding, action}) => {
+const ListHeader = ({name, padding, action, isThereMore = true}) => {
   return (
     <View style={{...styles.subTitleViewStyle, paddingLeft: padding}}>
       <Text style={styles.subtitleStyle}>{name}</Text>
-      <TouchableOpacity onPress={action}>
-        <Text style={styles.actionButtonStyle}>See all</Text>
-      </TouchableOpacity>
+      {isThereMore && (
+        <TouchableOpacity onPress={action}>
+          <Text style={styles.actionButtonStyle}>See all</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

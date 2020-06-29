@@ -93,8 +93,8 @@ export const toggleFavourite = (place, cityName, userId) => {
     );
     let city = new FavouriteCity(place.cityId, cityName, [], []);
     let deleteCity = false;
-    console.log(place);
-    console.log(existingCity);
+    /*     console.log(place);
+    console.log(existingCity); */
     if (existingCity) {
       city.placesIds = [...existingCity.placesIds];
       city.imageQueue = [...existingCity.imageQueue];

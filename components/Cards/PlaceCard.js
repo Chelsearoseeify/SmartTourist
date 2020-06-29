@@ -11,6 +11,7 @@ import {Text} from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Style from '../../constants/Style';
 import StarsRating from '../StarsRating';
+import Colors from '../../constants/Colors';
 
 const PlaceCard = ({name, imageUrl, rating, icon, onSelect}) => {
   let TouchableCmp = TouchableOpacity;
@@ -76,6 +77,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 200,
     ...Style.shadow,
+    backgroundColor: Colors.backgroundColor,
   },
   dataStyle: {
     flex: 1,

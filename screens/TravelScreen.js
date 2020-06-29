@@ -59,15 +59,15 @@ const TravelScreen = ({navigation, route}) => {
   };
 
   const loadPlaces = async () => {
+    setIsLoading(true);
     await dispatch(fetchFavourites(user.userId));
     await dispatch(
       fetchPlacesFromGoogle(selectedCity, searchType, selectedType, pageToken),
     );
+    setIsLoading(false);
   };
   useEffect(() => {
-    setIsLoading(true);
     loadPlaces();
-    setIsLoading(false);
   }, [dispatch, selectedCity, searchType, selectedType]);
 
   const mapHandler = () => {
@@ -189,7 +189,17 @@ const TravelScreen = ({navigation, route}) => {
             keyExtractor={(item, index) => index.toString()}
             ListFooterComponent={footerComponent}
             ListHeaderComponent={headerComponent}
-            onEndReached={loadPlaces}
+            onEndReached={() => {
+              dispatch(fetchFavourites(user.userId));
+              dispatch(
+                fetchPlacesFromGoogle(
+                  selectedCity,
+                  searchType,
+                  selectedType,
+                  pageToken,
+                ),
+              );
+            }}
           />
         </View>
       )}

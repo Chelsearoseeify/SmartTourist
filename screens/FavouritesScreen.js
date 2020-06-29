@@ -20,7 +20,7 @@ const FavouriteScreen = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
   const user = useSelector(state => state.user);
   let CardView = useSelector(state => state.favourites.cardStyle);
-  console.log(CardView);
+
   let missingCities = [];
 
   if (favouriteCities.length > 0) {
@@ -70,21 +70,21 @@ const FavouriteScreen = ({navigation}) => {
           <View style={styles.cardStyle}>
             <View style={styles.iconViewStyle}>
               <Icon
-                style={styles.icon}
+                style={[{color: Colors.blueTitleColor}, styles.icon]}
                 name="th-large"
                 onPress={() => {
                   dispatch(setCardStyle(CardTypes.BIG));
                 }}
               />
               <Icon
-                style={styles.icon}
+                style={[{color: Colors.blueTitleColor}, styles.icon]}
                 name="th-list"
                 onPress={() => {
                   dispatch(setCardStyle(CardTypes.SMALL));
                 }}
               />
               <Icon
-                style={styles.icon}
+                style={[{color: Colors.blueTitleColor}, styles.icon]}
                 name="list"
                 onPress={() => {
                   dispatch(setCardStyle(CardTypes.LIST));
@@ -152,7 +152,6 @@ let styles = StyleSheet.create({
   icon: {
     fontSize: Style.iconSize,
     paddingHorizontal: 24,
-    color: Colors.blueTitleColor,
   },
 });
 

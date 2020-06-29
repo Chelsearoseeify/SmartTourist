@@ -45,47 +45,6 @@ const favouritesReducer = (state = initialState, action) => {
         default:
           return {...state, cardStyle: FavSmallView};
       }
-    /* case TOGGLE_FAVOURITE_CITY: {
-      const favouriteCities = [...state.favourite_cities];
-      const index = state.favourite_cities.findIndex(
-        city => city.cityId === action.newCity.cityId,
-      );
-      if (index >= 0) favouriteCities.splice(index, 1);
-      if (state.actionType !== ActionType.DELETE_CITY)
-        favouriteCities.unshift(action.newCity);
-      const city_request = {
-        city: {},
-        actionType: '',
-      };
-      return {...state, favourite_cities: favouriteCities, city_request};
-    }
-    case TOGGLE_FAVOURITE_PLACE: {
-      const favouritePlaces = [...state.favourite_places];
-      const selectedFavouritePlaces = [...state.selected_favourite_places];
-      let placeIndex = state.favourite_places.findIndex(
-        place => place.id === action.newPlace.id,
-      );
-      if (placeIndex >= 0) favouritePlaces.splice(placeIndex, 1);
-      else favouritePlaces.unshift(action.newPlace);
-      placeIndex = state.selected_favourite_places.findIndex(
-        place => place.id === action.newPlace.id,
-      );
-      if (placeIndex >= 0) selectedFavouritePlaces.splice(placeIndex, 1);
-      const favouriteCities = [...state.favourite_cities];
-      const cityIndex = state.favourite_cities.findIndex(
-        city => city.cityId === action.newCity.cityId,
-      );
-      if (cityIndex >= 0) favouriteCities.splice(cityIndex, 1);
-      if (state.actionType !== ActionType.DELETE_CITY)
-        favouriteCities.unshift(action.newCity);
-
-      return {
-        ...state,
-        favourite_places: favouritePlaces,
-        selected_favourite_places: selectedFavouritePlaces,
-        favourite_cities: favouriteCities,
-      };
-    } */
     case TOGGLE_FAVOURITE: {
       const favouritePlaces = [...state.favourite_places];
       const selectedFavouritePlaces = [...state.selected_favourite_places];

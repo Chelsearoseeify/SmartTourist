@@ -16,6 +16,7 @@ const GroupedCitiesScreen = ({navigation, route}) => {
   const topDestinations = useSelector(state => state.cities.top_destinations);
 
   useEffect(() => {
+    console.log('a');
     const loadTopDestinations = async () => {
       try {
         dispatch(fetchTopDestinations());
@@ -37,9 +38,9 @@ const GroupedCitiesScreen = ({navigation, route}) => {
       <View style={{flex: 1, padding: 1}}>
         <BigListCard
           name={itemData.item.name}
-          imageId={itemData.item.imageUrl}
+          imageId={itemData.item.photoUrl}
           onPress={() => onCitySelected(itemData.item)}
-          style={{width: '100%'}}
+          width={'100%'}
         />
       </View>
     );

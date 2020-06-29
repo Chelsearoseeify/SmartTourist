@@ -5,7 +5,14 @@ import ListHeader from './ListHeader';
 import {useDispatch} from 'react-redux';
 import {fetchSelectedCity} from '../store/actions/cities';
 
-const HorizontalScrolliew = ({name, paddingLeft, onMoreTap, children}) => {
+const HorizontalScrolliew = ({
+  name,
+  paddingLeft,
+  onMoreTap,
+  children,
+  height = 200,
+  isThereMore = true,
+}) => {
   const dispatch = useDispatch();
 
   const onPressHandler = city => {
@@ -15,10 +22,21 @@ const HorizontalScrolliew = ({name, paddingLeft, onMoreTap, children}) => {
   };
 
   return (
-    <View>
-      <ListHeader name={name} padding={paddingLeft} action={onMoreTap} />
+    <View style={{zIndex: 2}}>
+      <ListHeader
+        name={name}
+        padding={paddingLeft}
+        action={onMoreTap}
+        isThereMore={isThereMore}
+      />
       <View>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            alignItems: 'center',
+          }}
+          style={{height: height}}>
           {children}
         </ScrollView>
       </View>
