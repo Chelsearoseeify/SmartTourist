@@ -45,15 +45,14 @@ const LabelButtonsList = () => {
   };
 
   return (
-    <View style={{flex: 1, paddingLeft: 10}}>
-      <FlatList
+    <FlatList
         data={types}
         renderItem={({item, index}) => renderTypeItem(item, index)}
         horizontal={true}
         keyExtractor={(item, index) => index.toString()}
         showsHorizontalScrollIndicator={false}
+        style={{paddingVertical: 10, paddingLeft: 10}}
       />
-    </View>
   );
 };
 

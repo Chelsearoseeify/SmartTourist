@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@eva-design/eva": "^1.4.0",
+    "@mapbox/polyline": "^1.1.1",
     "@react-native-community/checkbox": "^0.4.2",
     "@react-native-community/datetimepicker": "^2.3.2",
     "@react-native-community/geolocation": "^2.0.2",
@@ -30,7 +31,6 @@
     "react": "16.9.0",
     "react-native": "^0.62.2",
     "react-native-calendar-picker": "^6.1.4",
-    "react-native-color-thief": "git://github.com/6DegreeLabs/react-native-color-thief.git",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-htmlview": "^0.15.0",
     "react-native-linear-gradient": "^2.5.6",

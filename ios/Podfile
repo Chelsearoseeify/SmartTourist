@@ -45,8 +45,6 @@ target 'SmartTourist' do
 
   pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse.podspec"
 
-  pod 'react-native-color-thief', :path => '../node_modules/react-native-color-thief'
-
   target 'SmartTouristTests' do
     inherit! :search_paths
     # Pods for testing

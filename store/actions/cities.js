@@ -84,6 +84,7 @@ export const fetchCities = cityIds => {
           res.place_id,
           res.name,
           res.photoUrl,
+          '',
           res.geometry,
         );
         fetchedCities.push(city);

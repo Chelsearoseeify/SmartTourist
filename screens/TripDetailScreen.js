@@ -1,29 +1,29 @@
-import React, {useState, useEffect, useCallback} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {
   View,
   StyleSheet,
   SafeAreaView,
   Text,
-  ScrollView,
   Dimensions,
   ImageBackground,
 } from 'react-native';
-import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
+import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import TripDay from '../containers/TripDay';
+import ButtonWithIcon from '../components/Buttons/ButtonWithIcon';
 
-import {fetchMultiplePlaces} from '../store/actions/places';
-import {fetchCities} from '../store/actions/cities';
+import { fetchMultiplePlaces } from '../store/actions/places';
+import { fetchCities } from '../store/actions/cities';
 
 import LinearGradient from 'react-native-linear-gradient';
-import RNColorThief from 'react-native-color-thief';
+//import RNColorThief from 'react-native-color-thief';
 import Header from '../components/Header';
 import Style from '../constants/Style';
 import Colors from '../constants/Colors';
 
 const renderTripDay = (placeIds, placesData) => (
-  <View style={{flex: 1}}>
+  <View style={{ flex: 1 }}>
     <TripDay placeIds={placeIds} placesData={placesData} />
   </View>
 );
@@ -31,20 +31,20 @@ const renderTripDay = (placeIds, placesData) => (
 const renderTabBar = props => (
   <TabBar
     {...props}
-    indicatorStyle={{backgroundColor: Colors.greenSubTitleColor}}
-    indicatorContainerStyle={{alignItems: 'center'}}
-    style={{backgroundColor: 'white'}}
+    indicatorStyle={{ backgroundColor: Colors.greenSubTitleColor }}
+    indicatorContainerStyle={{ alignItems: 'center' }}
+    style={{ backgroundColor: 'white' }}
     inactiveColor={Colors.inactiveTabColor}
     activeColor={Colors.activeTabColor}
     renderLabel={renderLabel}
   />
 );
 
-const renderLabel = ({route, color}) => (
-  <Text style={{color}}>{route.title}</Text>
+const renderLabel = ({ route, color }) => (
+  <Text style={{ color }}>{route.title}</Text>
 );
 
-const initialLayout = {width: Dimensions.get('window').width};
+const initialLayout = { width: Dimensions.get('window').width };
 
 const TripDetailScreen = props => {
   const dispatch = useDispatch();
@@ -65,8 +65,8 @@ const TripDetailScreen = props => {
 
   useEffect(() => {
     const stealColor = async () => {
-      let colors = await RNColorThief.getColor(tripCity.photoUrl, 500, true);
-      setBackgroundColor(`rgb(${colors.r}, ${colors.g}, ${colors.b})`);
+      //let colors = await RNColorThief.getColor(tripCity.photoUrl, 500, true);
+      //setBackgroundColor(`rgb(${colors.r}, ${colors.g}, ${colors.b})`);
     };
     stealColor();
   });
@@ -108,39 +108,40 @@ const TripDetailScreen = props => {
   useEffect(() => {
     if (missingPlaceIds.length > 0) {
       console.log('missing place ids!');
-      loadMissingPlaces().then(() => {});
+      loadMissingPlaces().then(() => { });
     }
 
     const foundCityIndex = cities.findIndex(c => c.id === trip.cityId);
     if (foundCityIndex === -1) {
-      fetchCityData().then(() => {});
+      fetchCityData().then(() => { });
     }
   }, [loadMissingPlaces, fetchMultiplePlaces, fetchCities, fetchCityData]);
 
   for (let i = 0; i < numberOfDays; i++) {
-    tabRouteData.push({key: `key${i}`, title: `Day ${i + 1}`});
+    tabRouteData.push({ key: `key${i}`, title: `Day ${i + 1}` });
     sceneMapData[`key${i}`] = () => renderTripDay(trip.placeIds[i], placesData);
   }
 
   const [index, setIndex] = useState(0);
   const [routes] = useState(tabRouteData);
+  console.log(placesData);
 
   const renderScene = SceneMap(sceneMapData);
 
   return (
     <View style={styles.container}>
       {tripCity && (
-        <View style={{height: 300}}>
+        <View style={{ height: 300 }}>
           <ImageBackground
-            source={{uri: tripCity.photoUrl}}
+            source={{ uri: tripCity.photoUrl }}
             style={styles.imageBackgroundStyle}
             resizeMode="cover">
             <LinearGradient
               colors={['transparent', backgroundColor]}
-              start={{x: 0.8, y: 0.4}}
-              end={{x: 0.72, y: 1.0}}
+              start={{ x: 0.8, y: 0.4 }}
+              end={{ x: 0.72, y: 1.0 }}
               locations={[0.1, 0.8]}
-              style={{height: '100%'}}>
+              style={{ height: '100%' }}>
               <View
                 style={{
                   height: 240,
@@ -174,19 +175,37 @@ const TripDetailScreen = props => {
         </Text>
       </View> */}
       <View style={styles.cardsContainerStyle}>
-        <View style={[styles.cardStyle, Style.shadow, {flex: 1}]}>
-          <View style={{paddingVertical: 10}}>
-            <Text style={styles.tripNameStyle}>{trip.name}</Text>
+        <View style={[styles.cardStyle, Style.shadow, { flex: 1 }]}>
+          <View style={{ flexDirection: "row", paddingHorizontal: 20, paddingVertical: 20 }}>
+            <View style={{ flex: 1 }}>
+              <View style={{ paddingBottom: 10 }}>
+                <Text style={styles.tripNameStyle}>{trip.name}</Text>
+              </View>
+              <View>
+                <Text style={styles.tripDatesStyle}>{dateString}</Text>
+              </View>
+            </View>
+            <View style={{ width: '40%' }}>
+              <ButtonWithIcon
+                icon="directions"
+                text="Navigate"
+                onPress={() => {
+                  props.navigation.navigate('TripDayMap', {
+                    mapData: {
+                      cityGeometry: tripCity.geometry,
+                      placeIds: trip.placeIds[index]
+                    }
+                  })
+                }}
+              />
+            </View>
           </View>
-          <View style={{paddingVertical: 10}}>
-            <Text style={styles.tripDatesStyle}>{dateString}</Text>
-          </View>
-          <View style={{flex: 1}}>
+          <View style={{ flex: 1 }}>
             <TabView
               renderTabBar={renderTabBar}
               renderLabel={renderLabel}
               inactiveColor="red"
-              navigationState={{index, routes}}
+              navigationState={{ index, routes }}
               renderScene={renderScene}
               onIndexChange={setIndex}
               initialLayout={initialLayout}
@@ -229,12 +248,10 @@ let styles = StyleSheet.create({
     color: Colors.greenTitleColor,
     fontWeight: 'bold',
     fontSize: Style.fontSize.h5,
-    textAlign: 'center',
   },
   tripDatesStyle: {
     color: Colors.greenTitleColor,
     fontSize: Style.fontSize.h6,
-    textAlign: 'center',
   },
   imageBackgroundStyle: {
     width: '100%',

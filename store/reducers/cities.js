@@ -12,19 +12,19 @@ import City from './../../models/City';
 const initialState = {
   cachedCities: [],
   top_destinations: [],
-  beautiful_cities: [] /* 
-  selected_city: null, */,
-  selected_city: {
-    geometry: {
-      location: {lat: 50.0755381, lng: 14.4378005},
-      viewport: {northeast: [Object], southwest: [Object]},
-    },
-    iconId: null,
-    id: 'ChIJi3lwCZyTC0cRkEAWZg-vAAQ',
-    imageUrl: '',
-    name: 'Prague',
-    photoReference: undefined,
-  },
+  beautiful_cities: [],
+  selected_city: null,
+  // selected_city: {
+  //   geometry: {
+  //     location: {lat: 50.0755381, lng: 14.4378005},
+  //     viewport: {northeast: [Object], southwest: [Object]},
+  //   },
+  //   iconId: null,
+  //   id: 'ChIJi3lwCZyTC0cRkEAWZg-vAAQ',
+  //   imageUrl: '',
+  //   name: 'Prague',
+  //   photoReference: undefined,
+  // },
   queryPredictions: [],
 };
 

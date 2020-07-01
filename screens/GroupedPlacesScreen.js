@@ -25,7 +25,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Dimensions} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import RNColorThief from 'react-native-color-thief';
+//import RNColorThief from 'react-native-color-thief';
 
 const GroupedPlacesScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -50,14 +50,13 @@ const GroupedPlacesScreen = ({navigation, route}) => {
 
   useEffect(() => {
     const stealColor = async () => {
-      let colors = await RNColorThief.getColor(favCity.photoUrl, 500, true);
-      setBackgroundColor(`rgb(${colors.r}, ${colors.g}, ${colors.b})`);
+      //let colors = await RNColorThief.getColor(favCity.photoUrl, 500, true);
+      //setBackgroundColor(`rgb(${colors.r}, ${colors.g}, ${colors.b})`);
     };
     stealColor();
   });
 
-  /* useEffect(() => {
-    console.log('a');
+  useEffect(() => {
     const loadPlaces = async () => {
       try {
         dispatch(fetchFavouritePlaces(user.userId, cityId));
@@ -66,17 +65,7 @@ const GroupedPlacesScreen = ({navigation, route}) => {
       }
     };
     loadPlaces();
-  }, [dispatch]); */
-
-  /* const loadPlaces = async () => {
-    setIsLoading(true);
-    await dispatch(fetchFavouritePlaces(user.userId, cityId));
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    loadPlaces();
-  }, [dispatch, places]); */
+  }, [dispatch, fetchFavouritePlaces]);
 
   const removePlace = place => {
     dispatch(toggleFavourite(place, title, user.userId));

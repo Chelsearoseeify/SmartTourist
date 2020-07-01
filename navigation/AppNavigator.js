@@ -20,6 +20,7 @@ import Colors from '../constants/Colors';
 import GroupedCitiesScreen from './../screens/GroupedCitiesScreen';
 import SearchedPlacesScreen from './../screens/SearchedPlacesScreen';
 import Style from '../constants/Style';
+import TripDayMap from '../screens/TripDayMap';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -43,6 +44,7 @@ function MyTripsStackNavigator() {
       <Stack.Screen name="MyTrips" component={TripsScreen} />
       <Stack.Screen name="TripDetailScreen" component={TripDetailScreen} />
       <Stack.Screen name="Place" component={PlaceScreen} />
+      <Stack.Screen name="TripDayMap" component={TripDayMap} />
     </Stack.Navigator>
   );
 }
