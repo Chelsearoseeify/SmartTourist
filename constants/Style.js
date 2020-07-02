@@ -6,6 +6,7 @@ export default {
   borderRadiusRoundButton: 40,
   fontSizeScreenTitle: 33,
   iconSize: 24,
+  backIconSize: 18,
   inputIconSize: 18,
   fontSize: {
     h1: 30,
@@ -62,7 +63,7 @@ export default {
     shadowColor: 'black',
     shadowOpacity: 0.26,
     shadowOffset: {width: 0, height: 2},
-    shadowRadius: 5,
+    shadowRadius: 3,
     elevation: 6,
   },
   inputIconStyle: {

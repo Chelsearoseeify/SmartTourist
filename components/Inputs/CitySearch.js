@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import Colors from '../../constants/Colors';
 import Style from '../../constants/Style';
-import {setSelectedCity} from '../../store/actions/cities';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CitySearchModal from '../Cards/CitySearchModal';
 import {v4 as uuidv4} from 'react-native-uuid';
@@ -20,7 +19,7 @@ const CitySearch = props => {
   const [cityModalVisible, setCityModalVisible] = useState(false);
 
   const onCitySelected = cityId => {
-    dispatch(setSelectedCity(cityId, token));
+    props.onQuerySelected(cityId, token);
   };
 
   const onModalClose = () => {

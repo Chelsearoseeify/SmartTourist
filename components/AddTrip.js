@@ -8,7 +8,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import Style from '../constants/Style';
 import Colors from '../constants/Colors';
 
-import * as tripActions from '../store/actions/trips';
+import { setTripCity, createTrip} from '../store/actions/trips';
 
 import {setSelectedCity} from '../store/actions/cities';
 import GenericInput from './Inputs/GenericInput';
@@ -21,14 +21,14 @@ const AddTrip = () => {
 
   const addTripHandler = () => {
     dispatch(
-      tripActions.createTrip({
+      createTrip({
         name: tripName,
         city: selectedCity.name,
       }),
     );
   };
   const onCitySelected = (cityId, token) => {
-    dispatch(setSelectedCity(cityId, token));
+    dispatch(setTripCity(cityId, token));
   };
 
   return (

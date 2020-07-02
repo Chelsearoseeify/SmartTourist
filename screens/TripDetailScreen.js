@@ -10,15 +10,17 @@ import {
   ImageBackground,
 } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import LinearGradient from 'react-native-linear-gradient';
+
 import TripDay from '../containers/TripDay';
 import ButtonWithIcon from '../components/Buttons/ButtonWithIcon';
+import BackButton from '../components/Buttons/BackButton';
 
 import { fetchMultiplePlaces } from '../store/actions/places';
 import { fetchCities } from '../store/actions/cities';
 
-import LinearGradient from 'react-native-linear-gradient';
 //import RNColorThief from 'react-native-color-thief';
-import Header from '../components/Header';
 import Style from '../constants/Style';
 import Colors from '../constants/Colors';
 
@@ -130,6 +132,7 @@ const TripDetailScreen = props => {
 
   return (
     <View style={styles.container}>
+      <BackButton navigation={props.navigation} />
       {tripCity && (
         <View style={{ height: 300 }}>
           <ImageBackground
@@ -142,7 +145,7 @@ const TripDetailScreen = props => {
               end={{ x: 0.72, y: 1.0 }}
               locations={[0.1, 0.8]}
               style={{ height: '100%' }}>
-              <View
+              {/* <View
                 style={{
                   height: 240,
                   flexDirection: 'column-reverse',
@@ -158,22 +161,11 @@ const TripDetailScreen = props => {
                   }}>
                   {tripCity.name}
                 </Text>
-              </View>
+              </View> */}
             </LinearGradient>
           </ImageBackground>
         </View>
       )}
-      {/* <View style={styles.titleViewStyle}>
-        <Text
-          style={{
-            color: 'white',
-            fontWeight: 'bold',
-            fontSize: Style.fontSize.h1,
-            padding: 20,
-          }}>
-          {tripCity.name}
-        </Text>
-      </View> */}
       <View style={styles.cardsContainerStyle}>
         <View style={[styles.cardStyle, Style.shadow, { flex: 1 }]}>
           <View style={{ flexDirection: "row", paddingHorizontal: 20, paddingVertical: 20 }}>
@@ -181,23 +173,32 @@ const TripDetailScreen = props => {
               <View style={{ paddingBottom: 10 }}>
                 <Text style={styles.tripNameStyle}>{trip.name}</Text>
               </View>
-              <View>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Icon name="city-variant" style={styles.iconStyle} />
+                <Text style={styles.tripDatesStyle}>{tripCity.name}</Text>
+              </View>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Icon name="calendar" style={styles.iconStyle} />
                 <Text style={styles.tripDatesStyle}>{dateString}</Text>
               </View>
             </View>
-            <View style={{ width: '40%' }}>
-              <ButtonWithIcon
-                icon="directions"
-                text="Navigate"
-                onPress={() => {
-                  props.navigation.navigate('TripDayMap', {
-                    mapData: {
-                      cityGeometry: tripCity.geometry,
-                      placeIds: trip.placeIds[index]
-                    }
-                  })
-                }}
-              />
+            <View style={{ width: '45%' }}>
+              {trip.placeIds[index].length > 0 &&
+                <ButtonWithIcon
+                  icon="directions"
+                  text="Directions"
+                  onPress={() => {
+                    props.navigation.navigate('TripDayMap', {
+                      mapData: {
+                        cityGeometry: tripCity.geometry,
+                        placeIds: trip.placeIds[index],
+                        navigation: props.navigation
+                      }
+                    })
+                  }}
+                />
+              }
+
             </View>
           </View>
           <View style={{ flex: 1 }}>
@@ -250,12 +251,18 @@ let styles = StyleSheet.create({
     fontSize: Style.fontSize.h5,
   },
   tripDatesStyle: {
-    color: Colors.greenTitleColor,
+    color: Colors.blueTitleColor,
     fontSize: Style.fontSize.h6,
   },
   imageBackgroundStyle: {
     width: '100%',
     height: '100%',
+  },
+  iconStyle: {
+    fontSize: Style.iconSize,
+    color: Colors.blueTitleColor,
+    marginRight: 10,
+    marginTop: 3
   },
 });
 

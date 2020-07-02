@@ -70,9 +70,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.26,
     shadowOffset: {width: 0, height: 2},
     shadowRadius: 5,
-    borderRadius: 10,
+    borderRadius: 20,
     backgroundColor: 'white',
-    padding: 10,
+    padding: 15,
     marginHorizontal: 15,
     height: 120,
     flexDirection: 'row',
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   imageStyle: {
     height: '100%',
     width: 100,
-    borderRadius: 10,
+    borderRadius: 15,
   },
   detailContainer: {
     width: '50%',

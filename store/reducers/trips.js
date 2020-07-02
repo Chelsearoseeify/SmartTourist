@@ -22,8 +22,8 @@ export default (state = initialState, action) => {
     case CREATE_TRIP:
       const newTrip = new Trip(
         Math.random(0, 1000),
-        action.trip.name,
-        action.trip.city,
+        state.newTrip.name,
+        state.newTrip.city,
         state.newTrip.startDate,
         state.newTrip.endDate,
         [],
