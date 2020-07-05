@@ -5,9 +5,6 @@ export const FETCH_TRIP_PLACES = 'FETCH_TRIP_PLACES';
 export const SET_TRIP_PLACES = 'SET_TRIP_PLACES';
 export const ADD_PLACE_TO_TRIP = 'ADD_PLACE_TO_TRIP';
 import City from '../../models/City';
-import axios from 'axios';
-
-import API_KEY from '../../constants/API_KEY';
 
 import placeRequest from '../../utils/placeRequest';
 

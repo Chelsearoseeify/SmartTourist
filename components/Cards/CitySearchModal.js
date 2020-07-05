@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   TextInput,
@@ -6,10 +6,11 @@ import {
   TouchableOpacity,
   Text,
   Keyboard,
+  Image,
 } from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import {queryCity} from '../../store/actions/cities';
+import { queryCity } from '../../store/actions/cities';
 
 import Style from '../../constants/Style';
 import Colors from '../../constants/Colors';
@@ -29,8 +30,8 @@ const CitySearchModal = props => {
   };
 
   const predictionSelectHandler = item => {
-    props.onCitySelected(item.place_id);
-    props.closeModal();
+    props.onCitySelected(item.structured_formatting.main_text, item.place_id);
+    onCloseModal();
     Keyboard.dismiss();
   };
 
@@ -50,9 +51,9 @@ const CitySearchModal = props => {
           predictionSelectHandler(item);
         }}
         style={styles.predictionItem}>
-        <Text style={{width: '90%'}}>{item.description}</Text>
+        <Text style={{ width: '90%' }}>{item.description}</Text>
         <Icon
-          style={{...styles.iconStyle, alignSelf: 'flex-end'}}
+          style={{ ...styles.iconStyle, alignSelf: 'flex-end' }}
           name={'arrow-top-right'}
         />
       </TouchableOpacity>
@@ -61,6 +62,7 @@ const CitySearchModal = props => {
 
   const onCloseModal = () => {
     setShowList(false);
+    setText('');
     props.closeModal();
   };
 
@@ -82,6 +84,11 @@ const CitySearchModal = props => {
         </View>
 
         {showList && predictions.map(p => renderPredictionItem(p))}
+        {showList &&
+          <View style={{ alignItems: "flex-end", width: '100%' }}>
+            <Image source={require('./powered_by_google.png')} style={{ width: '50%', resizeMode: "contain" }}></Image>
+          </View>
+        }
       </View>
     </Modal>
   );

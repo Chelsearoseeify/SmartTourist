@@ -44,7 +44,7 @@ const TravelScreen = ({navigation, route}) => {
   const [token, setToken] = useState('');
   const [cityModalVisible, setCityModalVisible] = useState(false);
 
-  const onCitySelected = cityId => {
+  const onCitySelected = (cityName, cityId) => {
     dispatch(setSelectedCity(cityId, token));
     setPageToken('');
   };
@@ -121,7 +121,7 @@ const TravelScreen = ({navigation, route}) => {
         visible={cityModalVisible}
         closeModal={onModalClose}
         token={token}
-        onCitySelected={cityId => onCitySelected(cityId)}
+        onCitySelected={(cityName, cityId) => onCitySelected(cityName, cityId)}
       />
       <View
         style={{

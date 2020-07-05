@@ -10,9 +10,6 @@ import TopDestinations from '../containers/TopDestinations';
 import BeautifulCities from '../containers/BeautifulCities';
 
 const AddTripScreen = props => {
-  const trips = useSelector(state => state.trips.userTrips);
-  console.log(trips.length);
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView keyboardShouldPersistTaps="handled">

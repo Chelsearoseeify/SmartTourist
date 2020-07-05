@@ -57,9 +57,9 @@ const FourPicturesBoard = ({name, places, onPress}) => {
     TouchableCmp = TouchableNativeFeedback;
 
   return (
-    <View>
+    <View style={{flex: 1}}>
       {places ? (
-        <TouchableCmp onPress={onPress}>
+        <TouchableCmp onPress={onPress} style={{flex: 1}}>
           <View style={styles.cardStyle}>
             <View style={{height: '80%'}}>
               <Board places={places} />

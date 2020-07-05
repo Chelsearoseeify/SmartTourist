@@ -1,10 +1,8 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
 import {
   StyleSheet,
   View,
   Text,
-  TextInput,
   TouchableOpacity,
 } from 'react-native';
 import Colors from '../../constants/Colors';
@@ -14,12 +12,11 @@ import CitySearchModal from '../Cards/CitySearchModal';
 import {v4 as uuidv4} from 'react-native-uuid';
 
 const CitySearch = props => {
-  const dispatch = useDispatch();
   const [token, setToken] = useState('');
   const [cityModalVisible, setCityModalVisible] = useState(false);
 
-  const onCitySelected = cityId => {
-    props.onQuerySelected(cityId, token);
+  const onCitySelected = (cityName, cityId) => {
+    props.onQuerySelected(cityName, cityId, token);
   };
 
   const onModalClose = () => {
@@ -37,7 +34,7 @@ const CitySearch = props => {
         visible={cityModalVisible}
         closeModal={onModalClose}
         token={token}
-        onCitySelected={cityId => onCitySelected(cityId)}
+        onCitySelected={(cityName, cityId) => onCitySelected(cityName, cityId)}
       />
       <TouchableOpacity style={styles.inputSection} onPress={openCityModal}>
         <Icon style={styles.iconStyle} name={'city-variant-outline'} />

@@ -9,7 +9,7 @@ import {
 import Trip from '../../models/Trip';
 import moment from 'moment';
 
-const emptyTrip = new Trip(Math.random(0, 1000), '', {}, null, null, []);
+const emptyTrip = new Trip(Math.random(0, 1000), '', '', null, null, []);
 
 const initialState = {
   userTrips: TRIPS,
@@ -20,10 +20,11 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case CREATE_TRIP:
+      console.log(action.trip);
       const newTrip = new Trip(
         Math.random(0, 1000),
-        state.newTrip.name,
-        state.newTrip.city,
+        action.trip.name,
+        action.trip.cityId,
         state.newTrip.startDate,
         state.newTrip.endDate,
         [],
@@ -31,9 +32,12 @@ export default (state = initialState, action) => {
 
       newTrip.setPlaceIds();
 
+      const updatedUserTrips = [...state.userTrips, newTrip];
+      state.newTrip = emptyTrip;
+
       return {
         ...state,
-        userTrips: [...state.userTrips, newTrip],
+        userTrips: updatedUserTrips,
         newTrip: emptyTrip,
       };
     case SET_TRIP_DATES:
@@ -51,7 +55,7 @@ export default (state = initialState, action) => {
     case SET_TRIP_CITY:
       const updatedTrip = {
         ...state.newTrip,
-        city: action.cityId,
+        cityId: action.cityId,
       };
 
       return {...state, newTrip: updatedTrip};

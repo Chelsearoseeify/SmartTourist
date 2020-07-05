@@ -53,6 +53,8 @@ const PlaceScreen = ({navigation, route}) => {
     index >= 0 ? 'cards-heart' : 'heart-outline',
   );
 
+  console.log(place);
+
   useEffect(() => {
     index = favouritePlaces.findIndex(place => place.id === id);
     setIcon(index >= 0 ? 'cards-heart' : 'heart-outline');
@@ -203,7 +205,7 @@ const PlaceScreen = ({navigation, route}) => {
               <View style={styles.detailViewStyle}>
                 <Text style={styles.detailStyle}>Details</Text>
                 <Detail
-                  text={'3601 S Gaffey St, San Pedro'}
+                  text={place.address}
                   iconName="map-marker-alt"
                 />
                 <Detail text={'+1 223-548-7785'} iconName="phone" />

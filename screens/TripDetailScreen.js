@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   View,
   StyleSheet,
-  SafeAreaView,
   Text,
   Dimensions,
   ImageBackground,

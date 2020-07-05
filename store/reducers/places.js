@@ -117,6 +117,8 @@ const placesReducer = (state = initialState, action) => {
         //console.log(foundIndex);
         if (foundIndex === -1) {
           updatedPlaces.push(actionPlace);
+        }else{
+          updatedPlaces[foundIndex] = actionPlace;
         }
       });
       //console.log(`updated places length: ${updatedPlaces.length}`);

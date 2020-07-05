@@ -18,7 +18,6 @@ const TripsScreen = props => {
   const dispatch = useDispatch();
   const [error, setError] = useState();
   const trips = useSelector(state => state.trips.userTrips);
-
   const cities = useSelector(state => state.cities.cachedCities);
 
   let missingCities = [];

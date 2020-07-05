@@ -101,7 +101,9 @@ export const fetchPlacesFromGoogle = (
 
   const textSearch = `textsearch/json?query=${
     city.name
-  }+point+of+interest&language=en`;
+  }+point+of+interest&location=${
+    city.geometry.location.lat
+  },${city.geometry.location.lng}&language=en`;
 
   const nearbySearch = `nearbysearch/json?location=${
     city.geometry.location.lat

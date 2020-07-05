@@ -60,13 +60,14 @@ const MapScreenf = ({navigation, route}) => {
   const [initialPosition, setInitialPosition] = useState({
     latitude: route.params.lat,
     longitude: route.params.lng,
-    latitudeDelta: 0.003,
-    longitudeDelta: 0.003,
+    latitudeDelta: 0.05,
+    longitudeDelta: 0.05,
   });
   let _map = {};
   let _carousel = {};
   //locateCurrentPosition();
   //requestLocationPermission();
+  console.log('asd');
 
   const computeDistance = (placePosition, unit) => {
     const R = 6371e3; // metres

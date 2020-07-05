@@ -15,17 +15,14 @@ const inputReducer = (state, action) => {
         value: action.value,
         isValid: action.isValid,
       };
-    case INPUT_BLUR:
-      return {
-        ...state,
-        touched: true,
-      };
     default:
       return state;
   }
 };
 
 const GenericInput = props => {
+  console.log('initialValue');
+  console.log(props.initialValue);
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: props.initialValue ? props.initialValue : '',
     isValid: props.initiallyValid,
@@ -47,10 +44,6 @@ const GenericInput = props => {
     dispatch({type: INPUT_CHANGE, value: text, isValid: isValid});
   };
 
-  const lostFocusHandler = () => {
-    dispatch({type: INPUT_BLUR});
-  };
-
   return (
     <View style={styles.formControl}>
       <View style={styles.inputSection}>
@@ -60,9 +53,8 @@ const GenericInput = props => {
           placeholder={props.label}
           value={inputState.value}
           onChangeText={textChangeHandler}
-          onBlur={lostFocusHandler}
           placeholderTextColor={Colors.textInputIconColor}
-          style={{color: Colors.blueTitleColor}}
+          style={{color: Colors.blueTitleColor, flex: 1}}
         />
       </View>
       {!inputState.isValid && inputState.touched && (
@@ -84,7 +76,7 @@ let styles = StyleSheet.create({
     height: 50,
     borderWidth: 0,
     borderColor: Colors.backgroundColor,
-    marginBottom: 20,
+    marginBottom: 10,
     ...Style.shadow,
   },
   iconStyle: {
@@ -93,15 +85,13 @@ let styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingHorizontal: 10,
   },
-  errorContainer: {
-    marginVertical: 5,
-  },
   errorText: {
     color: 'red',
     fontSize: 13,
   },
   formControl: {
     width: '100%',
+    marginBottom: 10
   },
   label: {
     marginVertical: 8,

@@ -1,16 +1,13 @@
-import React, {useState} from 'react';
-import {View, TextInput, Text, StyleSheet} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import CustomButton from '../components/Buttons/CustomButton';
 import CitySearch from '../components/Inputs/CitySearch';
 import CalendarDatePicker from '../components/Inputs/CalendarDatePicker';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useSelector, useDispatch} from 'react-redux';
-import Style from '../constants/Style';
+import { useSelector, useDispatch } from 'react-redux';
 import Colors from '../constants/Colors';
 
-import { setTripCity, createTrip} from '../store/actions/trips';
+import { setTripCity, createTrip } from '../store/actions/trips';
 
-import {setSelectedCity} from '../store/actions/cities';
 import GenericInput from './Inputs/GenericInput';
 
 const AddTrip = () => {
@@ -18,18 +15,45 @@ const AddTrip = () => {
   const [tripName, setTripName] = useState('');
   const selectedCity = useSelector(state => state.cities.selected_city);
   const newTrip = useSelector(state => state.trips.newTrip);
+  const [cityName, setCityName] = useState(selectedCity.name);
+  const [tripCityName, setTripCityName] = useState('');
 
   const addTripHandler = () => {
     dispatch(
       createTrip({
         name: tripName,
-        city: selectedCity.name,
+        cityId: newTrip.cityId === '' ? selectedCity.id : newTrip.cityId,
+        startDate: newTrip.startDate,
+        endDate: newTrip.endDate
       }),
     );
+    setTripCityName('');
+    setTripName('');
   };
-  const onCitySelected = (cityId, token) => {
+
+  const onCitySelected = (cityName, cityId, token) => {
+    setTripCityName(cityName);
     dispatch(setTripCity(cityId, token));
   };
+
+  const onInputChange = (text) => {
+    console.log(text);
+    setTripName(text);
+  }
+
+  const isTripValid = () => {
+    let validity = true;
+
+    if (tripName === '') {
+      validity = false;
+    }
+
+    if (newTrip.startDate === null || newTrip.endDate === null) {
+      validity = false;
+    }
+
+    return validity;
+  }
 
   return (
     <View style={styles.listViewStyle}>
@@ -42,41 +66,38 @@ const AddTrip = () => {
           width: '100%',
           alignContent: 'center',
         }}>
-        {/* <View style={Style.inputStyle}>
-          <Icon name="pen" size={22} style={Style.inputIconStyle} />
-          <TextInput
-            value={tripName}
-            placeholder="Choose your trip name"
-            placeholderTextColor={Colors.textInputIconColor}
-            onChangeText={v => setTripName(v)}
-          />
-        </View> */}
         <GenericInput
           id="tripName"
           label="Trip Name"
           required
           autoCapitalize="sentences"
           errorText="Please enter a valid trip name."
-          onInputChange={v => setTripName(v)}
+          onInputChange={(id, v, valid) => onInputChange(v)}
           initialValue={tripName}
           icon={'pen'}
         />
 
-        <CitySearch
-          cityName={selectedCity.name}
-          onQuerySelected={(cityId, token) => onCitySelected(cityId, token)}
-        />
-        <CalendarDatePicker datesString={newTrip.dateString} />
+        <View style={{ marginBottom: 10 }}>
+          <CitySearch
+            cityName={tripCityName !== '' ? tripCityName : cityName}
+            onQuerySelected={(cityName, cityId, token) => onCitySelected(cityName, cityId, token)}
+          />
+        </View>
+
+        <View style={{ marginBottom: 10 }}>
+          <CalendarDatePicker datesString={newTrip.dateString} />
+        </View>
 
         <View
-          style={{
-            width: '100%',
-            alignItems: 'flex-end',
-          }}>
-          <View style={{width: 150}}>
-            <CustomButton text={'ADD'} onPress={addTripHandler} />
+            style={{
+              width: '100%',
+              alignItems: 'flex-end',
+            }}>
+            <View style={{ width: 130 }}>
+              <CustomButton text={'ADD'} onPress={addTripHandler}/>
+            </View>
           </View>
-        </View>
+
       </View>
     </View>
   );
@@ -101,8 +122,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     marginBottom: 5,
     paddingStart: 5,
-    marginHorizontal: 25,
-    paddingBottom: 5,
+    paddingBottom: 15,
   },
 });
 

@@ -55,7 +55,7 @@ export const queryCity = (token, queryString) => {
   return async dispatch => {
     const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${queryString}&key=${
       API_KEY.API_KEY_PLACES
-    }&sessiontoken=${token}&language=en`;
+    }&sessiontoken=${token}&type=(cities)&language=en`;
     const response = await axios.get(url);
     const predictions = response.data.predictions;
 

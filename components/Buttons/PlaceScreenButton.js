@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
-    marginHorizontal: 10,
+    margin: 10,
     ...Style.shadow,
   },
   buttonIconStyle: {
