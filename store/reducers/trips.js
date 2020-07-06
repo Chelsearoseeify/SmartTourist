@@ -1,10 +1,12 @@
-import {TRIPS} from '../../data/dummy-data';
+import { TRIPS } from '../../data/dummy-data';
 import {
   CREATE_TRIP,
   SET_TRIP_DATES,
   SET_TRIP_CITY,
   SET_TRIP_PLACES,
   ADD_PLACE_TO_TRIP,
+  REMOVE_PLACE_FROM_TRIP,
+  FETCH_TRIPS,
 } from '../actions/trips';
 import Trip from '../../models/Trip';
 import moment from 'moment';
@@ -12,34 +14,46 @@ import moment from 'moment';
 const emptyTrip = new Trip(Math.random(0, 1000), '', '', null, null, []);
 
 const initialState = {
-  userTrips: TRIPS,
+  userTrips: [],
   newTrip: emptyTrip,
   tripPlaces: [],
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case FETCH_TRIPS:
+      console.log(action.userTrips);
+      return state;
+      return {...state, userTrips: action.userTrips}
     case CREATE_TRIP:
       console.log(action.trip);
-      const newTrip = new Trip(
-        Math.random(0, 1000),
-        action.trip.name,
-        action.trip.cityId,
-        state.newTrip.startDate,
-        state.newTrip.endDate,
-        [],
-      );
 
-      newTrip.setPlaceIds();
-
-      const updatedUserTrips = [...state.userTrips, newTrip];
-      state.newTrip = emptyTrip;
-
+      const updatedUserTrips = [...state.userTrips, action.trip];
+      
       return {
         ...state,
         userTrips: updatedUserTrips,
         newTrip: emptyTrip,
       };
+    case REMOVE_PLACE_FROM_TRIP:
+      const tripIndexToUpdate = state.userTrips.findIndex(t => t.id === action.payload.tripId);
+
+      if(tripIndexToUpdate !== -1){
+        let removedPlaceTrip = new Trip(
+          action.payload.tripId,
+          state.userTrips[tripIndexToUpdate].name,
+          state.userTrips[tripIndexToUpdate].cityId,
+          state.userTrips[tripIndexToUpdate].startDate,
+          state.userTrips[tripIndexToUpdate].endDate,
+          action.payload.newPlaceIds
+        )
+        let removedPlaceUserTrips = [...state.userTrips];
+        removedPlaceUserTrips[tripIndexToUpdate] = removedPlaceTrip;
+        return {...state, userTrips: removedPlaceUserTrips};
+      }
+      else{
+        return state;
+      }
     case SET_TRIP_DATES:
       const dateString = `${moment
         .unix(action.dates.startDate)
@@ -51,43 +65,36 @@ export default (state = initialState, action) => {
         dateString: dateString,
       };
 
-      return {...state, newTrip: updatedNewTrip};
+      return { ...state, newTrip: updatedNewTrip };
     case SET_TRIP_CITY:
       const updatedTrip = {
         ...state.newTrip,
         cityId: action.cityId,
       };
 
-      return {...state, newTrip: updatedTrip};
+      return { ...state, newTrip: updatedTrip };
     case ADD_PLACE_TO_TRIP:
       const tripIndex = state.userTrips.findIndex(
         t => t.id === action.payload.tripId,
       );
 
       if (tripIndex !== -1) {
-        let updatedPlaceIds = [...state.userTrips[tripIndex].placeIds];
-
-        action.payload.selections.map((selected, index) => {
-          if (selected) {
-            updatedPlaceIds[index].push(action.payload.placeId);
-          }
-        });
+        
         const updatedTrip = new Trip(
-          state.userTrips[tripIndex].id,
-          state.userTrips[tripIndex].name,
-          state.userTrips[tripIndex].cityId,
-          state.userTrips[tripIndex].startDate,
-          state.userTrips[tripIndex].endDate,
-          updatedPlaceIds,
+          action.trip.id,
+          action.trip.name,
+          action.trip.cityId,
+          action.trip.startDate,
+          action.trip.endDate,
+          action.updatedPlaceIds,
         );
 
         const updatedUserTrips = [...state.userTrips];
         updatedUserTrips[tripIndex] = updatedTrip;
-        console.log(updatedUserTrips);
-        return {...state, userTrips: updatedUserTrips};
+        return { ...state, userTrips: updatedUserTrips };
       }
     case SET_TRIP_PLACES:
-      return {...state, tripPlaces: action.places};
+      return { ...state, tripPlaces: action.places };
     default:
       return state;
   }

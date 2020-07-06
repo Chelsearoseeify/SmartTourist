@@ -13,7 +13,7 @@ const NextTripCard = props => {
     <TouchableOpacity style={styles.cardStyle} onPress={props.onPress}>
       <ImageBackground
         source={{
-          uri: props.tripCity.photoUrl,
+          uri: props.tripCity ? props.tripCity.photoUrl : '',
         }}
         style={styles.imageBackgroundStyle}
         imageStyle={{borderRadius: Style.borderRadiusCard, opacity: 0.8}}

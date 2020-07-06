@@ -23,6 +23,13 @@ const DateSelectionModal = props => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const windowWidth = Dimensions.get("window").width;
+  const dateNow = Date.now();
+  
+  let maxDate = null;
+  if(startDate && !endDate){
+    maxDate = new Date(startDate);
+    maxDate.setDate(maxDate.getDate() + 5);
+  }
 
   const onDateChangeHandler = (date, type) => {
     if (type == 'END_DATE') {
@@ -49,6 +56,10 @@ const DateSelectionModal = props => {
     props.closeModal();
   };
 
+  const areDatesValid = () =>{
+    return startDate && endDate;
+  }
+
   return (
     <Modal isVisible={props.visible} onBackdropPress={onCloseModal}>
       <View style={styles.citySearchModal}>
@@ -63,6 +74,8 @@ const DateSelectionModal = props => {
             selectedRangeStyle={{ backgroundColor: Colors.greenButtonColor }}
             selectedStartDate={startDate}
             selectedEndDate={endDate}
+            minDate={dateNow}
+            maxDate={maxDate}
             textStyle={{
               color: Colors.blueTitleColor,
             }}
@@ -71,7 +84,7 @@ const DateSelectionModal = props => {
           <View style={styles.calendarButtonsContainer}>
             {/* <Button title="Done" onPress={onDateCompleted} /> */}
             <View style={{ width: '40%' }}>
-              <CustomButton text="Done" onPress={onDateCompleted} />
+              <CustomButton text="Done" onPress={onDateCompleted} disabled={!areDatesValid()}/>
             </View>
           </View>
         </View>

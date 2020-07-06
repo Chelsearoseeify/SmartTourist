@@ -6,7 +6,6 @@ import TripDayCheckbox from './Inputs/TripDayCheckbox';
 
 const SelectTripDay = props => {
     const [daysToggle, setDaysToggle] = useState(props.daysData);
-    console.log(daysToggle);
 
     const onCheckboxToggle = (toggleState, index) => {
         let currentToggles = [...daysToggle];

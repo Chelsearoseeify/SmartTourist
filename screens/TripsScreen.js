@@ -1,10 +1,11 @@
-import React, {useEffect, useState, useCallback} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Colors from '../constants/Colors';
-import {View, StyleSheet, SafeAreaView, Text, ScrollView} from 'react-native';
+import { View, StyleSheet, SafeAreaView, Text, ScrollView } from 'react-native';
 import HorizontalScrollView from '../components/HorizontalScrollView';
 import NextTripCard from '../components/Cards/NextTripCard';
 import BigListCard from '../components/Cards/ListCardCityBig';
+import ButtonWithIcon from '../components/Buttons/ButtonWithIcon';
 
 import TopDestinations from '../containers/TopDestinations';
 import BeautifulCities from '../containers/BeautifulCities';
@@ -12,13 +13,17 @@ import BeautifulCities from '../containers/BeautifulCities';
 import Header from '../components/Header';
 import Style from '../constants/Style';
 
-import {fetchCities} from '../store/actions/cities';
+import { fetchCities } from '../store/actions/cities';
 
 const TripsScreen = props => {
   const dispatch = useDispatch();
-  const [error, setError] = useState();
   const trips = useSelector(state => state.trips.userTrips);
   const cities = useSelector(state => state.cities.cachedCities);
+  let closestTrip = null;
+
+  if (trips.length > 0) {
+    closestTrip = trips[0];
+  }
 
   let missingCities = [];
 
@@ -37,13 +42,17 @@ const TripsScreen = props => {
     } catch (error) {
       console.log(error);
     }
-  }, [dispatch]);
+  }, [dispatch, trips]);
 
   useEffect(() => {
     if (missingCities.length > 0) {
-      fetchCitiesData().then(() => {});
+      fetchCitiesData().then(() => { });
     }
-  }, [fetchCitiesData, fetchCities]);
+  }, [fetchCitiesData, fetchCities, trips]);
+
+  const onCreateTrip = () => {
+    props.navigation.navigate('Plus');
+  }
 
   const onTripSelected = trip => {
     console.log(`Selected trip ${trip.name}`);
@@ -55,11 +64,14 @@ const TripsScreen = props => {
   let nextTripComponent;
 
   if (trips.length === 0) {
-    nextTripComponent = <Text>No trips</Text>;
+    nextTripComponent = <View style={{ alignItems: "center", paddingVertical: 20 }}>
+      <Text>You have no trips. Create one!</Text>
+      <ButtonWithIcon icon='plus' text='Create a trip' onPress={onCreateTrip} />
+    </View>
   } else {
     const nextCity = cities.find(city => city.id === trips[0].cityId);
     nextTripComponent = (
-      <View style={{padding: 20}}>
+      <View style={{ padding: 20 }}>
         <Text
           style={{
             color: Colors.greenTitleColor,
@@ -69,16 +81,19 @@ const TripsScreen = props => {
           Your next trip
         </Text>
         <View style={styles.tripContainer}>
-          {nextCity ? (
+          {closestTrip ? (
             <NextTripCard
-              tripName={trips[0].name}
+              tripName={closestTrip.name}
               tripCity={nextCity}
-              dateString={trips[0].getTripDateString()}
-              onPress={() => onTripSelected(trips[0])}
+              dateString={closestTrip.getTripDateString()}
+              onPress={() => onTripSelected(closestTrip)}
             />
           ) : (
-            <Text>You have no trips. Create one!</Text>
-          )}
+              <View style={{ alignItems: "center", paddingVertical: 20 }}>
+                <Text>You have no incoming trips. Create one!</Text>
+                <ButtonWithIcon icon='plus' text='Create a trip' onPress={onCreateTrip} />
+              </View>
+            )}
         </View>
       </View>
     );
@@ -86,7 +101,7 @@ const TripsScreen = props => {
 
   let tripsHorizontal =
     trips.length > 1 ? (
-      <View style={{marginVertical: 10, paddingLeft: 10}}>
+      <View style={{ marginVertical: 10, paddingLeft: 10 }}>
         <HorizontalScrollView
           name={'All Trips'}
           paddingLeft={10}
@@ -95,6 +110,10 @@ const TripsScreen = props => {
           }}>
           {trips.map(trip => {
             const city = cities.find(city => city.id === trip.cityId);
+
+            if (trip.id === closestTrip.id)
+              return;
+
             return (
               <BigListCard
                 name={trip.name}
@@ -115,11 +134,9 @@ const TripsScreen = props => {
         </View>
         <View>
           <View style={styles.cardsContainerStyle}>
-            <View style={[styles.cardStyle, Style.shadow, {height: '100%'}]}>
+            <View style={[styles.cardStyle, Style.shadow, { height: '100%' }]}>
               {nextTripComponent}
-
               {tripsHorizontal}
-
               <View style={styles.listViewStyle}>
                 <View>
                   <Text style={styles.subtitleStyle}>Suggestions</Text>

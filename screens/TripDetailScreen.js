@@ -23,9 +23,16 @@ import { fetchCities } from '../store/actions/cities';
 import Style from '../constants/Style';
 import Colors from '../constants/Colors';
 
-const renderTripDay = (placeIds, placesData) => (
+const renderTripDay = (placeIds, placesData, navigation, dayIndex, tripId, isEditing) => (
   <View style={{ flex: 1 }}>
-    <TripDay placeIds={placeIds} placesData={placesData} />
+    <TripDay
+      placeIds={placeIds}
+      placesData={placesData}
+      navigation={navigation}
+      dayIndex={dayIndex}
+      tripId={tripId}
+      isEditing={isEditing}
+    />
   </View>
 );
 
@@ -55,6 +62,7 @@ const TripDetailScreen = props => {
   const places = useSelector(state => state.places.cachedPlaces);
   const cities = useSelector(state => state.cities.cachedCities);
   const [backgroundColor, setBackgroundColor] = useState('transparent');
+  const [isEditing, setIsEditing] = useState(true);
   const tripCity = cities.find(c => c.id === trip.cityId);
   const dateString = trip.getTripDateString();
   const numberOfDays = trip.numberOfDays();
@@ -120,12 +128,11 @@ const TripDetailScreen = props => {
 
   for (let i = 0; i < numberOfDays; i++) {
     tabRouteData.push({ key: `key${i}`, title: `Day ${i + 1}` });
-    sceneMapData[`key${i}`] = () => renderTripDay(trip.placeIds[i], placesData);
+    sceneMapData[`key${i}`] = () => renderTripDay(trip.placeIds[i], placesData, props.navigation, i, tripId, isEditing);
   }
 
   const [index, setIndex] = useState(0);
   const [routes] = useState(tabRouteData);
-  console.log(placesData);
 
   const renderScene = SceneMap(sceneMapData);
 
@@ -198,19 +205,30 @@ const TripDetailScreen = props => {
                 />
               }
 
+              <View style={styles.iconViewStyle}>
+                <Icon
+                  style={styles.editIcon}
+                  name="pencil"
+                  onPress={() => {
+                    isEditing ? setIsEditing(false) : setIsEditing(true);
+                  }}
+                />
+              </View>
             </View>
           </View>
-          <View style={{ flex: 1 }}>
-            <TabView
-              renderTabBar={renderTabBar}
-              renderLabel={renderLabel}
-              inactiveColor="red"
-              navigationState={{ index, routes }}
-              renderScene={renderScene}
-              onIndexChange={setIndex}
-              initialLayout={initialLayout}
-            />
-          </View>
+          {missingPlaceIds.length === 0 &&
+            <View style={{ flex: 1 }}>
+              <TabView
+                renderTabBar={renderTabBar}
+                renderLabel={renderLabel}
+                inactiveColor="red"
+                navigationState={{ index, routes }}
+                renderScene={renderScene}
+                onIndexChange={setIndex}
+                initialLayout={initialLayout}
+              />
+            </View>
+          }
         </View>
       </View>
     </View>
@@ -247,7 +265,7 @@ let styles = StyleSheet.create({
   tripNameStyle: {
     color: Colors.greenTitleColor,
     fontWeight: 'bold',
-    fontSize: Style.fontSize.h5,
+    fontSize: Style.fontSize.h3,
   },
   tripDatesStyle: {
     color: Colors.blueTitleColor,
@@ -262,6 +280,15 @@ let styles = StyleSheet.create({
     color: Colors.blueTitleColor,
     marginRight: 10,
     marginTop: 3
+  },
+  iconViewStyle: {
+    width: '100%',
+    alignItems: "flex-end",
+  },
+  editIcon: {
+    fontSize: Style.iconSize,
+    marginRight: 20,
+    color: Colors.blueTitleColor,
   },
 });
 

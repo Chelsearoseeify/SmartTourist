@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
 
 import CheckBox from '@react-native-community/checkbox';
 import Colors from '../../constants/Colors';
@@ -13,17 +13,17 @@ const TripDayCheckbox = props => {
     }
 
     return (
-        <View style={{flexDirection: "row", alignItems: "center", paddingEnd: 10}}>
-            <Text style={{paddingEnd: 10}}>Day {props.index + 1}</Text>
+        <View style={{ flexDirection: "row", alignItems: "center", paddingEnd: 10 }}>
+            <Text style={{ paddingEnd: 10 }}>Day {props.index + 1}</Text>
             <CheckBox
-            value={toggleCheckBox}
-            onValueChange={()=> onToggleChange()}
-            onCheckColor={Colors.greenTitleColor}
-            onTintColor={Colors.greenTitleColor}
-            style={{width: 20, height: 20}}
-        />
+                value={toggleCheckBox}
+                onValueChange={() => onToggleChange()}
+                onCheckColor={Colors.greenTitleColor}
+                onTintColor={Colors.greenTitleColor}
+                style={{ width: 20, height: 20 }}
+            />
         </View>
-        
+
     );
 }
 

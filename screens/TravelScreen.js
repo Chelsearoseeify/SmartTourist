@@ -24,6 +24,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CitySearchModal from './../components/Cards/CitySearchModal';
 import {v4 as uuidv4} from 'react-native-uuid';
 import {setSelectedCity} from './../store/actions/cities';
+import {fetchTrips} from './../store/actions/trips';
 
 //full height
 
@@ -64,6 +65,7 @@ const TravelScreen = ({navigation, route}) => {
     await dispatch(
       fetchPlacesFromGoogle(selectedCity, searchType, selectedType, pageToken),
     );
+    await dispatch(fetchTrips());
     setIsLoading(false);
   };
   useEffect(() => {

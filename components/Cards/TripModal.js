@@ -20,19 +20,25 @@ const TripModal = props => {
     //const filteredTrips = [];
     const filteredTrips = trips.filter(trip => trip.cityId === props.place.cityId);
 
-    let selectionData = [];
-    if (filteredTrips.length > 0) {
-        filteredTrips.map((trip,tripIndex) => {
-            const numberOfDays = trip.numberOfDays();
-            if (numberOfDays > 0) {
-                daysData = [];
-                for (let i = 0; i < numberOfDays; i++) {
-                    daysData.push(trip.placeIds[i].includes(props.place.id));
+    let selectionData;
+
+    const updateSelections = () => {
+        selectionData = [];
+        if (filteredTrips.length > 0) {
+            filteredTrips.map((trip,tripIndex) => {
+                const numberOfDays = trip.numberOfDays();
+                if (numberOfDays > 0) {
+                    daysData = [];
+                    for (let i = 0; i < numberOfDays; i++) {
+                        daysData.push(trip.placeIds[i].includes(props.place.id));
+                    }
+                    selectionData.push(daysData)
                 }
-                selectionData.push(daysData)
-            }
-        })
+            })
+        }
     }
+
+    updateSelections();
 
     const [selections, setSelections] = useState(selectionData);
 
@@ -46,8 +52,10 @@ const TripModal = props => {
         console.log(selections);
         selections.map((selection,index) =>{
             const trip = filteredTrips[index];
-            dispatch(addPlaceToTrip(trip.id, props.place.id, selection));
+            dispatch(addPlaceToTrip(trip, props.place.id, selection));
         })
+        props.onCloseModal();
+        updateSelections(selectionData);
     }
 
     const onCreateTrip = () =>{

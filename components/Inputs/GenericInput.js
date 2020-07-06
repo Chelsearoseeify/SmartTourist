@@ -1,5 +1,5 @@
-import React, {useReducer, useEffect} from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import React, { useReducer, useEffect } from 'react';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 import Colors from '../../constants/Colors';
 import Style from '../../constants/Style';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -15,20 +15,27 @@ const inputReducer = (state, action) => {
         value: action.value,
         isValid: action.isValid,
       };
+    case INPUT_BLUR:
+      return {
+        ...state,
+        touched: true,
+      };
     default:
       return state;
   }
 };
 
 const GenericInput = props => {
-  console.log('initialValue');
-  console.log(props.initialValue);
   const [inputState, dispatch] = useReducer(inputReducer, {
-    value: props.initialValue ? props.initialValue : '',
+    value: props.initialValue.length > 0 ? props.initialValue : '',
     isValid: props.initiallyValid,
     touched: false,
   });
-  const {onInputChange, id} = props;
+  const { onInputChange, id } = props;
+
+  const lostFocusHandler = () => {
+    dispatch({type: INPUT_BLUR});
+  };
 
   useEffect(() => {
     if (inputState.touched) {
@@ -41,7 +48,7 @@ const GenericInput = props => {
     if (text.length === 0) {
       isValid = false;
     }
-    dispatch({type: INPUT_CHANGE, value: text, isValid: isValid});
+    dispatch({ type: INPUT_CHANGE, value: text, isValid: isValid });
   };
 
   return (
@@ -49,12 +56,12 @@ const GenericInput = props => {
       <View style={styles.inputSection}>
         <Icon style={styles.iconStyle} name={props.icon} />
         <TextInput
-          {...props}
           placeholder={props.label}
           value={inputState.value}
           onChangeText={textChangeHandler}
+          onBlur={lostFocusHandler}
           placeholderTextColor={Colors.textInputIconColor}
-          style={{color: Colors.blueTitleColor, flex: 1}}
+          style={{ color: Colors.blueTitleColor, flex: 1 }}
         />
       </View>
       {!inputState.isValid && inputState.touched && (

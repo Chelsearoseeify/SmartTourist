@@ -10,25 +10,25 @@ import { setTripCity, createTrip } from '../store/actions/trips';
 
 import GenericInput from './Inputs/GenericInput';
 
-const AddTrip = () => {
+const AddTrip = props => {
   const dispatch = useDispatch();
   const [tripName, setTripName] = useState('');
   const selectedCity = useSelector(state => state.cities.selected_city);
   const newTrip = useSelector(state => state.trips.newTrip);
-  const [cityName, setCityName] = useState(selectedCity.name);
   const [tripCityName, setTripCityName] = useState('');
 
-  const addTripHandler = () => {
-    dispatch(
+  const addTripHandler = async () => {
+    await dispatch(
       createTrip({
         name: tripName,
         cityId: newTrip.cityId === '' ? selectedCity.id : newTrip.cityId,
         startDate: newTrip.startDate,
         endDate: newTrip.endDate
-      }),
+      })
     );
     setTripCityName('');
     setTripName('');
+    props.navigation.navigate('MyTrips', { screen: 'MyTrips'});
   };
 
   const onCitySelected = (cityName, cityId, token) => {
@@ -37,7 +37,6 @@ const AddTrip = () => {
   };
 
   const onInputChange = (text) => {
-    console.log(text);
     setTripName(text);
   }
 
@@ -79,7 +78,7 @@ const AddTrip = () => {
 
         <View style={{ marginBottom: 10 }}>
           <CitySearch
-            cityName={tripCityName !== '' ? tripCityName : cityName}
+            cityName={tripCityName !== '' ? tripCityName : selectedCity.name}
             onQuerySelected={(cityName, cityId, token) => onCitySelected(cityName, cityId, token)}
           />
         </View>
@@ -89,14 +88,14 @@ const AddTrip = () => {
         </View>
 
         <View
-            style={{
-              width: '100%',
-              alignItems: 'flex-end',
-            }}>
-            <View style={{ width: 130 }}>
-              <CustomButton text={'ADD'} onPress={addTripHandler}/>
-            </View>
+          style={{
+            width: '100%',
+            alignItems: 'flex-end',
+          }}>
+          <View style={{ width: 130 }}>
+            <CustomButton text={'ADD'} onPress={addTripHandler} disabled={!isTripValid()} />
           </View>
+        </View>
 
       </View>
     </View>

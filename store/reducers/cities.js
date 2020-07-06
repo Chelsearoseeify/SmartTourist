@@ -66,7 +66,6 @@ const cityReducer = (state = initialState, action) => {
     }
     case CACHE_CITIES: {
       updatedCache = [...state.cachedCities];
-
       action.cities.map(city => {
         const foundIndex = updatedCache.findIndex(p => p.id === city.id);
         if (foundIndex === -1) {

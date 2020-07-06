@@ -15,7 +15,7 @@ const AddTripScreen = props => {
       <ScrollView keyboardShouldPersistTaps="handled">
         <View>
           <View style={{...styles.cardStyle, padding: 20}}>
-            <AddTrip />
+            <AddTrip navigation={props.navigation}/>
             {/* {trips && trips.map((trip) => {
               return <View>
                 <Text>{trip.city}</Text>
