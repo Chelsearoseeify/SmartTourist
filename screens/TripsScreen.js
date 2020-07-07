@@ -15,17 +15,19 @@ import Style from '../constants/Style';
 
 import { fetchCities } from '../store/actions/cities';
 
+import moment from 'moment';
+
 const TripsScreen = props => {
   const dispatch = useDispatch();
   const trips = useSelector(state => state.trips.userTrips);
   const cities = useSelector(state => state.cities.cachedCities);
   let closestTrip = null;
-
-  if (trips.length > 0) {
-    closestTrip = trips[0];
-  }
+  let futureTrips = [];
+  let pastTrips = [];
 
   let missingCities = [];
+  const dateNow = moment().unix();
+  console.log(dateNow);
 
   if (trips.length > 0) {
     trips.map(trip => {
@@ -34,6 +36,22 @@ const TripsScreen = props => {
         missingCities.push(trip.cityId);
       }
     });
+  }
+
+  if (trips.length > 0 && missingCities.length === 0) {
+    trips.map(trip => {
+      if (trip.startDate > dateNow) {
+        console.log(`trip "${trip.name}" is in the future`);
+        futureTrips.push(trip);
+      } else {
+        console.log(`trip "${trip.name}" is in the past`);
+        pastTrips.push(trip);
+      }
+    })
+
+    if (futureTrips.length > 0) {
+      closestTrip = futureTrips[0];
+    }
   }
 
   const fetchCitiesData = useCallback(async () => {
@@ -71,7 +89,7 @@ const TripsScreen = props => {
   } else {
     const nextCity = cities.find(city => city.id === trips[0].cityId);
     nextTripComponent = (
-      <View style={{ padding: 20 }}>
+      <View style={{ paddingHorizontal: 10, paddingVertical: 30 }}>
         <Text
           style={{
             color: Colors.greenTitleColor,
@@ -99,31 +117,57 @@ const TripsScreen = props => {
     );
   }
 
-  let tripsHorizontal =
-    trips.length > 1 ? (
-      <View style={{ marginVertical: 10, paddingLeft: 10 }}>
-        <HorizontalScrollView
-          name={'All Trips'}
-          paddingLeft={10}
-          onMoreTap={() => {
-            console.log('See all trips');
-          }}>
-          {trips.map(trip => {
-            const city = cities.find(city => city.id === trip.cityId);
+  let futureTripsHorizontal =
+    futureTrips.length > 1 ? (
+      <HorizontalScrollView
+        name={'Future Trips'}
+        paddingLeft={10}
+        isThereMore={false}
+        onMoreTap={() => {
+          console.log('See all trips');
+        }}>
+        {futureTrips.map(trip => {
+          const city = cities.find(city => city.id === trip.cityId);
 
-            if (trip.id === closestTrip.id)
-              return;
+          if (trip.id === closestTrip.id)
+            return;
+
+          return (
+            <BigListCard
+              name={trip.name}
+              subTitle={trip.getTripDateString()}
+              imageId={city ? city.photoUrl : ''}
+              onPress={() => onTripSelected(trip)}
+            />
+          );
+        })}
+      </HorizontalScrollView>
+    ) : null;
+
+  let pastTripsHorizontal =
+    pastTrips.length > 0 ? (
+      <HorizontalScrollView
+        name={'Past Trips'}
+        paddingLeft={10}
+        isThereMore={false}
+        onMoreTap={() => {
+          console.log('See all trips');
+        }}>
+        {
+          pastTrips.map(trip => {
+            const city = cities.find(city => city.id === trip.cityId);
 
             return (
               <BigListCard
                 name={trip.name}
+                subTitle={trip.getTripMonthString()}
                 imageId={city ? city.photoUrl : ''}
                 onPress={() => onTripSelected(trip)}
               />
             );
-          })}
-        </HorizontalScrollView>
-      </View>
+          })
+        }
+      </HorizontalScrollView >
     ) : null;
 
   return (
@@ -136,15 +180,12 @@ const TripsScreen = props => {
           <View style={styles.cardsContainerStyle}>
             <View style={[styles.cardStyle, Style.shadow, { height: '100%' }]}>
               {nextTripComponent}
-              {tripsHorizontal}
+              {futureTripsHorizontal}
+              {pastTripsHorizontal}
               <View style={styles.listViewStyle}>
-                <View>
-                  <Text style={styles.subtitleStyle}>Suggestions</Text>
-                </View>
-                <View>
-                  <TopDestinations />
-                  <BeautifulCities />
-                </View>
+                <Text style={styles.subtitleStyle}>Suggestions</Text>
+                <TopDestinations />
+                <BeautifulCities />
               </View>
             </View>
           </View>
@@ -180,7 +221,7 @@ let styles = StyleSheet.create({
   },
   listViewStyle: {
     marginTop: 10,
-    marginBottom: 20,
+    marginBottom: 20
   },
   subtitleStyle: {
     color: Colors.blueTitleColor,

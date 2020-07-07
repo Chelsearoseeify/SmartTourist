@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import HorizontalScrollView from '../components/HorizontalScrollView';
 import BigListCard from '../components/Cards/ListCardCityBig';
-import {setSelectedCity} from '../store/actions/cities';
-import {fetchTopDestinations} from '../store/actions/cities';
-import {v4 as uuidv4} from 'react-native-uuid';
-import {View} from 'react-native';
+import { setSelectedCity } from '../store/actions/cities';
+import { fetchTopDestinations } from '../store/actions/cities';
+import { v4 as uuidv4 } from 'react-native-uuid';
+import { View } from 'react-native';
 
 const TopDestinations = navigation => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const TopDestinations = navigation => {
       name={'Top destinations'}
       paddingLeft={20}
       onMoreTap={() => {
-        navigation.navigate('GroupedCities', {title: 'Top destinations'});
+        navigation.navigate('GroupedCities', { title: 'Top destinations' });
       }}
       height={210}>
       {topDestinations ? (
@@ -47,12 +47,12 @@ const TopDestinations = navigation => {
           );
         })
       ) : (
-        <View>
-          <BigListCard name={''} imageId={''} onPress={() => {}} />
-          <BigListCard name={''} imageId={''} onPress={() => {}} />
-          <BigListCard name={''} imageId={''} onPress={() => {}} />
-        </View>
-      )}
+          <View>
+            <BigListCard name={''} imageId={''} onPress={() => { }} />
+            <BigListCard name={''} imageId={''} onPress={() => { }} />
+            <BigListCard name={''} imageId={''} onPress={() => { }} />
+          </View>
+        )}
     </HorizontalScrollView>
   );
 };

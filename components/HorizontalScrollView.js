@@ -1,9 +1,7 @@
 import React from 'react';
 
-import {View, ScrollView} from 'react-native';
+import { View, ScrollView } from 'react-native';
 import ListHeader from './ListHeader';
-import {useDispatch} from 'react-redux';
-import {fetchSelectedCity} from '../store/actions/cities';
 
 const HorizontalScrolliew = ({
   name,
@@ -13,16 +11,9 @@ const HorizontalScrolliew = ({
   height = 200,
   isThereMore = true,
 }) => {
-  const dispatch = useDispatch();
-
-  const onPressHandler = city => {
-    console.log(city);
-    dispatch(fetchSelectedCity(city.id));
-    navigation.navigate('Travel', {});
-  };
 
   return (
-    <View style={{zIndex: 2}}>
+    <View style={{ zIndex: 2 }}>
       <ListHeader
         name={name}
         padding={paddingLeft}
@@ -34,9 +25,9 @@ const HorizontalScrolliew = ({
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{
-            alignItems: 'center',
+            alignItems: 'center'
           }}
-          style={{height: height}}>
+          style={{ height: height }}>
           {children}
         </ScrollView>
       </View>

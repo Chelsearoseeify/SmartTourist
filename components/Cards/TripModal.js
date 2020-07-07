@@ -13,19 +13,21 @@ import Style from '../../constants/Style';
 
 import { addPlaceToTrip } from '../../store/actions/trips';
 
+import moment from 'moment';
+
 const TripModal = props => {
     const dispatch = useDispatch();
     const trips = useSelector(state => state.trips.userTrips);
+    const dateNow = moment().unix();
 
-    //const filteredTrips = [];
-    const filteredTrips = trips.filter(trip => trip.cityId === props.place.cityId);
+    const filteredTrips = trips.filter(trip => trip.cityId === props.place.cityId && trip.startDate > dateNow);
 
     let selectionData;
 
     const updateSelections = () => {
         selectionData = [];
         if (filteredTrips.length > 0) {
-            filteredTrips.map((trip,tripIndex) => {
+            filteredTrips.map((trip, tripIndex) => {
                 const numberOfDays = trip.numberOfDays();
                 if (numberOfDays > 0) {
                     daysData = [];
@@ -50,7 +52,7 @@ const TripModal = props => {
 
     const onSelectionConfirm = () => {
         console.log(selections);
-        selections.map((selection,index) =>{
+        selections.map((selection, index) => {
             const trip = filteredTrips[index];
             dispatch(addPlaceToTrip(trip, props.place.id, selection));
         })
@@ -58,9 +60,13 @@ const TripModal = props => {
         updateSelections(selectionData);
     }
 
-    const onCreateTrip = () =>{
+    const onCreateTrip = () => {
         props.navigation.navigate('Plus');
         props.onCloseModal();
+    }
+
+    const isSelectionValid = () =>{
+        return selections.some(selection => selection.includes(true));
     }
 
     let component = filteredTrips.length > 0
@@ -71,25 +77,28 @@ const TripModal = props => {
                 return <SelectTripDay
                     daysData={selections[index]}
                     tripName={trip.name}
+                    tripDates={trip.getTripDateString()}
                     selectionIndex={index}
                     onSelectionChanged={onSelectionChange}
                 />
             })}
             <View style={styles.confirmContainerStyle}>
-                <ButtonWithIcon icon='plus' text='Create a trip' onPress={onCreateTrip}/>
-                <CustomButton onPress={onSelectionConfirm} text="Confirm"/>
+                <ButtonWithIcon icon='plus' text='Create a new trip' onPress={onCreateTrip} />
+                <View style={{width: '80%'}}>
+                    <CustomButton onPress={onSelectionConfirm} text="Confirm" disabled={!isSelectionValid()}/>
+                </View>
             </View>
         </View>
         :
         <View style={{ alignItems: "center" }}>
             <Text>You don't have any trips for this city!</Text>
             <Text>Create a trip to add this place</Text>
-            <ButtonWithIcon icon='plus' text='Create a trip'/>
+            <ButtonWithIcon icon='plus' text='Create a trip' />
         </View>
     return (
         <Modal isVisible={props.visible} onBackdropPress={props.onCloseModal}>
             <View style={styles.addToTripModal}>
-                <View style={{ flexDirection: 'row', justifyContent: "flex-end" }}>
+                <View style={{ position: "absolute", right: 15, top: 15, zIndex: 10 }}>
                     <TouchableOpacity onPress={props.onCloseModal}>
                         <Icon name={'close'} style={styles.closeIconStyle} />
                     </TouchableOpacity>
@@ -110,15 +119,17 @@ const styles = StyleSheet.create({
         color: Colors.greenTitleColor,
         fontWeight: 'bold',
         fontSize: Style.fontSize.h4,
-        textAlign: "center"
+        textAlign: "center",
+        marginBottom: 10
     },
     closeIconStyle: {
         color: Colors.greenTitleColor,
         fontSize: Style.iconSize + 10,
     },
     confirmContainerStyle: {
-        width: '60%',
+        width: '70%',
         alignSelf: "center",
+        alignItems: "center",
         marginTop: 20
     }
 });

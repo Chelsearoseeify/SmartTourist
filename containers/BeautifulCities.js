@@ -1,10 +1,12 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { View } from 'react-native';
 
 import HorizontalScrollView from '../components/HorizontalScrollView';
 import SmallListCard from '../components/Cards/ListCardCitySmall';
 
-import {fetchBeautifulCities} from '../store/actions/cities';
+import { fetchBeautifulCities } from '../store/actions/cities';
 
 let cityIcons = new Map();
 cityIcons.set('Barcelona', require('../assets/images/icons/barcelonaIcon.png'));
@@ -13,7 +15,7 @@ cityIcons.set('Rome', require('../assets/images/icons/romeIcon.png'));
 cityIcons.set('Paris', require('../assets/images/icons/parisIcon.png'));
 cityIcons.set('London', require('../assets/images/icons/londonIcon.png'));
 
-const BeautifulCities = ({onCitySelected}) => {
+const BeautifulCities = ({ onCitySelected }) => {
   const dispatch = useDispatch();
   const beautifulCities = useSelector(state => state.cities.beautiful_cities);
 

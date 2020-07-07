@@ -1,11 +1,12 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {View, Text, ImageBackground, StyleSheet} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text, ImageBackground, StyleSheet } from 'react-native';
 import Style from '../../constants/Style';
 import Colors from '../../constants/Colors';
 
 const ListCardCityBig = ({
   name,
+  subTitle,
   imageId,
   onPress,
   width = 140,
@@ -13,7 +14,7 @@ const ListCardCityBig = ({
 }) => {
   return (
     <TouchableOpacity
-      style={{padding: Style.marginCard, width: width}}
+      style={{ padding: Style.marginCard, width: width }}
       onPress={onPress}>
       <View
         style={[
@@ -29,7 +30,7 @@ const ListCardCityBig = ({
             uri: imageId,
           }}
           style={styles.imageBackgroundStyle}
-          imageStyle={{borderRadius: Style.borderRadiusCard}}
+          imageStyle={{ borderRadius: Style.borderRadiusCard }}
           resizeMode="cover">
           <View style={styles.filterStyle}>
             <Text
@@ -37,9 +38,23 @@ const ListCardCityBig = ({
                 fontSize: Style.fontSize.h5,
                 fontWeight: 'bold',
                 color: 'white',
+                width: '80%',
+                marginBottom: 5,
+                textAlign: 'center'
               }}>
               {name}
             </Text>
+            {subTitle &&
+              <Text
+                style={{
+                  fontSize: Style.fontSize.h6,
+                  color: 'white',
+                  width: '80%',
+                  textAlign: 'center'
+                }}>
+                {subTitle}
+              </Text>
+            }
           </View>
         </ImageBackground>
       </View>

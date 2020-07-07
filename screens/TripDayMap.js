@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
 import { View, Text, StyleSheet } from 'react-native';
@@ -10,11 +10,32 @@ import Colors from '../constants/Colors';
 
 import directionsRequest from '../utils/directionsRequest';
 
+const CustomMarker = props => (
+    <View w>
+        <View
+            style={{
+                paddingVertical: 5,
+                paddingHorizontal: 10,
+                backgroundColor: "#ffff",
+                borderColor: "#eee",
+                borderRadius: 20,
+                borderWidth: 2,
+                borderColor: Colors.greenTitleColor
+            }}
+        >
+            <Text>{props.text}</Text>
+        </View>
+    </View>
+);
+
 const TripDayMap = props => {
-    const [directions, setDirections] = useState("ckspHi{bwAeAPAf@Gl@YzC?XZ|EAf@K^}@lCmB~FUp@C?_BLeA?{@ESCcAWUIEBEVINCG?JDP?NqCnEEp@AjAQHSp@KLBN@ZUb@[h@S\\u@pAw@nA}BlDsCtEo@`Ak@~@Uf@_@p@uCnE[f@AJBXgAhBsAvCy@~Ae@hAHN_AjBETGJQLgAzBi@CQAMHcACSB]Hc@RZfAXz@Dp@PjAB`@@HPBh@HAnANxAa@ZLl@PdA?rAOl@C`@C|@FJ?R@TRvADn@?z@KpBo@xHWzCa@pG_@~Fw@lHMhAWfBEp@MlBKRU`CUdBSzACPLBARCdBx@Tf@D\\GPGQF]FQ?oA[MA@g@Kk@MUSIgAOQKGIEWCYCqBMyCQiAMa@SU{@y@kA_Ac@g@q@}@GSEk@BgEBkDBc@BUMEmBd@uA^e@Pi@_AqAuB}AeCw@wAa@gAQm@{@qDMy@QaCKiAgAiF]_BKFCIGBOo@e@iBUaB_@yAi@oB{@iCEEEAE?COCIG@A?GCq@}@SWu@VmBd@WFAOMgBg@}FMDWHEYCK@WKyAG[?Kh@MDAf@CHFHjAANGLIHHIFM@OEw@GWECSBU?m@N?NDLJnA?j@Hd@^KDCR~BZxDFz@|Bk@|@YfAvAD@HAFXL@X|@^|@Ll@`AnDT`BRv@`@`BFCAKnDsBhDwB~@m@h@WXIDRv@a@pBeAxAy@pEeC|A_AnDsBBG?k@Oe@AC@BJVD^?FBAtAaAh@[JCL@FTXfAp@YZGjABDHNBb@DTCTa@x@eBBUFKJ@^s@\\w@CWIOd@iAx@_BrAwCl@aAXg@CU?IFOdEqGZu@|@wArCwEnCeE~AeCz@_Bb@w@Ek@Te@HYLGBA?m@DeA@I`@s@lAiBb@u@?GGa@BFHODWFAz@V\\F`@DnAB|AGf@EhAqDnB{FJ]H]?]YkEA_@VyCJwA?KLAf@MNA");
-    const { cityGeometry, placeIds } = props.route.params.mapData;
+    const [directions, setDirections] = useState('');
+    const [waypointOrder, setWaypointOrder] = useState([]);
+    const { cityGeometry, placeIds, directionMode } = props.route.params.mapData;
     const places = useSelector(state => state.places.cachedPlaces);
     let polylineCoords = [];
+
+    console.log(waypointOrder);
 
     if (directions !== '') {
         let steps = polyLine.decode(directions);
@@ -28,26 +49,37 @@ const TripDayMap = props => {
         }
     }
 
-    let tripDayPlaces;
+    let tripDayPlaces = [];
 
     if (placeIds && placeIds.length > 0) {
-        tripDayPlaces = places.filter(place => {
-            return placeIds.includes(place.id);
+        console.log('place Order');
+        placeIds.map((placeId, pIndex) => {
+            console.log(pIndex);
+            const index = places.findIndex(place => place.id === placeId);
+            tripDayPlaces.push(places[index]);
+            console.log(places[index].name);
         })
     }
 
-    const loadPlaces = async () => {
-        const newDirections = await directionsRequest(placeIds, 'ChIJi3lwCZyTC0cRkEAWZg-vAAQ');
-        setDirections(newDirections);
-    };
+    console.log('waypoint Order');
+    waypointOrder.map(index => {
+        console.log(index);
+        console.log(tripDayPlaces[index].name);
+    })
+
+    const getDirections = useCallback(async () => {
+        const newDirections = await directionsRequest(placeIds, 'ChIJi3lwCZyTC0cRkEAWZg-vAAQ', directionMode);
+        setDirections(newDirections.overview_polyline.points);
+        setWaypointOrder(newDirections.waypoint_order);
+    }, []);
 
     useEffect(() => {
-        //loadPlaces();
-    }, [loadPlaces])
+        getDirections();
+    }, [getDirections, directionsRequest])
 
     return (
         <View style={styles.container}>
-            <BackButton navigation={props.navigation}/>
+            <BackButton navigation={props.navigation} />
             <MapView
                 style={styles.map}
                 provider={PROVIDER_GOOGLE}
@@ -58,16 +90,19 @@ const TripDayMap = props => {
                     longitudeDelta: 0.0421,
                 }}
             >
-                {tripDayPlaces && tripDayPlaces.map((place, index) => (
+                {tripDayPlaces && directions !== '' && waypointOrder.map((waypointIndex,index) => (
                     <Marker
-                        key={place.id}
+                        key={tripDayPlaces[waypointIndex].id}
                         coordinate={{
-                            latitude: place.geometry.location.lat,
-                            longitude: place.geometry.location.lng,
+                            latitude: tripDayPlaces[waypointIndex].geometry.location.lat,
+                            longitude: tripDayPlaces[waypointIndex].geometry.location.lng,
                         }}
                     >
+                        <CustomMarker text={index + 1} />
                         <Callout>
-                            <Text>{place.name}</Text>
+                            <View style={{minWidth: 150, alignItems: "center"}}>
+                                <Text>{tripDayPlaces[waypointIndex].name}</Text>
+                            </View>
                         </Callout>
                     </Marker>
                 ))}

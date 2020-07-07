@@ -23,7 +23,6 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_TRIPS:
       console.log(action.userTrips);
-      return state;
       return {...state, userTrips: action.userTrips}
     case CREATE_TRIP:
       console.log(action.trip);

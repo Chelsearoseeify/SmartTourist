@@ -74,7 +74,6 @@ const DateSelectionModal = props => {
             selectedRangeStyle={{ backgroundColor: Colors.greenButtonColor }}
             selectedStartDate={startDate}
             selectedEndDate={endDate}
-            minDate={dateNow}
             maxDate={maxDate}
             textStyle={{
               color: Colors.blueTitleColor,

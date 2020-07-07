@@ -25,6 +25,17 @@ class Trip {
         }
     }
 
+    getTripMonthString() {
+        const startDate = moment.unix(this.startDate);
+        const endDate = moment.unix(this.endDate);
+        if (startDate.month() !== endDate.month()) {
+            return `${startDate.format('MMMM')} - ${endDate.format('MMMM')}`;
+        }
+        else {
+            return `${startDate.format('MMMM')}`;
+        }
+    }
+
     numberOfDays() {
         const startDate = moment.unix(this.startDate);
         const endDate = moment.unix(this.endDate);

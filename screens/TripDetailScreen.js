@@ -62,7 +62,7 @@ const TripDetailScreen = props => {
   const places = useSelector(state => state.places.cachedPlaces);
   const cities = useSelector(state => state.cities.cachedCities);
   const [backgroundColor, setBackgroundColor] = useState('transparent');
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
   const tripCity = cities.find(c => c.id === trip.cityId);
   const dateString = trip.getTripDateString();
   const numberOfDays = trip.numberOfDays();
@@ -198,6 +198,7 @@ const TripDetailScreen = props => {
                       mapData: {
                         cityGeometry: tripCity.geometry,
                         placeIds: trip.placeIds[index],
+                        directionMode: 'walking',
                         navigation: props.navigation
                       }
                     })
@@ -205,15 +206,17 @@ const TripDetailScreen = props => {
                 />
               }
 
-              <View style={styles.iconViewStyle}>
-                <Icon
-                  style={styles.editIcon}
-                  name="pencil"
-                  onPress={() => {
-                    isEditing ? setIsEditing(false) : setIsEditing(true);
-                  }}
-                />
-              </View>
+              {trip.placeIds[index].length > 0 && 
+                <View style={styles.iconViewStyle}>
+                  <Icon
+                    style={styles.editIcon}
+                    name="pencil"
+                    onPress={() => {
+                      isEditing ? setIsEditing(false) : setIsEditing(true);
+                    }}
+                  />
+                </View>
+              }
             </View>
           </View>
           {missingPlaceIds.length === 0 &&

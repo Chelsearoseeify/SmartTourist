@@ -49,7 +49,7 @@ export const fetchTrips = () => {
 
     const ref = database().ref(`/trips/${user.userId}`);
 
-    const res = await ref.once('value');
+    const res = await ref.orderByChild('startDate').once('value');
 
     let userTrips = [];
     res.forEach(child => {
@@ -148,7 +148,7 @@ export const addPlaceToTrip = (trip, placeId, selections) => {
     let updatedPlaceIds = [...trip.placeIds];
 
     selections.map((selected, index) => {
-      if (selected) {
+      if (selected && !updatedPlaceIds[index].includes(placeId)) {
         updatedPlaceIds[index].push(placeId);
       }
     });
