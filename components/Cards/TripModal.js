@@ -93,7 +93,7 @@ const TripModal = props => {
         <View style={{ alignItems: "center" }}>
             <Text>You don't have any trips for this city!</Text>
             <Text>Create a trip to add this place</Text>
-            <ButtonWithIcon icon='plus' text='Create a trip' />
+            <ButtonWithIcon icon='plus' text='Create a trip' onPress={onCreateTrip}/>
         </View>
     return (
         <Modal isVisible={props.visible} onBackdropPress={props.onCloseModal}>

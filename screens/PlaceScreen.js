@@ -10,14 +10,11 @@ import StarsRating from '../components/StarsRating';
 import TripModal from '../components/Cards/TripModal';
 
 import {
-  toggleFavouriteCity,
-  toggleFavouritePlace,
-  setFavouriteRequest,
   toggleFavourite,
 } from '../store/actions/favourite';
 import {
   fetchPlaceDescription,
-  fetchPlace,
+  getPlacesDetails,
   emptyPlace,
 } from '../store/actions/places';
 
@@ -34,17 +31,12 @@ const PlaceScreen = ({navigation, route}) => {
   const [error, setError] = useState();
   const [addToTrip, setAddToTrip] = useState(false);
   const user = useSelector(state => state.user);
-  const selectedCity = useSelector(state => state.cities.selected_city);
   const {id, cityName, cityId, placeName} = route.params;
-  const places = useSelector(state => state.places.places);
+  const places = useSelector(state => state.places.cachedPlaces);
   const cities = useSelector(state => state.cities.cachedCities);
-  const place =
-    selectedCity.name === cityName
-      ? places.filter(place => place.id === id)[0]
-      : useSelector(state => state.places.place);
+  const place = places.find(place => place.id === id)
+  
   const description = useSelector(state => state.places.description);
-  //const placeRequest = useSelector(state => state.favourites.place_request);
-  //const cityRequest = useSelector(state => state.favourites.city_request);
   const favouritePlaces = useSelector(
     state => state.favourites.favourite_places,
   );
@@ -52,8 +44,6 @@ const PlaceScreen = ({navigation, route}) => {
   const [icon, setIcon] = useState(
     index >= 0 ? 'cards-heart' : 'heart-outline',
   );
-
-  console.log(place);
 
   useEffect(() => {
     index = favouritePlaces.findIndex(place => place.id === id);
@@ -63,38 +53,16 @@ const PlaceScreen = ({navigation, route}) => {
   useEffect(() => {
     const loadPlace = async () => {
       try {
-        console.log(id, cityName);
-        if (selectedCity.name !== cityName) dispatch(fetchPlace(id, cityId));
-        await dispatch(fetchPlaceDescription(placeName));
+        if (!place.international_phone_number){
+          dispatch(getPlacesDetails([id], cityId));
+          dispatch(fetchPlaceDescription(placeName));
+        }
       } catch (error) {
         setError(error.message); //error to be handled, it has to be defined
       }
     };
     loadPlace();
   }, [dispatch]);
-
-  /* useEffect(() => {
-    const toggleFavs = async () => {
-      if (Object.keys(cityRequest.city).length > 0) {
-        setIcon(placeRequest.icon);
-        dispatch(
-          toggleFavouriteCity(
-            user.userId,
-            cityRequest.city,
-            cityRequest.actionType,
-          ),
-        );
-        dispatch(
-          toggleFavouritePlace(
-            user.userId,
-            placeRequest.place,
-            placeRequest.actionType,
-          ),
-        );
-      }
-    };
-    toggleFavs();
-  }, [dispatch, cityRequest]); */
 
   const fetchCitiesData = useCallback(async () => {
     try {
@@ -105,13 +73,12 @@ const PlaceScreen = ({navigation, route}) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (cities.find(c => c.id === place.cityId) === -1) {
+    if (cities.findIndex(c => c.id === place.cityId) === -1) {
       fetchCitiesData().then(() => {});
     }
   }, [fetchCitiesData, fetchCities]);
 
   const toggleFavouriteHandler = () => {
-    console.log('id: ' + user.userId);
     dispatch(toggleFavourite(place, cityName, user.userId));
   };
 

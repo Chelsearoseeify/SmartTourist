@@ -16,14 +16,14 @@ import TripDay from '../containers/TripDay';
 import ButtonWithIcon from '../components/Buttons/ButtonWithIcon';
 import BackButton from '../components/Buttons/BackButton';
 
-import { fetchMultiplePlaces } from '../store/actions/places';
+import { getPlacesDetails } from '../store/actions/places';
 import { fetchCities } from '../store/actions/cities';
 
 //import RNColorThief from 'react-native-color-thief';
 import Style from '../constants/Style';
 import Colors from '../constants/Colors';
 
-const renderTripDay = (placeIds, placesData, navigation, dayIndex, tripId, isEditing) => (
+const renderTripDay = (placeIds, placesData, navigation, dayIndex, tripId, isEditing, tripCity) => (
   <View style={{ flex: 1 }}>
     <TripDay
       placeIds={placeIds}
@@ -32,6 +32,7 @@ const renderTripDay = (placeIds, placesData, navigation, dayIndex, tripId, isEdi
       dayIndex={dayIndex}
       tripId={tripId}
       isEditing={isEditing}
+      tripCity={tripCity}
     />
   </View>
 );
@@ -100,11 +101,11 @@ const TripDetailScreen = props => {
 
   const loadMissingPlaces = useCallback(async () => {
     try {
-      dispatch(fetchMultiplePlaces(missingPlaceIds));
+      dispatch(getPlacesDetails(missingPlaceIds, trip.cityId));
     } catch (error) {
       console.log(error);
     }
-  }, [fetchMultiplePlaces, dispatch]);
+  }, [getPlacesDetails, dispatch]);
 
   const fetchCityData = useCallback(async () => {
     try {
@@ -112,7 +113,7 @@ const TripDetailScreen = props => {
     } catch (error) {
       console.log(error);
     }
-  }, [fetchMultiplePlaces, dispatch]);
+  }, [getPlacesDetails, dispatch]);
 
   useEffect(() => {
     if (missingPlaceIds.length > 0) {
@@ -124,11 +125,11 @@ const TripDetailScreen = props => {
     if (foundCityIndex === -1) {
       fetchCityData().then(() => { });
     }
-  }, [loadMissingPlaces, fetchMultiplePlaces, fetchCities, fetchCityData]);
+  }, [loadMissingPlaces, getPlacesDetails, fetchCities, fetchCityData]);
 
   for (let i = 0; i < numberOfDays; i++) {
     tabRouteData.push({ key: `key${i}`, title: `Day ${i + 1}` });
-    sceneMapData[`key${i}`] = () => renderTripDay(trip.placeIds[i], placesData, props.navigation, i, tripId, isEditing);
+    sceneMapData[`key${i}`] = () => renderTripDay(trip.placeIds[i], placesData, props.navigation, i, tripId, isEditing, tripCity);
   }
 
   const [index, setIndex] = useState(0);

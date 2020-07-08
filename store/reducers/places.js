@@ -1,11 +1,8 @@
 import _ from 'lodash';
 import {
   SET_PLACES,
-  CREATE_PLACE,
-  FETCH_PLACE,
   SET_PLACE_TYPE,
   SET_SEARCH_TYPE,
-  UPDATE_PLACE,
   ADD_PLACES_TO_LIST,
   EMPTY_PLACE,
   EMPTY_PLACES,
@@ -69,17 +66,6 @@ const placesReducer = (state = initialState, action) => {
     case EMPTY_PLACES: {
       return {...state, places: [], pageToken: ''};
     }
-    case CREATE_PLACE: {
-      console.log('Done');
-    }
-    case UPDATE_PLACE: {
-      let updatedPlaces = state.places.filter(p => p.id !== action.place.id);
-      updatedPlaces.push(action.place);
-      return {...state, places: updatedPlaces};
-    }
-    case FETCH_PLACE: {
-      return {...state, place: action.place};
-    }
     case FETCH_PLACE_DESCRIPTION: {
       return {...state, description: action.description};
     }
@@ -106,15 +92,10 @@ const placesReducer = (state = initialState, action) => {
     }
     case ADD_PLACES_TO_LIST: {
       let updatedPlaces = [...state.cachedPlaces];
-      //console.log(`new places length: ${action.places.length}`);
-      //console.log(action.places[0].id);
-      //console.log(`old places length: ${updatedPlaces.length}`);
       action.places.map(actionPlace => {
-        //console.log(actionPlace.id);
         const foundIndex = updatedPlaces.findIndex(
           p => p.id === actionPlace.id,
         );
-        //console.log(foundIndex);
         if (foundIndex === -1) {
           updatedPlaces.push(actionPlace);
         }else{

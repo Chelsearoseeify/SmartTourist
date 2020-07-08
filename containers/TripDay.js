@@ -10,7 +10,7 @@ import { FlatList } from 'react-native-gesture-handler';
 
 import { removePlaceFromTrip } from '../store/actions/trips';
 
-const tripPlace = (place, navigation, onRemovePlace, isEditing) => {
+const tripPlace = (place, navigation, onRemovePlace, isEditing, tripCity) => {
   const type = place.types.slice(-1);
 
   return (
@@ -30,7 +30,7 @@ const tripPlace = (place, navigation, onRemovePlace, isEditing) => {
         onPress={() => navigation.navigate('Place', {
           id: place.id,
           placeName: place.name,
-          cityName: place.cityId,
+          cityName: tripCity.name,
           cityId: place.cityId,
         })}>
         <View style={styles.detailContainer}>
@@ -76,7 +76,7 @@ const TripDay = props => {
     component = places.length > 0 && (
       <FlatList
         data={places}
-        renderItem={({ item }) => tripPlace(item, props.navigation, onRemovePlace, props.isEditing)}
+        renderItem={({ item }) => tripPlace(item, props.navigation, onRemovePlace, props.isEditing, props.tripCity)}
         keyExtractor={item => item.id}
         style={{ paddingVertical: 20 }}
       />

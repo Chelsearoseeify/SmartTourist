@@ -1,7 +1,6 @@
 import CompletePlace from '../../models/CompletePlace';
 import database from '@react-native-firebase/database';
 export const CREATE_PLACE = 'CREATE_PLACE';
-export const UPDATE_PLACE = 'UPDATE_PLACE';
 export const SET_PLACES = 'SET_PLACES';
 export const FETCH_PLACE = 'FETCH_PLACE';
 export const EMPTY_PLACE = 'EMPTY_PLACE';
@@ -17,6 +16,7 @@ import _ from 'lodash';
 import SearchType from '../../constants/SearchType';
 
 import placeRequest from '../../utils/placeRequest';
+import Place from '../../models/Place';
 
 export const emptyPlace = () => {
   return {type: EMPTY_PLACE};
@@ -66,7 +66,7 @@ export const fetchPlace = (placeId, cityId) => {
       //const place = await placeRequest(placeId);
       console.log(place);
 
-      dispatch({type: FETCH_PLACE, place});
+      dispatch({type: ADD_PLACES_TO_LIST, places: [place]});
     } catch (error) {
       throw error;
     }
@@ -171,89 +171,37 @@ export const fetchPlacesFromGoogle = (
   };
 };
 
-export const updatePlace = place => {
-  return {type: UPDATE_PLACE, place: place};
-};
-
-export const fetchPlaces = cityId => {
-  return async dispatch => {
-    try {
-      let ref = database().ref('places');
-      let res = await ref
-        .orderByChild('cityId')
-        .equalTo(cityId)
-        .once('value');
-      const loadedPlaces = [];
-      res.forEach(child => {
-        loadedPlaces.push(
-          new CompletePlace(
-            child.key,
-            child.val().name,
-            child.val().cityId,
-            child.val().types,
-            child.val().url,
-            child.val().rating,
-            child.val().geometry,
-            child.val().address,
-            child.val().business_status,
-            child.val().user_ratings_total,
-            '',
-          ),
-        );
-      });
-      dispatch({type: SET_PLACES, places: loadedPlaces});
-    } catch (error) {
-      throw error;
-    }
-  };
-};
-
-export const fetchMultiplePlaces = placeIds => {
+export const getPlacesDetails = (placeIds, cityId) => {
+  console.log(placeIds);
+  console.log(cityId);
   return async dispatch => {
     try {
       const loadedPlaces = [];
       await Promise.all(
         placeIds.map(async placeId => {
           const place = await placeRequest(placeId);
-          loadedPlaces.push(place);
+          console.log(place);
+          const completePlace = new CompletePlace(
+            place.id,
+            place.name,
+            cityId,
+            place.types,
+            place.photoUrl,
+            place.rating,
+            place.geometry,
+            place.formatted_address,
+            '',
+            place.user_ratings_total,
+            '',
+            place.international_phone_number,
+            place.website
+          )
+          loadedPlaces.push(completePlace);
         }),
       );
       dispatch({type: ADD_PLACES_TO_LIST, places: loadedPlaces});
     } catch (error) {
       throw error;
     }
-  };
-};
-
-export const createPlace = (
-  placeId,
-  name,
-  cityId,
-  types,
-  url,
-  rating,
-  geometry,
-  address,
-  business_status,
-  user_ratings_total,
-) => {
-  //console.log(placeId);
-  return async dispatch => {
-    database()
-      .ref(`places/${placeId}`)
-      .set({
-        name: name,
-        cityId: cityId,
-        types: types,
-        url: url,
-        rating: rating,
-        geometry: geometry,
-        address: address,
-        business_status: business_status,
-        user_ratings_total: user_ratings_total,
-      });
-    dispatch({
-      type: CREATE_PLACE,
-    });
   };
 };

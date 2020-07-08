@@ -27,7 +27,6 @@ const TripsScreen = props => {
 
   let missingCities = [];
   const dateNow = moment().unix();
-  console.log(dateNow);
 
   if (trips.length > 0) {
     trips.map(trip => {
@@ -41,10 +40,8 @@ const TripsScreen = props => {
   if (trips.length > 0 && missingCities.length === 0) {
     trips.map(trip => {
       if (trip.startDate > dateNow) {
-        console.log(`trip "${trip.name}" is in the future`);
         futureTrips.push(trip);
       } else {
-        console.log(`trip "${trip.name}" is in the past`);
         pastTrips.push(trip);
       }
     })
@@ -73,7 +70,6 @@ const TripsScreen = props => {
   }
 
   const onTripSelected = trip => {
-    console.log(`Selected trip ${trip.name}`);
     props.navigation.navigate('TripDetailScreen', {
       tripId: trip.id,
     });
@@ -122,10 +118,7 @@ const TripsScreen = props => {
       <HorizontalScrollView
         name={'Future Trips'}
         paddingLeft={10}
-        isThereMore={false}
-        onMoreTap={() => {
-          console.log('See all trips');
-        }}>
+        isThereMore={false}>
         {futureTrips.map(trip => {
           const city = cities.find(city => city.id === trip.cityId);
 
@@ -135,7 +128,7 @@ const TripsScreen = props => {
           return (
             <BigListCard
               name={trip.name}
-              subTitle={trip.getTripDateString()}
+              subTitle={trip.getTripMonthString()}
               imageId={city ? city.photoUrl : ''}
               onPress={() => onTripSelected(trip)}
             />
@@ -149,10 +142,7 @@ const TripsScreen = props => {
       <HorizontalScrollView
         name={'Past Trips'}
         paddingLeft={10}
-        isThereMore={false}
-        onMoreTap={() => {
-          console.log('See all trips');
-        }}>
+        isThereMore={false}>
         {
           pastTrips.map(trip => {
             const city = cities.find(city => city.id === trip.cityId);

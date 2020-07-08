@@ -11,6 +11,8 @@ class CompletePlace {
     business_status,
     user_ratings_total,
     description,
+    international_phone_number,
+    website
   ) {
     this.id = id;
     this.name = name;
@@ -23,6 +25,8 @@ class CompletePlace {
     this.business_status = business_status;
     this.user_ratings_total = user_ratings_total;
     this.description = description;
+    this.international_phone_number = international_phone_number;
+    this.website = website
   }
 }
 

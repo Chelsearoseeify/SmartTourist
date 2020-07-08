@@ -29,10 +29,10 @@ class Trip {
         const startDate = moment.unix(this.startDate);
         const endDate = moment.unix(this.endDate);
         if (startDate.month() !== endDate.month()) {
-            return `${startDate.format('MMMM')} - ${endDate.format('MMMM')}`;
+            return `${startDate.format('D MMM')} - ${endDate.format('D MMM')}`;
         }
         else {
-            return `${startDate.format('MMMM')}`;
+            return `${startDate.format('D')} - ${endDate.format('D MMM')} `;
         }
     }
 
@@ -40,7 +40,7 @@ class Trip {
         const startDate = moment.unix(this.startDate);
         const endDate = moment.unix(this.endDate);
 
-        return endDate.date() - startDate.date() + 1;
+        return endDate.diff(startDate, 'days')+1;
     }
 
     setPlaceIds() {

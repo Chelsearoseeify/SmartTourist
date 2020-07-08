@@ -36,7 +36,6 @@ const SearchedPlacesScreen = ({navigation, route}) => {
     try {
       console.log('ohi', selectedCity, searchType, route.params.type);
       dispatch(fetchFavourites(user.userId));
-      //dispatch(fetchPlaces(selectedCity.id));
       dispatch(
         fetchPlacesFromGoogle(
           selectedCity,
