@@ -123,7 +123,7 @@ const GroupedPlacesScreen = ({navigation, route}) => {
         </ImageBackground>
       </View>
       <View style={styles.cardViewStyle}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
           <View style={styles.cardStyle}>
             <View style={styles.iconViewStyle}>
               <Icon
@@ -172,7 +172,7 @@ let styles = StyleSheet.create({
     ...Style.shadow,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
     borderTopRightRadius: Style.borderRadiusCardContainer,
-    height: '100%',
+    minHeight: Dimensions.get('window').height * 0.685,
     width: '100%',
     backgroundColor: 'white',
   },

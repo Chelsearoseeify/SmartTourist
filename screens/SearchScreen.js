@@ -8,19 +8,22 @@ import {
   SafeAreaView,
   ScrollView,
 } from 'react-native';
-import { LABELS } from './../data/dummy-data';
+import {LABELS} from './../data/dummy-data';
 import CategoryCard from './../components/Cards/CategoryCard';
 import Style from '../constants/Style';
 import TopDestinations from '../containers/TopDestinations';
-import { useSelector, useDispatch } from 'react-redux';
+import {useDispatch} from 'react-redux';
 import BeautifulCities from './../containers/BeautifulCities';
+import {setSelectedCity} from './../store/actions/cities';
 import PlaceSearch from '../components/Inputs/PlaceSearch';
 
 import { getPlacesDetails } from '../store/actions/places';
 
 import autocompleteType from '../constants/AutocompleteType';
 
-const SearchScreen = ({ navigation, route }) => {
+import {v4 as uuidv4} from 'react-native-uuid';
+
+const SearchScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const selectedCity = useSelector(state => state.cities.selected_city);
 
@@ -36,7 +39,7 @@ const SearchScreen = ({ navigation, route }) => {
 
   const renderGridItem = itemData => {
     return (
-      <View style={{ flex: 1, margin: Style.marginSmallCard }}>
+      <View style={{flex: 1, margin: Style.marginSmallCard}}>
         <CategoryCard
           name={itemData.item.name}
           imageUrl={itemData.item.url}
@@ -67,11 +70,17 @@ const SearchScreen = ({ navigation, route }) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
           <View style={styles.cardStyle}>
-            <View style={{ marginEnd: -5, marginTop: 20 }}>
+            <View style={{marginEnd: -5, marginTop: 20}}>
               <TopDestinations {...navigation} />
             </View>
-            <View style={{ marginEnd: -5, marginTop: 10 }}>
-              <BeautifulCities {...navigation} />
+            <View style={{marginEnd: -5, marginTop: 10}}>
+              <BeautifulCities
+                {...navigation}
+                onCitySelected={city => {
+                  dispatch(setSelectedCity(city.id, uuidv4()));
+                  navigation.navigate('Travel', city);
+                }}
+              />
             </View>
 
             <Text style={styles.subtitleStyle}>Categories</Text>

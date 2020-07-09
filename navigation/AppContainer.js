@@ -20,6 +20,14 @@ function AuthNavigator() {
   );
 }
 
+function CityNavigator() {
+  return (
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="MainPage" component={MainPageScreen} />
+    </Stack.Navigator>
+  );
+}
+
 const AppContainer = props => {
   let isAuth = useSelector(state => !!state.user.token);
   const isCitySelected = useSelector(state => !!state.cities.selected_city);
@@ -27,12 +35,12 @@ const AppContainer = props => {
   console.log(isCitySelected);
   isAuth = true;
   return (
-    <NavigationContainer style={{transparentCard: true}}>
+    <NavigationContainer>
       {isAuth ? (
         isCitySelected ? (
           <TabNavigator />
         ) : (
-          <MainPageScreen />
+          <CityNavigator />
         )
       ) : (
         <AuthNavigator />

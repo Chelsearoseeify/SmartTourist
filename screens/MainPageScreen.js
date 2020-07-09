@@ -1,16 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Colors from '../constants/Colors';
-import {
-  View,
-  StyleSheet,
-  Text,
-  ImageBackground,
-  KeyboardAvoidingView,
-} from 'react-native';
+import {View, StyleSheet, Text, ImageBackground} from 'react-native';
 import _ from 'lodash';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import Style from '../constants/Style';
-import CustomButton from './../components/Buttons/CustomButton';
 import PlaceSearch from '../components/Inputs/PlaceSearch';
 import {setSelectedCity} from './../store/actions/cities';
 import BeautifulCities from './../containers/BeautifulCities';
@@ -19,46 +12,42 @@ import autocompleteType from '../constants/AutocompleteType';
 
 const MainPageScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const [cityId, setCityId] = useState();
-  const [token, setToken] = useState();
+  /* const [cityId, setCityId] = useState();
+  const [token, setToken] = useState(); */
 
   const onCitySelected = (cityId, token) => {
     dispatch(setSelectedCity(cityId, token));
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: '#86CECE'}}>
       <View
         style={{
-          height: 530,
+          height: '100%',
           width: '100%',
           flex: 1,
-          position: 'absolute',
-          backgroundColor: '#86CECE',
         }}>
+        <Text
+          style={{
+            color: Colors.blueTitleColor,
+            fontSize: 35,
+            fontWeight: 'bold',
+            alignSelf: 'center',
+            textAlign: 'center',
+            marginTop: 10,
+            paddingHorizontal: 60,
+          }}>
+          CHOOSE YOUR NEXT DESTINATION
+        </Text>
         <ImageBackground
           source={require('./../assets/images/world.png')}
           style={styles.imageBackgroundStyle}
-          resizeMode="cover">
-          <Text
-            style={{
-              color: Colors.blueTitleColor,
-              fontSize: 35,
-              fontWeight: 'bold',
-              alignSelf: 'center',
-              textAlign: 'center',
-              marginTop: 160,
-              marginBottom: 10,
-              paddingHorizontal: 40,
-            }}>
-            CHOOSE YOUR NEXT DESTINATION
-          </Text>
-        </ImageBackground>
+          resizeMode="cover"
+        />
       </View>
 
       <View
         style={{
-          position: 'absolute',
           width: '100%',
           height: '100%',
         }}>
@@ -82,20 +71,10 @@ const MainPageScreen = ({navigation}) => {
               />
             </View>
 
-            <View style={{marginEnd: -5, marginTop: 10}}>
+            <View style={{marginEnd: -5, marginTop: 10, marginBottom: 40}}>
               <BeautifulCities
                 {...navigation}
                 onCitySelected={(cityId, token) => {
-                  setCityId(cityId);
-                  setToken(token);
-                }}
-              />
-            </View>
-
-            <View style={{marginTop: 20}}>
-              <CustomButton
-                text={'Travel'}
-                onPress={() => {
                   onCitySelected(cityId, token);
                 }}
               />
@@ -110,8 +89,8 @@ const MainPageScreen = ({navigation}) => {
 let styles = StyleSheet.create({
   imageBackgroundStyle: {
     width: '100%',
-    height: '100%',
-    marginTop: 20,
+    height: 500,
+    marginTop: 10,
   },
   cardStyle: {
     position: 'absolute',

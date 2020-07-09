@@ -9,9 +9,7 @@ import PlaceScreenButton from '../components/Buttons/PlaceScreenButton';
 import StarsRating from '../components/StarsRating';
 import TripModal from '../components/Cards/TripModal';
 
-import {
-  toggleFavourite,
-} from '../store/actions/favourite';
+import {toggleFavourite} from '../store/actions/favourite';
 import {
   fetchPlaceDescription,
   getPlacesDetails,
@@ -34,8 +32,8 @@ const PlaceScreen = ({navigation, route}) => {
   const {id, cityName, cityId, placeName} = route.params;
   const places = useSelector(state => state.places.cachedPlaces);
   const cities = useSelector(state => state.cities.cachedCities);
-  const place = places.find(place => place.id === id)
-  
+  const place = places.find(place => place.id === id);
+
   const description = useSelector(state => state.places.description);
   const favouritePlaces = useSelector(
     state => state.favourites.favourite_places,
@@ -53,7 +51,7 @@ const PlaceScreen = ({navigation, route}) => {
   useEffect(() => {
     const loadPlace = async () => {
       try {
-        if (!place.international_phone_number){
+        if (!place.international_phone_number) {
           dispatch(getPlacesDetails([id], cityId));
           dispatch(fetchPlaceDescription(placeName));
         }
@@ -90,6 +88,8 @@ const PlaceScreen = ({navigation, route}) => {
     navigation.navigate('Mapf', {
       lat: place.geometry.location.lat,
       lng: place.geometry.location.lng,
+      delta: 0.004,
+      id: place.id,
     });
   };
 
@@ -120,7 +120,7 @@ const PlaceScreen = ({navigation, route}) => {
           height: '100%',
           zIndex: 1,
         }}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
           <View style={styles.cardStyle}>
             <View
               style={[
@@ -144,8 +144,15 @@ const PlaceScreen = ({navigation, route}) => {
                     rating={place.rating}
                     size={24}
                     fullStarColor={Colors.greenTitleColor}
-                    emptyStarColor={Colors.greenSubTitleColor}
+                    emptyStarColor={Colors.greenTitleColor}
                   />
+                  <Text
+                    style={{
+                      fontSize: Style.fontSize.h5,
+                      color: Colors.blueTitleColor,
+                    }}>
+                    {place.rating}
+                  </Text>
                   {/* <Text style={styles.reviewStyle}>
                     {place.user_ratings_total} Reviews
                   </Text> */}
@@ -171,10 +178,7 @@ const PlaceScreen = ({navigation, route}) => {
 
               <View style={styles.detailViewStyle}>
                 <Text style={styles.detailStyle}>Details</Text>
-                <Detail
-                  text={place.address}
-                  iconName="map-marker-alt"
-                />
+                <Detail text={place.address} iconName="map-marker-alt" />
                 <Detail text={'+1 223-548-7785'} iconName="phone" />
                 <Detail text={'www.dinocoffee.com'} iconName="link" />
               </View>

@@ -8,14 +8,21 @@ import moment from 'moment';
 
 import TopDestinations from '../containers/TopDestinations';
 import BeautifulCities from '../containers/BeautifulCities';
+import {setSelectedCity} from './../store/actions/cities';
+import {v4 as uuidv4} from 'react-native-uuid';
 
 const AddTripScreen = props => {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView keyboardShouldPersistTaps="handled">
+      <ScrollView keyboardShouldPersistTaps="handled" bounces={false}>
         <View>
-          <View style={{...styles.cardStyle, padding: 20}}>
-            <AddTrip navigation={props.navigation}/>
+          <View
+            style={{
+              ...styles.cardStyle,
+              paddingHorizontal: 20,
+              marginVertical: 10,
+            }}>
+            <AddTrip navigation={props.navigation} />
             {/* {trips && trips.map((trip) => {
               return <View>
                 <Text>{trip.city}</Text>
@@ -31,8 +38,14 @@ const AddTripScreen = props => {
                 <Text style={styles.subtitleStyle}>Suggestions</Text>
               </View>
               <View style={{height: '100%'}}>
-                <TopDestinations />
-                <BeautifulCities />
+                <TopDestinations {...props.navigation} />
+                <BeautifulCities
+                  {...props.navigation}
+                  onCitySelected={city => {
+                    dispatch(setSelectedCity(city.id, uuidv4()));
+                    props.navigation.navigate('Travel', city);
+                  }}
+                />
               </View>
             </View>
           </View>
@@ -57,6 +70,7 @@ const styles = StyleSheet.create({
     borderRadius: Style.borderRadiusCardContainer,
     backgroundColor: 'white',
     paddingVertical: 30,
+    ...Style.shadow,
   },
   titleViewStyle: {
     flex: 1,
@@ -80,7 +94,6 @@ const styles = StyleSheet.create({
     color: Colors.blueTitleColor,
     fontWeight: 'bold',
     fontSize: 25,
-    paddingTop: 20,
     marginBottom: 5,
     paddingStart: 5,
     marginHorizontal: 15,
