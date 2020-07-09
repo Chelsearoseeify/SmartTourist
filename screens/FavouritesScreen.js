@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import Colors from '../constants/Colors';
-import {View, StyleSheet, SafeAreaView, FlatList} from 'react-native';
+import {View, StyleSheet, SafeAreaView, Dimensions} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
 import Header from './../components/Header';
@@ -66,7 +66,7 @@ const FavouriteScreen = ({navigation}) => {
         <View style={styles.titleViewStyle}>
           <Header title={'Favourites'} mapIcon={false} />
         </View>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
           <View style={styles.cardStyle}>
             <View style={styles.iconViewStyle}>
               <Icon
@@ -123,7 +123,7 @@ let styles = StyleSheet.create({
     ...Style.shadow,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
     borderTopRightRadius: Style.borderRadiusCardContainer,
-    height: '100%',
+    minHeight: Dimensions.get('window').height * 0.823,
     width: '100%',
     backgroundColor: 'white',
     alignSelf: 'baseline',

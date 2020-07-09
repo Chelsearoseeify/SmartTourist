@@ -68,7 +68,7 @@ const ProfileScreen = ({navigation}) => {
           width: '100%',
           height: '100%',
         }}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
           <View style={styles.cardStyle}>
             <View style={styles.avatarView}>
               <ImageBackground

@@ -68,7 +68,7 @@ const GroupedCitiesScreen = ({navigation, route}) => {
       </View>
 
       <View style={styles.cardViewStyle}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
           <View style={styles.cardStyle}>
             <View style={styles.contentStyle}>
               <FlatList

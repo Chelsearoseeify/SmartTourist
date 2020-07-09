@@ -56,6 +56,7 @@ function SearchStackNavigator() {
       <Stack.Screen name="GroupedCities" component={GroupedCitiesScreen} />
       <Stack.Screen name="SearchedPlaces" component={SearchedPlacesScreen} />
       <Stack.Screen name="Place" component={PlaceScreen} />
+      <Stack.Screen name="Mapf" component={MapScreenf} />
     </Stack.Navigator>
   );
 }

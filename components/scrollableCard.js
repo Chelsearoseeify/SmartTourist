@@ -19,7 +19,8 @@ const AddTripScreen = props => {
         }}>
         <ScrollView
           style={styles.scrollView}
-          showsVerticalScrollIndicator={false}>
+          showsVerticalScrollIndicator={false}
+          bounces={false}>
           <View
             style={{
               backgroundColor: 'darkgreen',

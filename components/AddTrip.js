@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 import CustomButton from '../components/Buttons/CustomButton';
 import CitySearch from '../components/Inputs/CitySearch';
 import CalendarDatePicker from '../components/Inputs/CalendarDatePicker';
-import { useSelector, useDispatch } from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import Colors from '../constants/Colors';
 
-import { setTripCity, createTrip } from '../store/actions/trips';
+import {setTripCity, createTrip} from '../store/actions/trips';
 
 import GenericInput from './Inputs/GenericInput';
 
@@ -23,12 +23,12 @@ const AddTrip = props => {
         name: tripName,
         cityId: newTrip.cityId === '' ? selectedCity.id : newTrip.cityId,
         startDate: newTrip.startDate,
-        endDate: newTrip.endDate
-      })
+        endDate: newTrip.endDate,
+      }),
     );
     setTripCityName('');
     setTripName('');
-    props.navigation.navigate('MyTrips', { screen: 'MyTrips'});
+    props.navigation.navigate('MyTrips', {screen: 'MyTrips'});
   };
 
   const onCitySelected = (cityName, cityId, token) => {
@@ -36,9 +36,9 @@ const AddTrip = props => {
     dispatch(setTripCity(cityId, token));
   };
 
-  const onInputChange = (text) => {
+  const onInputChange = text => {
     setTripName(text);
-  }
+  };
 
   const isTripValid = () => {
     let validity = true;
@@ -52,7 +52,7 @@ const AddTrip = props => {
     }
 
     return validity;
-  }
+  };
 
   return (
     <View style={styles.listViewStyle}>
@@ -76,14 +76,16 @@ const AddTrip = props => {
           icon={'pen'}
         />
 
-        <View style={{ marginBottom: 10 }}>
+        <View style={{marginBottom: 10}}>
           <CitySearch
             cityName={tripCityName !== '' ? tripCityName : selectedCity.name}
-            onQuerySelected={(cityName, cityId, token) => onCitySelected(cityName, cityId, token)}
+            onQuerySelected={(cityName, cityId, token) =>
+              onCitySelected(cityName, cityId, token)
+            }
           />
         </View>
 
-        <View style={{ marginBottom: 10 }}>
+        <View style={{marginBottom: 10}}>
           <CalendarDatePicker datesString={newTrip.dateString} />
         </View>
 
@@ -92,11 +94,14 @@ const AddTrip = props => {
             width: '100%',
             alignItems: 'flex-end',
           }}>
-          <View style={{ width: 130 }}>
-            <CustomButton text={'ADD'} onPress={addTripHandler} disabled={!isTripValid()} />
+          <View style={{width: 130}}>
+            <CustomButton
+              text={'ADD'}
+              onPress={addTripHandler}
+              disabled={!isTripValid()}
+            />
           </View>
         </View>
-
       </View>
     </View>
   );
@@ -118,7 +123,6 @@ const styles = StyleSheet.create({
     color: Colors.blueTitleColor,
     fontWeight: 'bold',
     fontSize: 25,
-    paddingTop: 20,
     marginBottom: 5,
     paddingStart: 5,
     paddingBottom: 15,

@@ -1,61 +1,77 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import Colors from '../constants/Colors';
 import {
-  StyleSheet,
   View,
+  StyleSheet,
   FlatList,
   SafeAreaView,
-  ScrollView,
   Image,
+  ActivityIndicator,
+  TouchableOpacity,
+  Text,
 } from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import Style from '../constants/Style';
+import PlaceCard from '../components/Cards/PlaceCard';
 import {useSelector, useDispatch} from 'react-redux';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import SearchBar2 from '../components/SearchBar2';
-import PlaceCard from './../components/Cards/PlaceCard';
+import Style from '../constants/Style';
+import {fetchFavourites} from '../store/actions/favourite';
+import {fetchPlacesFromGoogle, fetchPlaces} from './../store/actions/places';
+import _ from 'lodash';
+import LabelButtonsList from '../components/LabelButtonsList';
+import NoResult from '../components/NoResult';
+import MapButton from './../components/Buttons/MapButton';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import CitySearchModal from './../components/Cards/CitySearchModal';
+import {v4 as uuidv4} from 'react-native-uuid';
+import {setSelectedCity} from './../store/actions/cities';
+import {fetchTrips} from './../store/actions/trips';
+import SearchBar2 from './../components/SearchBar2';
 import SearchType from '../constants/SearchType';
-import {fetchPlacesFromGoogle} from './../store/actions/places';
-import {fetchFavourites} from './../store/actions/favourite';
 
-const SearchedPlacesScreen = ({navigation, route}) => {
+//full height
+
+const TravelScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
   const selectedCity = useSelector(state => state.cities.selected_city);
-  const searchType = SearchType.NEARBY;
   const places = useSelector(state => state.places.places);
   const favouritePlaces = useSelector(
     state => state.favourites.favourite_places,
   );
-  const user = useSelector(state => state.user.data);
-  const pageToken = '';
+  const user = useSelector(state => state.user);
+  const selectedType = useSelector(state => state.places.type);
+  const searchType = useSelector(state => state.places.search);
+  const [pageToken, setPageToken] = useState(
+    useSelector(state => state.places.pageToken),
+  );
 
-  useEffect(() => {
+  const loadPlaces = async () => {
     setIsLoading(true);
-    try {
-      console.log('ohi', selectedCity, searchType, route.params.type);
-      dispatch(fetchFavourites(user.userId));
-      dispatch(
-        fetchPlacesFromGoogle(
-          selectedCity,
-          searchType,
-          route.params.type,
-          pageToken,
-        ),
-      );
-    } catch (error) {
-      console.log(error.message);
-    }
+    await dispatch(fetchFavourites(user.userId));
+    await dispatch(
+      fetchPlacesFromGoogle(
+        selectedCity,
+        SearchType.NEARBY,
+        route.params.type,
+        pageToken,
+      ),
+    );
+    await dispatch(fetchTrips());
     setIsLoading(false);
-  }, [dispatch]);
+  };
+  useEffect(() => {
+    loadPlaces();
+  }, [dispatch, selectedCity, searchType, selectedType]);
 
   const renderPlaceItem = (item, index) => {
     const ind = favouritePlaces.findIndex(place => place.id === item.id);
     return (
       <PlaceCard
         name={item.name}
-        imageUrl={item.photoUrl}
+        imageUrl={
+          item.photoUrl === ''
+            ? 'https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg'
+            : item.photoUrl
+        }
         rating={item.rating}
         icon={ind >= 0 ? 'heart' : 'heart-outline'}
         onSelect={() => {
@@ -70,105 +86,102 @@ const SearchedPlacesScreen = ({navigation, route}) => {
     );
   };
 
-  const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
-    const paddingToBottom = 0;
-    return (
-      layoutMeasurement.height + contentOffset.y >=
-      contentSize.height - paddingToBottom
-    );
-  };
-
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View>
-          <View
-            style={{
-              flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignContent: 'space-between',
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignContent: 'space-between',
+        }}>
+        <View
+          style={{justifyContent: 'center', marginHorizontal: 5, height: 55}}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.pop();
             }}>
-            <View style={{justifyContent: 'center', marginHorizontal: 5}}>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.pop();
-                }}>
-                <Icon
-                  name="arrow-left"
-                  size={Style.iconSize}
-                  color={Colors.blueTitleColor}
-                />
-              </TouchableOpacity>
-            </View>
-            <SearchBar2
-              style={{width: '90%'}}
-              searchedValue={route.params.type}
+            <Icon
+              name="arrow-left"
+              size={Style.iconSize}
+              color={Colors.blueTitleColor}
             />
-          </View>
-          <View style={styles.cardStyle}>
-            {isLoading ? (
-              <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  height: 600,
-                }}>
-                <ActivityIndicator
-                  size="large"
-                  color={Colors.greenTitleColor}
-                />
-              </View>
-            ) : places.length === 0 ? (
-              <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  height: 800, //540
-                }}>
-                <Image
-                  style={{
-                    resizeMode: 'contain',
-                    height: 350,
-                    width: 160,
-                  }}
-                  source={require('./../assets/images/sadCloud.png')}
-                />
-              </View>
-            ) : (
-              <FlatList
-                contentContainerStyle={styles.placesContainer}
-                data={places}
-                numColumns={2}
-                renderItem={({item, index}) => renderPlaceItem(item, index)}
-                horizontal={false}
-                keyExtractor={(item, index) => index.toString()}
-              />
-            )}
-          </View>
+          </TouchableOpacity>
         </View>
-      </ScrollView>
+        <SearchBar2 style={{width: '90%'}} searchedValue={route.params.type} />
+      </View>
+
+      {isLoading ? (
+        <View style={styles.centered}>
+          <ActivityIndicator size="large" color={Colors.greenTitleColor} />
+        </View>
+      ) : places.length === 0 ? (
+        <NoResult />
+      ) : (
+        <View style={{flex: 1}}>
+          <FlatList
+            contentContainerStyle={styles.placesContainer}
+            data={places}
+            numColumns={2}
+            renderItem={({item, index}) => renderPlaceItem(item, index)}
+            horizontal={false}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item, index) => index.toString()}
+            onEndReached={() => {
+              dispatch(fetchFavourites(user.userId));
+              dispatch(
+                fetchPlacesFromGoogle(
+                  selectedCity,
+                  searchType,
+                  selectedType,
+                  pageToken,
+                ),
+              );
+            }}
+          />
+        </View>
+      )}
     </SafeAreaView>
   );
 };
 
 let styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.backgroundColor,
-  },
-  cardStyle: {
-    marginTop: Style.marginTopCardContainer,
-    padding: Style.paddingCardContainer,
-    ...Style.shadow,
-    borderTopLeftRadius: Style.borderRadiusCardContainer,
-    borderTopRightRadius: Style.borderRadiusCardContainer,
-    height: '100%',
-    width: '100%',
     backgroundColor: 'white',
+    flex: 1,
+    height: '100%',
+  },
+  textStyle: {
+    color: Colors.blueTitleColor,
+    fontSize: Style.fontSize.h4,
+    fontWeight: 'bold',
+    padding: Style.paddingCardContainer,
+    marginHorizontal: 20,
+    marginTop: 20,
+  },
+  iconStyle: {
+    fontSize: Style.iconSize,
+    color: Colors.greenTitleColor,
+  },
+  button: {
+    margin: 0,
+    borderWidth: 1,
   },
   placesContainer: {
     margin: 5,
+    marginTop: 10,
+  },
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  subtitleStyle: {
+    color: Colors.greenTitleColor,
+    fontWeight: 'bold',
+    fontSize: Style.fontSize.h4,
+    marginStart: 20,
+    marginBottom: 10,
   },
 });
 
-export default SearchedPlacesScreen;
+export default TravelScreen;

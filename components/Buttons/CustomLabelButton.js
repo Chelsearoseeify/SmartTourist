@@ -16,7 +16,7 @@ const CustomButton = ({name, toggleType, buttonStyle}) => {
         },
         styles.buttonStyle,
       ]}>
-      <Text style={{color: buttonStyle.textColor, fontSize: Style.fontSize.h6}}>
+      <Text style={{color: buttonStyle.textColor, fontSize: Style.fontSize.h5}}>
         {name}
       </Text>
     </TouchableOpacity>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   TextStyle: {
     color: '#fff',
     textAlign: 'center',
-    fontSize: Style.fontSize.h6,
+    fontSize: Style.fontSize.h4,
   },
 });
 
