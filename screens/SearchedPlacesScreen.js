@@ -5,24 +5,17 @@ import {
   StyleSheet,
   FlatList,
   SafeAreaView,
-  Image,
   ActivityIndicator,
   TouchableOpacity,
-  Text,
 } from 'react-native';
 import PlaceCard from '../components/Cards/PlaceCard';
 import {useSelector, useDispatch} from 'react-redux';
 import Style from '../constants/Style';
 import {fetchFavourites} from '../store/actions/favourite';
-import {fetchPlacesFromGoogle, fetchPlaces} from './../store/actions/places';
+import {fetchPlacesFromGoogle} from './../store/actions/places';
 import _ from 'lodash';
-import LabelButtonsList from '../components/LabelButtonsList';
 import NoResult from '../components/NoResult';
-import MapButton from './../components/Buttons/MapButton';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import CitySearchModal from './../components/Cards/CitySearchModal';
-import {v4 as uuidv4} from 'react-native-uuid';
-import {setSelectedCity} from './../store/actions/cities';
 import {fetchTrips} from './../store/actions/trips';
 import SearchBar2 from './../components/SearchBar2';
 import SearchType from '../constants/SearchType';

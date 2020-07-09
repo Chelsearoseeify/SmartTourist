@@ -120,7 +120,7 @@ export const fetchPlacesFromGoogle = (
     default:
       break;
   }
-  if (pageToken !== '') {
+  if (pageToken && pageToken !== '') {
     url = url.concat(`&pagetoken=${pageToken}`);
   }
 

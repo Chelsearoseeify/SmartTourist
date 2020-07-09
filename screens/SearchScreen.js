@@ -12,7 +12,7 @@ import {LABELS} from './../data/dummy-data';
 import CategoryCard from './../components/Cards/CategoryCard';
 import Style from '../constants/Style';
 import TopDestinations from '../containers/TopDestinations';
-import {useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import BeautifulCities from './../containers/BeautifulCities';
 import {setSelectedCity} from './../store/actions/cities';
 import PlaceSearch from '../components/Inputs/PlaceSearch';
