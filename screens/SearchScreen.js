@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Text } from '@ui-kitten/components';
+import React, {useState} from 'react';
+import {Text} from '@ui-kitten/components';
 import Colors from '../constants/Colors';
 import {
   StyleSheet,
@@ -17,7 +17,7 @@ import BeautifulCities from './../containers/BeautifulCities';
 import {setSelectedCity} from './../store/actions/cities';
 import PlaceSearch from '../components/Inputs/PlaceSearch';
 
-import { getPlacesDetails } from '../store/actions/places';
+import {getPlacesDetails} from '../store/actions/places';
 
 import autocompleteType from '../constants/AutocompleteType';
 
@@ -35,7 +35,7 @@ const SearchScreen = ({navigation, route}) => {
       cityName: selectedCity.name,
       cityId: selectedCity.id,
     });
-  }
+  };
 
   const renderGridItem = itemData => {
     return (
@@ -55,18 +55,18 @@ const SearchScreen = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ paddingHorizontal: 15 }}>
-            <PlaceSearch
-              onQuerySelected={(cityName, cityId, token) => {
-                querySelectedHandler(cityId, token);
-              }}
-              searchType={autocompleteType.PLACE}
-              iconName="magnify"
-              placeholder="Type a place name"
-              location={selectedCity.geometry.location}
-              inputPlaceholder="Search for a place"
-            />
-          </View>
+      <View style={{paddingHorizontal: 15, paddingTop: 10}}>
+        <PlaceSearch
+          onQuerySelected={(cityName, cityId, token) => {
+            querySelectedHandler(cityId, token);
+          }}
+          searchType={autocompleteType.PLACE}
+          iconName="magnify"
+          placeholder="Type a place name"
+          location={selectedCity.geometry.location}
+          inputPlaceholder="Search for a place"
+        />
+      </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
           <View style={styles.cardStyle}>
@@ -84,7 +84,7 @@ const SearchScreen = ({navigation, route}) => {
             </View>
 
             <Text style={styles.subtitleStyle}>Categories</Text>
-            <View style={{ paddingBottom: 20 }}>
+            <View style={{paddingBottom: 60}}>
               <FlatList
                 data={LABELS}
                 numColumns={2}

@@ -24,7 +24,7 @@ const FavBigView = ({favouriteCities, navigation}) => {
       <FlatList
         contentContainerStyle={styles.placesContainer}
         data={favouriteCities}
-        numColumns={2}
+        numColumns={1}
         horizontal={false}
         renderItem={item => renderGridItem(item)}
         scrollEnabled={false}

@@ -8,6 +8,7 @@ import {
   Text,
   ScrollView,
   Image,
+  Dimensions,
 } from 'react-native';
 import HorizontalScrollView from '../components/HorizontalScrollView';
 import NextTripCard from '../components/Cards/NextTripCard';
@@ -180,7 +181,7 @@ const TripsScreen = props => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.titleViewStyle}>
           <Header title={'Your trips'} mapIcon={false} />
         </View>
@@ -197,6 +198,7 @@ const TripsScreen = props => {
                   <Text
                     style={{
                       color: Colors.blueTitleColor,
+                      fontWeight: 'bold',
                       fontSize: Style.fontSize.h5,
                       paddingHorizontal: 10,
                       marginTop: 10,
@@ -206,12 +208,12 @@ const TripsScreen = props => {
                   <Text
                     style={{
                       color: Colors.blueTitleColor,
-                      fontWeight: 'bold',
-                      fontSize: Style.fontSize.h4,
+                      fontSize: Style.fontSize.h5,
                       paddingHorizontal: 10,
                       marginBottom: 10,
+                      width: 150,
                     }}>
-                    Chelsearoseeify!
+                    Have fun!!
                   </Text>
                   <CustomButton
                     text={'Logout'}
@@ -231,15 +233,20 @@ const TripsScreen = props => {
                 </View>
               </View>
             </View>
-            <View style={[styles.cardStyle, Style.shadow, {height: '100%'}]}>
+            <View
+              style={[
+                styles.cardStyle,
+                Style.shadow,
+                {minHeight: Dimensions.get('window').height},
+              ]}>
               {nextTripComponent}
               {futureTripsHorizontal}
               {pastTripsHorizontal}
-              <View style={styles.listViewStyle}>
+              {/* <View style={styles.listViewStyle}>
                 <Text style={styles.subtitleStyle}>Suggestions</Text>
                 <TopDestinations />
                 <BeautifulCities />
-              </View>
+              </View> */}
             </View>
           </View>
         </View>

@@ -1,13 +1,15 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {View} from 'react-native';
+import {View, Platform} from 'react-native';
 import Style from '../../constants/Style';
 
-import { useHeaderHeight } from '@react-navigation/stack';
+import {useHeaderHeight} from '@react-navigation/stack';
 
 const BackButton = ({navigation, onPress = () => {}}) => {
-  const headerHeight = useHeaderHeight() - 50;
+  let headerHeight = useHeaderHeight();
+  if (Platform.OS === 'android' && Platform.Version > 21) headerHeight += 15;
+  else headerHeight -= 50;
   return (
     <View
       style={{

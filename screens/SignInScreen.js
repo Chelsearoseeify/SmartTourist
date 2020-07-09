@@ -81,8 +81,6 @@ const SignInScreen = ({navigation, route}) => {
           isSelected,
         ),
       );
-      Alert.alert('Logged!');
-
       //navigation.navigate('Travel');
     } catch (err) {
       setError(err.message);

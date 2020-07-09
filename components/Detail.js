@@ -8,7 +8,7 @@ const Detail = ({text, iconName}) => {
   return (
     <View style={styles.detailsStyle}>
       <Icon name={iconName} style={styles.detailsIconStyle} />
-      <Text style={styles.detailsTextStyle}>{text}</Text>
+      <Text style={styles.detailsTextStyle}>{text ? text : '-'}</Text>
     </View>
   );
 };

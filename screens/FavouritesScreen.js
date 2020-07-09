@@ -1,6 +1,12 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import Colors from '../constants/Colors';
-import {View, StyleSheet, SafeAreaView, Dimensions} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  Dimensions,
+  ActivityIndicator,
+} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
 import Header from './../components/Header';
@@ -9,6 +15,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {fetchFavourites, setCardStyle} from './../store/actions/favourite';
 import CardTypes from '../constants/CardTypes';
 import {fetchCities} from '../store/actions/cities';
+import NoResult from './../components/NoResult';
 
 const FavouriteScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -91,10 +98,25 @@ const FavouriteScreen = ({navigation}) => {
                 }}
               />
             </View>
-            <CardView
-              favouriteCities={favouriteCities}
-              navigation={navigation}
-            />
+            {isLoading ? (
+              <View style={styles.centered}>
+                <ActivityIndicator
+                  size="large"
+                  color={Colors.greenTitleColor}
+                />
+              </View>
+            ) : favouriteCities.length === 0 ? (
+              <NoResult
+                message={
+                  'You added no places to favourites. Try to add one and come back!'
+                }
+              />
+            ) : (
+              <CardView
+                favouriteCities={favouriteCities}
+                navigation={navigation}
+              />
+            )}
           </View>
         </ScrollView>
       </View>
@@ -152,6 +174,11 @@ let styles = StyleSheet.create({
   icon: {
     fontSize: Style.iconSize,
     paddingHorizontal: 24,
+  },
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

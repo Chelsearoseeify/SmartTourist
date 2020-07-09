@@ -74,7 +74,6 @@ const SignUpScreen = ({navigation, route}) => {
           formState.inputValues.password,
         ),
       );
-      Alert.alert('Logged!');
     } catch (err) {
       setError(err.message);
     }

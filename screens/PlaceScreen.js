@@ -33,6 +33,7 @@ const PlaceScreen = ({navigation, route}) => {
   const places = useSelector(state => state.places.cachedPlaces);
   const cities = useSelector(state => state.cities.cachedCities);
   const place = places.find(place => place.id === id);
+  console.log(place);
 
   const description = useSelector(state => state.places.description);
   const favouritePlaces = useSelector(
@@ -179,8 +180,11 @@ const PlaceScreen = ({navigation, route}) => {
               <View style={styles.detailViewStyle}>
                 <Text style={styles.detailStyle}>Details</Text>
                 <Detail text={place.address} iconName="map-marker-alt" />
-                <Detail text={'+1 223-548-7785'} iconName="phone" />
-                <Detail text={'www.dinocoffee.com'} iconName="link" />
+                <Detail
+                  text={place.international_phone_number}
+                  iconName="phone"
+                />
+                <Detail text={place.website} iconName="link" />
               </View>
 
               <View style={styles.detailViewStyle}>
