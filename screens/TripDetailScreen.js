@@ -65,6 +65,7 @@ const TripDetailScreen = props => {
   const [backgroundColor, setBackgroundColor] = useState('transparent');
   const [isEditing, setIsEditing] = useState(false);
   const tripCity = cities.find(c => c.id === trip.cityId);
+  console.log(tripCity);
   const dateString = trip.getTripDateString();
   const numberOfDays = trip.numberOfDays();
   let tabRouteData = [];

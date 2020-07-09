@@ -121,7 +121,7 @@ export const fetchPlacesFromGoogle = (
       break;
   }
   if (pageToken && pageToken !== '') {
-    url = url.concat(`&pagetoken=${pageToken}`);
+    //url = url.concat(`&pagetoken=${pageToken}`);
   }
 
   console.log(url);

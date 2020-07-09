@@ -152,16 +152,15 @@ const GroupedPlacesScreen = ({navigation, route}) => {
   );
 };
 
-const topSpace = 180;
+const topSpace = 130;
 let styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.backgroundColor,
     flex: 1,
   },
   cardViewStyle: {
-    position: 'absolute',
     width: '100%',
-    height: '100%',
+    flex: 1
   },
   contentStyle: {
     paddingHorizontal: Style.paddingCard,
@@ -172,7 +171,7 @@ let styles = StyleSheet.create({
     ...Style.shadow,
     borderTopLeftRadius: Style.borderRadiusCardContainer,
     borderTopRightRadius: Style.borderRadiusCardContainer,
-    minHeight: Dimensions.get('window').height * 0.685,
+    minHeight: Dimensions.get('screen').height * 0.685,
     width: '100%',
     backgroundColor: 'white',
   },

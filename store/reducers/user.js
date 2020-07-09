@@ -1,7 +1,7 @@
 import {AUTHENTICATE, LOGOUT} from '../actions/user';
 
 const initialState = {
-  userId: 'ZYFrVo930EYYtk4SwgNrbOhi6D12',
+  userId: null,
   token: null,
 };
 

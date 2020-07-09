@@ -4,7 +4,6 @@ import {
   StyleSheet,
   View,
   SafeAreaView,
-  TextInput,
   Text,
   Dimensions,
   Alert,
@@ -151,7 +150,6 @@ const SignInScreen = ({navigation, route}) => {
               />
               <View
                 style={{
-                  flex: 1,
                   flexDirection: 'row',
                   alignItems: 'center',
                   marginVertical: 10,

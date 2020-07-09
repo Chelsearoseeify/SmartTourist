@@ -61,8 +61,7 @@ const MainPageScreen = ({navigation}) => {
               <Text style={styles.subtitleStyle}>Choose a city</Text>
               <PlaceSearch
                 onQuerySelected={(cityName, cityId, token) => {
-                  setCityId(cityId);
-                  setToken(token);
+                  onCitySelected(cityId,token)
                 }}
                 searchType={autocompleteType.CITY}
                 iconName="city-variant-outline"

@@ -48,7 +48,6 @@ const TravelScreen = ({navigation, route}) => {
         pageToken,
       ),
     );
-    await dispatch(fetchTrips());
     setIsLoading(false);
   };
   useEffect(() => {

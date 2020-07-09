@@ -35,7 +35,7 @@ const TripDayMap = props => {
     const places = useSelector(state => state.places.cachedPlaces);
     let polylineCoords = [];
 
-    console.log(waypointOrder);
+    console.log(cityGeometry);
 
     if (directions !== '') {
         let steps = polyLine.decode(directions);
@@ -68,7 +68,7 @@ const TripDayMap = props => {
     })
 
     const getDirections = useCallback(async () => {
-        const newDirections = await directionsRequest(placeIds, 'ChIJi3lwCZyTC0cRkEAWZg-vAAQ', directionMode);
+        const newDirections = await directionsRequest(placeIds, place.cityId, directionMode);
         setDirections(newDirections.overview_polyline.points);
         setWaypointOrder(newDirections.waypoint_order);
     }, []);
