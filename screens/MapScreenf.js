@@ -55,19 +55,21 @@ locateCurrentPosition = () => {
 
 const MapScreenf = ({navigation, route}) => {
   const places = useSelector(state => state.places.places);
-  const currentCity = useSelector(state => state.cities.selected_city);
   const markers = [];
   const [initialPosition, setInitialPosition] = useState({
     latitude: route.params.lat,
     longitude: route.params.lng,
-    latitudeDelta: 0.05,
-    longitudeDelta: 0.05,
+    latitudeDelta: route.params.delta,
+    longitudeDelta: route.params.delta,
   });
   let _map = {};
   let _carousel = {};
+  let initialIndex = 0;
   //locateCurrentPosition();
   //requestLocationPermission();
-  console.log('asd');
+  if (route.params.id) {
+    initialIndex = places.findIndex(place => place.id === route.params.id);
+  }
 
   const computeDistance = (placePosition, unit) => {
     const R = 6371e3; // metres
@@ -125,8 +127,7 @@ const MapScreenf = ({navigation, route}) => {
           } else if (index < _carousel.currentIndex) {
             _carousel.snapToPrev();
           }
-        }}
-      >
+        }}>
         <View style={styles.cardContainer}>
           <View style={styles.contentStyle}>
             {item.name.lenght <= 23 ? (
@@ -160,8 +161,7 @@ const MapScreenf = ({navigation, route}) => {
         style={styles.map}
         provider={PROVIDER_GOOGLE}
         ref={map => (_map = map)}
-        initialRegion={initialPosition}
-      >
+        initialRegion={initialPosition}>
         <Marker
           coordinate={{
             latitude: initialPosition.latitude,
@@ -177,8 +177,7 @@ const MapScreenf = ({navigation, route}) => {
             coordinate={{
               latitude: place.geometry.location.lat,
               longitude: place.geometry.location.lng,
-            }}
-          >
+            }}>
             <Callout>
               <Text>{place.name}</Text>
             </Callout>
@@ -196,6 +195,7 @@ const MapScreenf = ({navigation, route}) => {
         itemWidth={200}
         onSnapToItem={index => onCarouselItemChange(index)}
         removeClippedSubviews={false}
+        firstItem={initialIndex}
       />
     </View>
   );

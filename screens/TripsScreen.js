@@ -1,7 +1,14 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, {useEffect, useState, useCallback} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import Colors from '../constants/Colors';
-import { View, StyleSheet, SafeAreaView, Text, ScrollView } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  Text,
+  ScrollView,
+  Image,
+} from 'react-native';
 import HorizontalScrollView from '../components/HorizontalScrollView';
 import NextTripCard from '../components/Cards/NextTripCard';
 import BigListCard from '../components/Cards/ListCardCityBig';
@@ -13,9 +20,13 @@ import BeautifulCities from '../containers/BeautifulCities';
 import Header from '../components/Header';
 import Style from '../constants/Style';
 
-import { fetchCities } from '../store/actions/cities';
+import {fetchCities} from '../store/actions/cities';
 
 import moment from 'moment';
+import CustomButton from './../components/Buttons/CustomButton';
+import {logout} from '../store/actions/user';
+
+const tickets = require('../assets/images/tickets.png');
 
 const TripsScreen = props => {
   const dispatch = useDispatch();
@@ -44,7 +55,7 @@ const TripsScreen = props => {
       } else {
         pastTrips.push(trip);
       }
-    })
+    });
 
     if (futureTrips.length > 0) {
       closestTrip = futureTrips[0];
@@ -61,13 +72,13 @@ const TripsScreen = props => {
 
   useEffect(() => {
     if (missingCities.length > 0) {
-      fetchCitiesData().then(() => { });
+      fetchCitiesData().then(() => {});
     }
   }, [fetchCitiesData, fetchCities, trips]);
 
   const onCreateTrip = () => {
     props.navigation.navigate('Plus');
-  }
+  };
 
   const onTripSelected = trip => {
     props.navigation.navigate('TripDetailScreen', {
@@ -78,14 +89,20 @@ const TripsScreen = props => {
   let nextTripComponent;
 
   if (trips.length === 0) {
-    nextTripComponent = <View style={{ alignItems: "center", paddingVertical: 20 }}>
-      <Text>You have no trips. Create one!</Text>
-      <ButtonWithIcon icon='plus' text='Create a trip' onPress={onCreateTrip} />
-    </View>
+    nextTripComponent = (
+      <View style={{alignItems: 'center', paddingVertical: 20}}>
+        <Text>You have no trips. Create one!</Text>
+        <ButtonWithIcon
+          icon="plus"
+          text="Create a trip"
+          onPress={onCreateTrip}
+        />
+      </View>
+    );
   } else {
     const nextCity = cities.find(city => city.id === trips[0].cityId);
     nextTripComponent = (
-      <View style={{ paddingHorizontal: 10, paddingVertical: 30 }}>
+      <View style={{paddingHorizontal: 10, paddingVertical: 30}}>
         <Text
           style={{
             color: Colors.greenTitleColor,
@@ -103,11 +120,15 @@ const TripsScreen = props => {
               onPress={() => onTripSelected(closestTrip)}
             />
           ) : (
-              <View style={{ alignItems: "center", paddingVertical: 20 }}>
-                <Text>You have no incoming trips. Create one!</Text>
-                <ButtonWithIcon icon='plus' text='Create a trip' onPress={onCreateTrip} />
-              </View>
-            )}
+            <View style={{alignItems: 'center', paddingVertical: 20}}>
+              <Text>You have no incoming trips. Create one!</Text>
+              <ButtonWithIcon
+                icon="plus"
+                text="Create a trip"
+                onPress={onCreateTrip}
+              />
+            </View>
+          )}
         </View>
       </View>
     );
@@ -122,8 +143,7 @@ const TripsScreen = props => {
         {futureTrips.map(trip => {
           const city = cities.find(city => city.id === trip.cityId);
 
-          if (trip.id === closestTrip.id)
-            return;
+          if (trip.id === closestTrip.id) return;
 
           return (
             <BigListCard
@@ -143,21 +163,19 @@ const TripsScreen = props => {
         name={'Past Trips'}
         paddingLeft={10}
         isThereMore={false}>
-        {
-          pastTrips.map(trip => {
-            const city = cities.find(city => city.id === trip.cityId);
+        {pastTrips.map(trip => {
+          const city = cities.find(city => city.id === trip.cityId);
 
-            return (
-              <BigListCard
-                name={trip.name}
-                subTitle={trip.getTripMonthString()}
-                imageId={city ? city.photoUrl : ''}
-                onPress={() => onTripSelected(trip)}
-              />
-            );
-          })
-        }
-      </HorizontalScrollView >
+          return (
+            <BigListCard
+              name={trip.name}
+              subTitle={trip.getTripMonthString()}
+              imageId={city ? city.photoUrl : ''}
+              onPress={() => onTripSelected(trip)}
+            />
+          );
+        })}
+      </HorizontalScrollView>
     ) : null;
 
   return (
@@ -168,7 +186,52 @@ const TripsScreen = props => {
         </View>
         <View>
           <View style={styles.cardsContainerStyle}>
-            <View style={[styles.cardStyle, Style.shadow, { height: '100%' }]}>
+            <View style={[styles.cardStyle, Style.shadow]}>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                }}>
+                <View>
+                  <Text
+                    style={{
+                      color: Colors.blueTitleColor,
+                      fontSize: Style.fontSize.h5,
+                      paddingHorizontal: 10,
+                      marginTop: 10,
+                    }}>
+                    Hello,
+                  </Text>
+                  <Text
+                    style={{
+                      color: Colors.blueTitleColor,
+                      fontWeight: 'bold',
+                      fontSize: Style.fontSize.h4,
+                      paddingHorizontal: 10,
+                      marginBottom: 10,
+                    }}>
+                    Chelsearoseeify!
+                  </Text>
+                  <CustomButton
+                    text={'Logout'}
+                    onPress={() => {
+                      dispatch(logout());
+                    }}
+                  />
+                </View>
+                <View style={{padding: 10}}>
+                  <Image
+                    source={tickets}
+                    style={{
+                      width: 110,
+                      height: 110,
+                    }}
+                  />
+                </View>
+              </View>
+            </View>
+            <View style={[styles.cardStyle, Style.shadow, {height: '100%'}]}>
               {nextTripComponent}
               {futureTripsHorizontal}
               {pastTripsHorizontal}
@@ -211,7 +274,7 @@ let styles = StyleSheet.create({
   },
   listViewStyle: {
     marginTop: 10,
-    marginBottom: 20
+    marginBottom: 20,
   },
   subtitleStyle: {
     color: Colors.blueTitleColor,

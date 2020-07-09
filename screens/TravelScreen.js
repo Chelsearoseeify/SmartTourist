@@ -10,9 +10,7 @@ import {
   Text,
 } from 'react-native';
 import PlaceCard from '../components/Cards/PlaceCard';
-import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
-import Header from '../components/Header';
 import Style from '../constants/Style';
 import {fetchFavourites} from '../store/actions/favourite';
 import {fetchPlacesFromGoogle, fetchPlaces} from './../store/actions/places';
@@ -76,6 +74,7 @@ const TravelScreen = ({navigation, route}) => {
     navigation.navigate('Mapf', {
       lat: selectedCity.geometry.location.lat,
       lng: selectedCity.geometry.location.lng,
+      delta: 0.05,
     });
   };
 
