@@ -21,10 +21,11 @@ import LabelButtonsList from '../components/LabelButtonsList';
 import NoResult from '../components/NoResult';
 import MapButton from './../components/Buttons/MapButton';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import CitySearchModal from './../components/Cards/CitySearchModal';
+import PlaceSearchModal from './../components/Cards/PlaceSearchModal';
 import {v4 as uuidv4} from 'react-native-uuid';
 import {setSelectedCity} from './../store/actions/cities';
 import {fetchTrips} from './../store/actions/trips';
+import autocompleteType from '../constants/AutocompleteType';
 
 //full height
 
@@ -43,7 +44,7 @@ const TravelScreen = ({navigation, route}) => {
     useSelector(state => state.places.pageToken),
   );
   const [token, setToken] = useState('');
-  const [cityModalVisible, setCityModalVisible] = useState(false);
+  const [searchModalVisible, setSearchModalVisible] = useState(false);
 
   const onCitySelected = (cityName, cityId) => {
     dispatch(setSelectedCity(cityId, token));
@@ -51,12 +52,12 @@ const TravelScreen = ({navigation, route}) => {
   };
 
   const onModalClose = () => {
-    setCityModalVisible(false);
+    setSearchModalVisible(false);
   };
 
   const openCityModal = () => {
     setToken(uuidv4());
-    setCityModalVisible(true);
+    setSearchModalVisible(true);
   };
 
   const loadPlaces = async () => {
@@ -119,11 +120,14 @@ const TravelScreen = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <CitySearchModal
-        visible={cityModalVisible}
+      <PlaceSearchModal
+        visible={searchModalVisible}
         closeModal={onModalClose}
         token={token}
-        onCitySelected={(cityName, cityId) => onCitySelected(cityName, cityId)}
+        onPredictionSelected={(cityName, cityId) => onCitySelected(cityName, cityId)}
+        searchType={autocompleteType.CITY}
+        placeholder="Type a city name"
+        iconName="city-variant-outline"
       />
       <View
         style={{

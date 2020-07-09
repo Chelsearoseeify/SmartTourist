@@ -9,8 +9,6 @@ export const ADD_CITY = 'ADD_CITY';
 
 import database from '@react-native-firebase/database';
 import City from './../../models/City';
-import axios from 'axios';
-import API_KEY from '../../constants/API_KEY';
 
 import placeRequest from '../../utils/placeRequest';
 
@@ -49,18 +47,6 @@ export const saveDataToStorage = city => {
 
 export const removeCityFromStorage = () => {
   AsyncStorage.removeItem('selectedCity');
-};
-
-export const queryCity = (token, queryString) => {
-  return async dispatch => {
-    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${queryString}&key=${
-      API_KEY.API_KEY_PLACES
-    }&sessiontoken=${token}&type=(cities)&language=en`;
-    const response = await axios.get(url);
-    const predictions = response.data.predictions;
-
-    dispatch({type: SET_QUERY_PREDICTIONS, predictions});
-  };
 };
 
 export const fetchSelectedCity = cityId => {

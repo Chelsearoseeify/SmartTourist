@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { queryCity } from '../../store/actions/cities';
+import { queryAutocomplete } from '../../store/actions/places';
 
 import Style from '../../constants/Style';
 import Colors from '../../constants/Colors';
@@ -18,19 +18,19 @@ import Colors from '../../constants/Colors';
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const CitySearchModal = props => {
+const PlaceSearchModal = props => {
   const dispatch = useDispatch();
   const [text, setText] = useState('');
   const [showList, setShowList] = useState(false);
-  const predictions = useSelector(state => state.cities.queryPredictions);
+  const predictions = useSelector(state => state.places.queryPredictions);
 
   const queryData = () => {
-    dispatch(queryCity(props.token, text));
+    dispatch(queryAutocomplete(props.token, text, props.seatchType, props.location));
     setShowList(true);
   };
 
   const predictionSelectHandler = item => {
-    props.onCitySelected(item.structured_formatting.main_text, item.place_id);
+    props.onPredictionSelected(item.structured_formatting.main_text, item.place_id);
     onCloseModal();
     Keyboard.dismiss();
   };
@@ -70,13 +70,12 @@ const CitySearchModal = props => {
     <Modal isVisible={props.visible} onBackdropPress={onCloseModal}>
       <View style={styles.citySearchModal}>
         <View style={styles.inputSection}>
-          <Icon style={styles.iconStyle} name={'city-variant-outline'} />
+          <Icon style={styles.iconStyle} name={props.iconName} />
           <TextInput
             value={text}
             onChangeText={nText => changeTextHandler(nText)}
-            placeholder="Type city name"
+            placeholder={props.placeholder}
             onBlur={() => setShowList(false)}
-            label="    City"
             keyboardType="default"
             placeholderTextColor={Colors.textInputIconColor}
             autoFocus={true}
@@ -118,6 +117,7 @@ const styles = StyleSheet.create({
     fontSize: Style.inputIconSize + 3,
     fontWeight: 'bold',
     paddingHorizontal: 10,
+    paddingTop: 3
   },
   predictionItem: {
     flexDirection: 'row',
@@ -129,7 +129,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     marginBottom: 5,
+    zIndex: 999
   },
 });
 
-export default CitySearchModal;
+export default PlaceSearchModal;

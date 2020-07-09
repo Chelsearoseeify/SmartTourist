@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import CustomButton from '../components/Buttons/CustomButton';
-import CitySearch from '../components/Inputs/CitySearch';
+import PlaceSearch from '../components/Inputs/PlaceSearch';
 import CalendarDatePicker from '../components/Inputs/CalendarDatePicker';
 import { useSelector, useDispatch } from 'react-redux';
 import Colors from '../constants/Colors';
+import autocompleteTypes from '../constants/AutocompleteType';
 
 import { setTripCity, createTrip } from '../store/actions/trips';
 
@@ -77,9 +78,13 @@ const AddTrip = props => {
         />
 
         <View style={{ marginBottom: 10 }}>
-          <CitySearch
-            cityName={tripCityName !== '' ? tripCityName : selectedCity.name}
+          <PlaceSearch
+            placeName={tripCityName !== '' ? tripCityName : selectedCity.name}
             onQuerySelected={(cityName, cityId, token) => onCitySelected(cityName, cityId, token)}
+            searchType={autocompleteTypes.CITY}
+            iconName="city-variant-outline"
+            placeholder="Type a city name"
+            inputPlaceholder="Search for a city"
           />
         </View>
 

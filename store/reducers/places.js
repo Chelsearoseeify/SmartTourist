@@ -7,6 +7,7 @@ import {
   EMPTY_PLACE,
   EMPTY_PLACES,
   FETCH_PLACE_DESCRIPTION,
+  SET_QUERY_PREDICTIONS
 } from './../actions/places';
 import SearchType from '../../constants/SearchType';
 import {LABELS} from '../../data/dummy-data';
@@ -23,6 +24,7 @@ const initialState = {
   types: [
     /* 'tourist_attraction', 'point_of_interest' */
   ],
+  queryPredictions: [],
 };
 
 function filterArray(array, filters) {
@@ -88,6 +90,12 @@ const placesReducer = (state = initialState, action) => {
         search: action.newType,
         pageToken: '',
         places: [],
+      };
+    }
+    case SET_QUERY_PREDICTIONS: {
+      return {
+        ...state,
+        queryPredictions: action.predictions,
       };
     }
     case ADD_PLACES_TO_LIST: {

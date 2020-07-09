@@ -22,16 +22,15 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_TRIPS:
-      console.log(action.userTrips);
       return {...state, userTrips: action.userTrips}
     case CREATE_TRIP:
-      console.log(action.trip);
-
       const updatedUserTrips = [...state.userTrips, action.trip];
+
+      const sortedUserTrips = updatedUserTrips.sort((t1,t2)=> t1.startDate - t2.startDate);
       
       return {
         ...state,
-        userTrips: updatedUserTrips,
+        userTrips: sortedUserTrips,
         newTrip: emptyTrip,
       };
     case REMOVE_PLACE_FROM_TRIP:

@@ -1,13 +1,10 @@
-import {CITIES} from '../../data/dummy-data';
 import {
   FETCH_SELECTED_CITY,
   FETCH_BEAUTIFUL_CITIES,
   FETCH_TOP_DESTINATIONS,
   SET_SELECTED_CITY,
-  SET_QUERY_PREDICTIONS,
   CACHE_CITIES,
 } from './../actions/cities';
-import City from './../../models/City';
 
 const initialState = {
   cachedCities: [],
@@ -25,7 +22,6 @@ const initialState = {
     name: 'Prague',
     photoReference: undefined,
   },
-  queryPredictions: [],
 };
 
 const cityReducer = (state = initialState, action) => {
@@ -36,12 +32,6 @@ const cityReducer = (state = initialState, action) => {
       return {
         ...state,
         selected_city: action.city,
-      };
-    }
-    case SET_QUERY_PREDICTIONS: {
-      return {
-        ...state,
-        queryPredictions: action.predictions,
       };
     }
     case FETCH_SELECTED_CITY: {

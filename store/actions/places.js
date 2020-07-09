@@ -1,5 +1,4 @@
 import CompletePlace from '../../models/CompletePlace';
-import database from '@react-native-firebase/database';
 export const CREATE_PLACE = 'CREATE_PLACE';
 export const SET_PLACES = 'SET_PLACES';
 export const FETCH_PLACE = 'FETCH_PLACE';
@@ -9,14 +8,16 @@ export const SET_PLACE_TYPE = 'SET_TYPE';
 export const SET_SEARCH_TYPE = 'SET_SEARCH_TYPE';
 export const FETCH_PLACE_DESCRIPTION = 'FETCH_PLACE_DESCRIPTION';
 export const ADD_PLACES_TO_LIST = 'ADD_PLACES_TO_LIST';
+export const SET_QUERY_PREDICTIONS = 'SET_QUERY_PREDICTIONS';
 
-const API_KEY = 'AIzaSyBZnXD0YlNLMtcDswoLpkUTu_cBYP3Ud0w';
 import axios from 'axios';
+import API_KEY from '../../constants/API_KEY';
+
 import _ from 'lodash';
 import SearchType from '../../constants/SearchType';
 
 import placeRequest from '../../utils/placeRequest';
-import Place from '../../models/Place';
+import autocompleteType from '../../constants/AutocompleteType';
 
 export const emptyPlace = () => {
   return {type: EMPTY_PLACE};
@@ -35,7 +36,7 @@ export const setPlaceType = newType => {
 };
 
 const getPhoto = async photo_reference => {
-  const url = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${photo_reference}&key=${API_KEY}`;
+  const url = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${photo_reference}&key=${API_KEY.API_KEY_PLACES}`;
   try {
     const response = await axios.get(url, {responseType: 'blob'});
     return response.request.responseURL;
@@ -97,7 +98,7 @@ export const fetchPlacesFromGoogle = (
   pageToken,
 ) => {
   let url = `https://maps.googleapis.com/maps/api/place/`;
-  const key = `&key=${API_KEY}`;
+  const key = `&key=${API_KEY.API_KEY_PLACES}`;
 
   const textSearch = `textsearch/json?query=${
     city.name
@@ -129,6 +130,7 @@ export const fetchPlacesFromGoogle = (
     try {
       const res = await axios.get(url);
       const loadedPlaces = [];
+      console.log(res.data.results[0]);
       await Promise.all(
         res.data.results.map(async place => {
           let photoUrl = '';
@@ -171,7 +173,7 @@ export const fetchPlacesFromGoogle = (
   };
 };
 
-export const getPlacesDetails = (placeIds, cityId) => {
+export const getPlacesDetails = (placeIds, cityId, token = null) => {
   console.log(placeIds);
   console.log(cityId);
   return async dispatch => {
@@ -179,7 +181,7 @@ export const getPlacesDetails = (placeIds, cityId) => {
       const loadedPlaces = [];
       await Promise.all(
         placeIds.map(async placeId => {
-          const place = await placeRequest(placeId);
+          const place = await placeRequest(placeId, token);
           console.log(place);
           const completePlace = new CompletePlace(
             place.id,
@@ -203,5 +205,26 @@ export const getPlacesDetails = (placeIds, cityId) => {
     } catch (error) {
       throw error;
     }
+  };
+};
+
+export const queryAutocomplete = (token, queryString, searchType, location) => {
+  return async dispatch => {
+    let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${queryString}&key=${
+      API_KEY.API_KEY_PLACES
+    }&sessiontoken=${token}`;
+
+    if(location){
+      url += `&location=${location.lat},${location.lng}&radius=5000`;
+    }
+
+    if(searchType === autocompleteType.CITY){
+      url += `&type=(cities)&language=en`;
+    }
+
+    const response = await axios.get(url);
+    const predictions = response.data.predictions;
+
+    dispatch({type: SET_QUERY_PREDICTIONS, predictions});
   };
 };

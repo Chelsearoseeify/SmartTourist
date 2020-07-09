@@ -8,38 +8,42 @@ import {
 import Colors from '../../constants/Colors';
 import Style from '../../constants/Style';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import CitySearchModal from '../Cards/CitySearchModal';
+import PlaceSearchModal from '../Cards/PlaceSearchModal';
 import {v4 as uuidv4} from 'react-native-uuid';
 
-const CitySearch = props => {
+const PlaceSearch = props => {
   const [token, setToken] = useState('');
-  const [cityModalVisible, setCityModalVisible] = useState(false);
+  const [searchModalVisible, setsearchModalVisible] = useState(false);
 
-  const onCitySelected = (cityName, cityId) => {
-    props.onQuerySelected(cityName, cityId, token);
+  const onPredictionSelected = (placeName, placeId) => {
+    props.onQuerySelected(placeName, placeId, token);
   };
 
   const onModalClose = () => {
-    setCityModalVisible(false);
+    setsearchModalVisible(false);
   };
 
   const openCityModal = () => {
     setToken(uuidv4());
-    setCityModalVisible(true);
+    setsearchModalVisible(true);
   };
 
   return (
     <View>
-      <CitySearchModal
-        visible={cityModalVisible}
+      <PlaceSearchModal
+        visible={searchModalVisible}
         closeModal={onModalClose}
         token={token}
-        onCitySelected={(cityName, cityId) => onCitySelected(cityName, cityId)}
+        searchType={props.searchType}
+        placeholder={props.placeholder}
+        iconName={props.iconName}
+        location={props.location}
+        onPredictionSelected={(placeName, placeId) => onPredictionSelected(placeName, placeId)}
       />
       <TouchableOpacity style={styles.inputSection} onPress={openCityModal}>
-        <Icon style={styles.iconStyle} name={'city-variant-outline'} />
+        <Icon style={styles.iconStyle} name={props.iconName} />
         <Text style={{color: Colors.blueTitleColor}}>
-          {props.cityName ? props.cityName : 'Search for a city'}
+          {props.placeName ? props.placeName : props.inputPlaceholder}
         </Text>
       </TouchableOpacity>
     </View>
@@ -83,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CitySearch;
+export default PlaceSearch;

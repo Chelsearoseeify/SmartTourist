@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text } from '@ui-kitten/components';
 import Colors from '../constants/Colors';
 import {
@@ -8,19 +8,31 @@ import {
   SafeAreaView,
   ScrollView,
 } from 'react-native';
-import SearchBar from '../components/SearchBar';
 import { LABELS } from './../data/dummy-data';
 import CategoryCard from './../components/Cards/CategoryCard';
 import Style from '../constants/Style';
 import TopDestinations from '../containers/TopDestinations';
-import { useDispatch } from 'react-redux';
-import { resetPlaceTypes, setSearchType } from './../store/actions/places';
-import SearchBar2 from './../components/SearchBar2';
-import SearchType from '../constants/SearchType';
+import { useSelector, useDispatch } from 'react-redux';
 import BeautifulCities from './../containers/BeautifulCities';
+import PlaceSearch from '../components/Inputs/PlaceSearch';
+
+import { getPlacesDetails } from '../store/actions/places';
+
+import autocompleteType from '../constants/AutocompleteType';
 
 const SearchScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
+  const selectedCity = useSelector(state => state.cities.selected_city);
+
+  const querySelectedHandler = async (id, t) => {
+    await dispatch(getPlacesDetails([id], selectedCity.id, t));
+    navigation.navigate('Place', {
+      id: id,
+      placeName: selectedCity.name,
+      cityName: selectedCity.name,
+      cityId: selectedCity.id,
+    });
+  }
 
   const renderGridItem = itemData => {
     return (
@@ -40,10 +52,20 @@ const SearchScreen = ({ navigation, route }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={{ paddingHorizontal: 15 }}>
+            <PlaceSearch
+              onQuerySelected={(cityName, cityId, token) => {
+                querySelectedHandler(cityId, token);
+              }}
+              searchType={autocompleteType.PLACE}
+              iconName="magnify"
+              placeholder="Type a place name"
+              location={selectedCity.geometry.location}
+              inputPlaceholder="Search for a place"
+            />
+          </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
-          <SearchBar2 />
-
           <View style={styles.cardStyle}>
             <View style={{ marginEnd: -5, marginTop: 20 }}>
               <TopDestinations {...navigation} />
@@ -53,7 +75,7 @@ const SearchScreen = ({ navigation, route }) => {
             </View>
 
             <Text style={styles.subtitleStyle}>Categories</Text>
-            <View style={{paddingBottom: 20}}>
+            <View style={{ paddingBottom: 20 }}>
               <FlatList
                 data={LABELS}
                 numColumns={2}

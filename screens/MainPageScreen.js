@@ -11,9 +11,11 @@ import _ from 'lodash';
 import {useSelector, useDispatch} from 'react-redux';
 import Style from '../constants/Style';
 import CustomButton from './../components/Buttons/CustomButton';
-import CitySearch from '../components/Inputs/CitySearch';
+import PlaceSearch from '../components/Inputs/PlaceSearch';
 import {setSelectedCity} from './../store/actions/cities';
 import BeautifulCities from './../containers/BeautifulCities';
+
+import autocompleteType from '../constants/AutocompleteType';
 
 const MainPageScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -68,11 +70,15 @@ const MainPageScreen = ({navigation}) => {
                 alignContent: 'center',
               }}>
               <Text style={styles.subtitleStyle}>Choose a city</Text>
-              <CitySearch
-                onQuerySelected={(cityId, token) => {
+              <PlaceSearch
+                onQuerySelected={(cityName, cityId, token) => {
                   setCityId(cityId);
                   setToken(token);
                 }}
+                searchType={autocompleteType.CITY}
+                iconName="city-variant-outline"
+                placeholder="Type a city name"
+                inputPlaceholder="Search for a city"
               />
             </View>
 
