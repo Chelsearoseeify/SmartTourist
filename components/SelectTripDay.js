@@ -25,7 +25,7 @@ const SelectTripDay = props => {
     return (
         <View style={{marginTop: 10}}>
             <Text>{props.tripName} | {props.tripDates}</Text>
-            <View style={{flexDirection: "row", paddingTop: 10}}>
+            <View style={{flexDirection: "row", paddingTop: 10, flexWrap: "wrap"}}>
                 {checkboxes}
             </View>
         </View>

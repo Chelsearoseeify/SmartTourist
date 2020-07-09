@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingHorizontal: 10,
     height: 40,
-    marginVertical: 10,
+    marginVertical: 5,
     marginHorizontal: 15,
     ...Style.shadow,
   },

@@ -7,6 +7,7 @@ import {
   Text,
   Dimensions,
   ImageBackground,
+  TouchableOpacity
 } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -189,18 +190,36 @@ const TripDetailScreen = props => {
                 <Icon name="calendar" style={styles.iconStyle} />
                 <Text style={styles.tripDatesStyle}>{dateString}</Text>
               </View>
+              <TouchableOpacity
+                style={{ flexDirection: "row", alignItems: "center" }}
+                onPress={() => {
+                  isEditing ? setIsEditing(false) : setIsEditing(true);
+                }}
+              >
+                {trip.placeIds[index].length > 0 &&
+                  <View style={styles.iconViewStyle}>
+                    <Icon
+                      style={styles.editIcon}
+                      name="pencil"
+                    />
+                  </View>
+                }
+                <Text style={styles.tripDatesStyle}>Edit Places</Text>
+              </TouchableOpacity>
+
             </View>
-            <View style={{ width: '45%' }}>
+            <View style={{ width: '45%', alignItems: "center" }}>
+              <Text style={styles.directionsTitle}>Directions</Text>
               {trip.placeIds[index].length > 0 &&
                 <ButtonWithIcon
-                  icon="directions"
-                  text="Directions"
+                  icon="car"
+                  text="Driving"
                   onPress={() => {
                     props.navigation.navigate('TripDayMap', {
                       mapData: {
-                        cityGeometry: tripCity.geometry,
+                        city: tripCity,
                         placeIds: trip.placeIds[index],
-                        directionMode: 'walking',
+                        directionMode: 'driving',
                         navigation: props.navigation
                       }
                     })
@@ -208,16 +227,21 @@ const TripDetailScreen = props => {
                 />
               }
 
-              {trip.placeIds[index].length > 0 && 
-                <View style={styles.iconViewStyle}>
-                  <Icon
-                    style={styles.editIcon}
-                    name="pencil"
-                    onPress={() => {
-                      isEditing ? setIsEditing(false) : setIsEditing(true);
-                    }}
-                  />
-                </View>
+              {trip.placeIds[index].length > 0 &&
+                <ButtonWithIcon
+                  icon="walk"
+                  text="Walking"
+                  onPress={() => {
+                    props.navigation.navigate('TripDayMap', {
+                      mapData: {
+                        city: tripCity,
+                        placeIds: trip.placeIds[index],
+                        directionMode: 'walking',
+                        navigation: props.navigation
+                      }
+                    })
+                  }}
+                />
               }
             </View>
           </View>
@@ -286,15 +310,16 @@ let styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 3
   },
-  iconViewStyle: {
-    width: '100%',
-    alignItems: "flex-end",
-  },
   editIcon: {
     fontSize: Style.iconSize,
-    marginRight: 20,
+    marginRight: 10,
     color: Colors.blueTitleColor,
   },
+  directionsTitle: {
+    color: Colors.blueTitleColor,
+    fontSize: Style.fontSize.h6,
+    fontWeight: 'bold',
+  }
 });
 
 export default TripDetailScreen;

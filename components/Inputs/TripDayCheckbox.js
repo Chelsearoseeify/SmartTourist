@@ -13,7 +13,7 @@ const TripDayCheckbox = props => {
     }
 
     return (
-        <View style={{ flexDirection: "row", alignItems: "center", paddingEnd: 10 }}>
+        <View style={{ flexDirection: "row", alignItems: "center", paddingEnd: 10, marginBottom: 10 }}>
             <Text style={{ paddingEnd: 10 }}>Day {props.index + 1}</Text>
             <CheckBox
                 value={toggleCheckBox}

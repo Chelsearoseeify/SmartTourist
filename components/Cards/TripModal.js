@@ -51,7 +51,6 @@ const TripModal = props => {
     }
 
     const onSelectionConfirm = () => {
-        console.log(selections);
         selections.map((selection, index) => {
             const trip = filteredTrips[index];
             dispatch(addPlaceToTrip(trip, props.place.id, selection));
@@ -65,7 +64,7 @@ const TripModal = props => {
         props.onCloseModal();
     }
 
-    const isSelectionValid = () =>{
+    const isSelectionValid = () => {
         return selections.some(selection => selection.includes(true));
     }
 
@@ -82,10 +81,14 @@ const TripModal = props => {
                     onSelectionChanged={onSelectionChange}
                 />
             })}
+
+
             <View style={styles.confirmContainerStyle}>
-                <ButtonWithIcon icon='plus' text='Create a new trip' onPress={onCreateTrip} />
-                <View style={{width: '80%'}}>
-                    <CustomButton onPress={onSelectionConfirm} text="Confirm" disabled={!isSelectionValid()}/>
+                <View style={{ marginBottom: 10 }}>
+                    <ButtonWithIcon icon='plus' text='Create a new trip' onPress={onCreateTrip} />
+                </View>
+                <View style={{ width: '80%' }}>
+                    <CustomButton onPress={onSelectionConfirm} text="Confirm" disabled={!isSelectionValid()} />
                 </View>
             </View>
         </View>
@@ -93,7 +96,7 @@ const TripModal = props => {
         <View style={{ alignItems: "center" }}>
             <Text>You don't have any trips for this city!</Text>
             <Text>Create a trip to add this place</Text>
-            <ButtonWithIcon icon='plus' text='Create a trip' onPress={onCreateTrip}/>
+            <ButtonWithIcon icon='plus' text='Create a trip' onPress={onCreateTrip} />
         </View>
     return (
         <Modal isVisible={props.visible} onBackdropPress={props.onCloseModal}>

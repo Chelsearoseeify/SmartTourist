@@ -31,11 +31,9 @@ const CustomMarker = props => (
 const TripDayMap = props => {
     const [directions, setDirections] = useState('');
     const [waypointOrder, setWaypointOrder] = useState([]);
-    const { cityGeometry, placeIds, directionMode } = props.route.params.mapData;
+    const { city, placeIds, directionMode } = props.route.params.mapData;
     const places = useSelector(state => state.places.cachedPlaces);
     let polylineCoords = [];
-
-    console.log(cityGeometry);
 
     if (directions !== '') {
         let steps = polyLine.decode(directions);
@@ -68,7 +66,7 @@ const TripDayMap = props => {
     })
 
     const getDirections = useCallback(async () => {
-        const newDirections = await directionsRequest(placeIds, place.cityId, directionMode);
+        const newDirections = await directionsRequest(placeIds, city.id, directionMode);
         setDirections(newDirections.overview_polyline.points);
         setWaypointOrder(newDirections.waypoint_order);
     }, []);
@@ -84,8 +82,8 @@ const TripDayMap = props => {
                 style={styles.map}
                 provider={PROVIDER_GOOGLE}
                 initialRegion={{
-                    latitude: cityGeometry.location.lat,
-                    longitude: cityGeometry.location.lng,
+                    latitude: city.geometry.location.lat,
+                    longitude: city.geometry.location.lng,
                     latitudeDelta: 0.0922,
                     longitudeDelta: 0.0421,
                 }}
