@@ -73,8 +73,8 @@ const MainPageScreen = ({navigation}) => {
             <View style={{marginEnd: -5, marginTop: 10, marginBottom: 40}}>
               <BeautifulCities
                 {...navigation}
-                onCitySelected={(cityId, token) => {
-                  onCitySelected(cityId, token);
+                onCitySelected={(city, token) => {
+                  onCitySelected(city.id, token);
                 }}
               />
             </View>
