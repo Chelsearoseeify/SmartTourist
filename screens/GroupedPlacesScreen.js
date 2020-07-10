@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Colors from '../constants/Colors';
 import {
   View,
@@ -8,28 +8,24 @@ import {
   ImageBackground,
   Text,
 } from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 import BackButton from '../components/Buttons/BackButton';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Style from '../constants/Style';
 import FavouritePlaceCard from './../components/Cards/FavouritePlaceCard';
 import {
-  toggleFavouriteCity,
-  toggleFavouritePlace,
   toggleFavourite,
-} from '../store/actions/favourite';
-import {
   fetchFavouritePlaces,
-  setFavouriteRequest,
-} from './../store/actions/favourite';
+} from '../store/actions/favourite';
+import { getPlacesDetails } from '../store/actions/places';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Dimensions} from 'react-native';
+import { Dimensions } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 //import RNColorThief from 'react-native-color-thief';
 
-const GroupedPlacesScreen = ({navigation, route}) => {
+const GroupedPlacesScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
-  const {title, cityId} = route.params;
+  const { title, cityId } = route.params;
   const user = useSelector(state => state.user);
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -38,13 +34,40 @@ const GroupedPlacesScreen = ({navigation, route}) => {
   /* const placeRequest = useSelector(state => state.favourites.place_request);
   const cityRequest = useSelector(state => state.favourites.city_request); */
   const cities = useSelector(state => state.cities.cachedCities);
+  const cachedPlaces = useSelector(state => state.places.cachedPlaces);
   const favCity = cities.find(c => c.id === cityId);
   const places = useSelector(
     state => state.favourites.selected_favourite_places,
   );
 
+  let missingPlaceIds = [];
+
+  if (places.length > 0) {
+    places.map(place => {
+      console.log(place);
+      const foundIndex = cachedPlaces.findIndex(p => p.id === place.id);
+      if (foundIndex === -1) {
+        //console.log('place not found');
+        missingPlaceIds.push(place.id);
+      }
+    });
+  }
+
+  console.log(missingPlaceIds);
+
+  const loadMissingPlaces = useCallback(async () => {
+    try {
+      dispatch(getPlacesDetails(missingPlaceIds, favCity.id));
+    } catch (error) {
+      console.log(error);
+    }
+  }, [getPlacesDetails, dispatch]);
+
   useEffect(() => {
-    console.log(places.length);
+    if (missingPlaceIds.length > 0) {
+      console.log('missing place ids!');
+      loadMissingPlaces().then(() => { });
+    }
     if (places.length === 0) navigation.pop();
   });
 
@@ -73,7 +96,7 @@ const GroupedPlacesScreen = ({navigation, route}) => {
 
   const renderGridItem = itemData => {
     return (
-      <View style={{flex: 1, margin: Style.marginCard}}>
+      <View style={{ flex: 1, margin: Style.marginCard }}>
         {isDeleting ? (
           <View style={styles.deleteIconContainer}>
             <Icon
@@ -112,10 +135,10 @@ const GroupedPlacesScreen = ({navigation, route}) => {
           resizeMode="cover">
           <LinearGradient
             colors={['transparent', backgroundColor]}
-            start={{x: 0.8, y: 0.4}}
-            end={{x: 0.72, y: 1.0}}
+            start={{ x: 0.8, y: 0.4 }}
+            end={{ x: 0.72, y: 1.0 }}
             locations={[0.1, 0.8]}
-            style={{height: '100%'}}>
+            style={{ height: '100%' }}>
             <View style={styles.titleContainerStyle}>
               <Text style={styles.titleStyle}>{title}</Text>
             </View>

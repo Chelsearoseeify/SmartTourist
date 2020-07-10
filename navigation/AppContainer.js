@@ -33,6 +33,7 @@ const AppContainer = props => {
   const isCitySelected = useSelector(state => !!state.cities.selected_city);
   console.log(isAuth);
   console.log(isCitySelected);
+  //isAuth = true;
   return (
     <NavigationContainer>
       {isAuth ? (

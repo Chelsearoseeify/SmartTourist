@@ -190,27 +190,28 @@ const TripDetailScreen = props => {
                 <Icon name="calendar" style={styles.iconStyle} />
                 <Text style={styles.tripDatesStyle}>{dateString}</Text>
               </View>
-              <TouchableOpacity
-                style={{ flexDirection: "row", alignItems: "center" }}
-                onPress={() => {
-                  isEditing ? setIsEditing(false) : setIsEditing(true);
-                }}
-              >
-                {trip.placeIds[index].length > 0 &&
+              {trip.placeIds[index].length > 0 &&
+                <TouchableOpacity
+                  style={{ flexDirection: "row", alignItems: "center" }}
+                  onPress={() => {
+                    isEditing ? setIsEditing(false) : setIsEditing(true);
+                  }}
+                >
                   <View style={styles.iconViewStyle}>
                     <Icon
                       style={styles.editIcon}
                       name="pencil"
                     />
                   </View>
-                }
-                <Text style={styles.tripDatesStyle}>Edit Places</Text>
-              </TouchableOpacity>
+                  <Text style={styles.tripDatesStyle}>Edit Places</Text>
+                </TouchableOpacity>
+              }
 
             </View>
-            <View style={{ width: '45%', alignItems: "center" }}>
-              <Text style={styles.directionsTitle}>Directions</Text>
-              {trip.placeIds[index].length > 0 &&
+
+            {trip.placeIds[index].length > 0 &&
+              <View style={{ width: '45%', alignItems: "center" }}>
+                <Text style={styles.directionsTitle}>Directions</Text>
                 <ButtonWithIcon
                   icon="car"
                   text="Driving"
@@ -225,25 +226,22 @@ const TripDetailScreen = props => {
                     })
                   }}
                 />
-              }
-
-              {trip.placeIds[index].length > 0 &&
                 <ButtonWithIcon
-                  icon="walk"
-                  text="Walking"
-                  onPress={() => {
-                    props.navigation.navigate('TripDayMap', {
-                      mapData: {
-                        city: tripCity,
-                        placeIds: trip.placeIds[index],
-                        directionMode: 'walking',
-                        navigation: props.navigation
-                      }
-                    })
-                  }}
-                />
-              }
-            </View>
+                icon="walk"
+                text="Walking"
+                onPress={() => {
+                  props.navigation.navigate('TripDayMap', {
+                    mapData: {
+                      city: tripCity,
+                      placeIds: trip.placeIds[index],
+                      directionMode: 'walking',
+                      navigation: props.navigation
+                    }
+                  })
+                }}
+              />
+              </View>
+            }
           </View>
           {missingPlaceIds.length === 0 &&
             <View style={{ flex: 1 }}>
