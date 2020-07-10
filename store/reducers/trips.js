@@ -87,7 +87,7 @@ export default (state = initialState, action) => {
           action.updatedPlaceIds,
         );
 
-        const updatedUserTrips = [...state.userTrips];
+        let updatedUserTrips = [...state.userTrips];
         updatedUserTrips[tripIndex] = updatedTrip;
         return { ...state, userTrips: updatedUserTrips };
       }
